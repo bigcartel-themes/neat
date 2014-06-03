@@ -1,0 +1,131 @@
+@import 'compass'
+@import 'config'
+@import 'remfont'
+
+// Global
+
+html, body
+  height: 100%
+
+body
+  background: #{"{{ theme.background_color }}"}
+  color: #{"{{ theme.text_color }}"}
+  font: 100%/1.5 normal #{"{{ theme.text_font | font_family }}"}
+  -webkit-font-smoothing: antialiased
+  -moz-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
+  -moz-font-feature-settings: "onum=1, kern=1, liga=1"
+  -ms-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
+  -o-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
+  -webkit-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
+  font-feature-settings: "onum" 1, "kern" 1, "liga" 1
+  text-rendering: optimizeLegibility
+
+hr
+  background-color: $black_10
+  border-style: none
+  border: none
+  box-sizing: border-box
+  height: 2px
+  margin: 16px 0
+  padding: 0
+  width: 100%
+
+// CSS3 Global Animation
+
+header
+  +transition-property(all)
+  +transition-duration(.5s)
+  +transition-timing-function(ease-in)
+
+a,
+header a,
+.slideshow div a,
+.button, submit, input[type='submit'], button, select
+  +transition-property(all)
+  +transition-duration(.25s)
+  +transition-timing-function(ease-in-out)
+
+// Links
+
+a
+  color: $link
+  text-decoration: none
+
+a:hover
+  color: $link_hover
+
+
+// Buttons
+
+.button, submit, input[type='submit'], button, select
+  +border-radius(0)
+  background-color: rgba(white, 0)
+  border: 2px solid $black_80
+  box-sizing: border-box
+  color: $black_80
+  display: inline-block
+  font-weight: 600
+  height: 48px
+  line-height: 48px
+  margin: 0
+  outline: 0
+  padding: 0 16px
+  white-space: nowrap
+  width: 100%
+
+  &:hover
+    background-color: rgba($black_80, 1)
+    color: white
+
+// Typography
+
+form, input, textarea, submit, input[type='submit'], input[type='text'], button, select
+  font-family: #{"{{ theme.text_font | font_family }}"}
+  +font-size(14)
+  font-style: normal
+  -webkit-font-smoothing: antialiased
+  -webkit-appearance: none
+  -moz-appearance:    none
+  appearance:         none
+
+input[type='text'], input[type='textarea'], textarea
+  +border-radius(0)
+  +font-size(16)
+  background-color: rgba(white, 0)
+  border: 2px solid $black_80
+  box-sizing: border-box
+  color: $black_80
+  margin: 0
+  outline: 0
+  white-space: nowrap
+  text-indent: 16px
+
+
+h1, h2, h3, h4, h5, h6, strong
+  font-family: #{"{{ theme.header_font | font_family }}"}
+  text-transform: uppercase
+  letter-spacing: .5em
+
+
+// Headers
+
+h1
+  +font-size(28)
+
+h2
+  +font-size(24)
+
+h3
+  +font-size(20)
+
+h4
+  +font-size(16)
+
+h5
+  +font-size(12)
+
+h6
+  +font-size(12)
+
+
+

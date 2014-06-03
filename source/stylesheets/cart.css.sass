@@ -1,0 +1,116 @@
+@import 'compass'
+@import 'config'
+@import 'remfont'
+@import 'verticalalign'
+
+#cart
+
+  section.content
+    +pie-clearfix
+    box-sizing: border-box
+    margin: 0 auto
+    max-width: 1280px
+    padding-left: $marginSize
+    padding-right: $marginSize
+
+    h1
+      margin-bottom: 16px
+
+    h4
+      margin: 16px auto 64px auto
+      padding: 0
+      text-align: center
+
+  .cart_details
+    list-style: none
+    margin: 0 auto
+    max-width: 800px
+    padding: 0
+    +box-sizing(border-box)
+
+    li
+      border-bottom: $border
+      display: block
+      height: 144px
+      margin-bottom: $marginSize
+      padding-bottom: $marginSize
+
+      a.product_image
+        display: inline
+        float: left
+        margin-right: $marginSize
+
+        img
+          float: left
+          max-height: 144px
+          width: auto
+
+      .product_details
+        +box-sizing(border-box)
+        display: inline
+        float: left
+        font-family: #{"{{ theme.text_font | font_family }}"}
+        font-style: normal
+        height: 144px
+        letter-spacing: 0
+        margin: 0
+        max-width: 400px
+        padding: 0 $marginSize 0 0
+        text-transform: normal
+        width: 400px
+
+        a
+          +vertical-align
+          display: block
+
+          em
+            display: block
+            font-style: normal
+
+      .product_actions
+        display: block
+        float: right
+        height: 144px
+        line-height: 144px
+        width: 224px
+
+        div
+          display: inline-block
+
+          &.quantity
+            width: 88px
+
+            input[type='text']
+              height: 56px
+              text-align: center
+              text-indent: 0
+              width: 56px
+
+          &.price
+            width: 80px
+
+          &.remove
+            width: 48px
+
+            a
+              display: inline
+
+  .cart_total
+    margin: 0 auto 32px auto
+    padding: 0
+    width: 800px
+
+    strong
+      display: inline-block
+      margin-right: $marginSize
+      text-align: right
+      width: 632px
+
+    .totals
+      display: inline-block
+      text-align: left
+
+  button
+    display: block
+    margin: 64px auto 64px auto
+    max-width: 320px

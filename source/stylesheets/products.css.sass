@@ -1,0 +1,133 @@
+@import 'compass'
+@import 'config'
+@import 'remfont'
+
+section.content
+  +pie-clearfix
+  max-width: 1280px
+  margin: 0 auto
+
+  h1
+    margin-bottom: 16px
+
+  .categories
+    +font-size(12)
+    line-height: 16px
+    margin: 0 auto
+    text-transform: uppercase
+    max-width: 960px
+    text-align: center
+    margin-bottom: 64px
+    padding: 0
+
+    li
+      display: inline-block
+      height: 16px
+      white-space: nowrap
+
+      &:after
+        content: '/'
+        display: inline-block
+        padding: 0 8px
+
+      &:last-child:after
+        content: ''
+        padding: 0
+
+  .products_list, .social
+    +pie-clearfix
+    position: relative
+    padding: 0
+    margin-top: 0
+
+    li
+      +box-sizing(border-box)
+      position: relative
+      display: inline-block
+      float: left
+      overflow: hidden
+      width: 31.158854168510707%
+      margin-right: 3.23232323%
+      margin-bottom: 64px
+
+      &:nth-child(3n+3)
+        margin-right: 0
+
+      @media only screen and (max-width:990px)
+        width: 48.358585858585855%
+        &:nth-child(even)
+          margin-right: 0
+        &:nth-child(3n)
+          margin-right: 3.23232323%
+        &:nth-child(6n)
+          margin-right: 0
+
+
+      @media only screen and (max-width:640px)
+        max-width: 100%
+        width: 100%
+
+    a
+      display: block
+      text-align: center
+
+      img
+        margin: 0 auto 16px auto
+        display: block
+
+      b, i
+        font-weight: normal
+        font-style: normal
+        text-align: center
+        whitespace: nowrap
+
+      b
+        display: block
+
+      i, em
+        display: inline-block
+        font-style: normal
+        color: $black_40
+
+    h4
+      text-align: center
+
+  .pagination
+    +font-size(12)
+    +pie-clearfix
+    display: block
+    height: 80px
+    line-height: 80px
+    max-width: 1280px
+    text-align: center
+    width: 100%
+    font-family: #{"{{ theme.header_font | font_family }}"}
+    text-transform: uppercase
+
+    span, a
+      padding: 0 8px
+
+      &:first-child
+        padding: 0 8px 0 0
+
+      &:last-child
+        padding: 0 0 0 8px
+
+      &.current
+        border: $border
+
+    a
+      border: 2px solid rgba($black_10, 0)
+
+    .next, .previous
+      border: none
+
+      &:hover
+        border: none
+
+  .social
+    margin: 0 0 64px 0
+    padding: 0
+
+    li
+      padding-bottom: 0

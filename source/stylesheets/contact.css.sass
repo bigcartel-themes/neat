@@ -1,0 +1,75 @@
+@import 'compass'
+@import 'config'
+@import 'remfont'
+@import 'verticalalign'
+
+#contact
+
+  section.content
+    +pie-clearfix
+    box-sizing: border-box
+    margin: 0 auto
+    max-width: 1280px
+    padding-left: $marginSize
+    padding-right: $marginSize
+
+    h1
+      margin: 0 auto 64px auto
+
+  .contact
+    +box-sizing(border-box)
+    list-style: none
+    margin: 0 auto
+    max-width: 800px
+    padding: 0
+
+    li
+      border-bottom: $border
+      display: block
+      margin: $marginSize auto $marginSize auto
+      padding-bottom: $marginSize
+
+      label
+        +font-size(16)
+        display: inline-block
+        margin-right: $marginSize
+        text-align: right
+        width: 144px
+
+      input[type='text'], textarea
+        display: inline-block
+        height: 56px
+        max-width: 496px
+        width: 100%
+
+        &#captcha
+          border-right: none
+          max-width: 368px
+
+      span
+        +clearfix
+        +font-size(12)
+        display: block
+        margin: 16px 0 0 180px
+
+      .captcha_image
+        +box-sizing(border-box)
+        +clearfix
+        border: 2px solid $black_80
+        display: inline-block
+        float: right
+        height: 56px
+        margin-right: 122px
+        max-width: 128px
+        text-align: center
+
+        img
+          display: block
+
+      textarea
+        height: 256px
+
+  button
+    display: block
+    margin: 64px auto 64px auto
+    max-width: 320px

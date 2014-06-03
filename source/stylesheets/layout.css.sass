@@ -1,0 +1,247 @@
+@import 'compass'
+@import 'config'
+@import 'remfont'
+@import 'verticalalign'
+
+div.wrap
+  height: 100%
+  width: 100%
+
+header
+  +pie-clearfix
+  font-family: #{"{{ theme.text_font | font_family }}"}
+  font-weight: 600
+  height: 80px
+  position: relative
+  width: 100%
+  z-index: 99
+
+  &.home
+    position: fixed
+    background-color: rgba(255,255,255, 0)
+    border-bottom: 2px solid rgba($black_10, 0)
+
+  &.overlay, &.page
+    position: fixed
+    background-color: rgba(255,255,255, 1)
+    border-bottom: 2px solid rgba($black_10, 1)
+
+    a
+      color: $link
+      border-bottom: 2px solid rgba($link, 0)
+
+      &:hover
+        color: $link_hover
+        border-bottom: 2px solid rgba($link_hover, 1)
+
+  a
+    color: white
+    border-bottom: 2px solid rgba(255,255,255, 0)
+
+    &:hover
+      color: white
+      border-bottom: 2px solid rgba(255,255,255, 1)
+
+  .logo
+    +font-size(24)
+    display: inline
+    font-family: #{"{{ theme.header_font | font_family }}"}
+    left: 0
+    line-height: 80px
+    padding: 0 $marginSize
+    position: absolute
+    text-align: left
+    top: 0
+    white-space: nowrap
+    z-index: 98
+
+  .sections
+    left: 0
+    margin: 0 auto
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 97
+
+  .utility
+    position: absolute
+    right: 0
+    top: 0
+    z-index: 99
+
+.sections, .utility, .footernav
+  display: inline
+
+  ul
+    display: inline-block
+    margin: 0 auto
+    padding: 0
+    text-align: center
+    white-space: nowrap
+    width: 100%
+
+
+    &.navigation
+      @media only screen and (max-width:990px)
+        display: none
+
+    li
+      +font-size(14)
+      display: inline-block
+      line-height: 80px
+      list-style: none
+      padding: 0 $marginSize
+      text-align: center
+
+  .cart
+    li
+      padding: 0 32px 0 0
+
+      &:first-child
+        padding: 0 0 0 32px
+
+      &:first-child:after
+        background-color: $black_10
+        content: " "
+        display: inline-block
+        height: 16px
+        margin: 0 16px
+        position: relative
+        top: 4px
+        width: 1px
+
+.slideshow
+  display: block
+  height: 100%
+  margin: 0
+  min-height: 640px
+  overflow: hidden
+  padding: 0
+  position: relative
+  width: 100%
+  z-index: 1
+
+  ul
+    display: inline-block
+    height: 100%
+    margin: 0
+    min-height: 640px
+    padding: 0
+    position: relative
+    width: 100%
+
+    li
+      background: transparent url('http://www.pand.co/lookbook/lucifer-judas/Slides/LOOBOOK_0022_P&CO_Lucifer_&_Judas_2013_Gobinder_Jhitta.jpg') center center fixed no-repeat
+      background-size: cover
+      display: inline-block
+      height: 100%
+      list-style: none
+      min-height: 640px
+      position: relative
+      width: 100%
+
+      div
+        +vertical-align
+        color: white
+        height: 240px
+        overflow: hidden
+        position: relative
+        text-align: center
+
+        p
+          +font-size(14)
+          font-weight: 600
+          line-height: 12px
+          padding-top: 16px
+          text-transform: uppercase
+
+        h2
+          +font-size(64)
+          letter-spacing: .5em
+          margin: 0 0 24px 0
+          text-transform: uppercase
+
+        a
+          border: 2px solid white
+          color: white
+          display: inline-block
+          font-weight: 600
+          height: 48px
+          line-height: 48px
+          padding: 0 $marginSize
+          white-space: nowrap
+
+          &:hover
+            background-color: white
+            color: $primary
+
+#home .content
+  padding: 64px 0 0 0
+
+  h1
+    margin-bottom: 16px
+
+.content
+  +pie-clearfix
+  border-bottom: $border
+  display: block
+  max-width: 1280px
+  margin: 0 auto
+  padding: 144px 0 0 0
+  position: relative
+  width: 100%
+
+  h1
+    color: $black_80
+    display: block
+    margin: 0 auto 64px auto
+    text-align: center
+
+  p
+    margin: 0 auto 64px auto
+    max-width: 800px
+    padding: 0 32px
+    text-align: center
+
+
+footer
+  +font-size(12)
+  +pie-clearfix
+  display: block
+  height: 80px
+  line-height: 80px
+  max-width: 1280px
+  margin: 0 auto
+  position: relative
+  text-align: center
+  width: 100%
+
+  .footernav
+    position: absolute
+    right: $marginSize
+
+    ul
+      display: inline-block
+      margin: 0
+      padding: 0
+      white-space: nowrap
+
+      li
+        +font-size(12)
+        display: inline-block
+        list-style: none
+        padding: 0 8px
+        text-align: center
+
+        a
+          color: $black_80
+
+  cite
+    color: $link
+    position: absolute
+    left: $marginSize
+
+
+
+
+
