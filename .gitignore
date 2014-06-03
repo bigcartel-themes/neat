@@ -2,3 +2,7 @@
 *.sublime-workspace
 
 *.sublime-project
+
+*.sassc
+
+*.scssc
