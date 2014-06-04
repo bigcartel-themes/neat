@@ -1,10 +1,12 @@
     <section class="content">
       <h1>{{ page.name }}</h1>
-      <ul class="categories">
-      {% for category in categories.active %}
-        <li class="page {% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
-      {% endfor %}
-      </ul>
+      <div class="subheader">
+        <ul class="categories">
+        {% for category in categories.active %}
+          <li class="page {% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+        {% endfor %}
+        </ul>
+      </div>
 
       {% paginate products from products.current by theme.products_per_page %}
       {% if products != blank %}

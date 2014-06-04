@@ -4,7 +4,7 @@
           <div class="featured">
             <p>Summer Collection 2014</p>
             <h2>The Commuter</h2>
-            <a href="">Shop Now</a>
+            <a href="" class="button">Shop Now</a>
           </div>
         </li>
       </ul>
@@ -12,8 +12,9 @@
 
     <section class="content">
       <h1>Featured Goods</h1>
-      <p>P&Co is aimed at minimalistic, fashion conscious men who like to look good and appreciate our collective approach to Life, Style and Elegance.</p>
-
+      <div class="subheader">
+        <p>P&amp;Co is aimed at minimalistic, fashion conscious men who like to look good and appreciate our collective approach to Life, Style and Elegance.</p>
+      </div>
       {% get products from products.all order:'sales' limit:6 %}
       {% if products != blank %}
         <ul class="products_list">
@@ -36,19 +37,4 @@
       {% endif %}
 
     {% endget %}
-    </section>
-
-    <section class="content">
-      <ul class="social">
-        <li>
-          <h4>Phone orders</h4>
-        </li>
-        <li>
-          <h4>Follow Us</h4>
-            {% if theme.twitter_username != blank %}<a href="http://twitter/{{ theme.twitter_username }}">Twitter</a>{% endif %}
-        </li>
-        <li>
-          <h4>Lifetime Warranty</h4>
-        </li>
-      </ul>
     </section>

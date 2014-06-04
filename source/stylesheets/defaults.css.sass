@@ -21,11 +21,11 @@ body
   text-rendering: optimizeLegibility
 
 hr
-  background-color: $black_10
+  background-color: shade($primary, 10%)
   border-style: none
   border: none
   box-sizing: border-box
-  height: 2px
+  height: 1px
   margin: 16px 0
   padding: 0
   width: 100%
@@ -59,22 +59,23 @@ a:hover
 
 .button, submit, input[type='submit'], button, select
   +border-radius(0)
+  +font-size(14)
   background-color: rgba(white, 0)
-  border: 2px solid $black_80
+  border: 1px solid shade($primary, 80%)
   box-sizing: border-box
-  color: $black_80
+  color: shade($primary, 80%)
   display: inline-block
   font-weight: 600
-  height: 48px
-  line-height: 48px
+  height: 56px
+  line-height: 56px
   margin: 0
   outline: 0
-  padding: 0 16px
+  padding: 0 $marginSize
   white-space: nowrap
   width: 100%
 
   &:hover
-    background-color: rgba($black_80, 1)
+    background-color: rgba(shade($primary, 80%), 1)
     color: white
 
 // Typography
@@ -92,9 +93,9 @@ input[type='text'], input[type='textarea'], textarea
   +border-radius(0)
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 2px solid $black_80
+  border: 1px solid shade($primary, 80%)
   box-sizing: border-box
-  color: $black_80
+  color: shade($primary, 80%)
   margin: 0
   outline: 0
   white-space: nowrap

@@ -23,7 +23,7 @@
 
     em
       font-style: normal
-      color: $black_40
+      color: shade($primary, 40%)
 
     .product_description
       +font-size(14)
@@ -54,8 +54,8 @@
         text-align: left
 
       h4
-        border-bottom: 2px solid rgba($black_10, 1)
-        border-top: 2px solid rgba($black_10, 1)
+        border-bottom: 1px solid rgba(shade($primary, 10%), 1)
+        border-top: 1px solid rgba(shade($primary, 10%), 1)
         margin: $marginSize auto
         padding: 16px 0
 
@@ -73,7 +73,7 @@
 
         li
           +font-size(12)
-          background: $black_5
+          background: shade($primary, 5%)
           height: 32px
           line-height: 32px
           list-style: none
@@ -105,7 +105,7 @@
             top: 0
 
             b
-              background-color: $black_10
+              background-color: shade($primary, 10%)
               display: block
               height: 32px
               left: 0

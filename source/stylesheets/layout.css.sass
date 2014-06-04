@@ -11,7 +11,7 @@ header
   +pie-clearfix
   font-family: #{"{{ theme.text_font | font_family }}"}
   font-weight: 600
-  height: 80px
+  height: 88px
   position: relative
   width: 100%
   z-index: 99
@@ -19,28 +19,28 @@ header
   &.home
     position: fixed
     background-color: rgba(255,255,255, 0)
-    border-bottom: 2px solid rgba($black_10, 0)
+    border-bottom: 1px solid rgba(shade($primary, 10%), 0)
 
   &.overlay, &.page
     position: fixed
     background-color: rgba(255,255,255, 1)
-    border-bottom: 2px solid rgba($black_10, 1)
+    border-bottom: 1px solid rgba(shade($primary, 10%), 1)
 
     a
       color: $link
-      border-bottom: 2px solid rgba($link, 0)
+      border-bottom: 1px solid rgba($link, 0)
 
       &:hover
         color: $link_hover
-        border-bottom: 2px solid rgba($link_hover, 1)
+        border-bottom: 1px solid rgba($link_hover, 1)
 
   a
     color: white
-    border-bottom: 2px solid rgba(255,255,255, 0)
+    border-bottom: 1px solid rgba(255,255,255, 0)
 
     &:hover
       color: white
-      border-bottom: 2px solid rgba(255,255,255, 1)
+      border-bottom: 1px solid rgba(255,255,255, 1)
 
   .logo
     +font-size(24)
@@ -88,7 +88,7 @@ header
     li
       +font-size(14)
       display: inline-block
-      line-height: 80px
+      line-height: 88px
       list-style: none
       padding: 0 $marginSize
       text-align: center
@@ -101,7 +101,7 @@ header
         padding: 0 0 0 32px
 
       &:first-child:after
-        background-color: $black_10
+        background-color: shade($primary, 10%)
         content: " "
         display: inline-block
         height: 16px
@@ -143,7 +143,7 @@ header
       div
         +vertical-align
         color: white
-        height: 240px
+
         overflow: hidden
         position: relative
         text-align: center
@@ -160,16 +160,14 @@ header
           letter-spacing: .5em
           margin: 0 0 24px 0
           text-transform: uppercase
+          @media only screen and (max-width:990px)
+            +font-size(48)
 
         a
-          border: 2px solid white
+          border: 1px solid white
           color: white
-          display: inline-block
-          font-weight: 600
-          height: 48px
-          line-height: 48px
-          padding: 0 $marginSize
-          white-space: nowrap
+          width: auto
+          line-height: 56px
 
           &:hover
             background-color: white
@@ -183,7 +181,6 @@ header
 
 .content
   +pie-clearfix
-  border-bottom: $border
   display: block
   max-width: 1280px
   margin: 0 auto
@@ -192,26 +189,33 @@ header
   width: 100%
 
   h1
-    color: $black_80
+    color: shade($primary, 80%)
     display: block
-    margin: 0 auto 64px auto
+    margin: 0 auto
     text-align: center
 
-  p
-    margin: 0 auto 64px auto
-    max-width: 800px
-    padding: 0 32px
-    text-align: center
+  .subheader
+    padding: 32px 0
+    margin: 32px auto 64px auto
+    max-width: 1280px
+    border-top: $border
+    border-bottom: $border
+
+    p
+      text-align: center
+      max-width: 800px
+      margin: 0 auto
 
 
 footer
   +font-size(12)
   +pie-clearfix
+  border-top: $border
   display: block
-  height: 80px
-  line-height: 80px
-  max-width: 1280px
+  height: 88px
+  line-height: 88px
   margin: 0 auto
+  max-width: 1280px
   position: relative
   text-align: center
   width: 100%
@@ -232,9 +236,6 @@ footer
         list-style: none
         padding: 0 8px
         text-align: center
-
-        a
-          color: $black_80
 
   cite
     color: $link

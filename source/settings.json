@@ -45,8 +45,13 @@
     },
     {
       "variable": "text_color",
-      "label": "Text Color",
+      "label": "Text color",
       "default": "#222222"
+    },
+    {
+      "variable": "primary_color",
+      "label": "Primary color",
+      "default": "#000000"
     }
   ],
   "options": [
