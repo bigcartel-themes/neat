@@ -131,14 +131,22 @@ header
     width: 100%
 
     li
-      background: transparent url('http://www.pand.co/lookbook/lucifer-judas/Slides/LOOBOOK_0022_P&CO_Lucifer_&_Judas_2013_Gobinder_Jhitta.jpg') center center fixed no-repeat
-      background-size: cover
+      +background(url('./images/overlay_pattern.png') 0 0 repeat, url('http://www.pand.co/lookbook/lucifer-judas/Slides/LOOBOOK_0022_P&CO_Lucifer_&_Judas_2013_Gobinder_Jhitta.jpg') center no-repeat)
+      background-size: 4px, cover
       display: inline-block
       height: 100%
       list-style: none
       min-height: 640px
       position: relative
       width: 100%
+
+      &:before
+        background-color: rgba(black, .25)
+        content: " "
+        display: block
+        height: 100%
+        position: absolute
+        width: 100%
 
       div
         +vertical-align
@@ -195,10 +203,9 @@ header
     text-align: center
 
   .subheader
-    padding: 32px 0
+    padding: 0 0 32px 0
     margin: 32px auto 64px auto
     max-width: 1280px
-    border-top: $border
     border-bottom: $border
 
     p
@@ -241,6 +248,7 @@ footer
     color: $link
     position: absolute
     left: $marginSize
+    white-space: nowrap
 
 
 
