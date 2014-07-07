@@ -53,6 +53,10 @@
         padding: 0
         text-align: left
 
+        &:first-child
+          margin-top: 0
+          padding-top: 0
+
       h4
         border-bottom: 1px solid rgba(shade($primary, 10%), 1)
         border-top: 1px solid rgba(shade($primary, 10%), 1)
@@ -121,7 +125,7 @@
       overflow: hidden
       width: 60%
 
-      .single
+      .default_image
         display: block
         width: 100%
 
@@ -131,33 +135,9 @@
           text-align: center
           width: 100%
 
-      .slideshow
-        display: block
-        float: left
-        height: auto
-        list-style: none
-        margin: 0
-        overflow: hidden
-        padding: 0
-        width: 100%
+.product_photos
+  margin-top: 32px
 
-        li
-          clear: both
-          display: none
-          float: left
-          margin: 0
-          padding: 0
-          width: 100%
-
-          &:first-child
-            display: block
-
-          a
-            display: block
-            width: 100%
-
-            img
-              display: block
-              margin: 0 auto
-              text-align: center
-              width: 100%
+  .product_photo
+    display: block
+    width: 100%
