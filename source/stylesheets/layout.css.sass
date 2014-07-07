@@ -82,7 +82,7 @@ header
 
 
     &.navigation
-      @media only screen and (max-width:990px)
+      @media only screen and (max-width: 740px)
         display: none
 
     li
@@ -190,7 +190,7 @@ header
     text-align: center
 
   .subheader
-    padding: 0 0 32px 0
+    padding: 0 32px 32px 32px
     margin: 32px auto 64px auto
     max-width: 1280px
     border-bottom: $border
@@ -218,6 +218,13 @@ footer
     position: absolute
     right: $marginSize
 
+    @media only screen and (max-width:740px)
+      display: block
+      line-height: 12px
+      margin: 32px auto 16px auto
+      position: relative
+      right: 0
+
     ul
       display: inline-block
       margin: 0
@@ -237,6 +244,13 @@ footer
     left: $marginSize
     white-space: nowrap
 
+    @media only screen and (max-width:740px)
+      display: block
+      left: 0
+      line-height: 12px
+      margin: 0 auto
+      padding-bottom: $marginSize
+      position: relative
 
 
 
