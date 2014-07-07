@@ -40,6 +40,10 @@
       height: 144px
       margin-bottom: $marginSize
       padding-bottom: $marginSize
+      overflow: hidden
+
+      @media only screen and (max-width:740px)
+        max-height: 72px
 
       a.product_image
         display: inline
@@ -50,6 +54,9 @@
           float: left
           max-height: 144px
           width: auto
+
+          @media only screen and (max-width:740px)
+            display: none
 
       .product_details
         +box-sizing(border-box)
@@ -63,7 +70,17 @@
         max-width: 400px
         padding: 0 $marginSize 0 0
         text-transform: normal
-        width: 400px
+        width: auto
+
+        a
+          white-space: nowrap
+          overflow: hidden
+          text-overflow: ellipsis
+
+
+        @media only screen and (max-width:740px)
+          height: 72px
+          width: 50%
 
         a
           +vertical-align
@@ -79,12 +96,21 @@
         height: 144px
         line-height: 144px
         width: 224px
+        text-align: right
+
+        @media only screen and (max-width:740px)
+          width: 50%
+          max-height: 72px
+          line-height: 72px
 
         div
           display: inline-block
 
           &.quantity
             width: 88px
+
+            @media only screen and (max-width:740px)
+              width: 56px
 
             input[type='text']
               height: 56px
@@ -95,8 +121,15 @@
           &.price
             width: 80px
 
+            @media only screen and (max-width:740px)
+              width: 56px
+
           &.remove
             width: 48px
+            text-align: center
+
+            @media only screen and (max-width:740px)
+              width: 10px
 
             a
               display: inline

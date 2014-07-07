@@ -40,8 +40,7 @@
       </nav>
       <nav class="utility">
         <ul class="cart">
-          <li><a href="/cart">{{ cart.item_count | pluralize: 'item', 'items' }}</a></li>
-          <li><a href="/cart">{{ cart.total | money_with_sign }}</a></li>
+          <li><a href="/cart">{{ cart.item_count | pluralize: 'item', 'items' }} / {{ cart.total | money_with_sign }}</a></li>
         </ul>
       </nav>
     </header>
