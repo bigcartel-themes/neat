@@ -2,6 +2,10 @@
 @import 'config'
 @import 'remfont'
 
+// Colors
+
+
+
 // Global
 
 html, body
@@ -21,7 +25,7 @@ body
   text-rendering: optimizeLegibility
 
 hr
-  background-color: shade($primary, 10%)
+  background-color: 1px solid #{"{{ theme.border_color }}"}
   border-style: none
   border: none
   box-sizing: border-box
@@ -32,13 +36,13 @@ hr
 
 // CSS3 Global Animation
 
-header
+header:after
   +transition-property(all)
   +transition-duration(.5s)
   +transition-timing-function(ease-in)
 
 a,
-header a,
+header a:after,
 .slideshow div a,
 .button, submit, input[type='submit'], button, select
   +transition-property(all)
@@ -48,11 +52,11 @@ header a,
 // Links
 
 a
-  color: $link
+  color: #{"{{ theme.link_color }}"}
   text-decoration: none
 
 a:hover
-  color: $link_hover
+  color: #{"{{ theme.link_hover }}"}
 
 
 // Buttons
@@ -60,10 +64,10 @@ a:hover
 .button, submit, input[type='submit'], button, select
   +border-radius(0)
   +font-size(14)
-  background-color: rgba(white, 0)
-  border: 1px solid shade($primary, 80%)
+  background-color: transparent
+  border: 1px solid #{"{{ theme.link_color }}"}
   box-sizing: border-box
-  color: shade($primary, 80%)
+  color: #{"{{ theme.link_color }}"}
   display: inline-block
   font-weight: 600
   height: 56px
@@ -75,8 +79,9 @@ a:hover
   width: 100%
 
   &:hover
-    background-color: rgba(shade($primary, 80%), 1)
-    color: white
+    background-color: #{"{{ theme.link_hover }}"}
+    border: 1px solid #{"{{ theme.link_hover }}"}
+    color: #{"{{ theme.background_color }}"}
 
 // Typography
 
@@ -93,13 +98,16 @@ input[type='text'], input[type='textarea'], textarea
   +border-radius(0)
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 1px solid shade($primary, 80%)
+  border: 1px solid #{"{{ theme.text_color }}"}
   box-sizing: border-box
-  color: shade($primary, 80%)
+  color: #{"{{ theme.text_color }}"}
   margin: 0
   outline: 0
   white-space: nowrap
   text-indent: 16px
+
+  &:focus
+    border: 1px solid #{"{{ theme.link_hover }}"}
 
 
 h1, h2, h3, h4, h5, h6, strong
@@ -132,6 +140,5 @@ h5
 
 h6
   +font-size(12)
-
 
 

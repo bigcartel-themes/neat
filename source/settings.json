@@ -1,16 +1,11 @@
 {
-  "name": "Neattheme",
-  "version": "0.0.1",
+  "name": "Nova",
+  "version": "1.0.0",
   "images": [
     {
       "variable": "logo",
       "label": "Logo",
       "description": "Adds your logo to the header"
-    },
-    {
-      "variable": "background_image",
-      "label": "Background Image",
-      "description": "Adds a repeating background image"
     }
   ],
   "image_sets": [
@@ -41,26 +36,51 @@
     {
       "variable": "background_color",
       "label": "Background",
-      "default": "#FFFFFF"
+      "default": "#ffffff"
+    },
+    {
+      "variable": "header_color",
+      "label": "Background",
+      "default": "#ffffff"
     },
     {
       "variable": "text_color",
-      "label": "Text color",
-      "default": "#222222"
+      "label": "Text",
+      "default": "#1b1b1b"
     },
     {
-      "variable": "primary_color",
-      "label": "Primary color",
-      "default": "#000000"
+      "variable": "link_color",
+      "label": "Links",
+      "default": "#919191"
+    },
+    {
+      "variable": "link_hover",
+      "label": "Link Hover",
+      "default": "#1b1b1b"
+    },
+    {
+      "variable": "border_color",
+      "label": "Borders",
+      "default": "#e2e2e2"
+    },
+    {
+      "variable": "error_color",
+      "label": "Errors",
+      "default": "#f25749"
     }
   ],
   "options": [
     {
-      "variable": "show_search",
-      "label": "Show search",
-      "type": "boolean",
-      "default": false,
-      "description": "Shows a search field"
+      "variable": "feature_subheader",
+      "label": "Feature subheader",
+      "type": "text",
+      "description": "Feature subheader for highlighted collection"
+    },
+    {
+      "variable": "feature_text",
+      "label": "Feature text",
+      "type": "text",
+      "description": "Feature paragraph for products on homepage"
     },
     {
       "variable": "product_image_size",
@@ -71,31 +91,68 @@
       "description": "The size of your product images"
     },
     {
+      "variable": "featured_products",
+      "label": "Featured products",
+      "type": "select",
+      "options": "1..100",
+      "default": 3,
+      "description": "The number of products shown on the Home page"
+    },
+    {
+      "variable": "featured_order",
+      "label": "Featured products order",
+      "type": "select",
+      "options": "product_orders",
+      "default": "newest",
+      "description": "The order of products on the Home page"
+    },
+    {
       "variable": "products_per_page",
       "label": "Products per page",
       "type": "select",
       "options": "1..100",
-      "default": 12,
-      "description": "The number of products shown per page"
+      "default": 9,
+      "description": "The number of products shown at a time on the Products page"
     },
     {
-      "variable": "show_pinterest",
-      "label": "Show Pinterest's Pin It button",
+      "variable": "show_inventory_bars",
+      "label": "Show inventory bars",
       "type": "boolean",
       "default": true,
-      "description": "Adds a Pin It button to the Product page"
+      "description": "Shows a product's inventory amounts (when using inventory tracking)",
+      "requires": "inventory"
     },
     {
-      "variable": "twitter_username",
-      "label": "Twitter username",
-      "type": "text",
-      "description": "Ex: bigcartel"
+      "variable": "show_search",
+      "label": "Show search",
+      "type": "boolean",
+      "default": false,
+      "description": "Shows the product search area"
     },
     {
-      "variable": "facebook_username",
-      "label": "Facebook username",
+      "variable": "share_buttons",
+      "label": "Show social buttons",
+      "type": "boolean",
+      "default": true,
+      "description": "Adds Facebook, Twitter, and Pinterest buttons to Product pages"
+    },
+    {
+      "variable": "twitter_link",
+      "label": "Twitter Link",
       "type": "text",
-      "description": "Ex: bigcartel"
+      "description": "Ex: http://twitter.com/bigcartel"
+    },
+    {
+      "variable": "facebook_link",
+      "label": "Facebook Link",
+      "type": "text",
+      "description": "Ex: http://facebook.com/bigcartel"
+    },
+    {
+      "variable": "tumblr_link",
+      "label": "Tumblr Link",
+      "type": "text",
+      "description": "Ex: http://tumblr.com/bigcartel"
     }
   ]
 }

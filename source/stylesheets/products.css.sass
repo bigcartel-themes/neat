@@ -66,6 +66,11 @@ section.content
     a
       display: block
       text-align: center
+      min-height: 300px
+      color: #{"{{ theme.link_color }}"}
+
+      &:hover
+        color: #{"{{ theme.link_hover }}"}
 
       img
         margin: 0 auto 16px auto
@@ -83,13 +88,13 @@ section.content
       i, em
         display: inline-block
         font-style: normal
-        color: shade($primary, 40%)
+        color: #{"{{ theme.text_color }}"}
 
     h4
       text-align: center
 
   .pagination
-    +font-size(12)
+    +font-size(14)
     +pie-clearfix
     display: block
     height: 80px
@@ -102,19 +107,16 @@ section.content
     text-transform: uppercase
 
     span, a
-      padding: 0 8px
+      padding: 16px
 
       &:first-child
-        padding: 0 8px 0 0
+        padding-left: 0
 
       &:last-child
-        padding: 0 0 0 8px
+        padding-right: 0
 
       &.current
-        border: $border
-
-    a
-      border: 1px solid rgba(shade($primary, 10%), 0)
+        border: 1px solid #{"{{ theme.link_color }}"}
 
     .next, .previous
       border: none

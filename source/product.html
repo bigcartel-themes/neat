@@ -12,7 +12,7 @@
   <h4>{{ product.default_price | money_with_sign }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
   {% endcase %}
 
-  <section class="product_images">
+  <section class="product_image">
     <div class="default_image">
       <img src="{{ product.image | product_image_url }}" alt="Image of {{ product.name | escape }}" class="primary_image">
     </div>

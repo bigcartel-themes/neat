@@ -23,7 +23,7 @@
 
     em
       font-style: normal
-      color: shade($primary, 40%)
+      color: #{"{{ theme.link_color }}"}
 
     .product_description
       +font-size(14)
@@ -58,8 +58,8 @@
           padding-top: 0
 
       h4
-        border-bottom: 1px solid rgba(shade($primary, 10%), 1)
-        border-top: 1px solid rgba(shade($primary, 10%), 1)
+        border-bottom: 1px solid #{"{{ theme.border_color }}"}
+        border-top: 1px solid #{"{{ theme.border_color }}"}
         margin: $marginSize auto
         padding: 16px 0
 
@@ -77,7 +77,7 @@
 
         li
           +font-size(12)
-          background: shade($primary, 5%)
+          border: 1px solid #{"{{ theme.border_color }}"}
           height: 32px
           line-height: 32px
           list-style: none
@@ -109,7 +109,7 @@
             top: 0
 
             b
-              background-color: shade($primary, 10%)
+              background-color: #{"{{ theme.border_color }}"}
               display: block
               height: 32px
               left: 0
@@ -118,7 +118,7 @@
               z-index: 1
 
 
-    .product_images
+    .product_image
       box-sizing: border-box
       float: left
       margin: 0 0 64px 0

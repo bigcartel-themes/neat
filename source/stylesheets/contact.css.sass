@@ -24,7 +24,7 @@
     padding: 0
 
     li
-      border-bottom: $border
+      border-bottom: 1px solid #{"{{ theme.border_color }}"}
       display: block
       margin: $marginSize auto $marginSize auto
       padding-bottom: $marginSize
@@ -43,7 +43,6 @@
         width: 100%
 
         &#captcha
-          border-right: none
           max-width: 368px
 
       span
@@ -55,7 +54,7 @@
       .captcha_image
         +box-sizing(border-box)
         +clearfix
-        border: 1px solid shade($primary, 80%)
+        border: 1px solid #{"{{ theme.text_color }}"}
         display: inline-block
         float: right
         height: 56px
@@ -68,6 +67,7 @@
 
       textarea
         height: 256px
+        padding-top: 16px
 
   button
     display: block

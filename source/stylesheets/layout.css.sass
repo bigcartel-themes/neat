@@ -18,31 +18,67 @@ header
 
   &.home
     position: fixed
-    background-color: rgba(255,255,255, 0)
-    border-bottom: 1px solid rgba(shade($primary, 10%), 0)
+
+    &:after
+      +opacity(0)
+      background-color: #{"{{ theme.header_color }}"}
+      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      content: " "
+      display: block
+      height: 100%
+      height: 100%
+      position: absolute
+      width: 100%
+      width: 100%
+      z-index: 96
 
   &.overlay, &.page
     position: fixed
-    background-color: rgba(255,255,255, 1)
-    border-bottom: 1px solid rgba(shade($primary, 10%), 1)
+
+    &:after
+      +opacity(1)
+      background-color: #{"{{ theme.header_color }}"}
+      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      content: " "
+      display: block
+      height: 100%
+      height: 100%
+      position: absolute
+      width: 100%
+      width: 100%
+      z-index: 96
 
     a
-      color: $link
-      border-bottom: 1px solid rgba($link, 0)
+      position: relative
+      color: #{"{{ theme.link_color }}"}
 
       &:hover
-        color: $link_hover
-        border-bottom: 1px solid rgba($link_hover, 1)
+        color: #{"{{ theme.link_hover }}"}
 
   a
-    color: white
-    border-bottom: 1px solid rgba(255,255,255, 0)
+    position: relative
+    color: #{"{{ theme.background_color }}"}
+    clear: both
+
+    &:after
+      +opacity(0)
+      background-color: #{"{{ theme.background_color }}"}
+      content: " "
+      display: block
+      height: 1px
+      position: absolute
+      top: 24px
+      left: 0
+      width: 100%
 
     &:hover
-      color: white
-      border-bottom: 1px solid rgba(255,255,255, 1)
+      color: #{"{{ theme.background_color }}"}
+
+      &:after
+        +opacity(1)
 
   .logo
+    +box-sizing(border-box)
     +font-size(24)
     display: inline
     font-family: #{"{{ theme.header_font | font_family }}"}
@@ -54,6 +90,18 @@ header
     top: 0
     white-space: nowrap
     z-index: 98
+
+    &.image
+      padding: $marginSize/2 $marginSize
+
+      a
+
+        &:after
+          +opacity(0)
+
+        img
+          max-height: 44px
+          width: auto
 
   .sections
     left: 0
@@ -118,7 +166,7 @@ header
     width: 100%
 
     li
-      +background(url('./images/overlay_pattern.png') 0 0 repeat, url('http://images.cdn.bigcartel.com/bigcartel/theme_images/8121883/max_h-1000+max_w-1000/ABOUT-PIC_copy.jpg') center no-repeat)
+      +background(url('./images/overlay_pattern.png') 0 0 repeat, url('http://images.cdn.bigcartel.com/bigcartel/theme_images/7824391/max_h-1000+max_w-1000/KC_140514_238.jpg') center no-repeat)
       background-size: 4px, cover
       display: inline-block
       height: 100%
@@ -128,7 +176,7 @@ header
       width: 100%
 
       &:before
-        background-color: rgba(black, .25)
+        background-color: rgba(black, .3)
         content: " "
         display: block
         height: 100%
@@ -137,7 +185,7 @@ header
 
       div
         +vertical-align
-        color: white
+        color: #{"{{ theme.background_color }}"}
 
         overflow: hidden
         position: relative
@@ -159,14 +207,15 @@ header
             +font-size(48)
 
         a
-          border: 1px solid white
-          color: white
+          border: 1px solid #{"{{ theme.background_color }}"}
+          color: #{"{{ theme.background_color }}"}
           width: auto
           line-height: 56px
 
           &:hover
-            background-color: white
-            color: $primary
+            border: 1px solid #{"{{ theme.background_color }}"}
+            background-color: #{"{{ theme.background_color }}"}
+            color: #{"{{ theme.text_color }}"}
 
 #home .content
   padding: 64px 0 0 0
@@ -183,16 +232,14 @@ header
   width: 100%
 
   h1
-    color: shade($primary, 80%)
+    color: #{"{{ theme.text_color }}"}
     display: block
     margin: 0 auto
     text-align: center
 
   .subheader
     padding: 0 32px 32px 32px
-    margin: 32px auto 64px auto
-    max-width: 1280px
-    border-bottom: $border
+    margin: 32px auto 0 auto
 
     p
       text-align: center
@@ -201,9 +248,9 @@ header
 
 
 footer
-  +font-size(12)
+  +font-size(14)
   +pie-clearfix
-  border-top: $border
+  border-top: 1px solid #{"{{ theme.border_color }}"}
   display: block
   height: 88px
   line-height: 88px
@@ -230,14 +277,14 @@ footer
       white-space: nowrap
 
       li
-        +font-size(12)
+        +font-size(14)
         display: inline-block
         list-style: none
         padding: 0 8px
         text-align: center
 
   cite
-    color: $link
+    color: #{"{{ theme.link_color }}"}
     position: absolute
     left: $marginSize
     white-space: nowrap
@@ -245,10 +292,11 @@ footer
     @media only screen and (max-width:740px)
       display: block
       left: 0
-      line-height: 12px
+      line-height: 15px
       margin: 0 auto
       padding-bottom: $marginSize
       position: relative
+      white-space: normal
 
 
 
