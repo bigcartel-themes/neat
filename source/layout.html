@@ -41,6 +41,9 @@
       </nav>
       <nav class="utility">
         <ul class="cart">
+          {% if theme.show_search %}
+            <li><a href="#search">Search</a></li>
+          {% endif %}
           <li><a href="/cart">{{ cart.item_count | pluralize: 'item', 'items' }} / {{ cart.total | money_with_sign }}</a></li>
         </ul>
       </nav>
@@ -73,6 +76,12 @@
       </nav>
       <cite><span class="badge">{{ bigcartel_credit }}</span></cite>
     </footer>
+
+    {% if theme.show_search %}
+      <form action="/products" method="get" class="search">
+        <input type="text" name="search" id="search" placeholder="Search products…">
+      </form>
+    {% endif %}
 
 
   </div>

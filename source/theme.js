@@ -52,4 +52,21 @@ $(document).ready(function() {
 
   $('.custom *').removeAttr('style');
 
+  // search
+
+  searchForm = $('form.search');
+
+  if(searchForm.length > 0) {
+    $('body').on('click', 'a[href=#search]', function(e) {
+      e.preventDefault();
+      searchForm.show();
+      searchForm.find('input[type=text]').focus()
+    });
+
+    $('body').on('click', 'form.search', function(e) {
+      searchForm.hide();
+    });
+  }
+
+
 });
