@@ -102,7 +102,7 @@
       "label": "Navigation items",
       "type": "select",
       "options": "1..6",
-      "default": 3,
+      "default": 2,
       "description": "The number of links show in the main navigation."
     },
     {
