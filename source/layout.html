@@ -34,7 +34,7 @@
       <nav class="sections">
         <ul class="navigation">
           <li><a href="/products">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
-          {% for page in pages.all limit:3 %}
+          {% for page in pages.all limit: theme.nav_items %}
           <li>{{ page | link_to }}</li>
           {% endfor %}
         </ul>
