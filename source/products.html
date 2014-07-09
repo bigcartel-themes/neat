@@ -1,43 +1,27 @@
 <section class="content">
   <h1>
-    {% if theme.collections and page.name == 'Products' %}
+    {% if page.full_url contains "search=" %}
+      Product Search
+    {% elsif theme.collections and page.name == 'Products' %}
       Collections
     {% else %}
       {{ page.name }}
     {% endif %}
   </h1>
 
-  {% if theme.collections and page.name == 'Products' %}
-
-    <!-- Collections -->
-    {% if categories.active != blank %}
-      <ul class="products_list">
-        {% for category in categories.active %}
-          <li class="product">
-            <a href="{{ category.url }}">
-              {% for product in category.products limit:1 %}
-                <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url size: 'large' }}">
-              {% endfor %}
-              <i>{{ category.name }}</i>
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No collections found.</p>
-    {% endif %}
-
-  {% else %}
+  {% if page.full_url contains "search=" or theme.collections != true or page.name != 'Products' %}
 
     <!-- Products -->
 
-    <div class="subheader">
-      <ul class="categories">
-      {% for category in categories.active %}
-        <li class="page {% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
-      {% endfor %}
-      </ul>
-    </div>
+    {% unless page.full_url contains "search=" %}
+      <div class="subheader">
+        <ul class="categories">
+        {% for category in categories.active %}
+          <li class="page {% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endunless %}
 
     {% paginate products from products.current by theme.products_per_page %}
       {% if products != blank %}
@@ -59,8 +43,28 @@
       {{ paginate | default_pagination }}
 
       {% else %}
-        <p>No products found.</p>
+        <p class="no_results">No products found.</p>
       {% endif %}
     {% endpaginate %}
+
+  {% else %}
+
+    <!-- Collections -->
+    {% if categories.active != blank %}
+      <ul class="products_list">
+        {% for category in categories.active %}
+          <li class="product">
+            <a href="{{ category.url }}">
+              {% for product in category.products limit:1 %}
+                <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url size: 'large' }}">
+              {% endfor %}
+              <i>{{ category.name }}</i>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No collections found.</p>
+    {% endif %}
   {% endif %}
 </section>

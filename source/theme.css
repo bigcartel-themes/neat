@@ -26,5 +26,6 @@
  *= require stylesheets/pages
  *= require stylesheets/cart
  *= require stylesheets/contact
+ *= require stylesheets/search
  *
  */
