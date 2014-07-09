@@ -1,4 +1,16 @@
 <section class="content">
+  {% if errors != blank %}
+    <ul class="errors">
+      {% for error in errors %}
+        <li>{% if forloop.length != 1 %}&bull; {% endif %}{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+<!--   <ul class="errors">
+    <li>This is an error!</li>
+  </ul>
+ -->
   <h1>Subtotal</h1>
   <h4>{{ cart.subtotal | money_with_sign }}</h4>
 
