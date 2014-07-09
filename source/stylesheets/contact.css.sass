@@ -26,40 +26,72 @@
     li
       border-bottom: 1px solid #{"{{ theme.border_color }}"}
       display: block
-      margin: $marginSize auto $marginSize auto
+      margin: $marginSize auto
       padding-bottom: $marginSize
+      position: relative
+      overflow: hidden
+
+      > div
+        clear:both
+        display: block
+        float: left
+        overflow: hidden
+        position: relative
+        width: 55%
+
+        @media only screen and (max-width:$breakpoint-small)
+          width: 100%
+
+        input[type='text']
+          width: 100%
+
+
+      @media only screen and (max-width:$breakpoint-small)
+        margin: 0
 
       label
         +font-size(16)
-        display: inline-block
+        display: block
+        float: left
+        line-height: 56px
         margin-right: $marginSize
         text-align: right
-        width: 144px
+        width: 20%
+
+        @media only screen and (max-width:$breakpoint-small)
+          clear: both
+          margin: 0
+          text-align: left
+          width: 100%
 
       input[type='text'], textarea
-        display: inline-block
+        clear:both
+        display: block
+        float: left
         height: 56px
-        max-width: 496px
-        width: 100%
+        width: 55%
+
+        @media only screen and (max-width:$breakpoint-small)
+          width: 100%
 
         &#captcha
-          max-width: 368px
 
       span
         +clearfix
         +font-size(12)
-        display: block
-        margin: 16px 0 0 180px
+        display: inline-block
+        margin-top: 16px
+        white-space: nowrap
 
       .captcha_image
         +box-sizing(border-box)
         +clearfix
         border: 1px solid #{"{{ theme.text_color }}"}
-        display: inline-block
-        float: right
+        display: block
         height: 56px
-        margin-right: 122px
+        right: 0
         max-width: 128px
+        position: absolute
         text-align: center
 
         img

@@ -33,6 +33,12 @@
       padding-left: 32px
       width: 40%
 
+      @media only screen and (max-width:$breakpoint-small)
+        float: none
+        margin-bottom: $marginSize
+        padding-left: 0
+        width: 100%
+
       small
         +font-size(14)
 
@@ -124,6 +130,11 @@
       margin: 0 0 64px 0
       overflow: hidden
       width: 60%
+
+      @media only screen and (max-width:$breakpoint-small)
+        float: none
+        margin-bottom: $marginSize
+        width: 100%
 
       .default_image
         display: block

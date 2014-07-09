@@ -26,9 +26,11 @@
       </li>
       <li>
         <label for="captcha">Spam check</label>
-        {{ contact | contact_input: 'captcha' }}
-        <div class="captcha_image">{{ contact.captcha }}</div>
-        <span>Please enter the characters from the image.</span>
+        <div>
+          {{ contact | contact_input: 'captcha' }}
+          <div class="captcha_image">{{ contact.captcha }}</div>
+          <span>Please enter the characters from the image.</span>
+        </div>
       </li>
     </ul>
     <button type="submit" name="submit" title="Send us an email">Send</button>

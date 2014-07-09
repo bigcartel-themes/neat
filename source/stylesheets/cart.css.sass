@@ -42,7 +42,7 @@
       padding-bottom: $marginSize
       overflow: hidden
 
-      @media only screen and (max-width:740px)
+      @media only screen and (max-width:$breakpoint-small)
         max-height: 72px
 
       a.product_image
@@ -55,7 +55,7 @@
           max-height: 144px
           width: auto
 
-          @media only screen and (max-width:740px)
+          @media only screen and (max-width:$breakpoint-small)
             display: none
 
       .product_details
@@ -78,7 +78,7 @@
           text-overflow: ellipsis
 
 
-        @media only screen and (max-width:740px)
+        @media only screen and (max-width:$breakpoint-small)
           height: 72px
           width: 50%
 
@@ -98,7 +98,7 @@
         width: 224px
         text-align: right
 
-        @media only screen and (max-width:740px)
+        @media only screen and (max-width:$breakpoint-small)
           width: 50%
           max-height: 72px
           line-height: 72px
@@ -109,7 +109,7 @@
           &.quantity
             width: 88px
 
-            @media only screen and (max-width:740px)
+            @media only screen and (max-width:$breakpoint-small)
               width: 56px
 
             input[type='text']
@@ -121,14 +121,14 @@
           &.price
             width: 80px
 
-            @media only screen and (max-width:740px)
+            @media only screen and (max-width:$breakpoint-small)
               width: 56px
 
           &.remove
             width: 48px
             text-align: center
 
-            @media only screen and (max-width:740px)
+            @media only screen and (max-width:$breakpoint-small)
               width: 10px
 
             a
