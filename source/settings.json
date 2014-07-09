@@ -83,6 +83,13 @@
       "description": "Feature paragraph for products on homepage"
     },
     {
+      "variable": "collections",
+      "label": "Enable collections",
+      "type": "boolean",
+      "default": false,
+      "description": "Use category collections instead of the traditional product listing page"
+    },
+    {
       "variable": "product_image_size",
       "label": "Product image size",
       "type": "select",

@@ -14,6 +14,7 @@ options[:customization] = {
     :width => 200,
     :height => 44
   },
+  :collections => true,
   :link_hover => 'blue',
   :show_search => true,
   :twitter_username => 'knotbytiffa',
