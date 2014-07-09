@@ -272,6 +272,9 @@ footer
   text-align: center
   width: 100%
 
+  @media only screen and (max-width:$breakpoint-small)
+    height: auto
+
   .footernav
     position: absolute
     right: $marginSize
@@ -279,7 +282,7 @@ footer
     @media only screen and (max-width:$breakpoint-small)
       display: block
       line-height: 12px
-      margin: 32px auto 16px auto
+      margin: 0 auto
       position: relative
       right: 0
 
@@ -289,12 +292,27 @@ footer
       padding: 0
       white-space: nowrap
 
+      @media only screen and (max-width:$breakpoint-small)
+        white-space: normal
+
       li
         +font-size(14)
         display: inline-block
         list-style: none
         padding: 0 8px
         text-align: center
+
+        @media only screen and (max-width:$breakpoint-small)
+          display: block
+          width: 100%
+          padding: 0
+
+          a
+            display: block
+            line-height: 44px
+            height: 44px
+            width: 100%
+            border-bottom: 1px solid #{"{{ theme.border_color }}"}
 
   cite
     color: #{"{{ theme.link_color }}"}
@@ -304,12 +322,22 @@ footer
 
     @media only screen and (max-width:$breakpoint-small)
       display: block
-      left: 0
-      line-height: 15px
-      margin: 0 auto
-      padding-bottom: $marginSize
       position: relative
-      white-space: normal
+      left: 0
+      padding-bottom: 32px
+
+    > span
+      width: 100%
+
+      a
+        +hide-text
+        background: url(#{'{{ "bc_badge.png" | theme_image_url }}'}) no-repeat
+        border: none
+        display: block
+        height: 23px
+        line-height: 88px
+        margin: 32px auto
+        width: 79px
 
 
 
