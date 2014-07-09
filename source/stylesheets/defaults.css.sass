@@ -116,10 +116,14 @@ h1, h2, h3, h4, h5, h6, strong
   letter-spacing: .5em
   text-indent: .5em
 
+  @media only screen and (max-width:$breakpoint-small)
+    letter-spacing: 0
+    text-indent: 0
+    white-space: normal
+
 strong
   letter-spacing: .125em
   text-indent: 0
-
 
 // Headers
 
