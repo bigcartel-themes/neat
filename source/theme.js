@@ -78,5 +78,19 @@ $(document).ready(function() {
 
   }
 
+  // mobile nav
+
+  mobileNav = $('.mobile_nav')
+
+  $('body').on('click', '.nav_trigger', function(e) {
+    e.preventDefault();
+    mobileNav.show();
+  });
+
+  $('body').on('click', '.mobile_nav', function(e) {
+    e.preventDefault();
+    mobileNav.hide();
+  });
+
 
 });

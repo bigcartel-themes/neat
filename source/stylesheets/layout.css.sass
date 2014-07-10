@@ -58,13 +58,46 @@ header
       position: relative
       color: #{"{{ theme.link_color }}"}
 
-      &:hover
+      path,
+      circle
+        fill: #{"{{ theme.link_color }}"}
+
+      &:hover,
         color: #{"{{ theme.link_hover }}"}
+
+        path,
+        circle
+          fill: #{"{{ theme.link_hover }}"}
 
   a
     position: relative
     color: #{"{{ theme.background_color }}"}
     clear: both
+
+    &.mobile
+      display: none
+
+      &:after
+        display: none
+
+      @media screen and (max-width: $breakpoint-small)
+        display: block
+
+    &.desktop
+      display: block
+
+      @media screen and (max-width: $breakpoint-small)
+        display: none
+
+    svg
+      cursor: pointer
+      position: relative
+      top: 3px
+
+    path,
+    circle
+      fill: #{"{{ theme.background_color }}"}
+
 
     &:after
       +opacity(0)
@@ -82,6 +115,10 @@ header
 
       &:after
         +opacity(1)
+
+      path,
+      circle
+        fill: #{"{{ theme.background_color }}"}
 
   .logo
     +box-sizing(border-box)
@@ -147,9 +184,29 @@ header
       padding: 0 $marginSize
       text-align: center
 
-  .cart
-    li
-      padding: 0 32px 0 0
+.utility ul li
+  padding: 0 32px 0 0
+
+.nav_trigger svg
+  top: 0
+
+.mobile_nav
+  background: #000
+  +box-sizing(border-box)
+  display: none
+  font-size: 200%
+  height: 100%
+  left: 0
+  list-style-type: none
+  margin: 0
+  padding: 5% 15%
+  position: fixed
+  top: 0
+  width: 100%
+  z-index: 10001
+
+  li
+    margin-left: 0
 
 .slideshow
   display: block
