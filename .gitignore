@@ -1,8 +1,12 @@
+.DS_Store
 
-*.sublime-workspace
+build
+tmp
+log
+.bundle
 
-*.sublime-project
-
+*.tmproj
+*.esproj
+*.sublime*
 *.sassc
-
 *.scssc

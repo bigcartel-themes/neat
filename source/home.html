@@ -12,6 +12,13 @@
       </ul>
     </section>
 
+    {% if theme.image_sets.slideshow_images.size > 0 %}
+    <script type="text/javascript">
+     var slides = [{% for image in theme.image_sets.slideshow_images %}"{{ image.url }}",{% endfor %}""]
+     slides = slides.slice(0, -1);
+    </script>
+    {% endif %}
+
     <section class="content">
       <h1>Featured</h1>
       {% if theme.feature_text != blank %}
