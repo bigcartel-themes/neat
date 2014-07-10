@@ -173,29 +173,40 @@ header
     width: 100%
 
     li
-      +background(url('./images/overlay_pattern.png') 0 0 repeat, url('http://images.cdn.bigcartel.com/bigcartel/theme_images/7824391/max_h-1000+max_w-1000/KC_140514_238.jpg') center no-repeat)
-      background-size: 4px, cover
+      background-size: cover
+      background-position: 50% 50%
+      background-repeat: no-repeat
       display: inline-block
       height: 100%
       list-style: none
       position: relative
       width: 100%
 
-      &:before
+      &:before,
+      &:after
         background-color: rgba(black, .3)
         content: " "
         display: block
         height: 100%
         position: absolute
         width: 100%
+        z-index: 1
+
+      &:after
+        top: 0
+
+      &:before
+        background-color: transparent
+        +background(url('./images/overlay_pattern.png') 0 0 repeat)
+        background-size: 4px
 
       div
         +vertical-align
         color: #{"{{ theme.background_color }}"}
-
         overflow: hidden
         position: relative
         text-align: center
+        z-index: 2
 
         p
           +font-size(14)

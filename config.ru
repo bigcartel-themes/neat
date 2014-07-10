@@ -19,7 +19,12 @@ options[:customization] = {
   :show_search => true,
   :twitter_username => 'knotbytiffa',
   :feature_subheader => 'Summer 2014',
-  :feature_text => 'Melody as patterns. Harmony as prints. Rhythm as stitching. Voice as statement. Menswear accessories as resonant as the songs that inspire them. The next strut of the peacock revolution.'
+  :feature_text => 'Melody as patterns. Harmony as prints. Rhythm as stitching. Voice as statement. Menswear accessories as resonant as the songs that inspire them. The next strut of the peacock revolution.',
+  :slideshow_images => [
+    { :url => "http://image-proxy.bigcartel.biz/bigcartel-staging/theme_images/5616383/-/01638_darkknight_2560x1600.jpg" },
+    { :url => "http://image-proxy.bigcartel.biz/bigcartel-staging/theme_images/5616386/-/01773_valleyforge_1920x1200.jpg" },
+    { :url => "http://image-proxy.bigcartel.biz/bigcartel-staging/theme_images/5616389/-/01776_riverthameslondonuk_2560x1600.jpg" }
+  ]
 }
 
 run Dugway.application(options)
