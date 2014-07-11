@@ -391,6 +391,10 @@ header
       &:last-child
         border-width: 1px
 
+      &:hover
+        background-color: #{"{{ theme.link_hover }}"}
+        border-color: #{"{{ theme.link_hover }}"}
+
       a
         display: inline-block
         width: 56px
@@ -401,6 +405,7 @@ header
           +scale(100%)
           cursor: pointer
           position: relative
+          top: 2px
 
         path,
         circle
@@ -409,7 +414,7 @@ header
       &:hover svg
         path,
         circle
-          fill: #{"{{ theme.link_hover }}"}
+          fill: #{"{{ theme.background_color }}"}
 
 
 footer
