@@ -323,6 +323,9 @@ header
 #home .content
   padding: 64px 0 0 0
 
+  @media only screen and (max-width:$breakpoint-small)
+    padding-top: $marginSize
+
   h1
     margin-bottom: 16px
 
@@ -335,7 +338,7 @@ header
   width: 100%
 
   @media only screen and (max-width:$breakpoint-small)
-    padding-top: 64px
+    padding-top: $marginSize
 
   h1
     color: #{"{{ theme.text_color }}"}
@@ -344,8 +347,12 @@ header
     text-align: center
 
   .subheader
-    padding: 0 32px 32px 32px
-    margin: 32px auto 0 auto
+    padding: 0 $marginSize $marginSize $marginSize
+    margin: $marginSize auto 0 auto
+
+    @media only screen and (max-width:$breakpoint-small)
+      padding: 0 $marginSize/2 $marginSize/2 $marginSize/2
+      margin: $marginSize/2 auto 0 auto
 
     p
       text-align: center

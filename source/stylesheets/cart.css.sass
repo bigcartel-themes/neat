@@ -13,6 +13,10 @@
     padding-left: $marginSize
     padding-right: $marginSize
 
+    @media only screen and (max-width:$breakpoint-small)
+      padding-left: $marginSize/2
+      padding-right: $marginSize/2
+
     h1
       margin-bottom: 16px
 
@@ -20,6 +24,9 @@
       margin: 16px auto 64px auto
       padding: 0
       text-align: center
+
+      @media only screen and (max-width:$breakpoint-small)
+        margin-bottom: $marginSize
 
     p
       margin: 0 auto 64px auto
@@ -44,9 +51,11 @@
 
       @media only screen and (max-width:$breakpoint-small)
         max-height: 72px
+        margin-bottom: $marginSize/2
+        padding-bottom: $marginSize/2
 
       a.product_image
-        display: inline
+        display: none
         float: left
         margin-right: $marginSize
 

@@ -49,6 +49,9 @@ section.content
       &:last-child
         margin-bottom: 32px
 
+        @media only screen and (max-width:990px)
+          margin-bottom: 0
+
       &:nth-child(3n+3)
         margin-right: 0
 
@@ -64,6 +67,7 @@ section.content
 
       @media only screen and (max-width:$breakpoint-small)
         max-width: 100%
+        margin-bottom: $marginSize/2
         width: 100%
 
     a
