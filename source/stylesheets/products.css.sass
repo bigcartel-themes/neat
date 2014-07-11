@@ -107,6 +107,18 @@ section.content
     font-family: #{"{{ theme.header_font | font_family }}"}
     text-transform: uppercase
 
+    .mobile
+      display: none
+
+      @media screen and (max-width:$breakpoint-small)
+        display: block
+
+    .desktop
+      display: block
+
+      @media screen and (max-width:$breakpoint-small)
+        display: none
+
     span, a
       padding: 16px
 

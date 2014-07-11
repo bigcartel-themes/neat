@@ -40,7 +40,29 @@
           {% endfor %}
         </ul>
 
-      {{ paginate | default_pagination }}
+        {% if paginate.pages > 1 %}
+          <div class="pagination" id="pagination">
+            <div class="desktop">
+              <span></span>
+              {% for i in (1..paginate.pages) %}
+                {% if i == paginate.current_page %}
+                  <span class="current">{{ i }}</span>
+                {% else %}
+                  <a href="{{ page.url }}?page={{ i }}">{{ i }}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="mobile">
+              {% if paginate.previous.is_link %}
+                <a href="{{ paginate.previous.url }}">Prev</a>
+              {% endif %}
+              {% if paginate.next.is_link %}
+                <a href="{{ paginate.next.url }}">Next</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
 
       {% else %}
         <p class="no_results">No products found.</p>
