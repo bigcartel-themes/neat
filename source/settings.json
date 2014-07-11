@@ -44,6 +44,11 @@
       "default": "#ffffff"
     },
     {
+      "variable": "feature_text_color",
+      "label": "Text",
+      "default": "#ffffff"
+    },
+    {
       "variable": "text_color",
       "label": "Text",
       "default": "#1b1b1b"
