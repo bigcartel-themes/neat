@@ -88,7 +88,6 @@ $(document).ready(function() {
   });
 
   $('body').on('click', '.mobile_nav', function(e) {
-    e.preventDefault();
     mobileNav.hide();
   });
 
