@@ -126,25 +126,34 @@ header
     display: inline
     font-family: #{"{{ theme.header_font | font_family }}"}
     left: 0
-    line-height: 80px
-    padding: 0 $marginSize
+    line-height: 88px
+    height: 88px
+    overflow: hidden
+    padding-left: $marginSize
     position: absolute
     text-align: left
     top: 0
     white-space: nowrap
     z-index: 98
 
+    @media only screen and (max-width:$breakpoint-small)
+      max-width: 50%
+      padding-left: $marginSize/2
+
     &.image
-      padding: $marginSize/2 $marginSize
 
       a
+        display: block
+        height: 88px
 
         &:after
-          +opacity(0)
+          display: none
 
         img
+          display: block
           max-height: 44px
-          width: auto
+          width: 100%
+          +vertical-align
 
   .sections
     left: 0
@@ -185,27 +194,34 @@ header
       text-align: center
 
 .utility ul li
-  padding: 0 32px 0 0
+  padding: 0 $marginSize 0 0
+
+  @media only screen and (max-width:$breakpoint-small)
+
+    padding: 0 $marginSize/2 0 0
 
 .nav_trigger svg
   top: 0
 
 .mobile_nav
-  background: #000
   +box-sizing(border-box)
+  background-color: rgba(black, .9)
   display: none
-  font-size: 200%
+  +font-size(24)
+  line-height: 88px
   height: 100%
   left: 0
   list-style-type: none
   margin: 0
   padding: 5% 15%
   position: fixed
+  text-align: center
   top: 0
   width: 100%
   z-index: 10001
 
   li
+    height: 88px
     margin-left: 0
 
 .slideshow
