@@ -1,11 +1,11 @@
     <section class="slideshow">
       <ul>
         <li>
-          {% if theme.feature_subheader != blank %}
+          {% if theme.feature_header != blank or theme.feature_subheader != blank %}
           <div class="featured">
-            <p>{{ theme.feature_subheader }}</p>
-            <h2>Collection Name</h2>
-            <a href="" class="button">Shop Now</a>
+            {% if theme.feature_subheader != blank %}<p>{{ theme.feature_subheader }}</p>{% endif %}
+            {% if theme.feature_header != blank %}<h2>{{ theme.feature_header }}</h2>{% endif %}
+            <a href="/products" class="button">Shop Now</a>
           </div>
           {% endif %}
         </li>

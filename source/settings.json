@@ -71,10 +71,16 @@
   ],
   "options": [
     {
+      "variable": "feature_header",
+      "label": "Feature header",
+      "type": "text",
+      "description": "Feature header for homepage"
+    },
+    {
       "variable": "feature_subheader",
       "label": "Feature subheader",
       "type": "text",
-      "description": "Feature subheader for highlighted collection"
+      "description": "Feature subheader for homepage"
     },
     {
       "variable": "feature_text",
