@@ -45,7 +45,7 @@
     },
     {
       "variable": "feature_text_color",
-      "label": "Text",
+      "label": "Feature text color",
       "default": "#ffffff"
     },
     {
