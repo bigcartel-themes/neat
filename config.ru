@@ -9,11 +9,6 @@ options[:store] = 'knotbytiffa'
 # Simulate the customization done by store owners by passing values to different variables.
 # Default values are based on the "default" for each setting in your settings.json.
 options[:customization] = {
-  :logo => {
-    :url => 'http://placehold.it/200x44/000000/ffffff&text=My+Logo',
-    :width => 200,
-    :height => 44
-  },
   :collections => true,
   :link_hover => 'blue',
   :show_search => true,

@@ -18,7 +18,7 @@
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrap">
     <header {% if page.permalink =='home' %}class="home"{% else %}class="page"{% endif %}>
-      <div class="logo {% if theme.logo != blank %}image{% endif %}">
+      <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
         {% if store.website != blank %}
         <a href="{{ store.website }}" title="{{ store.name | escape }}">
         {% else %}

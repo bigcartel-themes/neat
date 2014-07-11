@@ -29,9 +29,7 @@ header
       content: " "
       display: block
       height: 100%
-      height: 100%
       position: absolute
-      width: 100%
       width: 100%
       z-index: 96
 
@@ -40,19 +38,6 @@ header
 
     @media only screen and (max-width:$breakpoint-small)
       position: relative
-
-    &:after
-      +opacity(1)
-      background-color: #{"{{ theme.header_color }}"}
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
-      content: " "
-      display: block
-      height: 100%
-      height: 100%
-      position: absolute
-      width: 100%
-      width: 100%
-      z-index: 96
 
     a
       position: relative
@@ -110,6 +95,9 @@ header
       left: 0
       width: 100%
 
+      @media screen and (max-width: $breakpoint-small)
+        display: none
+
     &:hover
       color: #{"{{ theme.background_color }}"}
 
@@ -137,8 +125,15 @@ header
     z-index: 98
 
     @media only screen and (max-width:$breakpoint-small)
+      +font-size(16)
+      line-height: 88px
       max-width: 50%
       padding-left: $marginSize/2
+      text-overflow: ellipsis
+
+    &.text a:after
+      top: 32px
+
 
     &.image
 
@@ -193,6 +188,9 @@ header
       padding: 0 $marginSize/2
       text-align: center
 
+      @media only screen and (max-width: $breakpoint-small)
+        padding: 0 8px
+
       &:last-child
         padding-right: $marginSize
 
@@ -214,9 +212,8 @@ header
 
 .mobile_nav
   +box-sizing(border-box)
-  background-color: rgba(black, .9)
+  background-color: rgba(black, .95)
   display: none
-  +font-size(24)
   line-height: 88px
   height: 100%
   left: 0
@@ -409,8 +406,8 @@ footer
 
           a
             display: block
-            line-height: 44px
-            height: 44px
+            line-height: 56px
+            height: 56px
             width: 100%
             border-bottom: 1px solid #{"{{ theme.border_color }}"}
 
