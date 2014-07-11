@@ -135,11 +135,26 @@ section.content
       &.current
         border: 1px solid #{"{{ theme.link_color }}"}
 
-    .next, .previous
-      border: none
+    .prev,
+    .next
+      svg
+        position: relative
+        top: -2px
 
-      &:hover
-        border: none
+      path
+        fill: #{"{{ theme.link_color }}"}
+        +transition(all .25s ease-in-out)
+
+      &:hover path
+        fill: #{"{{ theme.link_hover }}"}
+
+    .prev svg
+      left: -2px
+      +rotate(90deg)
+
+    .next svg
+      left: 1px
+      +rotate(-90deg)
 
   .social
     margin: 0 0 64px 0
