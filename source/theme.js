@@ -71,11 +71,14 @@ $(document).ready(function() {
   // slideshow
 
   if(typeof slides !== 'undefined' && slides.length > 0) {
-    var random = Math.floor(Math.random() * slides.length);
-    var slide = 'url(' + slides[random] + ')';
+    if(slides.length === 1) {
+      $('.slideshow li:first-child').css({ 'background-image': slides[0]});
+    } else {
+      var random = Math.floor(Math.random() * slides.length);
+      var slide = 'url(' + slides[random] + ')';
 
-    $('.slideshow li:first-child').css({ 'background-image': slide});
-
+      $('.slideshow li:first-child').css({ 'background-image': slide});
+    }
   }
 
   // mobile nav
