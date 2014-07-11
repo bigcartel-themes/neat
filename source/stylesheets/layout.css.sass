@@ -36,6 +36,17 @@ header
   &.overlay, &.page
     position: fixed
 
+    &:after
+      +opacity(1)
+      background-color: #{"{{ theme.header_color }}"}
+      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      content: " "
+      display: block
+      height: 100%
+      position: absolute
+      width: 100%
+      z-index: 96
+
     @media only screen and (max-width:$breakpoint-small)
       position: relative
 
