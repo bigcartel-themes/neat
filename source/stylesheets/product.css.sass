@@ -33,7 +33,7 @@
       box-sizing: border-box
       float: right
       margin: 0 0 64px
-      padding-left: 32px
+      padding-left: $marginSize
       width: 40%
 
       @media only screen and (max-width:$breakpoint-small)
@@ -53,7 +53,7 @@
 
       select
         background-image: url(#{'{{ "down.svg" | theme_image_url }}'})
-        background-position: center right 32px
+        background-position: center right 16px
         background-repeat: no-repeat
         text-align: center
 
@@ -68,19 +68,19 @@
 
       h4
         border-bottom: 1px solid #{"{{ theme.border_color }}"}
-        margin: $marginSize auto
+        margin: $marginSize/2 auto
         padding: 16px 0
 
       ul
         +font-size(14)
         margin: 0
-        padding: 0 32px
+        padding: 0 $marginSize/2
 
         li
           list-style-position: inside
 
       .availability
-        margin: 0 0 $marginSize 0
+        margin: 0 0 $marginSize/2 0
         padding: 0
 
         li

@@ -85,7 +85,7 @@
               {% for product in category.products limit:1 %}
                 <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url size: 'large' }}">
               {% endfor %}
-              <i>{{ category.name }}</i>
+              <b>{{ category.name }}</b>
             </a>
           </li>
         {% endfor %}

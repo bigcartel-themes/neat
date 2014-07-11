@@ -103,9 +103,12 @@ section.content
   .pagination
     +font-size(14)
     +pie-clearfix
+    border-top: 1px solid #{"{{ theme.border_color }}"}
     display: block
     line-height: 44px
-    margin-bottom: $marginSize*2
+    margin: 0 auto $marginSize auto
+    max-width: 640px
+    padding-top: $marginSize
     text-align: center
     width: 100%
     font-family: #{"{{ theme.header_font | font_family }}"}

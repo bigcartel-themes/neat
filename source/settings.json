@@ -106,22 +106,6 @@
       "description": "The number of links show in the main navigation."
     },
     {
-      "variable": "featured_products",
-      "label": "Featured products",
-      "type": "select",
-      "options": "1..100",
-      "default": 3,
-      "description": "The number of products shown on the Home page"
-    },
-    {
-      "variable": "featured_order",
-      "label": "Featured products order",
-      "type": "select",
-      "options": "product_orders",
-      "default": "newest",
-      "description": "The order of products on the Home page"
-    },
-    {
       "variable": "products_per_page",
       "label": "Products per page",
       "type": "select",

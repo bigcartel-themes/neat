@@ -7,14 +7,10 @@
     </ul>
   {% endif %}
 
-<!--   <ul class="errors">
-    <li>This is an error!</li>
-  </ul>
- -->
+  {% if cart.items != blank %}
+
   <h1>Subtotal</h1>
   <h4>{{ cart.subtotal | money_with_sign }}</h4>
-
-  {% if cart.items != blank %}
 
   <form method="post" action="/cart">
     <ul class="cart_details">
