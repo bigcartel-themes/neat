@@ -10,7 +10,7 @@ options[:store] = 'knotbytiffa'
 # Default values are based on the "default" for each setting in your settings.json.
 options[:customization] = {
   :collections => true,
-  :link_hover => 'blue',
+  :link_hover => '#4ebf61',
   :show_search => true,
   :twitter_username => 'knotbytiffa',
   :feature_subheader => 'Summer 2014',

@@ -134,8 +134,20 @@
               width: 56px
 
           &.remove
+            cursor: pointer
             width: 48px
             text-align: center
+
+            svg
+              cursor: pointer
+              position: relative
+              top: 3px
+
+            path
+              fill: #{"{{ theme.link_color }}"}
+
+          &:hover svg path
+            fill: #{"{{ theme.link_hover }}"}
 
             @media only screen and (max-width:$breakpoint-small)
               width: 10px
