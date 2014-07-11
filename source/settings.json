@@ -40,7 +40,7 @@
     },
     {
       "variable": "header_color",
-      "label": "Background",
+      "label": "Header color",
       "default": "#ffffff"
     },
     {
