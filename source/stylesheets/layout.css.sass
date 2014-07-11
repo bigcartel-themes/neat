@@ -190,15 +190,11 @@ header
       display: inline-block
       line-height: 88px
       list-style: none
-      padding: 0 $marginSize
+      padding: 0 $marginSize/2
       text-align: center
 
-.utility ul li
-  padding: 0 $marginSize 0 0
-
-  @media only screen and (max-width:$breakpoint-small)
-
-    padding: 0 $marginSize/2 0 0
+      &:last-child
+        padding-right: $marginSize
 
 .nav_trigger svg
   top: 0
