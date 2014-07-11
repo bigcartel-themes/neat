@@ -43,7 +43,6 @@
         {% if paginate.pages > 1 %}
           <div class="pagination" id="pagination">
             <div class="desktop">
-              <span></span>
               {% for i in (1..paginate.pages) %}
                 {% if i == paginate.current_page %}
                   <span class="current">{{ i }}</span>
