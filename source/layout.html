@@ -17,7 +17,7 @@
 
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
     <script src="{{ theme | theme_js_url }}" type="text/javascript"></script>
 
     {{ head_content }}
@@ -41,7 +41,7 @@
       </div>
       <nav class="sections">
         <ul class="navigation">
-          <li><a href="/products">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+          <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
           {% for page in pages.all limit: theme.nav_items %}
           <li>{{ page | link_to }}</li>
           {% endfor %}
@@ -72,10 +72,11 @@
     </header>
 
     <ul class="mobile_nav">
-      <li><a href="/products">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+      <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
       {% for page in pages.all limit: theme.nav_items %}
         <li>{{ page | link_to }}</li>
       {% endfor %}
+      <li><a href="/contact" title="Contact">Contact</a></li>
     </ul>
 
     {% if page.category == 'custom' %}
@@ -100,7 +101,7 @@
           {% for page in pages.all offset: theme.nav_items %}
           <li>{{ page | link_to }}</li>
           {% endfor %}
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/contact" title="Contact">Contact</a></li>
         </ul>
       </nav>
       <cite><span class="badge">{{ bigcartel_credit }}</span></cite>
@@ -109,6 +110,9 @@
     {% if theme.show_search %}
       <form action="/products" method="get" class="search">
         <input type="text" name="search" id="search" placeholder="Search products…">
+		<a href="#" class="close_search">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 10 10" xml:space="preserve"><path d="M7.924 6.51L5.45 4.035l2.475-2.475c0.196-0.195 0.196-0.512 0-0.707L7.217 0.1 c-0.195-0.195-0.512-0.195-0.707 0L4.036 2.621L1.561 0.146c-0.195-0.195-0.512-0.195-0.707 0L0.147 0.9 c-0.196 0.195-0.196 0.5 0 0.707l2.475 2.475L0.147 6.51c-0.196 0.195-0.196 0.5 0 0.707l0.707 0.7 c0.195 0.2 0.5 0.2 0.7 0l2.475-2.475L6.51 7.924c0.195 0.2 0.5 0.2 0.7 0l0.707-0.707 C8.121 7 8.1 6.7 7.9 6.51z"/></svg>
+		</a>
       </form>
     {% endif %}
 
