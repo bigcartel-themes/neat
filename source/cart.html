@@ -36,12 +36,16 @@
       {% endfor %}
     </ul>
 
-  {% if cart.shipping.enabled or cart.discount.enabled %}
-  <section id="cart_options">
+  {% assign cartshippingenabled = 1 %}
+  {% assign cartdiscountenabled = 1 %}
+  {% assign cartshippingstrict = 1 %}
+  {% assign cartdiscountpending = 1 %}
+  {% if cartshippingenabled or cartdiscountenabled %}
+  <section class="cart_options">
     <ul>
-      {% if cart.shipping.enabled %}
-        {% if cart.shipping.strict %}
-        <li id="cart-shipping-tax">
+      {% if cartshippingenabled %}
+        {% if cartshippingstrict %}
+        <li class="cart_shipping">
           {% if cart.shipping.pending %}
             {% if cart.country %}
               <label for="country" class="not_set">Select a different country</label>
@@ -52,11 +56,12 @@
             <label for="country">Shipping</label>
           {% endif %}
           
-          {{ store.country | country_select }}
-          
+          <div class="select">
+		  	{{ store.country | country_select }}
+          </div>
+
           {% if cart.shipping.pending %}
-            <h3 class="cart_pending">$0</h3>
-            <button class="update-btn" name="update" type="submit" title="Update your cart total"><span>Apply</span></button>  
+            <h3 class="cart_pending">$0</h3> 
           {% else %}
             <h3>{{ cart.shipping.amount | money_with_sign }}</h3>
           {% endif %}
@@ -64,13 +69,13 @@
         {% endif %}  
       {% endif %}
       
-      {% if cart.discount.enabled %}
-      <li id="discount_option" {% unless cart.shipping.strict %}class="solo"{% endunless %}>
-        {% if cart.discount.pending %}
+      {% if cartdiscountenabled %}
+      <li class="cart_discount {% unless cartshippingstrict %}solo{% endunless %}">
+        {% if cartdiscountpending %}
           <label id="cart_discount_label" for="cart_discount_code">Discount</label>
           {{ cart.discount | discount_code_input }}
           <h3 class="cart_pending">{{ store.currency.sign }}0</h3>
-          <button class="update-btn" name="update" type="submit" title="Update your cart total"><span>Apply</span></button>    
+          
         {% elsif cart.discount.free_shipping %}
           <label for="cart_discount_code">Discount</label>        
           <p>{{ cart.discount.name }}</p>         
@@ -83,6 +88,7 @@
       {% endif %}
     </ul>   
   </section>
+<button class="update-btn" name="update" type="submit" title="Update your cart total"><span>Update</span></button>    
   {% endif %} 
 
 
