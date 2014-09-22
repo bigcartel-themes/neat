@@ -459,18 +459,26 @@ footer
         list-style: none
         padding: 0 8px
         text-align: center
+        
+        &:last-child
+          @media only screen and (max-width: $breakpoint-small)
+            padding-right: 0
 
         @media only screen and (max-width:$breakpoint-small)
           display: block
           width: 100%
           padding: 0
 
+       
           a
             display: block
             line-height: 56px
             height: 56px
             width: 100%
             border-bottom: 1px solid #{"{{ theme.border_color }}"}
+            
+         
+
 
   cite
     color: #{"{{ theme.link_color }}"}
@@ -497,6 +505,8 @@ footer
         margin: 32px auto
         width: 80px
 
-
-
-
+#success .content
+  margin: 0 auto 64px auto
+  max-width: 800px
+  text-align: center
+  width: 100%

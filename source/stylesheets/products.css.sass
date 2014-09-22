@@ -32,6 +32,12 @@ section.content
 
   .products_list, .social
     +pie-clearfix
+    display: -webkit-flex
+    display: -ms-flexbox
+    display: flex
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
     position: relative
     padding: 0
     margin-top: 0
@@ -42,7 +48,9 @@ section.content
     li
       +box-sizing(border-box)
       position: relative
-      display: inline-block
+      display: -webkit-flex
+      display: -ms-flexbox
+      display: flex
       float: left
       overflow: hidden
       width: 31.158854168510707%
@@ -76,6 +84,7 @@ section.content
     a
       display: block
       text-align: center
+      margin: 0 auto
       min-height: 300px
       color: #{"{{ theme.link_color }}"}
 
