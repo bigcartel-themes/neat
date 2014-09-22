@@ -1,4 +1,11 @@
 <section class="content">
+   {% if errors != blank %}
+    <ul class="errors">
+      {% for error in errors %}
+        <li>{% if forloop.length != 1 %}&bull; {% endif %}{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
   <h1>{{ page.name }}</h1>
   {% if theme.twitter_link != blank or theme.facebook_link != blank or theme.tumblr_link != blank or store.website != blank%}
   <ul class="social_links">
