@@ -36,15 +36,11 @@
       {% endfor %}
     </ul>
 
-  {% assign cartshippingenabled = 1 %}
-  {% assign cartdiscountenabled = 1 %}
-  {% assign cartshippingstrict = 1 %}
-  {% assign cartdiscountpending = 1 %}
-  {% if cartshippingenabled or cartdiscountenabled %}
+  {% if cart.shipping.enabled or cart.discount.enabled %}
   <section class="cart_options">
     <ul>
-      {% if cartshippingenabled %}
-        {% if cartshippingstrict %}
+      {% if cart.shipping.enabled %}
+        {% if cart.shipping.strict %}
         <li class="cart_shipping">
           {% if cart.shipping.pending %}
             {% if cart.country %}
@@ -69,9 +65,9 @@
         {% endif %}  
       {% endif %}
       
-      {% if cartdiscountenabled %}
-      <li class="cart_discount {% unless cartshippingstrict %}solo{% endunless %}">
-        {% if cartdiscountpending %}
+      {% if cart.discount.enabled %}
+      <li class="cart_discount {% unless cart.shipping.strict %}solo{% endunless %}">
+        {% if cart.discount.pending %}
           <label id="cart_discount_label" for="cart_discount_code">Discount</label>
           {{ cart.discount | discount_code_input }}
           <h3 class="cart_pending">{{ store.currency.sign }}0</h3>
@@ -88,7 +84,7 @@
       {% endif %}
     </ul>   
   </section>
-<button class="update-btn" name="update" type="submit" title="Update your cart total"><span>Update</span></button>    
+  <button class="update-btn" name="update" type="submit" title="Update your cart total"><span>Update</span></button>    
   {% endif %} 
 
 
