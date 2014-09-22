@@ -24,10 +24,10 @@ $(document).ready(function() {
 
   $('.featured').waypoint(function(direction) {
     if (direction === 'down') {
-      $(this).fadeOut(250)
+      $(this).fadeOut(250);
     }
   }, {
-    offset: '240'
+    offset: '100'
   }).waypoint(function(direction) {
     if (direction === 'up') {
       $(this).fadeIn(500)
@@ -66,6 +66,10 @@ $(document).ready(function() {
     $('body').on('click', 'form.search', function(e) {
       searchForm.hide();
     });
+    $(document).keyup(function(e) {
+      if (e.keyCode == 27) { searchForm.hide(); }
+    });
+	
   }
 
   // slideshow
@@ -93,6 +97,6 @@ $(document).ready(function() {
   $('body').on('click', '.mobile_nav', function(e) {
     mobileNav.hide();
   });
-
+  
 
 });
