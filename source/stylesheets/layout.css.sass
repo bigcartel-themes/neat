@@ -331,6 +331,7 @@ header
 
 #home .content
   padding: 64px 0 0 0
+  padding-top: #{"{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px {% endif %}"}
 
   @media only screen and (max-width:$breakpoint-small)
     padding-top: $marginSize

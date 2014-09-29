@@ -63,10 +63,12 @@
         display: inline
         float: left
         margin-right: $marginSize
+        +vertical-align
 
         img
           float: left
           max-height: 144px
+          max-width: 120px
           width: auto
 
           @media only screen and (max-width:$breakpoint-small)
@@ -169,13 +171,36 @@
       
       li
         float: left
-        text-align:center
+        text-align: center
         width: 50%
         
         label 
-		  display: block
-		  margin-bottom: 15px
+          display: block
+          margin-bottom: 15px
 
+        .select
+          position: relative
+
+          svg
+            position: absolute
+            right: 62px
+            top: 50%
+            margin-top: -2px
+
+          path
+            fill: #{"{{ theme.link_color }}"}
+
+          &:hover path
+            fill: #{"{{ theme.background_color }}"}
+
+          select
+            width: 85%
+
+        input
+          height: 56px
+          width: 85%
+          
+ 
   .cart_total
     margin: 0 auto 32px auto
     padding: 0

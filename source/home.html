@@ -1,3 +1,4 @@
+    {% if theme.image_sets.slideshow_images.size > 0 or theme.feature_header != blank or theme.feature_subheader != blank %}
     <section class="slideshow">
       <ul>
         <li>
@@ -5,12 +6,14 @@
           <div class="featured">
             {% if theme.feature_subheader != blank %}<p>{{ theme.feature_subheader }}</p>{% endif %}
             {% if theme.feature_header != blank %}<h2>{{ theme.feature_header }}</h2>{% endif %}
-            <a href="/products" class="button">Shop Now</a>
+            <a href="/products" class="button" title="Shop Now">Shop Now</a>
           </div>
           {% endif %}
         </li>
       </ul>
     </section>
+    {% endif %}
+    
 
     {% if theme.image_sets.slideshow_images.size > 0 %}
     <script type="text/javascript">
