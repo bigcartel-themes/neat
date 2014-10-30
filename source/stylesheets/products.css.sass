@@ -51,10 +51,10 @@ section.content
       display: -webkit-flex
       display: -ms-flexbox
       display: flex
-      float: left
       overflow: hidden
       width: 31.158854168510707%
-      margin-right: 3.23232323%
+      padding-right: 3.23232323%
+      padding-left: 3.23232323%
       margin-bottom: 64px
 
       &:last-child
@@ -63,17 +63,9 @@ section.content
         @media only screen and (max-width:990px)
           margin-bottom: 0
 
-      &:nth-child(3n+3)
-        margin-right: 0
 
       @media only screen and (max-width:990px)
         width: 48.358585858585855%
-        &:nth-child(even)
-          margin-right: 0
-        &:nth-child(3n)
-          margin-right: 3.23232323%
-        &:nth-child(6n)
-          margin-right: 0
 
 
       @media only screen and (max-width:$breakpoint-small)
@@ -94,6 +86,7 @@ section.content
       img
         margin: 0 auto 16px auto
         display: block
+        width: 100%
 
       b, i
         font-weight: normal

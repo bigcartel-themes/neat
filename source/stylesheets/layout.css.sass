@@ -229,15 +229,32 @@ header
   line-height: 88px
   height: 100%
   left: 0
-  list-style-type: none
+  list-style: none
   margin: 0
-  padding: 5% 15%
+  padding: 15%
   position: fixed
   text-align: center
   top: 0
   width: 100%
   z-index: 10001
-
+  
+  .close_nav
+    border: 2px solid #{"{{ theme.link_color }}"}
+    border-radius: 5ex
+    line-height: 22px
+    padding: 7px 5px 0px 8px
+    position: fixed
+    top: 25px
+    right: 15px
+    
+    path
+      fill: #{"{{ theme.link_color }}"}
+    
+  ul
+    list-style-type: none
+    margin: 0
+    padding: 0
+    
   li
     height: 88px
     margin-left: 0

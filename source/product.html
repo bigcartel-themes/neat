@@ -14,7 +14,7 @@
 
   <section class="product_image">
     <div class="default_image">
-      <img src="{{ product.image | product_image_url }}" alt="Image of {{ product.name | escape }}" class="primary_image">
+      <img src="{{ product.image | product_image_url | constrain:'1000' }}" alt="Image of {{ product.name | escape }}" class="primary_image">
     </div>
   </section>
 
