@@ -20,7 +20,7 @@ header
     position: fixed
 
     @media only screen and (max-width:$breakpoint-small)
-      position: absolute
+      position: #{"{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} relative {% else %} absolute {% endif %}"}
 
     &:after
       +opacity(0)
@@ -239,13 +239,11 @@ header
   z-index: 10001
   
   .close_nav
-    border: 2px solid #{"{{ theme.link_color }}"}
-    border-radius: 5ex
     line-height: 22px
-    padding: 7px 5px 0px 8px
     position: fixed
-    top: 25px
     right: 15px
+    top: 36px
+    
     
     path
       fill: #{"{{ theme.link_color }}"}
@@ -305,7 +303,7 @@ header
 
       &:before
         background-color: transparent
-        +background(url('./images/overlay_pattern.png') 0 0 repeat)
+        +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}') 0 0 repeat)
         background-size: 4px
 
       div
@@ -354,7 +352,7 @@ header
     padding-top: $marginSize
 
   h1
-    margin-bottom: 16px
+    margin-bottom: #{"{% if theme.feature_text == blank  %} 64px {% else %} 16px {% endif %}"}
 
 .content
   +pie-clearfix
@@ -452,21 +450,28 @@ footer
     height: auto
 
   .footernav
-    position: absolute
-    right: $marginSize
+    float: right
+    position: relative
+    margin-right: $marginSize/2
+    margin-top: $marginSize / 2
+    max-width: 60%
 
     @media only screen and (max-width:$breakpoint-small)
       display: block
+      float: none
       line-height: 12px
       margin: 0 auto
+      max-width: 100%
       position: relative
-      right: 0
+      width: 100%
 
     ul
       display: inline-block
+      line-height: 40px
       margin: 0
       padding: 0
-      white-space: nowrap
+      text-align: right
+      white-space: normal
 
       @media only screen and (max-width:$breakpoint-small)
         white-space: normal
@@ -475,11 +480,13 @@ footer
         +font-size(14)
         display: inline-block
         list-style: none
-        padding: 0 8px
+        padding: 0 12px
         text-align: center
         
         &:last-child
-          @media only screen and (max-width: $breakpoint-small)
+          padding-right: 12px
+          
+          @media only screen and (max-width:$breakpoint-small)
             padding-right: 0
 
         @media only screen and (max-width:$breakpoint-small)
@@ -487,28 +494,58 @@ footer
           width: 100%
           padding: 0
 
-       
           a
+            border-bottom: 1px solid #{"{{ theme.border_color }}"}
             display: block
             line-height: 56px
             height: 56px
             width: 100%
-            border-bottom: 1px solid #{"{{ theme.border_color }}"}
             
-         
+            
+  .social_footer
+    float: left
+    list-style: none
+    margin-left: 130px
+    margin-top: 0
+    padding: 0
+    
+    @media only screen and (max-width:$breakpoint-small)
 
+      margin: 0
+      padding: 0
+      width: 100%
+      
+    li
+      display: inline-block
+      
+      a
+        display: block
+        padding: 0 8px
+      
+        path,
+        circle
+          fill: #{"{{ theme.link_color }}"}
 
+        &:hover,
+          color: #{"{{ theme.link_hover }}"}
+
+          path,
+          circle
+            fill: #{"{{ theme.link_hover }}"}
+  
   cite
     color: #{"{{ theme.link_color }}"}
-    position: absolute
     left: $marginSize
+    position: absolute
     white-space: nowrap
 
     @media only screen and (max-width:$breakpoint-small)
+      clear: both
       display: block
-      position: relative
       left: 0
       padding-bottom: 32px
+      position: relative
+      width: 100%
 
     > span
       width: 100%
@@ -528,3 +565,6 @@ footer
   max-width: 800px
   text-align: center
   width: 100%
+  
+  p 
+    padding: 0 $marginSize

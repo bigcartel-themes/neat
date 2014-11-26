@@ -25,13 +25,9 @@
 
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrap">
-    <header {% if page.permalink =='home' %}class="home"{% else %}class="page"{% endif %}>
+    <header {% if page.permalink =='home' %}class="home{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}"{% else %}class="page"{% endif %}>
       <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
-        {% if store.website != blank %}
-        <a href="{{ store.website }}" title="{{ store.name | escape }}">
-        {% else %}
         <a href="/" title="{{ store.name | escape }}">
-        {% endif %}
           {% if theme.logo != blank %}
           <img src="{{ theme.logo.url }}" alt="{{ store.name }}">
           {% else %}
@@ -96,19 +92,30 @@
     <footer>
       <nav class="footernav">
         <ul>
-          <li>
-          {% if store.website != blank %}
-          <a href="{{ store.website }}" title="{{ store.name | escape }}">Home</a>
-          {% else %}
-          <a href="/" title="{{ store.name | escape }}">Home</a>
-          {% endif %}
-          </li>
+          <li><a href="/" title="{{ store.name | escape }}">Home</a></li>
           {% for page in pages.all offset: theme.nav_items %}
           <li>{{ page | link_to }}</li>
           {% endfor %}
           <li><a href="/contact" title="Contact">Contact</a></li>
+          {% if store.website != blank %}
+		  	<li><a href="{{ store.website }}">Back to site</a></li>
+		  {% endif %}
         </ul>
       </nav>
+	  {% if theme.twitter_link != blank or theme.facebook_link != blank or theme.tumblr_link != blank or store.website != blank%}
+	  <ul class="social_footer">
+	    {% if theme.twitter_link != blank %}
+	      <li><a href="{{ theme.twitter_link }}" title="Follow us on Twitter"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="15.995px" height="13.004px" viewBox="0 0 15.995 13.004" xml:space="preserve"><path d="M15.995 1.539c-0.589 0.262-1.221 0.438-1.885 0.518c0.678-0.406 1.197-1.049 1.443-1.816 c-0.635 0.377-1.338 0.65-2.085 0.797C12.87 0.4 12 0 11.1 0C9.259 0 7.8 1.5 7.8 3.3 c0 0.3 0 0.5 0.1 0.748c-2.728-0.137-5.147-1.443-6.767-3.43C0.827 1.1 0.7 1.6 0.7 2.3 c0 1.1 0.8 2.1 1.6 2.732C1.765 5 1 4.8 1 4.572c0 0 0 0 0 0.043c0 1.6 1 2.9 2.5 3.2 C3.173 7.9 2.8 7.9 2.5 7.949c-0.212 0-0.461-0.021-0.663-0.061c0.418 1.3 1.6 2.3 3 2.3 c-1.123 0.879-2.55 1.404-4.087 1.404c-0.266 0-0.532-0.016-0.789-0.045c1.453 0.9 3.2 1.5 5 1.5 c6.039 0 9.338-5.002 9.338-9.34c0-0.143-0.004-0.285-0.011-0.426C14.999 2.8 15.6 2.2 16 1.539z"/></svg></a>
+	    {% endif %}
+	    {% if theme.facebook_link != blank %}
+	      <li><a href="{{ theme.facebook_link }}" title="Friend us on Facebook"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="9px" height="16px" viewBox="0 0 9 16" xml:space="preserve"><path d="M9 3H7C6.7 3 6 3.5 6 4v2h3v3H6v7H3V9H0V6h3V4c0-2.206 1.961-4 4.062-4H9V3z"/></svg></a>
+	    {% endif %}
+	    {% if theme.tumblr_link != blank %}
+	      <li><a href="{{ theme.tumblr_link }}" title="Follow us on Tumblr"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10px" height="16px" viewBox="0 0 10 16" xml:space="preserve"><path d="M10 15.127c-0.692 0.322-1.321 0.549-1.883 0.679C7.555 15.9 6.9 16 6.3 16c-0.742 0-1.399-0.093-1.97-0.277 c-0.57-0.186-1.057-0.448-1.46-0.789c-0.402-0.343-0.459-0.59-0.614-0.976C2.094 13.6 2 12.7 2 12V7H0V4c3 0 3-3 3-4h3v4.045 L9 4v3H6v4c0 0.928-0.109 1.6 0.3 2.076c0.287 0.3 0.8 0.3 1.2 0.318c0.822 0 1.639-0.264 2.451-0.791V15.127z"/></svg></a>
+	    {% endif %}
+	  </ul>
+	  {% endif %}
+
       <cite><span class="badge">{{ bigcartel_credit }}</span></cite>
     </footer>
 
@@ -120,8 +127,6 @@
 		</a>
       </form>
     {% endif %}
-
-
   </div>
 </body>
 </html>

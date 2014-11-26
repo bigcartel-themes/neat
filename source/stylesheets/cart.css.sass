@@ -38,13 +38,18 @@
         display: block
         clear: both
         margin-bottom: 15px
-
+        
+.cart_form
+  margin: 0 auto
+  max-width: 800px
+  
   .cart_details
-    list-style: none
-    margin: 0 auto
-    max-width: 800px
-    padding: 0
     +box-sizing(border-box)
+    list-style: none
+    margin: 0
+    padding: 0
+    +pie-clearfix
+    
 
     li
       border-bottom: 1px solid #{"{{ theme.border_color }}"}
@@ -163,70 +168,97 @@
               display: inline
 
   .cart_options
-    ul
-      list-style: none
-      margin: 0 auto
-      max-width: 800px
-      padding: 0
-      
-      li
-        float: left
-        text-align: center
-        width: 50%
+    +pie-clearfix
+    list-style: none
+    margin: 0 auto
+    max-width: 800px
+    padding: 0
+    height: 128px
+    padding-bottom: $marginSize
+    border-bottom: 1px solid #{"{{ theme.border_color }}"}
+    
+    @media only screen and (max-width:$breakpoint-small)
+      height: auto
+      padding-bottom: 0
+    
+    li
+      float: left
+      width: 50%
+      +vertical-align
         
-        label 
-          display: block
-          margin-bottom: 15px
+      @media only screen and (max-width:$breakpoint-small)
+        float: none
+        width: 100%
+        position: relative
+        top: auto
+        -webkit-transform: none
+        -ms-transform: none
+        transform: none
+        
+      label 
+        display: block
+        margin-bottom: 15px
 
-        .select
-          position: relative
+      .select
+        position: relative
+        width: 85%
+        
+        @media only screen and (max-width:$breakpoint-small)
+          width: 100%
 
-          svg
-            position: absolute
-            right: 62px
-            top: 50%
-            margin-top: -2px
+        svg
+          position: absolute
+          right: 32px
+          top: 50%
+          margin-top: -2px
 
-          path
-            fill: #{"{{ theme.link_color }}"}
+        path
+          fill: #{"{{ theme.link_color }}"}
 
-          &:hover path
-            fill: #{"{{ theme.background_color }}"}
+        &:hover path
+          fill: #{"{{ theme.background_color }}"}
 
-          select
-            width: 85%
-
-        input
-          height: 56px
-          width: 85%
-          
-        p
-          float: none
-          font-weight: bold
-          height: 56px
-          line-height: 56px
-          margin: 0
-          padding: 0
-          text-align: center
-          vertical-align: middle
+      input
+        height: 56px
+        width: 85%
+        margin-top: 10px
+        
+        @media only screen and (max-width:$breakpoint-small)
           width: 100%
           
-  .cart_total
-    margin: 0 auto 32px auto
-    padding: 0
-    width: 800px
+      div
+        margin-bottom: 15px
+        text-align: right
+        font-weight: bold
+        font-family: #{"{{ theme.header_font | font_family }}"}
+        text-transform: uppercase
+        
+        @media only screen and (max-width:$breakpoint-small)
+          text-align: left
+        
+        > span
+          width: 150px
+          margin-left: 30px
+          display: inline-block
+          
+          @media only screen and (max-width:$breakpoint-small)
+            width: auto
+            margin: 0
+            float: right
 
-    strong
-      display: inline-block
-      margin-right: $marginSize
-      text-align: right
-      width: 632px
-
-    .totals
-      display: inline-block
-      text-align: left
-
+  .cart_totals
+    
+    @media only screen and (max-width:$breakpoint-small)
+      margin: 15px 0
+    
   button
     display: block
     margin: 64px auto 64px auto
     max-width: 320px
+    
+    @media only screen and (max-width:$breakpoint-small)
+      margin: 32px auto 32px auto
+      max-width: 100%
+      
+ 
+    
