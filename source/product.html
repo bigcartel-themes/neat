@@ -67,7 +67,7 @@
   </section>
 
   {% if product.artists != blank %}
-  <section>
+  <section class="product_artists">
     {% for artist in product.artists %}
     {% if forloop.first %}
     <h5>by {{ artist.name }}</h5>

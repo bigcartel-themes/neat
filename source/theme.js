@@ -15,7 +15,6 @@
 // Here we're including a couple CoffeeScript files written for different areas of the store, we're
 // also including jQuery in our layout.html from Google so that it can be better cached by users.
 //
-//= require javascripts/product
 //= require javascripts/cart
 //= require javascripts/waypoints
 
@@ -63,13 +62,9 @@ $(document).ready(function() {
       searchForm.find('input[type=text]').focus()
     });
 
-    $('body').on('click', 'form.search', function(e) {
+    $('body').on('click', '.close_search', function(e) {
       searchForm.hide();
     });
-    $(document).keyup(function(e) {
-      if (e.keyCode == 27) { searchForm.hide(); }
-    });
-	
   }
 
   // slideshow
@@ -94,9 +89,13 @@ $(document).ready(function() {
     mobileNav.show();
   });
 
-  $('body').on('click', '.mobile_nav', function(e) {
+  $('body').on('click', '.close_nav', function(e) {
     mobileNav.hide();
   });
-  
-
+});
+$(document).keyup(function(e) {
+  if (e.keyCode == 27) {
+	  if (searchForm.length > 0) { searchForm.hide(); }
+	  if (mobileNav.length > 0) { mobileNav.hide(); }
+  }
 });
