@@ -12,12 +12,7 @@
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "This is a slideshow"
-    },
-    {
-      "variable": "lookbook_images",
-      "label": "Lookbook",
-      "description": "This is a lookbook"
+      "description": "Homepage slideshow"
     }
   ],
   "fonts": [
@@ -40,7 +35,7 @@
     },
     {
       "variable": "header_color",
-      "label": "Header color",
+      "label": "Header Background",
       "default": "#ffffff"
     },
     {
@@ -106,7 +101,7 @@
       "type": "select",
       "options": "1..6",
       "default": 2,
-      "description": "The number of links show in the main navigation."
+      "description": "The number of custom page links show in the main navigation."
     },
     {
       "variable": "products_per_page",
@@ -115,6 +110,14 @@
       "options": "1..100",
       "default": 9,
       "description": "The number of products shown at a time on the Products page"
+    },
+    {
+      "variable": "featured_products",
+      "label": "Featured products",
+      "type": "select",
+      "options": "1..100",
+      "default": 9,
+      "description": "The number of products featured on the Home page"
     },
     {
       "variable": "show_inventory_bars",
@@ -155,6 +158,12 @@
       "label": "Tumblr Link",
       "type": "text",
       "description": "Ex: http://tumblr.com/bigcartel"
+    },
+    {
+      "variable": "instagram_link",
+      "label": "Instagram Link",
+      "type": "text",
+      "description": "Ex: http://instagram.com/bigcartel"
     }
   ]
 }

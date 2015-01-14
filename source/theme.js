@@ -15,21 +15,29 @@
 // Here we're including a couple CoffeeScript files written for different areas of the store, we're
 // also including jQuery in our layout.html from Google so that it can be better cached by users.
 //
+//= require_directory ./javascripts/vendor
 //= require javascripts/cart
 //= require javascripts/waypoints
 
+$(function(){
+  screenWidth = $(window).width();
+});
+
+$(window).resize(function () {
+   screenWidth = $(window).width();
+});
 
 $(document).ready(function() {
 
   $('.featured').waypoint(function(direction) {
     if (direction === 'down') {
-      $(this).fadeOut(250);
+      if (screenWidth > 800) { $(this).fadeOut(250); }
     }
   }, {
     offset: '100'
   }).waypoint(function(direction) {
     if (direction === 'up') {
-      $(this).fadeIn(500)
+      if (screenWidth > 800) { $(this).fadeIn(500); }
     }
   }, {
     offset: '120'
@@ -37,13 +45,14 @@ $(document).ready(function() {
 
   $('.content').waypoint(function(direction) {
     if (direction === 'down') {
-      $('header').toggleClass('overlay')
+      if (screenWidth > 800) { $('header').toggleClass('overlay') }
+      
     }
   }, {
     offset: '120'
   }).waypoint(function(direction) {
     if (direction === 'up') {
-      $('header').toggleClass('overlay')
+      if (screenWidth > 800) { $('header').toggleClass('overlay') }
     }
   }, {
     offset: '80'
@@ -65,19 +74,6 @@ $(document).ready(function() {
     $('body').on('click', '.close_search', function(e) {
       searchForm.hide();
     });
-  }
-
-  // slideshow
-
-  if(typeof slides !== 'undefined' && slides.length > 0) {
-    if(slides.length === 1) {
-      $('.slideshow li:first-child').css({ 'background-image': slides[0]});
-    } else {
-      var random = Math.floor(Math.random() * slides.length);
-      var slide = 'url(' + slides[random] + ')';
-
-      $('.slideshow li:first-child').css({ 'background-image': slide});
-    }
   }
 
   // mobile nav

@@ -176,7 +176,7 @@ header
     top: 0
     z-index: 99
 
-.sections, .utility, .footernav
+.sections, .utility
   display: inline
 
   ul
@@ -266,10 +266,57 @@ header
   position: relative
   width: 100%
   z-index: 1
+  
 
   @media only screen and (max-width:$breakpoint-small)
     max-height: 640px
+    
+  div.featured_holder
+    background-color: rgba(black, .3)
+    +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}') 0 0 repeat)
+    background-size: 4px  
+    height: 100%
+    
+  div.featured
+    +vertical-align
+    color: #{"{{ theme.feature_text_color }}"}
+    overflow: hidden
+    position: absolute
+    text-align: center
+    z-index: 2
+    width: 100%
+    
+    p
+      +font-size(14)
+      font-weight: 600
+      line-height: 12px
+      padding-top: 16px
+      text-transform: uppercase
 
+    h2
+      +font-size(64)
+      letter-spacing: .5em
+      margin: 0 0 24px 0
+      text-transform: uppercase
+
+      @media only screen and (max-width:$breakpoint-small)
+        +font-size(48)
+        letter-spacing: 0
+        text-indent: 0
+        white-space: normal
+
+    a
+      border: 1px solid #{"{{ theme.feature_text_color }}"}
+      color: #{"{{ theme.feature_text_color }}"}
+      width: auto
+      line-height: 56px
+
+      &:hover
+        border: 1px solid #{"{{ theme.link_hover }}"}
+        background-color: #{"{{ theme.link_hover }}"}
+        color: #{"{{ theme.feature_text_color }}"}
+        
+        
   ul
     display: inline-block
     height: 100%
@@ -306,43 +353,7 @@ header
         +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}') 0 0 repeat)
         background-size: 4px
 
-      div
-        +vertical-align
-        color: #{"{{ theme.feature_text_color }}"}
-        overflow: hidden
-        position: relative
-        text-align: center
-        z-index: 2
 
-        p
-          +font-size(14)
-          font-weight: 600
-          line-height: 12px
-          padding-top: 16px
-          text-transform: uppercase
-
-        h2
-          +font-size(64)
-          letter-spacing: .5em
-          margin: 0 0 24px 0
-          text-transform: uppercase
-
-          @media only screen and (max-width:$breakpoint-small)
-            +font-size(48)
-            letter-spacing: 0
-            text-indent: 0
-            white-space: normal
-
-        a
-          border: 1px solid #{"{{ theme.feature_text_color }}"}
-          color: #{"{{ theme.feature_text_color }}"}
-          width: auto
-          line-height: 56px
-
-          &:hover
-            border: 1px solid #{"{{ theme.link_hover }}"}
-            background-color: #{"{{ theme.link_hover }}"}
-            color: #{"{{ theme.feature_text_color }}"}
 
 #home .content
   padding: 64px 0 0 0
@@ -434,26 +445,31 @@ header
           fill: #{"{{ theme.background_color }}"}
 
 
+
+
+
+      
+      
+
 footer
+  +box-sizing(border-box)
   +font-size(14)
   +pie-clearfix
   border-top: 1px solid #{"{{ theme.border_color }}"}
   display: block
-  height: 88px
-  line-height: 88px
   margin: 0 auto
   position: relative
   text-align: center
   width: 100%
+  padding: $marginSize
 
   @media only screen and (max-width:$breakpoint-small)
     height: auto
+    padding: 0
 
   .footernav
     float: right
     position: relative
-    margin-right: $marginSize/2
-    margin-top: $marginSize / 2
     max-width: 60%
 
     @media only screen and (max-width:$breakpoint-small)
@@ -467,7 +483,7 @@ footer
 
     ul
       display: inline-block
-      line-height: 40px
+      line-height: normal
       margin: 0
       padding: 0
       text-align: right
@@ -475,12 +491,13 @@ footer
 
       @media only screen and (max-width:$breakpoint-small)
         white-space: normal
+        width: 100%
 
       li
         +font-size(14)
         display: inline-block
         list-style: none
-        padding: 0 12px
+        padding: 0 $marginSize/2
         text-align: center
         
         &:last-child
@@ -503,24 +520,33 @@ footer
             
             
   .social_footer
-    float: left
     list-style: none
-    margin-left: 130px
-    margin-top: 0
+    left: 120px
     padding: 0
+    margin: 0
+    position: absolute
+    top: $marginSize
     
     @media only screen and (max-width:$breakpoint-small)
-
+		
       margin: 0
+      margin-top: $marginSize
       padding: 0
       width: 100%
+      position: relative
+      left: 0
+      top: 0
       
     li
       display: inline-block
       
       a
         display: block
-        padding: 0 8px
+        padding: 0 12px
+        
+        svg
+          height: 24px
+          width: 24px
       
         path,
         circle
@@ -537,6 +563,7 @@ footer
     color: #{"{{ theme.link_color }}"}
     left: $marginSize
     position: absolute
+    top: $marginSize
     white-space: nowrap
 
     @media only screen and (max-width:$breakpoint-small)
@@ -556,9 +583,8 @@ footer
         border: none
         display: block
         height: 24px
-        line-height: 88px
-        margin: 32px auto
         width: 80px
+        margin: 0 auto
 
 #success .content
   margin: 0 auto 64px auto

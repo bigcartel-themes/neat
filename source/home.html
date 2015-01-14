@@ -1,27 +1,28 @@
-    {% if theme.image_sets.slideshow_images.size > 0 or theme.feature_header != blank or theme.feature_subheader != blank %}
+{% if theme.image_sets.slideshow_images.size > 0 or theme.feature_header != blank or theme.feature_subheader != blank %}
     <section class="slideshow">
-      <ul>
-        <li>
-          {% if theme.feature_header != blank or theme.feature_subheader != blank %}
-          <div class="featured">
-            {% if theme.feature_subheader != blank %}<p>{{ theme.feature_subheader }}</p>{% endif %}
-            {% if theme.feature_header != blank %}<h2>{{ theme.feature_header }}</h2>{% endif %}
-            <a href="/products" class="button" title="Shop Now">Shop Now</a>
-          </div>
-          {% endif %}
-        </li>
+      {% if theme.image_sets.slideshow_images.size > 0 %}
+      <ul class="slides-container">
+	    {% for image in theme.image_sets.slideshow_images %}
+	    <li><img src="{{ image.url }}"></li>
+	    {% endfor %}
       </ul>
+      {% endif %}
+      {% if theme.feature_header != blank or theme.feature_subheader != blank %}
+      <div class="featured_holder">
+	    <div class="featured">
+        {% if theme.feature_subheader != blank %}<p>{{ theme.feature_subheader }}</p>{% endif %}
+        {% if theme.feature_header != blank %}<h2>{{ theme.feature_header }}</h2>{% endif %}
+        <a href="/products" class="button">Shop Now</a>
+      </div>
+      </div>
+      {% endif %}
     </section>
-    {% endif %}
+{% endif %}   
+ 
+    
     
 
-    {% if theme.image_sets.slideshow_images.size > 0 %}
-    <script type="text/javascript">
-     var slides = [{% for image in theme.image_sets.slideshow_images %}"{{ image.url }}",{% endfor %}""]
-     slides = slides.slice(0, -1);
-    </script>
-    {% endif %}
-
+    
     <section class="content">
       <h1>Featured</h1>
       {% if theme.feature_text != blank %}
@@ -29,7 +30,7 @@
         <p>{{ theme.feature_text }}</p>
       </div>
       {% endif %}
-      {% get products from products.all order:'sales' limit:6 %}
+      {% get products from products.all order:'sales' limit: theme.featured_products %}
       {% if products != blank %}
         <ul class="products_list">
           {% for product in products %}
@@ -47,7 +48,7 @@
         </ul>
 
       {% else %}
-        <p>No products found.</p>
+        <p class="no_results">No products found.</p>
       {% endif %}
 
     {% endget %}
