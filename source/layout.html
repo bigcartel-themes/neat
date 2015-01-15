@@ -168,15 +168,18 @@
       </form>
     {% endif %}
   </div>
-    <script>
-    $(function() {
-		$('.slideshow').superslides({
-			hashchange: false,
-			pagination:false,
-			play: 5000
-		});
-    });
-    
-  </script>
+  {% if theme.image_sets.slideshow_images.size > 0 %}
+	  <script>
+	    $(function() {
+			if ($('.featured').length) { 
+					$('.slideshow').superslides({
+					hashchange: false,
+					pagination:false,
+					play: 5000
+				});
+			}
+	    });
+	  </script>
+  {% endif %}
 </body>
 </html>
