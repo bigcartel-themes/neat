@@ -19,15 +19,11 @@
 //= require javascripts/cart
 
 $(function(){
-  screenWidth = $(window).width();
+	screenWidth = $(window).width();
 });
-
 $(window).resize(function () {
-   screenWidth = $(window).width();
+	screenWidth = $(window).width();
 });
-
-
-
 $(document).ready(function() {
 	$('.featured').waypoint(function(direction) {
 		if (screenWidth > 800) { 

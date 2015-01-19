@@ -7,7 +7,7 @@
     <meta name="keywords" content="{{ page.meta_keywords }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    {% if page.permalink == 'product' and theme.share_buttons %}
+    {% if page.permalink == 'product' %}
     <meta property="og:title" content="{{ product.name | escape }}">
     <meta property="og:type" content="product">
     <meta property="og:url" content="{{ page.full_url }}">
@@ -17,7 +17,7 @@
 
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
     <script src="{{ theme | theme_js_url }}" type="text/javascript"></script>
 
     {{ head_content }}
@@ -68,31 +68,27 @@
     </header>
 
     <div class="mobile_nav">
-	  <a href="#" class="close_nav">
+		<a href="#" class="close_nav">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 10 10" xml:space="preserve"><path d="M7.924 6.51L5.45 4.035l2.475-2.475c0.196-0.195 0.196-0.512 0-0.707L7.217 0.1 c-0.195-0.195-0.512-0.195-0.707 0L4.036 2.621L1.561 0.146c-0.195-0.195-0.512-0.195-0.707 0L0.147 0.9 c-0.196 0.195-0.196 0.5 0 0.707l2.475 2.475L0.147 6.51c-0.196 0.195-0.196 0.5 0 0.707l0.707 0.7 c0.195 0.2 0.5 0.2 0.7 0l2.475-2.475L6.51 7.924c0.195 0.2 0.5 0.2 0.7 0l0.707-0.707 C8.121 7 8.1 6.7 7.9 6.51z"/></svg>
-	  </a>
-	  <ul>
-		   
-      <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
-      {% for page in pages.all limit: theme.nav_items %}
-        <li>{{ page | link_to }}</li>
-      {% endfor %}
-      <li><a href="/contact" title="Contact">Contact</a></li>
-    </ul>
-    </div>
+		</a>
+		<ul>
+		  <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+		  {% for page in pages.all limit: theme.nav_items %}
+		    <li>{{ page | link_to }}</li>
+		  {% endfor %}
+		  <li><a href="/contact" title="Contact">Contact</a></li>
+		</ul>
+	</div>
     {% if page.category == 'custom' %}
       <section class="content">
-      <h1>{{ page.name }}</h1>
-      {{ page_content | paragraphs }}
+	      <h1>{{ page.name }}</h1>
+	      {{ page_content | paragraphs }}
       </section>
     {% else %}
       {{ page_content }}
     {% endif %}
 
     <footer>
-	 
-
-      
       <nav class="footernav">
         <ul>
           <li><a href="/" title="{{ store.name | escape }}">Home</a></li>
@@ -111,15 +107,15 @@
 	      <li><a href="{{ theme.twitter_link }}" title="Follow us on Twitter"><svg version="1.1" id="twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="612px" height="490.298px" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"
 	 xml:space="preserve">
-<path d="M605.886,208.899c-22.068,9.841-45.777,16.493-70.667,19.486c25.397-15.318,44.908-39.572,54.106-68.477
-	c-23.776,14.186-50.104,24.48-78.14,30.037c-22.442-24.058-54.426-39.088-89.817-39.088c-67.956,0-123.055,55.41-123.055,123.765
-	c0,9.7,1.083,19.144,3.182,28.207c-102.265-5.171-192.933-54.438-253.625-129.322c-10.587,18.287-16.659,39.547-16.659,62.228
-	c0,42.944,21.726,80.833,54.744,103.024c-20.172-0.637-39.15-6.206-55.729-15.478c-0.012,0.52-0.012,1.041-0.012,1.561
-	c0,59.97,42.418,109.988,98.709,121.366c-10.331,2.833-21.193,4.345-32.417,4.345c-7.932,0-15.637-0.777-23.152-2.222
-	C89.016,497.5,134.457,533.29,188.3,534.287c-42.112,33.195-95.172,52.981-152.823,52.981c-9.933,0-19.725-0.588-29.352-1.726
-	c54.456,35.116,119.138,55.612,188.619,55.612c226.33,0,350.101-188.601,350.101-352.164c0-5.367-0.123-10.698-0.361-16.016
-	C568.523,255.516,589.387,233.71,605.886,208.899z"/>
-</svg></a>
+		<path d="M605.886,208.899c-22.068,9.841-45.777,16.493-70.667,19.486c25.397-15.318,44.908-39.572,54.106-68.477
+			c-23.776,14.186-50.104,24.48-78.14,30.037c-22.442-24.058-54.426-39.088-89.817-39.088c-67.956,0-123.055,55.41-123.055,123.765
+			c0,9.7,1.083,19.144,3.182,28.207c-102.265-5.171-192.933-54.438-253.625-129.322c-10.587,18.287-16.659,39.547-16.659,62.228
+			c0,42.944,21.726,80.833,54.744,103.024c-20.172-0.637-39.15-6.206-55.729-15.478c-0.012,0.52-0.012,1.041-0.012,1.561
+			c0,59.97,42.418,109.988,98.709,121.366c-10.331,2.833-21.193,4.345-32.417,4.345c-7.932,0-15.637-0.777-23.152-2.222
+			C89.016,497.5,134.457,533.29,188.3,534.287c-42.112,33.195-95.172,52.981-152.823,52.981c-9.933,0-19.725-0.588-29.352-1.726
+			c54.456,35.116,119.138,55.612,188.619,55.612c226.33,0,350.101-188.601,350.101-352.164c0-5.367-0.123-10.698-0.361-16.016
+			C568.523,255.516,589.387,233.71,605.886,208.899z"/>
+		</svg></a>
 	    {% endif %}
 	    {% if theme.facebook_link != blank %}
 	      <li><a href="{{ theme.facebook_link }}" title="Friend us on Facebook"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -134,12 +130,12 @@
 	      <li><a href="{{ theme.tumblr_link }}" title="Follow us on Tumblr"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="377.114px" height="611.937px" viewBox="117.504 90 377.114 611.937" enable-background="new 117.504 90 377.114 611.937"
 	 xml:space="preserve">
-<path fill="#010101" d="M493.272,571.276c-14.566,13.832-55.692,26.194-55.692,26.194
-	c-115.179,27.907-107.957-66.464-107.957-66.464v-189.72h144.31v-96.818h-144.31V90H241.74
-	c-11.383,139.658-124.236,164.628-124.236,164.628v87.394h67.81v224.604c-0.979,62.424,36.475,92.656,36.475,92.656
-	c115.056,89.964,272.83,9.67,272.83,9.67v-99.021L493.272,571.276z"/>
-</svg>
-</a>
+			<path fill="#010101" d="M493.272,571.276c-14.566,13.832-55.692,26.194-55.692,26.194
+				c-115.179,27.907-107.957-66.464-107.957-66.464v-189.72h144.31v-96.818h-144.31V90H241.74
+				c-11.383,139.658-124.236,164.628-124.236,164.628v87.394h67.81v224.604c-0.979,62.424,36.475,92.656,36.475,92.656
+				c115.056,89.964,272.83,9.67,272.83,9.67v-99.021L493.272,571.276z"/>
+			</svg>
+			</a>
 	    {% endif %}
 	    {% if theme.instagram_link != blank %}
 	    	<li><a href="{{ theme.instagram_link }}" title="Follow us on Instagram"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -168,18 +164,16 @@
       </form>
     {% endif %}
   </div>
-  {% if theme.image_sets.slideshow_images.size > 0 %}
-	  <script>
-	    $(function() {
-			if ($('.featured').length) { 
-					$('.slideshow').superslides({
-					hashchange: false,
-					pagination:false,
-					play: 5000
-				});
-			}
-	    });
-	  </script>
-  {% endif %}
+  <script>
+    $(function() {
+		if ($('.slides-container').length) { 
+			$('.slideshow').superslides({
+				hashchange: false,
+				pagination:false,
+				play: 5000
+			});
+		}
+    });
+  </script>
 </body>
 </html>
