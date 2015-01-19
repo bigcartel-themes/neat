@@ -145,22 +145,19 @@ header
     &.text a:after
       top: 32px
 
-
-    &.image
-      max-width: 208px
-
-      a
+    a
+      display: block
+      height: 88px
+	
+      &:after
+        display: none
+	
+      img
         display: block
-        height: 88px
-
-        &:after
-          display: none
-
-        img
-          display: block
-          max-height: 44px
-          width: 100%
-          +vertical-align
+        max-height: 66px
+        max-width: 208px
+        width: auto
+        +vertical-align
 
   .sections
     left: 0

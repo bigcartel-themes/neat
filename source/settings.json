@@ -5,14 +5,14 @@
     {
       "variable": "logo",
       "label": "Logo",
-      "description": "Adds your logo to the header"
+      "description": "Good for a logo up to 208 x 66 pixels"
     }
   ],
   "image_sets": [
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "Homepage slideshow"
+      "description": "Adds a full screen slideshow to the homepage"
     }
   ],
   "fonts": [
@@ -136,7 +136,7 @@
       "variable": "nav_items",
       "label": "Navigation items",
       "type": "select",
-      "options": "1..6",
+      "options": "0..6",
       "default": 2,
       "description": "The number of custom page links show in the main navigation."
     },
