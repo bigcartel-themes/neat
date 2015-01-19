@@ -69,6 +69,43 @@
       "default": "#f25749"
     }
   ],
+  "checkout": {
+	"logo": "{{ image }}",
+	"title_font": "{{ header_font }}",
+	"title_background_color": "{{ background_color }}",
+	"background_color": "{{ background_color }}",
+	"body_font": "{{ text_font }}",
+	"step_border_color":"{{ border_color }}",
+	"step_header_color":"{{ text_color }}",
+	"step_inactive_header_color":" {{ text_color }}",
+	"step_header_font":"{{ header_font }}",
+	"content_color":"{{ text_color }}",
+	"content_border_color":"{{ border_color }}", 
+	"content_border_radius":"0px",
+	"input_focus_color": "#000000",
+	"input_focus_background_color": "#ffffff",
+	"input_focus_border_color": "#bfbfbf",
+	"input_error_border_color": "#ea4859",
+	"input_color": "#000000",
+	"input_error_color": "#000000",
+	"input_border_color": "#bfbfbf",
+	"input_background_color": "#ffffff",
+	"input_error_background_color": "#ffffff",
+	"input_border_radius":"0px",
+	"input_font":"{{ text_font }}",
+	"button_color":"{{ link_color }}",
+	"button_border_width":"1px",
+	"button_border_radius":"0px",
+	"button_hover_color":"{{ background_color }}",
+	"button_background_color":"transparent",
+	"button_hover_background_color":"{{ link_hover }}",
+	"button_border_color":"{{ link_color }}",
+	"button_hover_border_color":"{{ link_hover }}",
+	"link_color":"{{ link_color }}",
+	"link_hover_color":"{{ link_hover }}",
+	"summary_color":"{{ text_color }}",
+	"summary_item_border_color":"{{ border_color }}"
+  },
   "options": [
     {
       "variable": "feature_header",
@@ -166,4 +203,5 @@
       "description": "Ex: http://instagram.com/bigcartel"
     }
   ]
+
 }
