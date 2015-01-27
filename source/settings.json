@@ -12,7 +12,12 @@
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "Adds a full screen slideshow to the homepage"
+      "description": "Adds a full screen slideshow to the homepage",
+      "defaults": [
+        "neat-slide-1.jpg", 
+        "neat-slide-2.jpg", 
+        "neat-slide-3.jpg"
+      ]
     }
   ],
   "fonts": [
@@ -111,19 +116,22 @@
       "variable": "feature_header",
       "label": "Feature header",
       "type": "text",
-      "description": "Feature header for homepage"
+      "description": "Feature header for homepage",
+      "default": "Feature header for homepage"
     },
     {
       "variable": "feature_subheader",
       "label": "Feature subheader",
       "type": "text",
-      "description": "Feature subheader for homepage"
+      "description": "Feature subheader for homepage",
+      "default": "Feature subheader for homepage"
     },
     {
       "variable": "feature_text",
       "label": "Feature text",
       "type": "text",
-      "description": "Feature paragraph for products on homepage"
+      "description": "Feature paragraph for products on homepage",
+      "default": "Feature paragraph for products on homepage"
     },
     {
       "variable": "collections",
@@ -203,5 +211,4 @@
       "description": "Ex: http://instagram.com/bigcartel"
     }
   ]
-
 }
