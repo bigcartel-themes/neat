@@ -353,14 +353,13 @@ header
 
 
 #home .content
-  padding: 64px 0 0 0
-  padding-top: #{"{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px {% endif %}"}
+  padding: #{"{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px{% else %} 64px{% endif %}"} 0 0 0
 
   @media only screen and (max-width:$breakpoint-small)
     padding-top: $marginSize
 
   h1
-    margin-bottom: #{"{% if theme.feature_text == blank  %} 64px {% else %} 16px {% endif %}"}
+    margin-bottom: #{"{% if theme.feature_text == blank %} 48px {% else %} 16px {% endif %}"}
 
 .content
   +pie-clearfix

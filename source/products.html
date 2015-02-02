@@ -11,13 +11,11 @@
 
   {% if page.full_url contains "search=" or theme.collections != true or page.name != 'Products' %}
 
-    <!-- Products -->
-
     {% unless page.full_url contains "search=" %}
       <div class="subheader">
         <ul class="categories">
         {% for category in categories.active %}
-          <li class="page {% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+          <li class="page{% if page.full_url contains category.url %} selected{% endif %}">{{ category | link_to }}</li>
         {% endfor %}
         </ul>
       </div>
@@ -35,6 +33,9 @@
               {% if product.on_sale %}
                 <em>On Sale</em>
               {% endif %}
+	          {% if product.status == 'sold-out' %}
+	            <em>Sold Out</em>
+	          {% endif %}
             </a>
           </li>
           {% endfor %}
@@ -75,8 +76,7 @@
     {% endpaginate %}
 
   {% else %}
-
-    <!-- Collections -->
+  
     {% if categories.active != blank %}
       <ul class="products_list collections">
         {% for category in categories.active %}

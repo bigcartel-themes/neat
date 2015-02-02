@@ -101,10 +101,10 @@
 		  {% endif %}
         </ul>
       </nav>
-	  {% if theme.twitter_link != blank or theme.facebook_link != blank or theme.tumblr_link != blank or theme.instagram_link != blank %}
+	  {% if theme.twitter_username != blank or theme.facebook_username != blank or theme.tumblr_username != blank or theme.instagram_username != blank %}
 	  <ul class="social_footer">
-	    {% if theme.twitter_link != blank %}
-	      <li><a href="{{ theme.twitter_link }}" title="Follow us on Twitter"><svg version="1.1" id="twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	    {% if theme.twitter_username != blank %}
+	      <li><a href="http://twitter.com/{{ theme.twitter_username }}" title="Follow us on Twitter"><svg version="1.1" id="twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="612px" height="490.298px" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"
 	 xml:space="preserve">
 		<path d="M605.886,208.899c-22.068,9.841-45.777,16.493-70.667,19.486c25.397-15.318,44.908-39.572,54.106-68.477
@@ -117,8 +117,8 @@
 			C568.523,255.516,589.387,233.71,605.886,208.899z"/>
 		</svg></a>
 	    {% endif %}
-	    {% if theme.facebook_link != blank %}
-	      <li><a href="{{ theme.facebook_link }}" title="Friend us on Facebook"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	    {% if theme.facebook_username != blank %}
+	      <li><a href="http://facebook.com/{{ theme.facebook_username }}" title="Friend us on Facebook"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="297.799px" height="612px" viewBox="157.162 90 297.799 612" enable-background="new 157.162 90 297.799 612"
 	 xml:space="preserve">
 <path fill="#010101" d="M369.036,193.795h85.68V90H333.662c-97.553,19.707-98.776,108.936-98.776,108.936v105.753h-77.724v102.938
@@ -126,8 +126,8 @@
 </svg>
 </a>
 	    {% endif %}
-	    {% if theme.tumblr_link != blank %}
-	      <li><a href="{{ theme.tumblr_link }}" title="Follow us on Tumblr"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	    {% if theme.tumblr_username != blank %}
+	      <li><a href="http://{{ theme.tumblr_username }}.tumblr.com" title="Follow us on Tumblr"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="377.114px" height="611.937px" viewBox="117.504 90 377.114 611.937" enable-background="new 117.504 90 377.114 611.937"
 	 xml:space="preserve">
 			<path fill="#010101" d="M493.272,571.276c-14.566,13.832-55.692,26.194-55.692,26.194
@@ -137,8 +137,8 @@
 			</svg>
 			</a>
 	    {% endif %}
-	    {% if theme.instagram_link != blank %}
-	    	<li><a href="{{ theme.instagram_link }}" title="Follow us on Instagram"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	    {% if theme.instagram_username != blank %}
+	    	<li><a href="http://instagram.com/{{ theme.instagram_username }}" title="Follow us on Instagram"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="612px" height="612px" viewBox="0 90 612 612" enable-background="new 0 90 612 612" xml:space="preserve">
 <path fill="#010101" d="M540.273,90H71.727C32.191,90,0,122.191,0,161.727v468.67C0,669.809,32.191,702,71.727,702h468.67
 	c39.535,0,71.726-32.191,71.726-71.727V161.727C612,122.313,579.687,90,540.273,90z M306,280.332
@@ -157,7 +157,7 @@
 
     {% if theme.show_search %}
       <form action="/products" method="get" class="search">
-        <input type="text" name="search" id="search" placeholder="Search products…">
+        <input type="text" name="search" id="search" placeholder="Search products...">
 		<a href="#" class="close_search">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 10 10" xml:space="preserve"><path d="M7.924 6.51L5.45 4.035l2.475-2.475c0.196-0.195 0.196-0.512 0-0.707L7.217 0.1 c-0.195-0.195-0.512-0.195-0.707 0L4.036 2.621L1.561 0.146c-0.195-0.195-0.512-0.195-0.707 0L0.147 0.9 c-0.196 0.195-0.196 0.5 0 0.707l2.475 2.475L0.147 6.51c-0.196 0.195-0.196 0.5 0 0.707l0.707 0.7 c0.195 0.2 0.5 0.2 0.7 0l2.475-2.475L6.51 7.924c0.195 0.2 0.5 0.2 0.7 0l0.707-0.707 C8.121 7 8.1 6.7 7.9 6.51z"/></svg>
 		</a>
@@ -170,7 +170,7 @@
 			$('.slideshow').superslides({
 				hashchange: false,
 				pagination:false,
-				play: 5000
+				play: 6000
 			});
 		}
     });

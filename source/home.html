@@ -18,38 +18,36 @@
       {% endif %}
     </section>
 {% endif %}   
- 
-    
-    
 
-    
-    <section class="content">
-      <h1>Featured</h1>
-      {% if theme.feature_text != blank %}
-      <div class="subheader">
-        <p>{{ theme.feature_text }}</p>
-      </div>
-      {% endif %}
-      {% get products from products.all order:'sales' limit: theme.featured_products %}
-      {% if products != blank %}
-        <ul class="products_list">
-          {% for product in products %}
-          <li class="{{ product.css_class }}">
-            <a href="{{ product.url }}">
-              <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '900' }}">
-              <b>{{ product.name }}</b>
-              <i>{{ product.default_price | money_with_sign }}</i>
-              {% if product.on_sale %}
-                <em>On Sale</em>
-              {% endif %}
-            </a>
-          </li>
-          {% endfor %}
-        </ul>
-
-      {% else %}
-        <p class="no_results">No products found.</p>
-      {% endif %}
-
-    {% endget %}
-    </section>
+<section class="content">
+  <h1>Featured</h1>
+  {% if theme.feature_text != blank %}
+  <div class="subheader">
+    <p>{{ theme.feature_text }}</p>
+  </div>
+  {% endif %}
+  {% get products from products.all order:'sales' limit: theme.featured_products %}
+	  {% if products != blank %}
+	    <ul class="products_list">
+	      {% for product in products %}
+	      <li class="{{ product.css_class }}">
+	        <a href="{{ product.url }}">
+	          <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '900' }}">
+	          <b>{{ product.name }}</b>
+	          <i>{{ product.default_price | money_with_sign }}</i>
+	          {% if product.on_sale %}
+	            <em>On Sale</em>
+	          {% endif %}
+	          {% if product.status == 'sold-out' %}
+	            <em>Sold Out</em>
+	          {% endif %}
+	        </a>
+	      </li>
+	      {% endfor %}
+	    </ul>
+	
+	  {% else %}
+	    <p class="no_results">No products found.</p>
+	  {% endif %}
+  {% endget %}
+</section>

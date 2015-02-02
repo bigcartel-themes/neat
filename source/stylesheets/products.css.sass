@@ -107,7 +107,13 @@ section.content
 
     h4
       text-align: center
-
+      
+  .products_list
+    
+    li
+      @media only screen and (max-width:$breakpoint-small)
+        margin-bottom: $marginSize
+        
   .pagination
     +font-size(14)
     +pie-clearfix
