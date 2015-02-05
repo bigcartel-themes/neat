@@ -15,7 +15,7 @@ header
   position: relative
   width: 100%
   z-index: 999
-
+  
   &.home
     position: fixed
 
@@ -67,7 +67,7 @@ header
 
   a
     position: relative
-    color: #{"{{ theme.background_color }}"}
+    color: #{"{{ theme.feature_text_color }}"}
     clear: both
 
     &.mobile
@@ -92,7 +92,7 @@ header
 
     path,
     circle
-      fill: #{"{{ theme.background_color }}"}
+      fill: #{"{{ theme.feature_text_color }}"}
 
 
     &:after
@@ -110,14 +110,15 @@ header
         display: none
 
     &:hover
-      color: #{"{{ theme.background_color }}"}
+      color: #{"{{ theme.feature_text_color }}"}
+      opacity: .9
 
       &:after
         +opacity(1)
 
       path,
       circle
-        fill: #{"{{ theme.background_color }}"}
+        fill: #{"{{ theme.feature_text_color }}"}
 
   .logo
     +box-sizing(border-box)
