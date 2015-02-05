@@ -112,7 +112,11 @@ section.content
     
     li
       @media only screen and (max-width:$breakpoint-small)
-        margin-bottom: $marginSize
+        margin-bottom: 45px
+        
+      em
+        font-style: italic
+        color: #{"{{ theme.link_color }}"}
         
   .pagination
     +font-size(14)

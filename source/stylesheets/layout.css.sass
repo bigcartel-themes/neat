@@ -383,7 +383,6 @@ header
     margin: $marginSize auto 0 auto
 
     @media only screen and (max-width:$breakpoint-small)
-      padding: 0 $marginSize/2 $marginSize/2 $marginSize/2
       margin: $marginSize/2 auto 0 auto
 
     p
@@ -493,6 +492,7 @@ footer
         +font-size(14)
         display: inline-block
         list-style: none
+        margin-bottom: 16px
         padding: 0 $marginSize/2
         text-align: center
         
@@ -506,6 +506,7 @@ footer
           display: block
           width: 100%
           padding: 0
+          margin-bottom: 0
 
           a
             border-bottom: 1px solid #{"{{ theme.border_color }}"}
