@@ -20,7 +20,7 @@ header
     position: fixed
 
     @media only screen and (max-width:$breakpoint-small)
-      position: #{"{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} relative {% else %} absolute {% endif %}"}
+      position: #{"{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} relative {% else %} absolute {% endif %}"}
 
     &:after
       +opacity(0)
@@ -67,7 +67,7 @@ header
 
   a
     position: relative
-    color: #{"{{ theme.feature_text_color }}"}
+    color: #{"{{ theme.welcome_text_color }}"}
     clear: both
 
     &.mobile
@@ -92,7 +92,7 @@ header
 
     path,
     circle
-      fill: #{"{{ theme.feature_text_color }}"}
+      fill: #{"{{ theme.welcome_text_color }}"}
 
 
     &:after
@@ -110,7 +110,7 @@ header
         display: none
 
     &:hover
-      color: #{"{{ theme.feature_text_color }}"}
+      color: #{"{{ theme.welcome_text_color }}"}
       opacity: .9
 
       &:after
@@ -118,7 +118,7 @@ header
 
       path,
       circle
-        fill: #{"{{ theme.feature_text_color }}"}
+        fill: #{"{{ theme.welcome_text_color }}"}
 
   .logo
     +box-sizing(border-box)
@@ -277,7 +277,7 @@ header
     
   div.featured
     +vertical-align
-    color: #{"{{ theme.feature_text_color }}"}
+    color: #{"{{ theme.welcome_text_color }}"}
     overflow: hidden
     position: absolute
     text-align: center
@@ -304,15 +304,15 @@ header
         white-space: normal
 
     a
-      border: 1px solid #{"{{ theme.feature_text_color }}"}
-      color: #{"{{ theme.feature_text_color }}"}
+      border: 1px solid #{"{{ theme.welcome_text_color }}"}
+      color: #{"{{ theme.welcome_text_color }}"}
       width: auto
       line-height: 56px
 
       &:hover
         border: 1px solid #{"{{ theme.link_hover }}"}
         background-color: #{"{{ theme.link_hover }}"}
-        color: #{"{{ theme.feature_text_color }}"}
+        color: #{"{{ theme.welcome_text_color }}"}
         
         
   ul
@@ -354,13 +354,13 @@ header
 
 
 #home .content
-  padding: #{"{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px{% else %} 64px{% endif %}"} 0 0 0
+  padding: #{"{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px{% else %} 64px{% endif %}"} 0 0 0
 
   @media only screen and (max-width:$breakpoint-small)
     padding-top: $marginSize
 
   h1
-    margin-bottom: #{"{% if theme.feature_text == blank %} 48px {% else %} 16px {% endif %}"}
+    margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
 
 .content
   +pie-clearfix

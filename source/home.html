@@ -1,4 +1,4 @@
-{% if theme.image_sets.slideshow_images.size > 0 or theme.feature_header != blank or theme.feature_subheader != blank %}
+{% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
     <section class="slideshow">
       {% if theme.image_sets.slideshow_images.size > 0 %}
       <ul class="slides-container">
@@ -7,11 +7,11 @@
 	    {% endfor %}
       </ul>
       {% endif %}
-      {% if theme.feature_header != blank or theme.feature_subheader != blank %}
+      {% if theme.welcome_header != blank or theme.welcome_subheader != blank %}
       <div class="featured_holder">
 	    <div class="featured">
-        {% if theme.feature_subheader != blank %}<p>{{ theme.feature_subheader }}</p>{% endif %}
-        {% if theme.feature_header != blank %}<h2>{{ theme.feature_header }}</h2>{% endif %}
+        {% if theme.welcome_subheader != blank %}<p>{{ theme.welcome_subheader }}</p>{% endif %}
+        {% if theme.welcome_header != blank %}<h2>{{ theme.welcome_header }}</h2>{% endif %}
         <a href="/products" class="button">Shop Now</a>
       </div>
       </div>
@@ -21,9 +21,9 @@
 
 <section class="content">
   <h1>Featured</h1>
-  {% if theme.feature_text != blank %}
+  {% if theme.featured_subheader != blank %}
   <div class="subheader">
-    <p>{{ theme.feature_text }}</p>
+    <p>{{ theme.featured_subheader }}</p>
   </div>
   {% endif %}
   {% get products from products.all order:'sales' limit: theme.featured_products %}

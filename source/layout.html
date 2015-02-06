@@ -25,7 +25,7 @@
 
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrap">
-    <header {% if page.permalink =='home' %}class="home{% if theme.feature_header == blank and theme.feature_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}"{% else %}class="page"{% endif %}>
+	    <header {% if page.permalink =='home' %}class="home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}"{% else %}class="page"{% endif %}>
       <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
         <a href="/" title="{{ store.name | escape }}">
           {% if theme.logo != blank %}

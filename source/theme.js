@@ -110,7 +110,6 @@ $(document).ready(function() {
 
 $(document).keyup(function(e) {
   if (e.keyCode == 27) {
-	  $('.featured').waypoint('refresh');
 	  if (searchForm.length) { searchForm.hide(); }
 	  if (mobileNav.length) { mobileNav.hide(); }
   }
