@@ -4,6 +4,9 @@
 @import 'verticalalign'
 
 .search
+  +transition-property(all)
+  +transition-duration(.5s)
+  +transition-timing-function(ease-in)
   background-color: rgba(black, .95)
   display: none
   height: 100%
@@ -18,7 +21,7 @@
     padding-top: 25%
 
   path
-    fill: #{"{{ theme.link_color }}"}
+    fill: #FFF
   input
     border: none
     color: #fff
@@ -31,7 +34,7 @@
 
     &:focus
       border: none
-      color: #fff
+      color: #FFF
 
     &::-moz-placeholder
       color: #CCC
@@ -43,6 +46,12 @@
       color: #CCC
   a
     position: fixed
-    right: 15px
+    right: 65px
     top: 37px
+    
+    &:hover
+      opacity: .6
+    
+    @media only screen and (max-width:$breakpoint-small)
+      right: 15px
     

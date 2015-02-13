@@ -236,6 +236,12 @@ header
   width: 100%
   z-index: 10001
   
+  a
+    color: #FFF
+    
+    &:hover
+      opacity: .6
+ 
   .close_nav
     line-height: 22px
     position: fixed
@@ -244,7 +250,10 @@ header
     
     
     path
-      fill: #{"{{ theme.link_color }}"}
+      fill: #FFF
+      
+      &:hover
+        opacity: .6
     
   ul
     list-style-type: none
@@ -293,7 +302,7 @@ header
 
     h2
       +font-size(64)
-      letter-spacing: .5em
+      letter-spacing: .25em
       margin: 0 0 24px 0
       text-transform: uppercase
 

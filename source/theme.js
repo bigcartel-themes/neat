@@ -18,7 +18,6 @@
 //= require_directory ./javascripts/vendor
 //= require javascripts/cart
 
-
 function isIE() {
   var rv = -1;
   if (navigator.appName == 'Microsoft Internet Explorer')
@@ -85,12 +84,13 @@ $(document).ready(function() {
 	if(searchForm.length) {
 		$('body').on('click', 'a[href=#search]', function(e) {
 			e.preventDefault();
-			searchForm.show();
+			searchForm.fadeIn(150);
 			if (!isIE()) { searchForm.find('input[type=text]').focus() }
 		});
 		
 		$('body').on('click', '.close_search', function(e) {
-			searchForm.hide();
+			e.preventDefault();
+			searchForm.fadeOut(150);
 		});
 	}
 	
@@ -100,17 +100,18 @@ $(document).ready(function() {
 	
 	$('body').on('click', '.nav_trigger', function(e) {
 		e.preventDefault();
-		mobileNav.show();
+		mobileNav.fadeIn(150);
 	});
 	
 	$('body').on('click', '.close_nav', function(e) {
-		mobileNav.hide();
+		e.preventDefault();
+		mobileNav.fadeOut(150);
 	});
 });
 
 $(document).keyup(function(e) {
   if (e.keyCode == 27) {
-	  if (searchForm.length) { searchForm.hide(); }
-	  if (mobileNav.length) { mobileNav.hide(); }
+	  if (searchForm.length) { searchForm.fadeOut(150); }
+	  if (mobileNav.length) { mobileNav.fadeOut(150); }
   }
 });
