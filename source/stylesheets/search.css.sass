@@ -1,4 +1,12 @@
+@import 'compass'
+@import 'config'
+@import 'remfont'
+@import 'verticalalign'
+
 .search
+  +transition-property(all)
+  +transition-duration(.5s)
+  +transition-timing-function(ease-in)
   background-color: rgba(black, .95)
   display: none
   height: 100%
@@ -9,18 +17,41 @@
   width: 100%
   z-index: 10000
 
+  @media only screen and (max-width:$breakpoint-small)
+    padding-top: 25%
+
+  path
+    fill: #FFF
   input
     border: none
     color: #fff
     display: block
     margin: 0 auto
     width: 80%
+    padding: 15px
+    background: #222
+    font-size: 1.5em
 
     &:focus
       border: none
+      color: #FFF
 
-    &:-moz-placeholder
-      padding-left: 15px
+    &::-moz-placeholder
+      color: #CCC
 
     &::-webkit-input-placeholder
-      padding-left: 15px
+      color: #CCC
+      
+    &:-ms-input-placeholder
+      color: #CCC
+  a
+    position: fixed
+    right: 65px
+    top: 37px
+    
+    &:hover
+      opacity: .6
+    
+    @media only screen and (max-width:$breakpoint-small)
+      right: 15px
+    

@@ -5,19 +5,19 @@
     {
       "variable": "logo",
       "label": "Logo",
-      "description": "Adds your logo to the header"
+      "description": "Good for a logo up to 208 x 66 pixels"
     }
   ],
   "image_sets": [
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "This is a slideshow"
-    },
-    {
-      "variable": "lookbook_images",
-      "label": "Lookbook",
-      "description": "This is a lookbook"
+      "description": "Adds a full screen slideshow to the homepage",
+      "defaults": [
+        "neat-slide-1.jpg", 
+        "neat-slide-2.jpg", 
+        "neat-slide-3.jpg"
+      ]
     }
   ],
   "fonts": [
@@ -40,12 +40,12 @@
     },
     {
       "variable": "header_color",
-      "label": "Header color",
+      "label": "Header Background",
       "default": "#ffffff"
     },
     {
-      "variable": "feature_text_color",
-      "label": "Feature text color",
+      "variable": "welcome_text_color",
+      "label": "Welcome text color",
       "default": "#ffffff"
     },
     {
@@ -74,24 +74,64 @@
       "default": "#f25749"
     }
   ],
+  "checkout": {
+	"logo": "{{ image }}",
+	"title_font": "{{ header_font }}",
+	"title_background_color": "{{ background_color }}",
+	"background_color": "{{ background_color }}",
+	"body_font": "{{ text_font }}",
+	"step_border_color":"{{ border_color }}",
+	"step_header_color":"{{ text_color }}",
+	"step_inactive_header_color":" {{ text_color }}",
+	"step_header_font":"{{ header_font }}",
+	"content_color":"{{ text_color }}",
+	"content_border_color":"{{ border_color }}", 
+	"content_border_radius":"0px",
+	"input_focus_color": "#000000",
+	"input_focus_background_color": "#ffffff",
+	"input_focus_border_color": "#bfbfbf",
+	"input_error_border_color": "#ea4859",
+	"input_color": "#000000",
+	"input_error_color": "#000000",
+	"input_border_color": "#bfbfbf",
+	"input_background_color": "#ffffff",
+	"input_error_background_color": "#ffffff",
+	"input_border_radius":"0px",
+	"input_font":"{{ text_font }}",
+	"button_color":"{{ link_color }}",
+	"button_border_width":"1px",
+	"button_border_radius":"0px",
+	"button_hover_color":"{{ background_color }}",
+	"button_background_color":"transparent",
+	"button_hover_background_color":"{{ link_hover }}",
+	"button_border_color":"{{ link_color }}",
+	"button_hover_border_color":"{{ link_hover }}",
+	"link_color":"{{ link_color }}",
+	"link_hover_color":"{{ link_hover }}",
+	"summary_color":"{{ text_color }}",
+	"summary_item_border_color":"{{ border_color }}"
+  },
   "options": [
     {
-      "variable": "feature_header",
-      "label": "Feature header",
+      "variable": "welcome_header",
+      "label": "Welcome header",
       "type": "text",
-      "description": "Feature header for homepage"
+      "description": "Welcome header for homepage",
+      "default": "Welcome header for homepage"
     },
     {
-      "variable": "feature_subheader",
-      "label": "Feature subheader",
+      "variable": "welcome_subheader",
+      "label": "Welcome subheader",
       "type": "text",
-      "description": "Feature subheader for homepage"
+      "description": "Welcome subheader for homepage",
+      "default": "Welcome subheader for homepage"
     },
     {
-      "variable": "feature_text",
-      "label": "Feature text",
+      "variable": "featured_subheader",
+      "label": "Featured subheader",
       "type": "text",
-      "description": "Feature paragraph for products on homepage"
+      "description": "Featured products subheader on homepage",
+      "default": "Featured products subheader"
     },
     {
       "variable": "collections",
@@ -101,20 +141,12 @@
       "description": "Use category collections instead of the traditional product listing page"
     },
     {
-      "variable": "product_image_size",
-      "label": "Product image size",
-      "type": "select",
-      "options": [["Small", "thumb"], ["Medium", "medium"], ["Large", "large"], ["Huge", ""]],
-      "default": "large",
-      "description": "The size of your product images"
-    },
-    {
       "variable": "nav_items",
       "label": "Navigation items",
       "type": "select",
-      "options": "1..6",
+      "options": "0..6",
       "default": 2,
-      "description": "The number of links show in the main navigation."
+      "description": "The number of custom page links show in the main navigation."
     },
     {
       "variable": "products_per_page",
@@ -123,6 +155,14 @@
       "options": "1..100",
       "default": 9,
       "description": "The number of products shown at a time on the Products page"
+    },
+    {
+      "variable": "featured_products",
+      "label": "Featured products",
+      "type": "select",
+      "options": "1..100",
+      "default": 9,
+      "description": "The number of products featured on the Home page"
     },
     {
       "variable": "show_inventory_bars",
@@ -147,22 +187,28 @@
       "description": "Adds Facebook, Twitter, and Pinterest buttons to Product pages"
     },
     {
-      "variable": "twitter_link",
-      "label": "Twitter Link",
+      "variable": "twitter_username",
+      "label": "Twitter Username",
       "type": "text",
-      "description": "Ex: http://twitter.com/bigcartel"
+      "description": "Ex: bigcartel"
     },
     {
-      "variable": "facebook_link",
-      "label": "Facebook Link",
+      "variable": "facebook_username",
+      "label": "Facebook Username",
       "type": "text",
-      "description": "Ex: http://facebook.com/bigcartel"
+      "description": "Ex: bigcartel"
     },
     {
-      "variable": "tumblr_link",
-      "label": "Tumblr Link",
+      "variable": "tumblr_username",
+      "label": "Tumblr Username",
       "type": "text",
-      "description": "Ex: http://tumblr.com/bigcartel"
+      "description": "Ex: bigcartel"
+    },
+    {
+      "variable": "instagram_username",
+      "label": "Instagram Username",
+      "type": "text",
+      "description": "Ex: bigcartel"
     }
   ]
 }

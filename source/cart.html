@@ -12,7 +12,7 @@
   <h1>Subtotal</h1>
   <h4>{{ cart.subtotal | money_with_sign }}</h4>
 
-  <form method="post" action="/cart">
+  <form method="post" action="/cart" class="cart_form">
     <ul class="cart_details">
       {% for item in cart.items %}
       <li>
@@ -36,7 +36,54 @@
       {% endfor %}
     </ul>
 
-    <button type="submit" name="checkout" title="Checkout">Checkout</button>
+  {% if cart.shipping.enabled or cart.discount.enabled %}
+	<ul class="cart_options">
+	  <li class="cart_shipping">
+	  {% if cart.shipping.enabled %}
+	    {% if cart.shipping.strict %}
+	      <div class="select">
+		  	{{ store.country | country_select }}
+		  	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+	      </div>
+	    
+	    {% endif %}  
+	  {% endif %}
+	  
+	  {% if cart.discount.enabled %}
+	      <input autocomplete="off" id="cart_discount_code" name="cart[discount_code]" type="text" placeholder="Enter discount code">
+	  {% endif %}
+	  </li>
+	  <li class="cart_totals">
+	  	{% if cart.shipping.enabled %}
+	  	<div>Shipping <span>
+		  	
+        {% if cart.shipping.pending %}
+          {% if cart.country %}
+          Select another country
+          {% else %}
+          Select country
+          {% endif %}
+        {% else %}
+          {{ cart.shipping.amount | money_with_sign }}
+        {% endif %}
+		 </span></div>
+	  	{% endif %}
+		{% if cart.discount.enabled %}
+		  {% if cart.discount.pending %}
+		    {% elsif cart.discount.free_shipping %}
+		      <div>Discount <span>Free shipping!</span></div>
+		    {% else %}
+		      <div>Discount <span>- {{ cart.discount.amount | money_with_sign }}</span></div>
+		  {% endif %}
+		{% endif %}
+	  	<div>Total <span>{{ cart.total | money_with_sign }}</span></div>
+	  </li>
+	</ul>   
+  <button class="update_btn" name="update" type="submit" title="Update your cart total">Update</button>    
+  {% endif %} 
+
+
+    <button class="checkout_btn" type="submit" name="checkout" title="Checkout">Checkout</button>
   </form>
 
   {% else %}

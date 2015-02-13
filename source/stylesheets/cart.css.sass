@@ -37,13 +37,19 @@
       strong
         display: block
         clear: both
-
+        margin-bottom: 15px
+        
+.cart_form
+  margin: 0 auto
+  max-width: 800px
+  
   .cart_details
-    list-style: none
-    margin: 0 auto
-    max-width: 800px
-    padding: 0
     +box-sizing(border-box)
+    list-style: none
+    margin: 0
+    padding: 0
+    +pie-clearfix
+    
 
     li
       border-bottom: 1px solid #{"{{ theme.border_color }}"}
@@ -62,10 +68,12 @@
         display: inline
         float: left
         margin-right: $marginSize
+        +vertical-align
 
         img
           float: left
           max-height: 144px
+          max-width: 120px
           width: auto
 
           @media only screen and (max-width:$breakpoint-small)
@@ -80,7 +88,7 @@
         height: 144px
         letter-spacing: 0
         margin: 0
-        max-width: 400px
+        max-width: 350px
         padding: 0 $marginSize 0 0
         text-transform: normal
         width: auto
@@ -145,7 +153,7 @@
             svg
               cursor: pointer
               position: relative
-              top: 3px
+              top: 2px
 
             path
               fill: #{"{{ theme.link_color }}"}
@@ -159,22 +167,98 @@
             a
               display: inline
 
-  .cart_total
-    margin: 0 auto 32px auto
+  .cart_options
+    +pie-clearfix
+    list-style: none
+    margin: 0 auto
+    max-width: 800px
     padding: 0
-    width: 800px
+    height: 128px
+    padding-bottom: $marginSize
+    border-bottom: 1px solid #{"{{ theme.border_color }}"}
+    
+    @media only screen and (max-width:$breakpoint-small)
+      height: auto
+      padding-bottom: 0
+    
+    li
+      float: left
+      width: 50%
+      +vertical-align
+        
+      @media only screen and (max-width:$breakpoint-small)
+        float: none
+        width: 100%
+        position: relative
+        top: auto
+        -webkit-transform: none
+        -ms-transform: none
+        transform: none
+        
+      label 
+        display: block
+        margin-bottom: 15px
 
-    strong
-      display: inline-block
-      margin-right: $marginSize
-      text-align: right
-      width: 632px
+      .select
+        position: relative
+        width: 85%
+        
+        @media only screen and (max-width:$breakpoint-small)
+          width: 100%
 
-    .totals
-      display: inline-block
-      text-align: left
+        svg
+          position: absolute
+          right: 32px
+          top: 50%
+          margin-top: -2px
 
+        path
+          fill: #{"{{ theme.link_color }}"}
+
+        &:hover path
+          fill: #{"{{ theme.background_color }}"}
+
+      input
+        height: 56px
+        width: 85%
+        margin-top: 10px
+        
+        @media only screen and (max-width:$breakpoint-small)
+          width: 100%
+          
+      div
+        margin-bottom: 15px
+        text-align: right
+        font-weight: bold
+        font-family: #{"{{ theme.header_font | font_family }}"}
+        text-transform: uppercase
+        
+        @media only screen and (max-width:$breakpoint-small)
+          text-align: left
+        
+        > span
+          width: 150px
+          margin-left: 30px
+          display: inline-block
+          
+          @media only screen and (max-width:$breakpoint-small)
+            width: auto
+            margin: 0
+            float: right
+
+  .cart_totals
+    
+    @media only screen and (max-width:$breakpoint-small)
+      margin: 15px 0
+    
   button
     display: block
     margin: 64px auto 64px auto
     max-width: 320px
+    
+    @media only screen and (max-width:$breakpoint-small)
+      margin: 32px auto 32px auto
+      max-width: 100%
+      
+ 
+    

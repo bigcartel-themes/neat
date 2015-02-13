@@ -11,13 +11,11 @@
 
   {% if page.full_url contains "search=" or theme.collections != true or page.name != 'Products' %}
 
-    <!-- Products -->
-
     {% unless page.full_url contains "search=" %}
       <div class="subheader">
         <ul class="categories">
         {% for category in categories.active %}
-          <li class="page {% if page.full_url contains category.url %}selected{% endif %}">{{ category | link_to }}</li>
+          <li class="page{% if page.full_url contains category.url %} selected{% endif %}">{{ category | link_to }}</li>
         {% endfor %}
         </ul>
       </div>
@@ -25,19 +23,25 @@
 
     {% paginate products from products.current by theme.products_per_page %}
       {% if products != blank %}
-        <ul class="products_list">
-          {% for product in products %}
-          <li class="product">
-            <a href="{{ product.url }}">
-              <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url size: 'large' }}">
-              <b>{{ product.name }}</b>
-              <i>{{ product.default_price | money_with_sign }}</i>
-              {% if product.on_sale %}
-                <em>On Sale</em>
-              {% endif %}
-            </a>
-          </li>
-          {% endfor %}
+	  	<ul class="products_list">
+			{% for product in products %}
+				<li class="{{ product.css_class }}">
+					<a href="{{ product.url }}">
+						<img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '900' }}">
+						<b>{{ product.name }}</b>
+						<i>{{ product.default_price | money_with_sign }}</i>
+						{% case product.status %}
+							{% when 'active' %}
+								{% if product.on_sale %}<em>On Sale</em>{% endif %}
+							{% when 'sold-out' %}
+								<em>Sold Out</em>
+							{% when 'coming-soon' %}
+								<em>Coming Soon</em>
+						{% endcase %}
+					</a>
+				</li>
+			{% endfor %}
+	    </ul>
         </ul>
 
         {% if paginate.pages > 1 %}
@@ -75,15 +79,14 @@
     {% endpaginate %}
 
   {% else %}
-
-    <!-- Collections -->
+  
     {% if categories.active != blank %}
       <ul class="products_list collections">
         {% for category in categories.active %}
           <li class="product">
             <a href="{{ category.url }}">
               {% for product in category.products limit:1 %}
-                <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url size: 'large' }}">
+                <img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '900' }}">
               {% endfor %}
               <b>{{ category.name }}</b>
             </a>

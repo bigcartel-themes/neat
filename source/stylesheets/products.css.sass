@@ -32,6 +32,13 @@ section.content
 
   .products_list, .social
     +pie-clearfix
+    display: -webkit-flex
+    display: -ms-flexbox
+    display: flex
+ 
+    -webkit-flex-wrap: wrap
+    -ms-flex-wrap: wrap
+    flex-wrap: wrap
     position: relative
     padding: 0
     margin-top: 0
@@ -42,12 +49,15 @@ section.content
     li
       +box-sizing(border-box)
       position: relative
-      display: inline-block
-      float: left
+      display: -webkit-flex
+      display: -ms-flexbox
+      display: flex
       overflow: hidden
-      width: 31.158854168510707%
-      margin-right: 3.23232323%
+      width: 33.333333%
+      padding-right: 3.23232323%
+      padding-left: 3.23232323%
       margin-bottom: 64px
+      text-align: center
 
       &:last-child
         margin-bottom: 32px
@@ -55,17 +65,9 @@ section.content
         @media only screen and (max-width:990px)
           margin-bottom: 0
 
-      &:nth-child(3n+3)
-        margin-right: 0
 
       @media only screen and (max-width:990px)
-        width: 48.358585858585855%
-        &:nth-child(even)
-          margin-right: 0
-        &:nth-child(3n)
-          margin-right: 3.23232323%
-        &:nth-child(6n)
-          margin-right: 0
+        width: 50%
 
 
       @media only screen and (max-width:$breakpoint-small)
@@ -76,8 +78,10 @@ section.content
     a
       display: block
       text-align: center
+      margin: 0 auto
       min-height: 300px
       color: #{"{{ theme.link_color }}"}
+      max-width: 100%
 
       &:hover
         color: #{"{{ theme.link_hover }}"}
@@ -85,6 +89,7 @@ section.content
       img
         margin: 0 auto 16px auto
         display: block
+        width: 100%
 
       b, i
         font-weight: normal
@@ -102,7 +107,17 @@ section.content
 
     h4
       text-align: center
-
+      
+  .products_list
+    
+    li
+      @media only screen and (max-width:$breakpoint-small)
+        margin-bottom: 45px
+        
+      em
+        font-style: italic
+        color: #{"{{ theme.link_color }}"}
+        
   .pagination
     +font-size(14)
     +pie-clearfix

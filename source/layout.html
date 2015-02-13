@@ -7,7 +7,7 @@
     <meta name="keywords" content="{{ page.meta_keywords }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    {% if page.permalink == 'product' and theme.share_buttons %}
+    {% if page.permalink == 'product' %}
     <meta property="og:title" content="{{ product.name | escape }}">
     <meta property="og:type" content="product">
     <meta property="og:url" content="{{ page.full_url }}">
@@ -17,7 +17,7 @@
 
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
     <script src="{{ theme | theme_js_url }}" type="text/javascript"></script>
 
     {{ head_content }}
@@ -25,13 +25,9 @@
 
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrap">
-    <header {% if page.permalink =='home' %}class="home"{% else %}class="page"{% endif %}>
+	    <header {% if page.permalink =='home' %}class="home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}"{% else %}class="page"{% endif %}>
       <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
-        {% if store.website != blank %}
-        <a href="{{ store.website }}" title="{{ store.name | escape }}">
-        {% else %}
         <a href="/" title="{{ store.name | escape }}">
-        {% endif %}
           {% if theme.logo != blank %}
           <img src="{{ theme.logo.url }}" alt="{{ store.name }}">
           {% else %}
@@ -41,7 +37,7 @@
       </div>
       <nav class="sections">
         <ul class="navigation">
-          <li><a href="/products">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+          <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
           {% for page in pages.all limit: theme.nav_items %}
           <li>{{ page | link_to }}</li>
           {% endfor %}
@@ -71,17 +67,22 @@
       </nav>
     </header>
 
-    <ul class="mobile_nav">
-      <li><a href="/products">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
-      {% for page in pages.all limit: theme.nav_items %}
-        <li>{{ page | link_to }}</li>
-      {% endfor %}
-    </ul>
-
+    <div class="mobile_nav">
+		<a href="#" class="close_nav">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 10 10" xml:space="preserve"><path d="M7.924 6.51L5.45 4.035l2.475-2.475c0.196-0.195 0.196-0.512 0-0.707L7.217 0.1 c-0.195-0.195-0.512-0.195-0.707 0L4.036 2.621L1.561 0.146c-0.195-0.195-0.512-0.195-0.707 0L0.147 0.9 c-0.196 0.195-0.196 0.5 0 0.707l2.475 2.475L0.147 6.51c-0.196 0.195-0.196 0.5 0 0.707l0.707 0.7 c0.195 0.2 0.5 0.2 0.7 0l2.475-2.475L6.51 7.924c0.195 0.2 0.5 0.2 0.7 0l0.707-0.707 C8.121 7 8.1 6.7 7.9 6.51z"/></svg>
+		</a>
+		<ul>
+		  <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+		  {% for page in pages.all limit: theme.nav_items %}
+		    <li>{{ page | link_to }}</li>
+		  {% endfor %}
+		  <li><a href="/contact" title="Contact">Contact</a></li>
+		</ul>
+	</div>
     {% if page.category == 'custom' %}
       <section class="content">
-      <h1>{{ page.name }}</h1>
-      {{ page_content | paragraphs }}
+	      <h1>{{ page.name }}</h1>
+	      {{ page_content | paragraphs }}
       </section>
     {% else %}
       {{ page_content }}
@@ -90,29 +91,89 @@
     <footer>
       <nav class="footernav">
         <ul>
-          <li>
-          {% if store.website != blank %}
-          <a href="{{ store.website }}" title="{{ store.name | escape }}">Home</a>
-          {% else %}
-          <a href="/" title="{{ store.name | escape }}">Home</a>
-          {% endif %}
-          </li>
+          <li><a href="/" title="{{ store.name | escape }}">Home</a></li>
           {% for page in pages.all offset: theme.nav_items %}
           <li>{{ page | link_to }}</li>
           {% endfor %}
-          <li><a href="/contact">Contact</a></li>
+          <li><a href="/contact" title="Contact">Contact</a></li>
+          {% if store.website != blank %}
+		  	<li><a href="{{ store.website }}">Back to site</a></li>
+		  {% endif %}
         </ul>
       </nav>
+	  {% if theme.twitter_username != blank or theme.facebook_username != blank or theme.tumblr_username != blank or theme.instagram_username != blank %}
+	  <ul class="social_footer">
+	    {% if theme.twitter_username != blank %}
+	      <li><a href="http://twitter.com/{{ theme.twitter_username }}" title="Follow us on Twitter"><svg version="1.1" id="twitter" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="612px" height="490.298px" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"
+	 xml:space="preserve">
+		<path d="M605.886,208.899c-22.068,9.841-45.777,16.493-70.667,19.486c25.397-15.318,44.908-39.572,54.106-68.477
+			c-23.776,14.186-50.104,24.48-78.14,30.037c-22.442-24.058-54.426-39.088-89.817-39.088c-67.956,0-123.055,55.41-123.055,123.765
+			c0,9.7,1.083,19.144,3.182,28.207c-102.265-5.171-192.933-54.438-253.625-129.322c-10.587,18.287-16.659,39.547-16.659,62.228
+			c0,42.944,21.726,80.833,54.744,103.024c-20.172-0.637-39.15-6.206-55.729-15.478c-0.012,0.52-0.012,1.041-0.012,1.561
+			c0,59.97,42.418,109.988,98.709,121.366c-10.331,2.833-21.193,4.345-32.417,4.345c-7.932,0-15.637-0.777-23.152-2.222
+			C89.016,497.5,134.457,533.29,188.3,534.287c-42.112,33.195-95.172,52.981-152.823,52.981c-9.933,0-19.725-0.588-29.352-1.726
+			c54.456,35.116,119.138,55.612,188.619,55.612c226.33,0,350.101-188.601,350.101-352.164c0-5.367-0.123-10.698-0.361-16.016
+			C568.523,255.516,589.387,233.71,605.886,208.899z"/>
+		</svg></a>
+	    {% endif %}
+	    {% if theme.facebook_username != blank %}
+	      <li><a href="http://facebook.com/{{ theme.facebook_username }}" title="Friend us on Facebook"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="297.799px" height="612px" viewBox="157.162 90 297.799 612" enable-background="new 157.162 90 297.799 612"
+	 xml:space="preserve">
+<path fill="#010101" d="M369.036,193.795h85.68V90H333.662c-97.553,19.707-98.776,108.936-98.776,108.936v105.753h-77.724v102.938
+	h77.724V702H343.21V407.383h102.081l9.67-102.938H343.944v-75.521C343.821,195.753,369.036,193.795,369.036,193.795z"/>
+</svg>
+</a>
+	    {% endif %}
+	    {% if theme.tumblr_username != blank %}
+	      <li><a href="http://{{ theme.tumblr_username }}.tumblr.com" title="Follow us on Tumblr"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="377.114px" height="611.937px" viewBox="117.504 90 377.114 611.937" enable-background="new 117.504 90 377.114 611.937"
+	 xml:space="preserve">
+			<path fill="#010101" d="M493.272,571.276c-14.566,13.832-55.692,26.194-55.692,26.194
+				c-115.179,27.907-107.957-66.464-107.957-66.464v-189.72h144.31v-96.818h-144.31V90H241.74
+				c-11.383,139.658-124.236,164.628-124.236,164.628v87.394h67.81v224.604c-0.979,62.424,36.475,92.656,36.475,92.656
+				c115.056,89.964,272.83,9.67,272.83,9.67v-99.021L493.272,571.276z"/>
+			</svg>
+			</a>
+	    {% endif %}
+	    {% if theme.instagram_username != blank %}
+	    	<li><a href="http://instagram.com/{{ theme.instagram_username }}" title="Follow us on Instagram"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="612px" height="612px" viewBox="0 90 612 612" enable-background="new 0 90 612 612" xml:space="preserve">
+<path fill="#010101" d="M540.273,90H71.727C32.191,90,0,122.191,0,161.727v468.67C0,669.809,32.191,702,71.727,702h468.67
+	c39.535,0,71.726-32.191,71.726-71.727V161.727C612,122.313,579.687,90,540.273,90z M306,280.332
+	c63.893,0,115.668,51.775,115.668,115.668S369.893,511.668,306,511.668S190.332,459.893,190.332,396S242.107,280.332,306,280.332z
+	 M542.232,608.119c0,13.097-10.771,23.868-23.868,23.868H92.412c-13.097,0-23.868-10.771-23.868-23.868v-259.61h56.304
+	c-3.917,15.178-6.12,31.212-6.12,47.491c0,103.551,83.966,187.272,187.272,187.272S493.272,499.551,493.272,396
+	c0-16.524-2.204-32.313-6.12-47.491h55.08V608.119L542.232,608.119z M542.232,255.118c0,13.097-10.771,23.868-23.868,23.868h-69.769
+	c-13.097,0-23.868-10.771-23.868-23.868V185.35c0-13.097,10.771-23.868,23.868-23.868h69.769c13.097,0,23.868,10.771,23.868,23.868
+	V255.118z"/>
+</svg></a></li>
+	    {% endif %}
+	  </ul>
+	  {% endif %}
       <cite><span class="badge">{{ bigcartel_credit }}</span></cite>
     </footer>
 
     {% if theme.show_search %}
       <form action="/products" method="get" class="search">
-        <input type="text" name="search" id="search" placeholder="Search products…">
+        <input type="text" name="search" id="search" placeholder="Search products...">
+		<a href="#" class="close_search">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="15px" height="15px" viewBox="0 0 10 10" xml:space="preserve"><path d="M7.924 6.51L5.45 4.035l2.475-2.475c0.196-0.195 0.196-0.512 0-0.707L7.217 0.1 c-0.195-0.195-0.512-0.195-0.707 0L4.036 2.621L1.561 0.146c-0.195-0.195-0.512-0.195-0.707 0L0.147 0.9 c-0.196 0.195-0.196 0.5 0 0.707l2.475 2.475L0.147 6.51c-0.196 0.195-0.196 0.5 0 0.707l0.707 0.7 c0.195 0.2 0.5 0.2 0.7 0l2.475-2.475L6.51 7.924c0.195 0.2 0.5 0.2 0.7 0l0.707-0.707 C8.121 7 8.1 6.7 7.9 6.51z"/></svg>
+		</a>
       </form>
     {% endif %}
-
-
   </div>
+  <script>
+    $(function() {
+		if ($('.slides-container').length) { 
+			$('.slideshow').superslides({
+				hashchange: false,
+				pagination:false,
+				play: 6000
+			});
+		}
+    });
+  </script>
 </body>
 </html>

@@ -14,7 +14,7 @@
 
   <section class="product_image">
     <div class="default_image">
-      <img src="{{ product.image | product_image_url }}" alt="Image of {{ product.name | escape }}" class="primary_image">
+      <img src="{{ product.image | product_image_url | constrain:'1000' }}" alt="Image of {{ product.name | escape }}" class="primary_image">
     </div>
   </section>
 
@@ -23,33 +23,36 @@
     {{ product.description | paragraphs }}
     {% endif %}
 
+    
     {% case product.status %}
     {% when 'active' %}
-    <h4>Availability</h4>
-
-    <ul class="availability">
-      {% for option in product.options %}
-      <li>
-        {% unless product.has_default_option %}<span {% if option.sold_out %}class="sold_out"{% endif %}>{{ option.name }}</span>{% endunless %}
-        {% if option.sold_out %}<span>Sold Out</span>{% endif %}
-        <b>
-        <b style="width:{{ option.inventory }}%"></b>
-        </b>
-      </li>
-      {% endfor %}
-    </ul>
-    <form method="post" action="/cart">
-      {% if product.has_default_option %}
-      {{ product.option | hidden_option_input }}
-      {% else %}
-      <div class="select">
-        {{ product.options_in_stock | options_select }}
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
-      </div>
-      {% endif %}
-
-      <button name="submit" type="submit" title="Add to Cart">Add to Cart</button>
-    </form>
+	    {% if theme.show_inventory_bars %}
+		    <h4>Availability</h4>
+		
+		    <ul class="availability">
+		      {% for option in product.options %}
+		      <li>
+		        {% unless product.has_default_option %}<span {% if option.sold_out %}class="sold_out"{% endif %}>{{ option.name }}</span>{% endunless %}
+		        {% if option.sold_out %}<span>Sold Out</span>{% endif %}
+		        <b>
+		        <b style="width:{{ option.inventory }}%"></b>
+		        </b>
+		      </li>
+		      {% endfor %}
+		    </ul>
+	    {% endif %}
+	    <form method="post" action="/cart">
+	      {% if product.has_default_option %}
+	      {{ product.option | hidden_option_input }}
+	      {% else %}
+	      <div class="select">
+	        {{ product.options_in_stock | options_select }}
+	        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+	      </div>
+	      {% endif %}
+	
+	      <button name="submit" type="submit" title="Add to Cart">Add to Cart</button>
+	    </form>
     {% endcase %}
 
     {% if theme.share_buttons %}
@@ -63,8 +66,8 @@
 
   </section>
 
-  {% if artist != blank %}
-  <section>
+  {% if product.artists != blank %}
+  <section class="product_artists">
     {% for artist in product.artists %}
     {% if forloop.first %}
     <h5>by {{ artist.name }}</h5>
