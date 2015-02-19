@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-    <title>{{ store.name }} &mdash; {{ page.name }}</title>
+    <title>{{ store.name }} &mdash; {% if page.name == 'Products' %}{% if theme.collections %}Collections{% else %}Products{% endif %}{% else %}{{ page.name }}{% endif %}</title>
 
     <meta charset="utf-8">
     <meta name="description" content="{{ page.meta_description }}">
