@@ -280,10 +280,15 @@ header
     
   div.featured_holder
     background-color: rgba(black, .3)
-    +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}') 0 0 repeat)
+    +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}'))
+    background-repeat: repeat
     background-size: 4px  
     height: 100%
-    
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 100
+
   div.featured
     +vertical-align
     color: #{"{{ theme.welcome_text_color }}"}
@@ -325,7 +330,7 @@ header
         
         
   ul
-    display: inline-block
+    display: block
     height: 100%
     margin: 0
     padding: 0
@@ -341,24 +346,10 @@ header
       list-style: none
       position: relative
       width: 100%
-
-      &:before,
-      &:after
-        background-color: rgba(black, .3)
-        content: " "
-        display: block
-        height: 100%
-        position: absolute
-        width: 100%
-        z-index: 1
-
-      &:after
-        top: 0
-
-      &:before
-        background-color: transparent
-        +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}') 0 0 repeat)
-        background-size: 4px
+      
+      img
+        -webkit-transform: translate3d(0,0,0)
+        -webkit-backface-visibility: hidden
 
 
 
