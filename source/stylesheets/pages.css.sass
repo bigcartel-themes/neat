@@ -13,6 +13,10 @@
     padding-left: $marginSize
     padding-right: $marginSize
     padding-bottom: 64px
+    
+    @media only screen and (max-width:$breakpoint-small)
+      padding-left: $marginSize/2
+      padding-right: $marginSize/2
 
     h1
       clear: both
@@ -33,7 +37,7 @@
         margin: 0 auto
         text-align: center
         padding-bottom: 16px
-        max-width: 800px
+        max-width: 100%
 
         @media only screen and (max-width:$breakpoint-small)
           width: 100%
@@ -42,6 +46,7 @@
       display: block
       margin: 0 auto
       text-align: center
+      max-width: 100%
 
       @media only screen and (max-width:$breakpoint-small)
         width: 100%

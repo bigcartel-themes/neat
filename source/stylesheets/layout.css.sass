@@ -403,6 +403,7 @@ header
   .social_links
     +box-sizing(border-box)
     +font-size(16)
+    line-height: normal
     list-style: none
     margin: 0 auto $marginSize auto
     max-width: 800px
@@ -416,7 +417,7 @@ header
       border-width: 1px 0 1px 1px
       display: inline-block
       height: 56px
-      line-height: 56px
+      line-height: normal
       margin: 0
       padding: 0
       width: 56px
@@ -429,16 +430,16 @@ header
         border-color: #{"{{ theme.link_hover }}"}
 
       a
-        display: inline-block
+        display: block
         width: 56px
         height: 56px
-        line-height: 56px
+        line-height: normal
 
         svg
           +scale(100%)
           cursor: pointer
           position: relative
-          top: 2px
+          +vertical-align
 
         path,
         circle
