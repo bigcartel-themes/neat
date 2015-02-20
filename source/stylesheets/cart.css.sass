@@ -89,7 +89,7 @@
         letter-spacing: 0
         margin: 0
         max-width: 350px
-        padding: 0 $marginSize 0 0
+        padding: 0
         text-transform: normal
         width: auto
 
@@ -138,16 +138,17 @@
               text-align: center
               text-indent: 0
               width: 56px
+              
+              @media only screen and (max-width:$breakpoint-small)
+                height: 48px
+                width: 48px
 
           &.price
             width: 80px
 
-            @media only screen and (max-width:$breakpoint-small)
-              width: 56px
-
           &.remove
             cursor: pointer
-            width: 48px
+            width: 36px
             text-align: center
 
             svg
