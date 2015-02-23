@@ -50,7 +50,7 @@
 	  {% endif %}
 	  
 	  {% if cart.discount.enabled %}
-	      <input autocomplete="off" id="cart_discount_code" name="cart[discount_code]" type="text" placeholder="Enter discount code">
+	      <input autocomplete="off" id="cart_discount_code" name="cart[discount_code]" type="text" placeholder="Enter discount code" {% if cart.discount.code %}value="{{ cart.discount.code }}"{% endif %}>
 	  {% endif %}
 	  </li>
 	  <li class="cart_totals">
