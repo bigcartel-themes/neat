@@ -132,25 +132,13 @@ section.content
     font-family: #{"{{ theme.header_font | font_family }}"}
     text-transform: uppercase
 
-    .mobile
-      display: none
-
-      @media screen and (max-width:$breakpoint-small)
-        display: block
-
-    .desktop
-      display: block
-
-      @media screen and (max-width:$breakpoint-small)
-        display: none
-
     span, a
       padding: 16px
 
       &.current
         border: 1px solid #{"{{ theme.link_color }}"}
 
-    .prev,
+    .previous,
     .next
       svg
         position: relative
@@ -162,14 +150,20 @@ section.content
 
       &:hover path
         fill: #{"{{ theme.link_hover }}"}
+        
+      @media only screen and (max-width:$breakpoint-small)
+        display: none
 
-    .prev svg
+    .previous svg
       left: -2px
       +rotate(90deg)
 
     .next svg
       left: 1px
       +rotate(-90deg)
+    
+    .disabled
+      display: none
 
   .social
     margin: 0 0 64px 0
