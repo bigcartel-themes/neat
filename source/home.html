@@ -26,7 +26,7 @@
     <p>{{ theme.featured_subheader }}</p>
   </div>
   {% endif %}
-  {% get products from products.all order:'sales' limit: theme.featured_products %}
+  {% get products from products.all limit: theme.featured_products %}
 	  {% if products != blank %}
 	  	<ul class="products_list">
 			{% for product in products %}
