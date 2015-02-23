@@ -123,32 +123,27 @@ header
   .logo
     +box-sizing(border-box)
     +font-size(24)
-    display: inline
+    float: left
     font-family: #{"{{ theme.header_font | font_family }}"}
-    left: 0
-    line-height: 88px
-    height: 88px
-    overflow: hidden
+    max-width: 25%
     padding-left: $marginSize
-    position: absolute
     text-align: left
-    top: 0
-    white-space: nowrap
     z-index: 98
+    width: 25%
+    +vertical-align
 
     @media only screen and (max-width:$breakpoint-small)
       +font-size(16)
-      line-height: 88px
+      line-height: 25px
       max-width: 50%
       padding-left: $marginSize/2
-      text-overflow: ellipsis
+      width: 50%
 
     &.text a:after
       top: 32px
 
     a
       display: block
-      height: 88px
 	
       &:after
         display: none
@@ -158,24 +153,23 @@ header
         max-height: 66px
         max-width: 208px
         width: auto
-        +vertical-align
 
   .sections
-    left: 0
+    float: left
     margin: 0 auto
-    position: absolute
-    top: 0
-    width: 100%
+    max-width: 50%
+    overflow: hidden
+    position: relative
+    width: 50%
     z-index: 97
 
   .utility
-    position: absolute
-    right: 0
-    top: 0
+    float: right
+    position: relative
+    max-width: 25%
     z-index: 99
 
 .sections, .utility
-  display: inline
 
   ul
     display: inline-block
