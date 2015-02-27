@@ -51,7 +51,7 @@ function activateWaypoints() {
 		offset: '120'
 	})
 	$('.content').waypoint(function(direction) {
-		if ($('.featured').length && screenWidth > 800) { 
+		if ($('.slideshow').length && screenWidth > 800) { 
 			if (direction === 'down') {
 				$('header').toggleClass('overlay');
 			}

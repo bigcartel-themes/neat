@@ -162,12 +162,18 @@ header
     position: relative
     width: 50%
     z-index: 97
+    
+    @media only screen and (max-width:$breakpoint-small)
+      display: none
 
   .utility
     float: right
     position: relative
     max-width: 25%
     z-index: 99
+    
+    @media only screen and (max-width:$breakpoint-small)
+      max-width: 50%
 
 .sections, .utility
 
@@ -178,11 +184,6 @@ header
     text-align: center
     white-space: nowrap
     width: 100%
-
-
-    &.navigation
-      @media only screen and (max-width:$breakpoint-small)
-        display: none
 
     li
       +font-size(14)
@@ -312,7 +313,7 @@ header
       text-transform: uppercase
 
       @media only screen and (max-width:$breakpoint-small)
-        +font-size(48)
+        +font-size(42)
         letter-spacing: 0
         text-indent: 0
         white-space: normal
@@ -462,6 +463,7 @@ footer
 
   @media only screen and (max-width:$breakpoint-small)
     height: auto
+    margin-top: 32px
     padding: 0
 
   .footernav
