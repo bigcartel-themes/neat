@@ -40,7 +40,7 @@ header:after
 a,
 header a:after,
 .slideshow div a,
-.button, submit, input[type='submit'], button, select, path, circle
+.button, submit, input[type='submit'], button, select, path, circle, .select
   +transition-property(all)
   +transition-duration(.25s)
   +transition-timing-function(ease-in-out)
@@ -57,7 +57,7 @@ a:hover
 
 // Buttons
 
-.button, submit, input[type='submit'], button, select
+.button, submit, input[type='submit'], button
   +border-radius(0)
   +font-size(14)
   background-color: transparent
@@ -105,8 +105,53 @@ input[type='text'], input[type='textarea'], textarea
   &:focus
     border: 1px solid #{"{{ theme.link_hover }}"}
     color: #{"{{ theme.link_hover }}"}
+ 
+.select
+  +pie-clearfix
+  border: 1px solid #{"{{ theme.link_color }}"}
+  box-sizing: border-box
+  color: #{"{{ theme.link_color }}"}
+  margin-bottom: 16px
+  position: relative
+  
+  &:hover 
+    background-color: #{"{{ theme.link_hover }}"}
+    border: 1px solid #{"{{ theme.link_hover }}"}
+    color: #{"{{ theme.background_color }}"}
+    
+  &:hover select
+    color: #{"{{ theme.background_color }}"}
 
+  select
+    background: none
+    border: 0px
+    color: #{"{{ theme.link_color }}"}
+    font-weight: 600
+    height: 56px
+    line-height: 56px
+    padding: 0 55px 0 12px
+    position: relative
+    width: 100%
+    z-index: 2
+    
+    &:focus 
+      outline: none
+      
+    &::-ms-expand
+      display: none 
 
+  svg
+    fill: #{"{{ theme.link_color }}"}
+    position: absolute
+    right: 32px
+    top: 26px
+    z-index: 1
+
+  &:hover svg
+    fill: #{"{{ theme.background_color }}"}
+          
+          
+           
 h1, h2, h3, h4, h5, h6, strong
   font-family: #{"{{ theme.header_font | font_family }}"}
   text-transform: uppercase
@@ -163,8 +208,3 @@ h6
   
   div
     padding: 0 $marginSize
-    
-    
-select
-  &::-ms-expand
-    display: none

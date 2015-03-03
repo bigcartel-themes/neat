@@ -28,7 +28,7 @@
       font-style: normal
       color: #{"{{ theme.link_color }}"}
 
-    .product_description, .product_artists
+    .product_description
       +font-size(14)
       box-sizing: border-box
       float: right
@@ -49,25 +49,6 @@
 
       small
         +font-size(14)
-
-      select
-        margin-bottom: 16px
-
-      .select
-        position: relative
-
-        svg
-          position: absolute
-          right: 32px
-          top: 50%
-          margin-top: -11px
-
-        path
-          fill: #{"{{ theme.link_color }}"}
-
-        &:hover path
-          fill: #{"{{ theme.background_color }}"}
-
 
       p
         margin-bottom: 16px
