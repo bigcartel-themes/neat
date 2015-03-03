@@ -125,6 +125,7 @@ input[type='text'], input[type='textarea'], textarea
   select
     background: none
     border: 0px
+    border-radius: 0px
     color: #{"{{ theme.link_color }}"}
     font-weight: 600
     height: 56px
@@ -134,12 +135,16 @@ input[type='text'], input[type='textarea'], textarea
     width: 100%
     z-index: 2
     
-    &:focus 
+    option
+      color: #000
+      background: #FFF
+    
+    &:focus
       outline: none
       
     &::-ms-expand
       display: none 
-
+      
   svg
     fill: #{"{{ theme.link_color }}"}
     position: absolute
@@ -149,8 +154,6 @@ input[type='text'], input[type='textarea'], textarea
 
   &:hover svg
     fill: #{"{{ theme.background_color }}"}
-          
-          
            
 h1, h2, h3, h4, h5, h6, strong
   font-family: #{"{{ theme.header_font | font_family }}"}

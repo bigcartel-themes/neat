@@ -20,98 +20,95 @@
 
 function isIE() {
   var rv = -1;
-  if (navigator.appName == 'Microsoft Internet Explorer')
-  {
+  if (navigator.appName == 'Microsoft Internet Explorer') {
     var ua = navigator.userAgent;
-    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-    if (re.exec(ua) != null)
-      rv = parseFloat( RegExp.$1 );
+    var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null) rv = parseFloat(RegExp.$1);
   }
-  else if (navigator.appName == 'Netscape')
-  {
+  else if (navigator.appName == 'Netscape') {
     var ua = navigator.userAgent;
-    var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
-    if (re.exec(ua) != null)
-      rv = parseFloat( RegExp.$1 );
+    var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null) rv = parseFloat(RegExp.$1);
   }
-  return rv == -1 ? false: true;
+  return rv == -1 ? false : true;
 }
 
-function activateWaypoints() { 
-	$('.featured').waypoint(function(direction) {
-		if (screenWidth > 800) { 
-			if (direction === 'down') {
-				$('.featured').fadeOut(250);
-			}
-			else {
-				$('.featured').fadeIn(500);
-			}
-		}
-	}, {
-		offset: '120'
-	})
-	$('.content').waypoint(function(direction) {
-		if ($('.slideshow').length && screenWidth > 800) { 
-			if (direction === 'down') {
-				$('header').toggleClass('overlay');
-			}
-			else {
-				$('header').toggleClass('overlay');
-			}
-		}
-	}, {
-		offset: '120'
-	})
+function activateWaypoints() {
+  $('.featured').waypoint(function (direction) {
+    if (screenWidth > 800) {
+      if (direction === 'down') {
+        $('.featured').fadeOut(250);
+      }
+      else {
+        $('.featured').fadeIn(500);
+      }
+    }
+  }, {
+    offset: '120'
+  })
+  $('.content').waypoint(function (direction) {
+    if ($('.slideshow').length && screenWidth > 800) {
+      if (direction === 'down') {
+        $('header').toggleClass('overlay');
+      }
+      else {
+        $('header').toggleClass('overlay');
+      }
+    }
+  }, {
+    offset: '120'
+  })
 }
 $(window).resize(function () {
-	screenWidth = $(window).width();
+  screenWidth = $(window).width();
 });
-$(document).ready(function() {
-    this.inPreview = (/\/admin\/design/.test(top.location.pathname));
-    if(this.inPreview) {
-      setTimeout(function() { 
-        screenWidth = $(window).width();
-		activateWaypoints();
-       }, 500);
-    }
-    else {
-        screenWidth = $(window).width();
-		activateWaypoints();
-    }
-	
-	searchForm = $('form.search');
-	
-	if(searchForm.length) {
-		$('body').on('click', 'a[href=#search]', function(e) {
-			e.preventDefault();
-			searchForm.fadeIn(150);
-			if (!isIE()) { searchForm.find('input[type=text]').focus() }
-		});
-		
-		$('body').on('click', '.close_search', function(e) {
-			e.preventDefault();
-			searchForm.fadeOut(150);
-		});
-	}
-	
-	// mobile nav
-	
-	mobileNav = $('.mobile_nav')
-	
-	$('body').on('click', '.nav_trigger', function(e) {
-		e.preventDefault();
-		mobileNav.fadeIn(150);
-	});
-	
-	$('body').on('click', '.close_nav', function(e) {
-		e.preventDefault();
-		mobileNav.fadeOut(150);
-	});
+$(document).ready(function () {
+  this.inPreview = (/\/admin\/design/.test(top.location.pathname));
+  if (this.inPreview) {
+    setTimeout(function () {
+      screenWidth = $(window).width();
+      activateWaypoints();
+    }, 500);
+  }
+  else {
+    screenWidth = $(window).width();
+    activateWaypoints();
+  }
+  searchForm = $('form.search');
+  if (searchForm.length) {
+    $('body').on('click', 'a[href=#search]', function (e) {
+      e.preventDefault();
+      searchForm.fadeIn(150);
+      if (!isIE()) {
+        searchForm.find('input[type=text]').focus()
+      }
+    });
+    $('body').on('click', '.close_search', function (e) {
+      e.preventDefault();
+      searchForm.fadeOut(150);
+    });
+  }
+  mobileNav = $('.mobile_nav')
+  $('body').on('click', '.nav_trigger', function (e) {
+    e.preventDefault();
+    mobileNav.fadeIn(150);
+  });
+  $('select').change(function (e) {
+    e.preventDefault();
+    $(this).blur();
+  })
+  $('body').on('click', '.close_nav', function (e) {
+    e.preventDefault();
+    mobileNav.fadeOut(150);
+  });
 });
-
-$(document).keyup(function(e) {
+$(document).keyup(function (e) {
   if (e.keyCode == 27) {
-	  if (searchForm.length) { searchForm.fadeOut(150); }
-	  if (mobileNav.length) { mobileNav.fadeOut(150); }
+    if (searchForm.length) {
+      searchForm.fadeOut(150);
+    }
+    if (mobileNav.length) {
+      mobileNav.fadeOut(150);
+    }
   }
 });
