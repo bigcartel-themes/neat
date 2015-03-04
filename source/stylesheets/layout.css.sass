@@ -138,21 +138,26 @@ header
       max-width: 50%
       padding-left: $marginSize/2
       width: 50%
-
-    &.text a:after
-      top: 32px
-
+      
     a
       display: block
-	
+      max-width: 208px
+      
       &:after
         display: none
+      
+    &.image img
+      display: block
+      max-height: 100%
+      max-width: 100%
+      +vertical-align
+      
+    &.image a
+      height: 66px
+      
 	
-      img
-        display: block
-        max-height: 66px
-        max-width: 208px
-        width: 100%
+        
+    
 
   .sections
     float: left
