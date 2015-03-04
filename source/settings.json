@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "images": [
     {
       "variable": "logo",
@@ -119,6 +119,7 @@
 	"step_header_font_size":"18px",
 	"summary_color":"{{ text_color }}",
 	"summary_secondary_color":"{{ link_color }}",
+	"summary_submit_background_color":"{{ background_color }}",
 	"summary_item_border_color":"{{ border_color }}"
   },
   "options": [
