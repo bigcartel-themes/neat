@@ -85,6 +85,6 @@
 
 <section class="product_photos">
   {% for image in product.images offset: 1 %}
-    <img class="product_photo" src="{{ image | product_image_url }}" alt="Image of {{ product.name | escape }}"></a>
+    <img class="product_photo" src="{{ image | product_image_url | constrain: '1500' }}" alt="Image of {{ product.name | escape }}">
   {% endfor %}
 </section>
