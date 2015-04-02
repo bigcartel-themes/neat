@@ -12,12 +12,6 @@ body
   color: #{"{{ theme.text_color }}"}
   font: 100%/1.5 normal #{"{{ theme.text_font | font_family }}"}
   -webkit-font-smoothing: antialiased
-  -moz-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
-  -moz-font-feature-settings: "onum=1, kern=1, liga=1"
-  -ms-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
-  -o-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
-  -webkit-font-feature-settings: "onum" 1, "kern" 1, "liga" 1
-  font-feature-settings: "onum" 1, "kern" 1, "liga" 1
   text-rendering: optimizeLegibility
 
 hr
@@ -74,7 +68,7 @@ a:hover
   white-space: nowrap
   width: 100%
 
-  &:hover
+  &:hover, &:focus
     background-color: #{"{{ theme.link_hover }}"}
     border: 1px solid #{"{{ theme.link_hover }}"}
     color: #{"{{ theme.background_color }}"}
@@ -105,7 +99,12 @@ input[type='text'], input[type='textarea'], textarea
   &:focus
     border: 1px solid #{"{{ theme.link_hover }}"}
     color: #{"{{ theme.link_hover }}"}
- 
+
+input[type='textarea'], textarea
+  padding: 16px
+  text-indent: 0px
+  white-space: normal
+   
 .select
   +pie-clearfix
   border: 1px solid #{"{{ theme.link_color }}"}
