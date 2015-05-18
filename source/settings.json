@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "images": [
     {
       "variable": "logo",
@@ -187,7 +187,7 @@
       "variable": "featured_products",
       "label": "Featured products",
       "type": "select",
-      "options": "1..100",
+      "options": "0..100",
       "default": 9,
       "description": "The number of products featured on the Home page"
     },

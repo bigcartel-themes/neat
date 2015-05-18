@@ -2,14 +2,14 @@
   <h1>
     {% if page.full_url contains "search=" %}
       Product Search
-    {% elsif theme.collections and page.name == 'Products' %}
+    {% elsif theme.collections and page.full_url contains '/products' %}
       Collections
     {% else %}
       {{ page.name }}
     {% endif %}
   </h1>
 
-  {% if page.full_url contains "search=" or theme.collections != true or page.name != 'Products' %}
+  {% if page.full_url contains "search=" or theme.collections != true or page.full_url contains '/category' %}
 
     {% unless page.full_url contains "search=" %}
       <div class="subheader">
@@ -23,29 +23,29 @@
 
     {% paginate products from products.current by theme.products_per_page %}
       {% if products != blank %}
-	  	<ul class="products_list">
-			{% for product in products %}
-				<li class="{{ product.css_class }}">
-					<a href="{{ product.url }}">
-						<img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '900' }}">
-						<b>{{ product.name }}</b>
-						<i>{{ product.default_price | money_with_sign }}</i>
-						{% case product.status %}
-							{% when 'active' %}
-								{% if product.on_sale %}<em>On Sale</em>{% endif %}
-							{% when 'sold-out' %}
-								<em>Sold Out</em>
-							{% when 'coming-soon' %}
-								<em>Coming Soon</em>
-						{% endcase %}
-					</a>
-				</li>
-			{% endfor %}
-	    </ul>
+  	  	<ul class="products_list">
+  			{% for product in products %}
+  				<li class="{{ product.css_class }}">
+  					<a href="{{ product.url }}">
+  						<img alt="Image of {{ product.name | escape }}" src="{{ product.image | product_image_url | constrain: '900' }}">
+  						<b>{{ product.name }}</b>
+  						<i>{{ product.default_price | money_with_sign }}</i>
+  						{% case product.status %}
+  							{% when 'active' %}
+  								{% if product.on_sale %}<em>On Sale</em>{% endif %}
+  							{% when 'sold-out' %}
+  								<em>Sold Out</em>
+  							{% when 'coming-soon' %}
+  								<em>Coming Soon</em>
+  						{% endcase %}
+  					</a>
+  				</li>
+  			{% endfor %}
+  	    </ul>
 
-        {% if paginate.pages > 1 %}
-              {{ paginate | default_pagination, 'pagination', 'pagination', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg> Prev' , 'Next <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>' }}
-        {% endif %}
+      {% if paginate.pages > 1 %}
+        {{ paginate | default_pagination, 'pagination', 'pagination', '<svg xmlns="http://www.w3.org/2000/svg" width="10.001" height="6" viewBox="0 0 10.001 6"><path class="down_arrow" d="M9.852 1.537c.199-.189.199-.496 0-.684l-.717-.683c-.197-.19-.518-.19-.735 0l-3.384 3.33-3.434-3.357c-.199-.189-.52-.189-.717 0l-.717.683c-.197.188-.197.5 0 .684l4.508 4.3c.199.2.5.2.7 0l4.496-4.273z"/></svg> Prev' , 'Next <svg xmlns="http://www.w3.org/2000/svg" width="10.001" height="6" viewBox="0 0 10.001 6"><path class="down_arrow" d="M9.852 1.537c.199-.189.199-.496 0-.684l-.717-.683c-.197-.19-.518-.19-.735 0l-3.384 3.33-3.434-3.357c-.199-.189-.52-.189-.717 0l-.717.683c-.197.188-.197.5 0 .684l4.508 4.3c.199.2.5.2.7 0l4.496-4.273z"/></svg>' }}
+      {% endif %}
 
       {% else %}
         <p class="no_results">No products found.</p>

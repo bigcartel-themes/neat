@@ -8,90 +8,85 @@
   {% endif %}
 
   {% if cart.items != blank %}
-
-  <h1>Subtotal</h1>
-  <h4>{{ cart.subtotal | money_with_sign }}</h4>
-
-  <form method="post" action="/cart" class="cart_form">
-    <ul class="cart_details">
-      {% for item in cart.items %}
-      <li>
-        <a href="{{ item.product.url }}" class="product_image">
-          <img src="{{ item.product.image | product_image_url size:"medium" }}">
-        </a>
-        <div class="product_details">
-          <a href="{{ item.product.url }}">
-            {{ item.product.name }}
-            {% unless item.product.has_default_option %}
-              <em>{{ item.option.name }}</em>
-            {% endunless %}
+    <h1>Subtotal</h1>
+    <h4>{{ cart.subtotal | money_with_sign }}</h4>
+  
+    <form method="post" action="/cart" class="cart_form">
+      <ul class="cart_details">
+        {% for item in cart.items %}
+        <li>
+          <a href="{{ item.product.url }}" class="product_image">
+            <img src="{{ item.product.image | product_image_url size:"medium" }}">
           </a>
-        </div>
-        <div class="product_actions">
-          <div class="quantity">{{ item | item_quantity_input }}</div>
-          <div class="price">{{ item.price | money_with_sign }}</div>
-          <div class="remove"><a href="#" class="remove"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10px" height="10px" viewBox="0 0 10 10" xml:space="preserve"><path d="M7.924 6.51L5.45 4.035l2.475-2.475c0.196-0.195 0.196-0.512 0-0.707L7.217 0.1 c-0.195-0.195-0.512-0.195-0.707 0L4.036 2.621L1.561 0.146c-0.195-0.195-0.512-0.195-0.707 0L0.147 0.9 c-0.196 0.195-0.196 0.5 0 0.707l2.475 2.475L0.147 6.51c-0.196 0.195-0.196 0.5 0 0.707l0.707 0.7 c0.195 0.2 0.5 0.2 0.7 0l2.475-2.475L6.51 7.924c0.195 0.2 0.5 0.2 0.7 0l0.707-0.707 C8.121 7 8.1 6.7 7.9 6.51z"/></svg></a></div>
-        </div>
-      </li>
-      {% endfor %}
-    </ul>
+          <div class="product_details">
+            <a href="{{ item.product.url }}">
+              {{ item.product.name }}
+              {% unless item.product.has_default_option %}
+                <em>{{ item.option.name }}</em>
+              {% endunless %}
+            </a>
+          </div>
+          <div class="product_actions">
+            <div class="quantity">{{ item | item_quantity_input }}</div>
+            <div class="price">{{ item.price | money_with_sign }}</div>
+            <div class="remove"><a href="#" class="remove"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg></a></div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+  
+      {% if cart.shipping.enabled or cart.discount.enabled %}
+      	<ul class="cart_options">
+      	  <li class="cart_shipping">
+      	  {% if cart.shipping.enabled %}
+      	    {% if cart.shipping.strict %}
+      	      <div class="select">
+      		  	{{ store.country | country_select }}
+      		  	<svg xmlns="http://www.w3.org/2000/svg" width="10.001" height="6" viewBox="0 0 10.001 6"><path class="down_arrow" d="M9.852 1.537c.199-.189.199-.496 0-.684l-.717-.683c-.197-.19-.518-.19-.735 0l-3.384 3.33-3.434-3.357c-.199-.189-.52-.189-.717 0l-.717.683c-.197.188-.197.5 0 .684l4.508 4.3c.199.2.5.2.7 0l4.496-4.273z"/></svg>
+      	      </div>
+      	    
+      	    {% endif %}  
+      	  {% endif %}
+      	  
+      	  {% if cart.discount.enabled %}
+      	      <input autocomplete="off" id="cart_discount_code" name="cart[discount_code]" type="text" placeholder="Enter discount code" {% if cart.discount.code %}value="{{ cart.discount.code }}"{% endif %}>
+      	  {% endif %}
+      	  </li>
+      	  <li class="cart_totals">
+      	  	{% if cart.shipping.enabled %}
+      	  	<div>Shipping <span>
+      		  	
+              {% if cart.shipping.pending %}
+                {% if cart.country %}
+                Select another country
+                {% else %}
+                Select country
+                {% endif %}
+              {% else %}
+                {{ cart.shipping.amount | money_with_sign }}
+              {% endif %}
+      		 </span></div>
+      	  	{% endif %}
+      		{% if cart.discount.enabled %}
+      		  {% if cart.discount.pending %}
+      		    {% elsif cart.discount.free_shipping %}
+      		      <div>Discount <span>Free shipping!</span></div>
+      		    {% else %}
+      		      <div>Discount <span>- {{ cart.discount.amount | money_with_sign }}</span></div>
+      		  {% endif %}
+      		{% endif %}
+      	  	<div>Total <span>{{ cart.total | money_with_sign }}</span></div>
+      	  </li>
+      	</ul>   
+        <button class="update_btn" name="update" type="submit" title="Update your cart total">Update</button>    
+      {% endif %} 
 
-  {% if cart.shipping.enabled or cart.discount.enabled %}
-	<ul class="cart_options">
-	  <li class="cart_shipping">
-	  {% if cart.shipping.enabled %}
-	    {% if cart.shipping.strict %}
-	      <div class="select">
-		  	{{ store.country | country_select }}
-		  	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
-	      </div>
-	    
-	    {% endif %}  
-	  {% endif %}
-	  
-	  {% if cart.discount.enabled %}
-	      <input autocomplete="off" id="cart_discount_code" name="cart[discount_code]" type="text" placeholder="Enter discount code" {% if cart.discount.code %}value="{{ cart.discount.code }}"{% endif %}>
-	  {% endif %}
-	  </li>
-	  <li class="cart_totals">
-	  	{% if cart.shipping.enabled %}
-	  	<div>Shipping <span>
-		  	
-        {% if cart.shipping.pending %}
-          {% if cart.country %}
-          Select another country
-          {% else %}
-          Select country
-          {% endif %}
-        {% else %}
-          {{ cart.shipping.amount | money_with_sign }}
-        {% endif %}
-		 </span></div>
-	  	{% endif %}
-		{% if cart.discount.enabled %}
-		  {% if cart.discount.pending %}
-		    {% elsif cart.discount.free_shipping %}
-		      <div>Discount <span>Free shipping!</span></div>
-		    {% else %}
-		      <div>Discount <span>- {{ cart.discount.amount | money_with_sign }}</span></div>
-		  {% endif %}
-		{% endif %}
-	  	<div>Total <span>{{ cart.total | money_with_sign }}</span></div>
-	  </li>
-	</ul>   
-  <button class="update_btn" name="update" type="submit" title="Update your cart total">Update</button>    
-  {% endif %} 
-
-
-    <button class="checkout_btn" type="submit" name="checkout" title="Checkout">Checkout</button>
-  </form>
+      <button class="checkout_btn" type="submit" name="checkout" title="Checkout">Checkout</button>
+    </form>
 
   {% else %}
-
-  <div>
-    <p><strong>Your cart is empty!</strong> Sounds like a good time to <a href="/">start shopping &rarr;</a></p>
-  </div>
-
+    <div>
+      <p><strong>Your cart is empty!</strong> Sounds like a good time to <a href="/">start shopping &rarr;</a></p>
+    </div>
   {% endif %}
-
 </section>
