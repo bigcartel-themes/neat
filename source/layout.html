@@ -11,8 +11,11 @@
       <meta property="og:title" content="{{ product.name | escape }}">
       <meta property="og:type" content="product">
       <meta property="og:url" content="{{ page.full_url }}">
-      <meta property="og:image" content="{{ product.image.url }}">
+      <meta property="og:image" content="{{ product.image.url | constrain: '1000' }}">
       <meta property="og:site_name" content="{{ store.name | escape }}">
+      {% if product.description != blank %}
+        <meta property="og:description" content="{{ product.description | strip_html | escape }}">
+      {% endif %}
     {% endif %}
 
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
