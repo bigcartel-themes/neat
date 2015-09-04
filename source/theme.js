@@ -16,7 +16,6 @@
 // also including jQuery in our layout.html from Google so that it can be better cached by users.
 //
 //= require_directory ./javascripts/vendor
-//= require javascripts/cart
 
 function isIE() {
   var rv = -1;
@@ -32,48 +31,64 @@ function isIE() {
   }
   return rv == -1 ? false : true;
 }
-
-function activateWaypoints() {
-  $('.featured').waypoint(function (direction) {
-    if (screenWidth > 800) {
-      if (direction === 'down') {
-        $('.featured').fadeOut(250);
-      }
-      else {
-        $('.featured').fadeIn(500);
-      }
-    }
-  }, {
-    offset: '120'
-  })
-  $('.content').waypoint(function (direction) {
-    if ($('.slideshow').length && screenWidth > 800) {
-      if (direction === 'down') {
-        $('header').toggleClass('overlay');
-      }
-      else {
-        $('header').toggleClass('overlay');
-      }
-    }
-  }, {
-    offset: '120'
-  })
-}
-$(window).resize(function () {
-  screenWidth = $(window).width();
-});
 $(document).ready(function () {
+  
+	$('.image_gallery').magnificPopup({
+		delegate: 'a',
+		type: 'image',
+		tLoading: 'Loading...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image </a> could not be loaded.',
+		}
+	});
+  
+  if ($('.featured').length) { 
+    var waypoint = new Waypoint({
+      element: $('.featured'),
+      handler: function(direction) {
+        var screenWidth = Waypoint.viewportWidth();
+        if (screenWidth > 800) {
+          if (direction === 'down') {
+            $('.featured').animate({ opacity: 0 });
+          }
+          else {
+            $('.featured').animate({ opacity: 1 });
+          }
+        }
+      },
+      offset: 120 
+    });
+  }
+  if ($('.content').length) { 
+    var waypoint = new Waypoint({
+      element: $('.content'),
+      handler: function(direction) {
+        var screenWidth = Waypoint.viewportWidth();
+        if ($('.slideshow').length && screenWidth > 800) {
+          if (direction === 'down') {
+            $('header').addClass('overlay');
+          }
+          else {
+            $('header').removeClass('overlay');
+          }
+        }
+      },
+      offset: 88
+    });
+  }
   this.inPreview = (/\/admin\/design/.test(top.location.pathname));
   if (this.inPreview) {
     setTimeout(function () {
-      screenWidth = $(window).width();
-      activateWaypoints();
-    }, 500);
+      Waypoint.refreshAll();
+    }, 800);
   }
-  else {
-    screenWidth = $(window).width();
-    activateWaypoints();
-  }
+  
   searchForm = $('form.search');
   if (searchForm.length) {
     $('body').on('click', 'a[href=#search]', function (e) {
@@ -101,6 +116,17 @@ $(document).ready(function () {
     e.preventDefault();
     mobileNav.fadeOut(150);
   });
+  
+  $('#cart input[id$=_qty]').blur(function(e) {
+    e.preventDefault();
+    $(this).closest('form').submit();
+  });
+  
+  $('#cart .remove').click(function(e) {
+    e.preventDefault();
+    $(this).closest('li').find('input[id$=_qty]').val(0).closest('form').submit();
+  });
+  
 });
 $(document).keyup(function (e) {
   if (e.keyCode == 27) {

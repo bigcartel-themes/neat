@@ -145,7 +145,35 @@
           margin: 0 auto
           text-align: center
           width: 100%
-
+          
+      .product_thumbnails
+        +pie-clearfix
+        box-sizing: border-box
+        font-size: 0
+        list-style: none
+        margin: 20px -20px
+        text-align: center
+        padding: 0
+        
+        @media only screen and (max-width:$breakpoint-small)
+          margin: 5px -10px
+        
+        li
+          box-sizing: border-box
+          display: inline-block
+          padding: 0 10px
+          width: 25%
+          
+          @media only screen and (max-width:$breakpoint-small)
+            padding: 5px
+          
+          a
+            display: block
+            
+          img
+            display: block
+            width: 100%
+            
 .product_photos
   margin-top: 32px
 
