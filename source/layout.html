@@ -32,9 +32,9 @@
       <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
         <a href="/" title="{{ store.name | escape }}">
           {% if theme.logo != blank %}
-          <img src="{{ theme.logo.url }}" alt="{{ store.name }}">
+            <img src="{{ theme.logo.url | constrain: '300' }}" alt="{{ store.name }}">
           {% else %}
-          {{ store.name }}
+            {{ store.name }}
           {% endif %}
         </a>
       </div>
@@ -42,7 +42,7 @@
         <ul class="navigation">
           <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
           {% for page in pages.all limit: theme.nav_items %}
-          <li>{{ page | link_to }}</li>
+            <li>{{ page | link_to }}</li>
           {% endfor %}
         </ul>
       </nav>

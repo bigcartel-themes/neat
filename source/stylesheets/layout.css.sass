@@ -154,10 +154,6 @@ header
       
     &.image a
       height: 66px
-      
-	
-        
-    
 
   .sections
     float: left
@@ -280,7 +276,6 @@ header
   width: 100%
   z-index: 1
   
-
   @media only screen and (max-width:$breakpoint-small)
     max-height: 640px
     
@@ -339,7 +334,6 @@ header
         background-color: #{"{{ theme.link_hover }}"}
         color: #{"{{ theme.welcome_text_color }}"}
         
-        
   ul
     display: block
     height: 100%
@@ -359,10 +353,7 @@ header
       width: 100%
       
       img
-        -webkit-transform: translate3d(0,0,0)
         -webkit-backface-visibility: hidden
-
-
 
 #home .content
   padding: #{"{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px{% else %} 64px{% endif %}"} 0 0 0
@@ -452,13 +443,6 @@ header
         circle
           fill: #{"{{ theme.background_color }}"}
 
-
-
-
-
-      
-      
-
 footer
   +box-sizing(border-box)
   +font-size(14)
@@ -528,8 +512,7 @@ footer
             line-height: 56px
             height: 56px
             width: 100%
-            
-            
+              
   .social_footer
     list-style: none
     left: 130px

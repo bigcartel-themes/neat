@@ -87,6 +87,7 @@ $(document).ready(function () {
     setTimeout(function () {
       Waypoint.refreshAll();
     }, 800);
+    $('.slideshow ul li img').css('-webkit-transform','translate3d(0,0,0)');
   }
   
   searchForm = $('form.search');
