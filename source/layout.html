@@ -32,7 +32,7 @@
       <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
         <a href="/" title="{{ store.name | escape }}">
           {% if theme.logo != blank %}
-            <img src="{{ theme.logo.url | constrain: '300' }}" alt="{{ store.name }}">
+            <img src="{{ theme.logo.url | constrain: '400' }}" alt="{{ store.name }}">
           {% else %}
             {{ store.name }}
           {% endif %}
