@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "images": [
     {
       "variable": "logo",
@@ -86,8 +86,8 @@
   ],
   "checkout": {
     "header_image": "{{ logo }}",
-    "header_image_max_height": "208px",
-    "header_image_max_width": "66px",
+    "header_image_max_width": "208px",
+    "header_image_max_height": "66px",
     "title_font": "{{ header_font }}",
     "title_font_size": "22px",
     "title_color": "{{ header_link_color }}",
