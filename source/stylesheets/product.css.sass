@@ -162,6 +162,7 @@
           box-sizing: border-box
           display: inline-block
           padding: 0 10px
+          vertical-align: top
           width: 25%
           
           @media only screen and (max-width:$breakpoint-small)
@@ -173,6 +174,27 @@
           img
             display: block
             width: 100%
+  
+  .social_links
+  
+    .social_pinterest
+    
+      a
+        cursor: pointer
+        display: inline-block
+        position: relative
+        
+        &:after
+          content: ""
+          position: absolute
+          top: 0
+          right: 0
+          bottom: 0
+          left: 0
+        
+        svg
+          height: 16px
+          width: 16px
             
 .product_photos
   margin-top: 32px
@@ -180,3 +202,5 @@
   .product_photo
     display: block
     width: 100%
+    
+    
