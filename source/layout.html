@@ -1,31 +1,13 @@
 <!DOCTYPE html>
   <head>
     <title>{{ store.name }} &mdash; {% if page.full_url contains "search=" %}Product Search{% elsif theme.collections and page.full_url contains '/products' %}Collections{% else %}{{ page.name }}{% endif %}</title>
-
     <meta charset="utf-8">
-    <meta name="description" content="{{ page.meta_description }}">
-    <meta name="keywords" content="{{ page.meta_keywords }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    {% if page.permalink == 'product' %}
-      <meta property="og:title" content="{{ product.name | escape }}">
-      <meta property="og:type" content="product">
-      <meta property="og:url" content="{{ page.full_url }}">
-      <meta property="og:image" content="{{ product.image.url | constrain: '1000' }}">
-      <meta property="og:site_name" content="{{ store.name | escape }}">
-      {% if product.description != blank %}
-        <meta property="og:description" content="{{ product.description | strip_html | escape }}">
-      {% endif %}
-    {% endif %}
-
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
-
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"></script>
     <script src="{{ theme | theme_js_url }}" type="text/javascript"></script>
-
     {{ head_content }}
   </head>
-
   <body id="{{ page.permalink }}" class="{{ page.category }}">
   <div class="wrap">
 	    <header {% if page.permalink =='home' %}class="home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}"{% else %}class="page"{% endif %}>
