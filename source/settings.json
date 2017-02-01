@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.4.10",
+  "version": "1.5.0",
   "images": [
     {
       "variable": "logo",
@@ -194,7 +194,7 @@
         ["Full width", "full"],
         ["Thumbnails", "thumbs"]
       ],
-      "default": "full",
+      "default": "thumbs",
       "description": "Display secondary product images full-width or as thumbnails on the Product page"
     },
     {
@@ -227,28 +227,28 @@
       "description": "Adds Facebook, Twitter, and Pinterest buttons to Product pages"
     },
     {
-      "variable": "facebook_username",
-      "label": "Facebook Username",
+      "variable": "twitter_url",
+      "label": "Twitter URL",
       "type": "text",
-      "description": "Ex: bigcartel"
+      "description": "Ex: http://twitter.com/bigcartel"
     },
     {
-      "variable": "instagram_username",
-      "label": "Instagram Username",
+      "variable": "facebook_url",
+      "label": "Facebook URL",
       "type": "text",
-      "description": "Ex: bigcartel"
+      "description": "Ex: http://facebook.com/bigcartel"
     },
     {
-      "variable": "tumblr_username",
-      "label": "Tumblr Username",
+      "variable": "tumblr_url",
+      "label": "Tumblr URL",
       "type": "text",
-      "description": "Ex: bigcartel"
+      "description": "Ex: http://bigcartel.tumblr.com"
     },
     {
-      "variable": "twitter_username",
-      "label": "Twitter Username",
+      "variable": "instagram_url",
+      "label": "Instagram URL",
       "type": "text",
-      "description": "Ex: bigcartel"
+      "description": "Ex: http://instagram.com/bigcartel"
     }
   ]
 }
