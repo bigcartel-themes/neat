@@ -93,20 +93,20 @@ $(document).ready(function () {
   if (searchForm.length) {
     $('body').on('click', 'a[href=#search]', function (e) {
       e.preventDefault();
-      searchForm.fadeIn(150);
+      searchForm.addClass('open');
       if (!isIE()) {
         searchForm.find('input[type=text]').focus()
       }
     });
     $('body').on('click', '.close_search', function (e) {
       e.preventDefault();
-      searchForm.fadeOut(150);
+      searchForm.removeClass('open');
     });
   }
   mobileNav = $('.mobile_nav')
   $('body').on('click', '.nav_trigger', function (e) {
     e.preventDefault();
-    mobileNav.fadeIn(150);
+    mobileNav.addClass('open');
   });
   $('select').change(function (e) {
     e.preventDefault();
@@ -114,7 +114,7 @@ $(document).ready(function () {
   })
   $('body').on('click', '.close_nav', function (e) {
     e.preventDefault();
-    mobileNav.fadeOut(150);
+    mobileNav.removeClass('open');
   });
   
   $('#cart input[id$=_qty]').blur(function(e) {
@@ -131,10 +131,10 @@ $(document).ready(function () {
 $(document).keyup(function (e) {
   if (e.keyCode == 27) {
     if (searchForm.length) {
-      searchForm.fadeOut(150);
+      searchForm.removeClass('open');
     }
     if (mobileNav.length) {
-      mobileNav.fadeOut(150);
+      mobileNav.removeClass('open');
     }
   }
 });

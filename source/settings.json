@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "images": [
     {
       "variable": "logo",
@@ -215,7 +215,7 @@
       "variable": "show_inventory_bars",
       "label": "Show inventory bars",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "Shows a product's inventory amounts (when using inventory tracking)",
       "requires": "inventory"
     },

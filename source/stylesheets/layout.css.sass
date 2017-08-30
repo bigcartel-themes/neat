@@ -218,20 +218,26 @@ header
 
 .mobile_nav
   +box-sizing(border-box)
+  +transition(all .2s ease-in-out)
   background-color: rgba(black, .95)
-  display: none
   line-height: 88px
   height: 100%
   left: 0
   list-style: none
   margin: 0
+  opacity: 0
   overflow: auto
   padding: 15%
   position: fixed
   text-align: center
   top: 0
+  visibility: hidden
   width: 100%
   z-index: 10001
+  
+  &.open
+    opacity: 1
+    visibility: visible
   
   a
     color: #FFF
@@ -244,8 +250,7 @@ header
     position: fixed
     right: 15px
     top: 36px
-    
-    
+
     path
       fill: #FFF
       
