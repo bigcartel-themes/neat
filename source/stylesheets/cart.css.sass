@@ -49,7 +49,6 @@
     margin: 0
     padding: 0
     +pie-clearfix
-    
 
     li
       border-bottom: 1px solid #{"{{ theme.border_color }}"}
@@ -88,20 +87,14 @@
         height: 144px
         letter-spacing: 0
         margin: 0
-        max-width: 350px
-        padding: 0
-        text-transform: normal
-        width: auto
-
-        a
-          white-space: nowrap
-          overflow: hidden
-          text-overflow: ellipsis
-
+        max-width: 280px
+        padding: 0 15px 0 0
+        width: 100%
 
         @media only screen and (max-width:$breakpoint-small)
+          font-size: 13px
           height: 72px
-          width: 50%
+          width: 40%
 
         a
           +vertical-align
@@ -112,15 +105,16 @@
             font-style: normal
 
       .product_actions
-        display: block
+        display: flex
         float: right
         height: 144px
         line-height: 144px
-        width: 224px
+        max-width: 40%
         text-align: right
+        width: 100%
 
         @media only screen and (max-width:$breakpoint-small)
-          width: 50%
+          max-width: 60%
           max-height: 72px
           line-height: 72px
 
@@ -128,13 +122,15 @@
           display: inline-block
 
           &.quantity
-            width: 88px
+            text-align: center
+            width: 128px
 
             @media only screen and (max-width:$breakpoint-small)
               width: 56px
 
             input[type='text']
               height: 56px
+              margin: 0 auto
               text-align: center
               text-indent: 0
               width: 56px
@@ -142,12 +138,14 @@
               @media only screen and (max-width:$breakpoint-small)
                 height: 48px
                 width: 48px
-
+                
           &.price
-            width: 80px
+            margin-left: auto
+            
 
           &.remove
             cursor: pointer
+            padding-left: 20px
             width: 36px
             text-align: center
 
