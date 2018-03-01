@@ -9,7 +9,7 @@
 
   {% if cart.items != blank %}
     <h1>Subtotal</h1>
-    <h4>{{ cart.subtotal | money_with_sign }}</h4>
+    <h4>{{ cart.subtotal | money: theme.money_format }}</h4>
   
     <form method="post" action="/cart" class="cart_form">
       <ul class="cart_details">
@@ -28,7 +28,7 @@
           </div>
           <div class="product_actions">
             <div class="quantity">{{ item | item_quantity_input }}</div>
-            <div class="price">{{ item.price | money_with_sign }}</div>
+            <div class="price">{{ item.price | money: theme.money_format }}</div>
             <div class="remove"><a href="#" class="remove"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg></a></div>
           </div>
         </li>
@@ -63,7 +63,7 @@
                 Select country
                 {% endif %}
               {% else %}
-                {{ cart.shipping.amount | money_with_sign }}
+                {{ cart.shipping.amount | money: theme.money_format }}
               {% endif %}
       		 </span></div>
       	  	{% endif %}
@@ -72,10 +72,10 @@
       		    {% elsif cart.discount.free_shipping %}
       		      <div>Discount <span>Free shipping!</span></div>
       		    {% else %}
-      		      <div>Discount <span>- {{ cart.discount.amount | money_with_sign }}</span></div>
+      		      <div>Discount <span>- {{ cart.discount.amount | money: theme.money_format }}</span></div>
       		  {% endif %}
       		{% endif %}
-      	  	<div>Total <span>{{ cart.total | money_with_sign }}</span></div>
+      	  	<div>Total <span>{{ cart.total | money: theme.money_format }}</span></div>
       	  </li>
       	</ul>   
         <button class="update_btn" name="update" type="submit" title="Update your cart total">Update</button>    

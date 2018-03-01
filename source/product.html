@@ -3,13 +3,13 @@
 
   {% case product.status %}
   {% when 'sold-out' %}
-  <h4>{{ product.default_price | money_with_sign }} <em>Sold Out</em></h4>
+  <h4>{{ product.default_price | money: theme.money_format }} <em>Sold Out</em></h4>
 
   {% when 'coming-soon' %}
-  <h4>{{ product.default_price | money_with_sign }} <em>Coming Soon</em></h4>
+  <h4>{{ product.default_price | money: theme.money_format }} <em>Coming Soon</em></h4>
 
   {% when 'active' %}
-  <h4>{{ product.default_price | money_with_sign }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
+  <h4>{{ product.default_price | money: theme.money_format }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
   {% endcase %}
 
   <section class="product_image {% if theme.secondary_product_images == 'thumbs' %}image_gallery{% endif %}">
