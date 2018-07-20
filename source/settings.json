@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "images": [
     {
       "variable": "logo",
@@ -14,8 +14,8 @@
       "label": "Slideshow",
       "description": "Adds a full screen slideshow to the homepage",
       "defaults": [
-        "neat-slide-1.jpg", 
-        "neat-slide-2.jpg", 
+        "neat-slide-1.jpg",
+        "neat-slide-2.jpg",
         "neat-slide-3.jpg"
       ]
     }
@@ -106,7 +106,7 @@
     "content_header_color":"{{ text_color }}",
     "content_color":"{{ text_color }}",
     "content_header_font_size":"18px",
-    "content_border_color":"transparent", 
+    "content_border_color":"transparent",
     "content_border_radius":"0px",
     "error_background_color": "#ea4859",
     "error_color": "#ffffff",

@@ -50,10 +50,10 @@
 
       small
         +font-size(14)
-      
+
       img, iframe
         max-width: 100%
-        
+
       p
         margin-bottom: 16px
         padding: 0
@@ -86,31 +86,34 @@
           border: 1px solid #{"{{ theme.border_color }}"}
           border-width: 1px 1px 0 1px
           height: 56px
-          line-height: 56px
           list-style: none
+          padding: 8px 12px
           position: relative
-          text-indent: 8px
           width: 100%
 
           &:last-child
             margin-bottom: 0
             border-width: 1px
 
-          span
-            display: inline-block
-            height: 56px
-            left: 0
-            overflow: hidden
+          div
             position: relative
-            top: 0
-            white-space: nowrap
+            top: 50%
+            transform: translateY(-50%)
             z-index: 99
 
+          span
+            display: inline
+
             &.sold_out
+              margin-right: 8px
               text-decoration: line-through
+
+            &.sold_out_text
+              white-space: nowrap
 
           b
             display: block
+            left: 0
             position: absolute
             width: 100%
             z-index: 1
@@ -148,7 +151,7 @@
           margin: 0 auto
           text-align: center
           width: 100%
-          
+
       .product_thumbnails
         +pie-clearfix
         box-sizing: border-box
@@ -157,36 +160,36 @@
         margin: 20px -20px
         text-align: center
         padding: 0
-        
+
         @media only screen and (max-width:$breakpoint-small)
           margin: 5px -10px
-        
+
         li
           box-sizing: border-box
           display: inline-block
           padding: 0 10px
           vertical-align: top
           width: 25%
-          
+
           @media only screen and (max-width:$breakpoint-small)
             padding: 5px
-          
+
           a
             display: block
-            
+
           img
             display: block
             width: 100%
-  
+
   .social_links
-  
+
     .social_pinterest
-    
+
       a
         cursor: pointer
         display: inline-block
         position: relative
-        
+
         &:after
           content: ""
           position: absolute
@@ -194,16 +197,15 @@
           right: 0
           bottom: 0
           left: 0
-        
+
         svg
           height: 16px
           width: 16px
-            
+
 .product_photos
   margin-top: 32px
 
   .product_photo
     display: block
     width: 100%
-    
-    
+
