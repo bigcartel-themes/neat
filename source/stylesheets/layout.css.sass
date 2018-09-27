@@ -15,7 +15,7 @@ header
   position: relative
   width: 100%
   z-index: 999
-  
+
   &.home
     position: fixed
 
@@ -138,20 +138,20 @@ header
       max-width: 50%
       padding-left: $marginSize/2
       width: 50%
-      
+
     a
       display: block
       max-width: 208px
-      
+
       &:after
         display: none
-      
+
     &.image img
       display: block
       max-height: 100%
       max-width: 100%
       +vertical-align
-      
+
     &.image a
       height: 66px
 
@@ -163,7 +163,7 @@ header
     position: relative
     width: 50%
     z-index: 97
-    
+
     @media only screen and (max-width:$breakpoint-small)
       display: none
 
@@ -172,7 +172,7 @@ header
     position: relative
     max-width: 25%
     z-index: 99
-    
+
     @media only screen and (max-width:$breakpoint-small)
       max-width: 50%
 
@@ -234,17 +234,17 @@ header
   visibility: hidden
   width: 100%
   z-index: 10001
-  
+
   &.open
     opacity: 1
     visibility: visible
-  
+
   a
     color: #FFF
-    
+
     &:hover
       opacity: .6
- 
+
   .close_nav
     line-height: 22px
     position: fixed
@@ -253,20 +253,20 @@ header
 
     path
       fill: #FFF
-      
+
       &:hover
         opacity: .6
-    
+
   ul
     list-style-type: none
     margin: 0
     padding: 0
-    
+
   li
     height: auto
     line-height: 30px
     margin-left: 0
-    
+
     a
       display: block
       padding: 15px 0
@@ -280,15 +280,15 @@ header
   position: relative
   width: 100%
   z-index: 1
-  
+
   @media only screen and (max-width:$breakpoint-small)
     max-height: 640px
-    
+
   div.featured_holder
     background-color: rgba(black, .3)
     +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}'))
     background-repeat: repeat
-    background-size: 4px  
+    background-size: 4px
     height: 100%
     position: absolute
     top: 0
@@ -303,14 +303,14 @@ header
     text-align: center
     z-index: 2
     width: 100%
-    
+
     p
       +font-size(14,20)
       font-weight: 600
       line-height: 18px
       padding: 20px 16px 0px
       text-transform: uppercase
-      
+
       @media only screen and (max-width:$breakpoint-small)
         line-height: 1.75rem
 
@@ -338,7 +338,7 @@ header
         border: 1px solid #{"{{ theme.link_hover }}"}
         background-color: #{"{{ theme.link_hover }}"}
         color: #{"{{ theme.welcome_text_color }}"}
-        
+
   ul
     display: block
     height: 100%
@@ -356,7 +356,7 @@ header
       list-style: none
       position: relative
       width: 100%
-      
+
       img
         -webkit-backface-visibility: hidden
 
@@ -434,10 +434,11 @@ header
         line-height: normal
 
         svg
-          +scale(100%)
           cursor: pointer
+          height: 16px
           position: relative
           +vertical-align
+          width: 16px
 
         path,
         circle
@@ -498,10 +499,10 @@ footer
         margin-bottom: 16px
         padding: 0 $marginSize/2
         text-align: center
-        
+
         &:last-child
           padding-right: 12px
-          
+
           @media only screen and (max-width:$breakpoint-small)
             padding-right: 0
 
@@ -517,7 +518,7 @@ footer
             line-height: 56px
             height: 56px
             width: 100%
-              
+
   .social_footer
     list-style: none
     left: 130px
@@ -525,9 +526,9 @@ footer
     margin: 0
     position: absolute
     top: 35px
-    
+
     @media only screen and (max-width:$breakpoint-small)
-		
+
       margin: 0
       margin-top: $marginSize
       padding: 0
@@ -535,18 +536,18 @@ footer
       position: relative
       left: 0
       top: 0
-      
+
     li
       display: inline-block
-      
+
       a
         display: block
         padding: 0 12px
-        
+
         svg
           height: 18px
           width: 18px
-      
+
         path,
         circle
           fill: #{"{{ theme.link_color }}"}
@@ -557,7 +558,7 @@ footer
           path,
           circle
             fill: #{"{{ theme.link_hover }}"}
-  
+
   cite
     color: #{"{{ theme.link_color }}"}
     left: $marginSize
@@ -590,6 +591,6 @@ footer
   max-width: 800px
   text-align: center
   width: 100%
-  
-  p 
+
+  p
     padding: 0 $marginSize

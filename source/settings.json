@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "images": [
     {
       "variable": "logo",
@@ -260,6 +260,12 @@
       "label": "Instagram URL",
       "type": "text",
       "description": "Ex: http://instagram.com/bigcartel"
+    },
+    {
+      "variable": "pinterest_url",
+      "label": "Pinterest URL",
+      "type": "text",
+      "description": "Ex: http://pinterest.com/bigcartel"
     }
   ]
 }
