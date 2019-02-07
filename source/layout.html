@@ -22,7 +22,7 @@
       </div>
       <nav class="sections">
         <ul class="navigation">
-          <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+          <li><a href="/products">{% if theme.collections %}Collections{% else %}{{ pages.products.name }}{% endif %}</a></li>
           {% for page in pages.all limit: theme.nav_items %}
             <li>{{ page | link_to }}</li>
           {% endfor %}
@@ -57,11 +57,11 @@
   			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 10 10"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
   		</a>
   		<ul>
-  		  <li><a href="/products" title="{% if theme.collections %}Collections{% else %}Products{% endif %}">{% if theme.collections %}Collections{% else %}Products{% endif %}</a></li>
+  		  <li><a href="/products">{% if theme.collections %}Collections{% else %}{{ pages.products.name }}{% endif %}</a></li>
   		  {% for page in pages.all limit: theme.nav_items %}
   		    <li>{{ page | link_to }}</li>
   		  {% endfor %}
-  		  <li><a href="/contact" title="Contact">Contact</a></li>
+  		  <li><a href="/contact">Contact</a></li>
   		</ul>
 	  </div>
     {% if page.category == 'custom' %}
@@ -76,11 +76,11 @@
     <footer>
       <nav class="footernav">
         <ul>
-          <li><a href="/" title="{{ store.name | escape }}">Home</a></li>
+          <li><a href="/">Home</a></li>
           {% for page in pages.all offset: theme.nav_items %}
             <li>{{ page | link_to }}</li>
           {% endfor %}
-          <li><a href="/contact" title="Contact">Contact</a></li>
+          <li><a href="/contact">Contact</a></li>
           {% if store.website != blank %}
             <li><a href="{{ store.website }}">Back to site</a></li>
           {% endif %}
@@ -111,9 +111,9 @@
     {% if theme.show_search %}
       <form action="/products" method="get" class="search">
         <input type="text" name="search" id="search" placeholder="Search products...">
-		<a href="#" class="close_search">
-			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 10 10"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
-		</a>
+    		<a href="#" class="close_search">
+    			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 10 10"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
+    		</a>
       </form>
     {% endif %}
   </div>
