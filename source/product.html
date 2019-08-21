@@ -1,15 +1,21 @@
 <section class="content">
   <h1>{{ product.name }}</h1>
-
+  {% capture product_pricing %}
+    {% if product.variable_pricing %}
+      {{ product.min_price | money: theme.money_format }} - {{ product.max_price | money: theme.money_format }}
+    {% else %}
+      {{ product.default_price | money: theme.money_format }}
+    {% endif %}
+  {% endcapture %}
   {% case product.status %}
   {% when 'sold-out' %}
-  <h4>{{ product.default_price | money: theme.money_format }} <em>Sold Out</em></h4>
+  <h4>{{ product_pricing }} <em>Sold Out</em></h4>
 
   {% when 'coming-soon' %}
-  <h4>{{ product.default_price | money: theme.money_format }} <em>Coming Soon</em></h4>
+  <h4>{{ product_pricing }} <em>Coming Soon</em></h4>
 
   {% when 'active' %}
-  <h4>{{ product.default_price | money: theme.money_format }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
+  <h4>{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
   {% endcase %}
 
   <section class="product_image {% if theme.secondary_product_images == 'thumbs' %}image_gallery{% endif %}">
@@ -63,17 +69,40 @@
 		      {% endfor %}
 		    </ul>
 	    {% endif %}
-	    <form method="post" action="/cart">
-	      {% if product.has_default_option %}
-	        {{ product.option | hidden_option_input }}
-	      {% else %}
-	      <div class="select">
-	        {{ product.options_in_stock | options_select }}
-	        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
-	      </div>
-	      {% endif %}
-	      <button name="submit" type="submit" title="Add to Cart">Add to Cart</button>
-	    </form>
+      <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
+        <input type="hidden" name="utf8" value='✓'>
+        {% if product.has_default_option %}
+          {{ product.option | hidden_option_input }}
+        {% else %}
+          {% if product.has_option_groups %}
+            <div class="product_option_groups">
+              <input id="option" name="cart[add][id]" type="hidden" value="0">
+              {% for option_group in product.option_groups %}
+                <div class="select">
+                  <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
+                    <option value="0" disabled="disabled" selected>Select {{ option_group.name }}</option>
+                    {% for value in option_group.values %}
+                      <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="select">
+              <select class="product_option_select" id="option" name="[cart][add][id]" aria-label="Select option">
+                <option value="0" disabled="disabled" selected>Select option</option>
+                {% for option in product.options %}
+                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
+                {% endfor %}
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+            </div>
+          {% endif %}
+        {% endif %}
+        <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
+      </form>
     {% endif %}
 
     {% if theme.share_buttons %}
