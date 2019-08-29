@@ -120,7 +120,10 @@
   <script src="{{ theme | theme_js_url }}"></script>
   {% if page.full_url contains '/product/' %}
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
-    <script>Product.find('{{ product.permalink }}', processProduct)</script>
+    <script>
+      var show_sold_out_product_options = '{{ theme.show_sold_out_product_options }}';
+      Product.find('{{ product.permalink }}', processProduct)
+    </script>
   {% endif %}
   <script>
     $(function() {
