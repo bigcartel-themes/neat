@@ -1,15 +1,21 @@
 <section class="content">
   <h1>{{ product.name }}</h1>
-
+  {% capture product_pricing %}
+    {% if product.variable_pricing %}
+      {{ product.min_price | money: theme.money_format }} - {{ product.max_price | money: theme.money_format }}
+    {% else %}
+      {{ product.default_price | money: theme.money_format }}
+    {% endif %}
+  {% endcapture %}
   {% case product.status %}
   {% when 'sold-out' %}
-  <h4>{{ product.default_price | money: theme.money_format }} <em>Sold Out</em></h4>
+  <h4>{{ product_pricing }} <em>Sold Out</em></h4>
 
   {% when 'coming-soon' %}
-  <h4>{{ product.default_price | money: theme.money_format }} <em>Coming Soon</em></h4>
+  <h4>{{ product_pricing }} <em>Coming Soon</em></h4>
 
   {% when 'active' %}
-  <h4>{{ product.default_price | money: theme.money_format }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
+  <h4>{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
   {% endcase %}
 
   <section class="product_image {% if theme.secondary_product_images == 'thumbs' %}image_gallery{% endif %}">
@@ -63,23 +69,46 @@
 		      {% endfor %}
 		    </ul>
 	    {% endif %}
-	    <form method="post" action="/cart">
-	      {% if product.has_default_option %}
-	        {{ product.option | hidden_option_input }}
-	      {% else %}
-	      <div class="select">
-	        {{ product.options_in_stock | options_select }}
-	        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
-	      </div>
-	      {% endif %}
-	      <button name="submit" type="submit" title="Add to Cart">Add to Cart</button>
-	    </form>
+      <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
+        <input type="hidden" name="utf8" value='✓'>
+        {% if product.has_default_option %}
+          {{ product.option | hidden_option_input }}
+        {% else %}
+          {% if product.has_option_groups %}
+            <div class="product_option_groups">
+              <input id="option" name="cart[add][id]" type="hidden" value="0">
+              {% for option_group in product.option_groups %}
+                <div class="select">
+                  <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}">
+                    <option value="0" disabled="disabled" selected>Select {{ option_group.name }}</option>
+                    {% for value in option_group.values %}
+                      <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="select">
+              <select class="product_option_select" id="option" name="cart[add][id]" aria-label="Select option">
+                <option value="0" disabled="disabled" selected>Select option</option>
+                {% for option in product.options %}
+                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
+                {% endfor %}
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+            </div>
+          {% endif %}
+        {% endif %}
+        <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
+      </form>
     {% endif %}
 
     {% if theme.share_buttons %}
       <h4>Share</h4>
       <ul class="social_links">
-        <li><a target="_blank" href="http://twitter.com/share?url={{ page.full_url }}&text=Check out {{store.name}}'s"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"><path d="M605.886 208.899c-22.068 9.841-45.777 16.493-70.667 19.486 25.397-15.318 44.908-39.572 54.106-68.477-23.776 14.186-50.104 24.48-78.14 30.037-22.442-24.058-54.426-39.088-89.817-39.088-67.956 0-123.055 55.41-123.055 123.765 0 9.7 1.083 19.144 3.182 28.207-102.265-5.171-192.933-54.438-253.625-129.322-10.587 18.287-16.659 39.547-16.659 62.228 0 42.944 21.726 80.833 54.744 103.024-20.172-.637-39.15-6.206-55.729-15.478-.012.52-.012 1.041-.012 1.561 0 59.97 42.418 109.988 98.709 121.366-10.331 2.833-21.193 4.345-32.417 4.345-7.932 0-15.637-.777-23.152-2.222 15.662 49.169 61.103 84.959 114.946 85.956-42.112 33.195-95.172 52.981-152.823 52.981-9.933 0-19.725-.588-29.352-1.726 54.456 35.116 119.138 55.612 188.619 55.612 226.33 0 350.101-188.601 350.101-352.164 0-5.367-.123-10.698-.361-16.016 24.039-17.458 44.903-39.264 61.402-64.075z"/></svg></a>
+        <li><a target="_blank" href="https://twitter.com/intent/tweet?status={{product.name}}%20-%20{{store.name}}%20{{store.url}}{{product.url}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"><path d="M605.886 208.899c-22.068 9.841-45.777 16.493-70.667 19.486 25.397-15.318 44.908-39.572 54.106-68.477-23.776 14.186-50.104 24.48-78.14 30.037-22.442-24.058-54.426-39.088-89.817-39.088-67.956 0-123.055 55.41-123.055 123.765 0 9.7 1.083 19.144 3.182 28.207-102.265-5.171-192.933-54.438-253.625-129.322-10.587 18.287-16.659 39.547-16.659 62.228 0 42.944 21.726 80.833 54.744 103.024-20.172-.637-39.15-6.206-55.729-15.478-.012.52-.012 1.041-.012 1.561 0 59.97 42.418 109.988 98.709 121.366-10.331 2.833-21.193 4.345-32.417 4.345-7.932 0-15.637-.777-23.152-2.222 15.662 49.169 61.103 84.959 114.946 85.956-42.112 33.195-95.172 52.981-152.823 52.981-9.933 0-19.725-.588-29.352-1.726 54.456 35.116 119.138 55.612 188.619 55.612 226.33 0 350.101-188.601 350.101-352.164 0-5.367-.123-10.698-.361-16.016 24.039-17.458 44.903-39.264 61.402-64.075z"/></svg></a>
         <li><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.full_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="157.162 90 297.799 612" enable-background="new 157.162 90 297.799 612"><path d="M369.036 193.795h85.68v-103.795h-121.054c-97.553 19.707-98.776 108.936-98.776 108.936v105.753h-77.724v102.938h77.724v294.373h108.324v-294.617h102.081l9.67-102.938h-111.017v-75.521c-.123-33.171 25.092-35.129 25.092-35.129z"/></svg></a>
         <li class="social_pinterest"><a title="Pin" data-pin-custom="true" data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url={{ page.full_url }}&media={{ product.images.first.url }}&description={{ product.description | escape | truncate: 200 }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 12 16"><path d="M4.933 10.582c-.406 2.203-.9 4.314-2.366 5.418-.452-3.33.665-5.83 1.183-8.484C2.866 6 3.9 2.9 5.7 3.63c2.315.97-2 5.77.9 6.34 3 .6 4.225-5.4 2.365-7.36C6.285-.22 1.1 2.5 1.8 6.596c.154 1 1.1 1.3.4 2.658C.48 8.858-.034 7.45.032 5.574.138 2.504 2.692.352 5.255.054c3.24-.376 6.3 1.2 6.7 4.396.473 3.568-1.462 7.433-4.927 7.2C6.063 11.5 5.7 11 4.9 10.582z"/></svg>
       </a></li>
