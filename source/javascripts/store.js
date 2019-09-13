@@ -72,7 +72,7 @@ $(document).ready(function () {
 
   searchForm = $('form.search');
   if (searchForm.length) {
-    $('body').on('click', 'a[href=#search]', function (e) {
+    $('body').on('click', 'a[href^="#search"]', function (e) {
       e.preventDefault();
       searchForm.addClass('open');
       if (!isIE()) {
