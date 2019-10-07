@@ -53,10 +53,10 @@ a:hover
 .button, submit, input[type='submit'], button
   +border-radius(0)
   +font-size(14)
-  background-color: transparent
-  border: 1px solid #{"{{ theme.link_color }}"}
+  background-color: #{"{{ theme.text_color }}"}
+  border: none
   box-sizing: border-box
-  color: #{"{{ theme.link_color }}"}
+  color: #{"{{ theme.background_color }}"}
   display: inline-block
   font-weight: 600
   height: 56px
@@ -67,15 +67,24 @@ a:hover
   white-space: nowrap
   width: 100%
 
-  &:hover, &:focus
-    background-color: #{"{{ theme.link_hover }}"}
-    border: 1px solid #{"{{ theme.link_hover }}"}
-    color: #{"{{ theme.background_color }}"}
+  &.minimal-button
+    background: none
+    color: #{"{{ theme.text_color }}"}
+    border: none
+    font-size: 13px
+    padding: 0
+    width: auto
+
+    &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
+      +transform(none)
+      box-shadow: none
+      background: none
+      text-decoration: underline
+
+  &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
+    opacity: .8
 
   &:disabled, &.disabled
-    background-color: transparent
-    border: 1px solid #{"{{ theme.link_color }}"}
-    color: #{"{{ theme.link_color }}"}
     cursor: not-allowed
     opacity: .3
 
