@@ -17,8 +17,9 @@ function processProduct(product) {
       $('option[disabled-type="sold-out"]').wrap('<span>');
     }
   }
-    $('.reset-selection-button').on('click', function() {
+  $('.reset-selection-button').on('click', function() {
     disableAddButton("add-to-cart");
+    $('#option').val(0);
     $(this).hide();
     $(".product_option_group option").each(function(index,element) {
       if (element.value > 0) {
