@@ -12,12 +12,7 @@
     {
       "variable": "slideshow_images",
       "label": "Slideshow",
-      "description": "Adds a full screen slideshow to the homepage",
-      "defaults": [
-        "neat-slide-1.jpg",
-        "neat-slide-2.jpg",
-        "neat-slide-3.jpg"
-      ]
+      "description": "Adds a full screen slideshow to the homepage"
     }
   ],
   "fonts": [
@@ -145,22 +140,19 @@
       "variable": "welcome_header",
       "label": "Welcome header",
       "type": "text",
-      "description": "Welcome header for homepage",
-      "default": "Welcome header for homepage"
+      "description": "Welcome header for homepage"
     },
     {
       "variable": "welcome_subheader",
       "label": "Welcome subheader",
       "type": "text",
-      "description": "Welcome subheader for homepage",
-      "default": "Welcome subheader for homepage"
+      "description": "Welcome subheader for homepage"
     },
     {
       "variable": "featured_subheader",
       "label": "Featured subheader",
       "type": "text",
-      "description": "Featured products subheader on homepage",
-      "default": "Featured products subheader"
+      "description": "Featured products subheader on homepage"
     },
     {
       "variable": "nav_items",
@@ -175,7 +167,7 @@
       "label": "Products per page",
       "type": "select",
       "options": "1..100",
-      "default": 9,
+      "default": 36,
       "description": "The number of products shown at a time on the Products page"
     },
     {
@@ -183,7 +175,7 @@
       "label": "Featured products",
       "type": "select",
       "options": "0..100",
-      "default": 9,
+      "default": 12,
       "description": "The number of products featured on the Home page"
     },
     {
@@ -231,7 +223,7 @@
       "variable": "share_buttons",
       "label": "Show social buttons",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "Adds Facebook, Twitter, and Pinterest buttons to Product pages"
     },
     {
