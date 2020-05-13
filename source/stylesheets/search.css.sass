@@ -6,6 +6,7 @@
 .search
   +transition(all .2s ease-in-out)
   background-color: rgba(black, .95)
+  display: none
   height: 100%
   left: 0
   opacity: 0
@@ -15,8 +16,9 @@
   visibility: hidden
   width: 100%
   z-index: 10000
-  
+
   &.open
+    display: block
     opacity: 1
     visibility: visible
 
@@ -25,7 +27,7 @@
 
   path
     fill: #FFF
-    
+
   input
     border: none
     color: #fff
@@ -45,18 +47,17 @@
 
     &::-webkit-input-placeholder
       color: #CCC
-      
+
     &:-ms-input-placeholder
       color: #CCC
-      
+
   a
     position: fixed
     right: 65px
     top: 37px
-    
+
     &:hover
       opacity: .6
-    
+
     @media only screen and (max-width: $breakpoint-small)
       right: 15px
-    
