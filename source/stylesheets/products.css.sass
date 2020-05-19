@@ -21,6 +21,9 @@ section.content
       height: 16px
       white-space: nowrap
 
+      a:hover, a:focus
+        text-decoration: underline
+
       &:after
         content: '/'
         display: inline-block
@@ -30,12 +33,12 @@ section.content
         content: ''
         padding: 0
 
-  .products_list, .social
+  .products_list
     +pie-clearfix
     display: -webkit-flex
     display: -ms-flexbox
     display: flex
- 
+
     -webkit-flex-wrap: wrap
     -ms-flex-wrap: wrap
     flex-wrap: wrap
@@ -83,7 +86,7 @@ section.content
       color: #{"{{ theme.link_color }}"}
       max-width: 100%
 
-      &:hover
+      &:hover, &:focus
         color: #{"{{ theme.link_hover }}"}
 
       img
@@ -99,6 +102,7 @@ section.content
 
       b
         display: block
+        margin-bottom: 4px
 
       i, em
         display: inline-block
@@ -107,17 +111,17 @@ section.content
 
     h4
       text-align: center
-      
+
   .products_list
-    
+
     li
       @media only screen and (max-width:$breakpoint-small)
         margin-bottom: 45px
-        
+
       em
         font-style: italic
         color: #{"{{ theme.link_color }}"}
-        
+
   .pagination
     +font-size(14)
     +pie-clearfix
@@ -150,7 +154,7 @@ section.content
 
       &:hover path
         fill: #{"{{ theme.link_hover }}"}
-        
+
       @media only screen and (max-width:$breakpoint-small)
         display: none
 
@@ -161,16 +165,9 @@ section.content
     .next svg
       left: 1px
       +rotate(-90deg)
-    
+
     .disabled
       display: none
-
-  .social
-    margin: 0 0 64px 0
-    padding: 0
-
-    li
-      padding-bottom: 0
 
 .no_results
   text-align: center

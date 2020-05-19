@@ -8,236 +8,186 @@ div.wrap
   width: 100%
 
 header
-  +pie-clearfix
+  +flexbox
+  +align-items(center)
+  border-bottom: 1px solid transparent
+  +box-sizing(border-box)
   font-family: #{"{{ theme.text_font | font_family }}"}
   font-weight: 600
   height: 88px
-  position: relative
+  padding: 0 $marginSize
+  position: fixed
   width: 100%
   z-index: 999
 
-  &.home
-    position: fixed
-
-    @media only screen and (max-width:$breakpoint-small)
-      position: #{"{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} relative {% else %} absolute {% endif %}"}
-
-    &:after
-      +opacity(0)
-      background-color: #{"{{ theme.header_color }}"}
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
-      content: " "
-      display: block
-      height: 100%
-      position: absolute
-      width: 100%
-      z-index: 96
-
-  &.overlay, &.page
-    position: fixed
-
-    &:after
-      +opacity(1)
-      background-color: #{"{{ theme.header_color }}"}
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
-      content: " "
-      display: block
-      height: 100%
-      position: absolute
-      width: 100%
-      z-index: 96
-
-    @media only screen and (max-width:$breakpoint-small)
-      position: relative
-
-    a
-      position: relative
-      color: #{"{{ theme.header_link_color }}"}
-
-      path,
-      circle
-        fill: #{"{{ theme.header_link_color }}"}
-
-      &:hover,
-        color: #{"{{ theme.header_link_hover }}"}
-
-        path,
-        circle
-          fill: #{"{{ theme.header_link_hover }}"}
-
   a
-    position: relative
+    +flexbox
+    +align-items(center)
     color: #{"{{ theme.welcome_text_color }}"}
-    clear: both
-
-    &.mobile
-      display: none
-
-      &:after
-        display: none
-
-      @media screen and (max-width: $breakpoint-small)
-        display: block
-
-    &.desktop
-      display: block
-
-      @media screen and (max-width: $breakpoint-small)
-        display: none
-
-    svg
-      cursor: pointer
-      position: relative
-      top: 3px
-
-    path,
-    circle
-      fill: #{"{{ theme.welcome_text_color }}"}
-
+    position: relative
 
     &:after
-      +opacity(0)
-      background-color: #{"{{ theme.background_color }}"}
+      background: transparent
+      bottom: 0
       content: " "
-      display: block
       height: 1px
       position: absolute
-      top: 24px
-      left: 0
       width: 100%
 
-      @media screen and (max-width: $breakpoint-small)
-        display: none
-
-    &:hover
+    &:hover, &:focus
       color: #{"{{ theme.welcome_text_color }}"}
-      opacity: .9
 
-      &:after
-        +opacity(1)
+      @media screen and (min-width: $breakpoint-small + 1)
+        &:after
+          background: #{"{{ theme.welcome_text_color }}"}
 
-      path,
-      circle
+      svg
         fill: #{"{{ theme.welcome_text_color }}"}
+
+  svg
+    fill: #{"{{ theme.welcome_text_color }}"}
+
+  @media screen and (max-width: $breakpoint-small)
+    padding: 0 $marginSize / 2
+    position: relative
+
+    &.home.has_featured
+      position: absolute
+
+  &.overlay, &.page
+    background-color: #{"{{ theme.background_color }}"}
+    border-bottom: 1px solid #{"{{ theme.border_color }}"}
+
+    a
+      color: #{"{{ theme.header_link_color }}"}
+
+      &:hover, &:focus
+        color: #{"{{ theme.header_link_hover }}"}
+
+        @media screen and (min-width: $breakpoint-small + 1)
+          &:after
+            background: #{"{{ theme.header_link_hover }}"}
+
+        svg
+          fill: #{"{{ theme.header_link_hover }}"}
+
+    svg
+      fill: #{"{{ theme.header_link_color }}"}
 
   .logo
     +box-sizing(border-box)
     +font-size(24)
-    float: left
     font-family: #{"{{ theme.header_font | font_family }}"}
-    max-width: 25%
-    padding-left: $marginSize
     text-align: left
     z-index: 98
     width: 25%
-    +vertical-align
 
     @media only screen and (max-width:$breakpoint-small)
-      +font-size(16)
+      +font-size(18)
       line-height: 25px
-      max-width: 50%
-      padding-left: $marginSize/2
       width: 50%
 
     a
-      display: block
       max-width: 208px
 
       &:after
-        display: none
+        content: none !important
 
-    &.image img
-      display: block
-      max-height: 100%
-      max-width: 100%
-      +vertical-align
+    &.image
+      img
+        display: block
+        max-height: 100%
+        max-width: 100%
 
-    &.image a
-      height: 66px
+      a
+        height: 66px
 
   .sections
-    float: left
-    margin: 0 auto
-    max-width: 50%
-    overflow: hidden
+    +flexbox
+    +align-items(center)
+    +justify-content(center)
+    padding: 0 $marginSize
     position: relative
     width: 50%
     z-index: 97
+
+    .navigation
+      +flexbox
+      +align-items(center)
+      list-style: none
+      margin: 0
+      padding: 0
+
+      li
+        display: block
+        margin: 0 16px
+
+        a
+          padding: 4px 0
 
     @media only screen and (max-width:$breakpoint-small)
       display: none
 
   .utility
-    float: right
+    +flexbox
+    +justify-content(flex-end)
     position: relative
-    max-width: 25%
+    white-space: nowrap
+    width: 25%
     z-index: 99
 
-    @media only screen and (max-width:$breakpoint-small)
-      max-width: 50%
-
-.sections, .utility
-
-  ul
-    display: inline-block
-    margin: 0 auto
-    padding: 0
-    text-align: center
-    white-space: nowrap
-    width: 100%
-
-    li
-      +font-size(14)
-      display: inline-block
-      line-height: 88px
+    ul
+      +flexbox
+      +align-items(center)
       list-style: none
-      padding: 0 $marginSize/2
-      text-align: center
 
-      @media only screen and (max-width: $breakpoint-small)
-        padding: 0 8px
+      li
+        margin-left: $marginSize
 
-      &:last-child
-        padding-right: $marginSize
+        @media screen and (max-width: $breakpoint-small)
+          margin-left: $marginSize / 1.5
 
-        @media only screen and (max-width: $breakpoint-small)
-          padding-right: $marginSize/2
+        &:last-child
+          display: none
+
+          @media screen and (max-width: $breakpoint-small)
+            display: block
+
+        a
+          padding: 4px 0
+
+        &.cart
+          .desktop
+            margin-left: 4px
+
+            @media screen and (max-width: $breakpoint-small)
+              display: none
+
+          svg
+            margin-right: 5px
+
+    @media only screen and (max-width:$breakpoint-small)
+      width: 50%
 
 .nav_trigger svg
-  top: 0
-
-.cart
-  svg
-    margin-right: 5px
-
-  .desktop
-    display: inline
-
-    @media screen and (max-width: $breakpoint-small)
-      display: none
+  height: 22px
+  width: 22px
 
 .mobile_nav
   +box-sizing(border-box)
-  +transition(all .2s ease-in-out)
   background-color: rgba(black, .95)
-  line-height: 88px
+  display: none
   height: 100%
   left: 0
   list-style: none
   margin: 0
-  opacity: 0
   overflow: auto
   padding: 15%
   position: fixed
   text-align: center
   top: 0
-  visibility: hidden
   width: 100%
   z-index: 10001
-
-  &.open
-    opacity: 1
-    visibility: visible
 
   a
     color: #FFF
@@ -281,8 +231,8 @@ header
   width: 100%
   z-index: 1
 
-  @media only screen and (max-width:$breakpoint-small)
-    max-height: 640px
+  @media only screen and (max-width: $breakpoint-small)
+    height: 100vh
 
   div.featured_holder
     background-color: rgba(black, .3)
@@ -334,10 +284,11 @@ header
       width: auto
       line-height: 56px
 
-      &:hover
+      &:hover, &:focus
         border: 1px solid #{"{{ theme.link_hover }}"}
         background-color: #{"{{ theme.link_hover }}"}
         color: #{"{{ theme.welcome_text_color }}"}
+        opacity: 1
 
   ul
     display: block
@@ -360,8 +311,12 @@ header
       img
         -webkit-backface-visibility: hidden
 
-#home .content
-  padding: #{"{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} 144px{% else %} 64px{% endif %}"} 0 0 0
+#home
+  .content
+    padding: 144px 0 0 0
+
+  .slideshow + .content
+    padding-top: 64px
 
   @media only screen and (max-width:$breakpoint-small)
     padding-top: $marginSize
@@ -378,6 +333,7 @@ header
   width: 100%
 
   @media only screen and (max-width:$breakpoint-small)
+    padding-bottom: $marginSize
     padding-top: $marginSize
 
   h1
@@ -435,162 +391,126 @@ header
 
         svg
           cursor: pointer
+          fill: #{"{{ theme.link_color }}"}
           height: 16px
           position: relative
           +vertical-align
           width: 16px
 
-        path,
-        circle
-          fill: #{"{{ theme.link_color }}"}
-
       &:hover svg
-        path,
-        circle
-          fill: #{"{{ theme.background_color }}"}
+        fill: #{"{{ theme.background_color }}"}
 
 footer
+  +flexbox
+  +align-items(center)
+  +flex-direction(row)
   +box-sizing(border-box)
-  +font-size(14)
-  +pie-clearfix
+  +font-size(15)
+  +flex-wrap(wrap)
   border-top: 1px solid #{"{{ theme.border_color }}"}
-  display: block
-  margin: 0 auto
   position: relative
-  text-align: center
-  width: 100%
-  padding: $marginSize
+  padding: $marginSize $marginSize $marginSize * 2
 
-  @media only screen and (max-width:$breakpoint-small)
-    height: auto
-    margin-top: 32px
+  @media screen and (max-width: $breakpoint-small)
+    +flex-direction(column)
+    +justify-content(center)
     padding: 0
 
-  .footernav
-    float: right
-    position: relative
-    max-width: 60%
-
-    @media only screen and (max-width:$breakpoint-small)
-      display: block
-      float: none
-      line-height: 12px
-      margin: 0 auto
-      max-width: 100%
-      position: relative
-      width: 100%
-
-    ul
-      display: inline-block
-      line-height: normal
-      margin: 0
-      padding: 0
-      text-align: right
-      white-space: normal
-
-      @media only screen and (max-width:$breakpoint-small)
-        white-space: normal
-        width: 100%
-
-      li
-        +font-size(14)
-        display: inline-block
-        list-style: none
-        margin-bottom: 16px
-        padding: 0 $marginSize/2
-        text-align: center
-
-        &:last-child
-          padding-right: 12px
-
-          @media only screen and (max-width:$breakpoint-small)
-            padding-right: 0
-
-        @media only screen and (max-width:$breakpoint-small)
-          display: block
-          width: 100%
-          padding: 0
-          margin-bottom: 0
-
-          a
-            border-bottom: 1px solid #{"{{ theme.border_color }}"}
-            display: block
-            line-height: 56px
-            height: 56px
-            width: 100%
-
-  .social_footer
+  ul
     list-style: none
-    left: 130px
-    padding: 0
     margin: 0
-    position: absolute
-    top: 35px
-
-    @media only screen and (max-width:$breakpoint-small)
-
-      margin: 0
-      margin-top: $marginSize
-      padding: 0
-      width: 100%
-      position: relative
-      left: 0
-      top: 0
-
-    li
-      display: inline-block
-
-      a
-        display: block
-        padding: 0 12px
-
-        svg
-          height: 18px
-          width: 18px
-
-        path,
-        circle
-          fill: #{"{{ theme.link_color }}"}
-
-        &:hover,
-          color: #{"{{ theme.link_hover }}"}
-
-          path,
-          circle
-            fill: #{"{{ theme.link_hover }}"}
+    padding: 0
 
   cite
-    color: #{"{{ theme.link_color }}"}
-    left: $marginSize
-    position: absolute
-    top: $marginSize
-    white-space: nowrap
+    margin-right: $marginSize
+    order: 1
 
-    @media only screen and (max-width:$breakpoint-small)
-      clear: both
+    @media screen and (max-width: $breakpoint-small)
+      margin: $marginSize 0
+      order: 3
+
+    a
+      +hide-text
+      background: url(#{'{{ "bc_badge.svg" | theme_image_url }}'}) no-repeat
+      border: none
       display: block
-      left: 0
-      padding-bottom: 32px
-      position: relative
+      height: 24px
+      width: 80px
+      margin: 0 auto
+
+  .social_footer
+    +flexbox
+    +flex-direction(row)
+    order: 2
+
+    @media screen and (max-width: $breakpoint-small)
+      +justify-content(center)
+      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      order: 2
       width: 100%
 
-    > span
-      width: 100%
+    li
+      margin-right: $marginSize / 3
 
-      a
-        +hide-text
-        background: url(#{'{{ "bc_badge.svg" | theme_image_url }}'}) no-repeat
-        border: none
-        display: block
-        height: 24px
-        width: 80px
-        margin: 0 auto
+      @media screen and (max-width: $breakpoint-small)
+        margin: 0 $marginSize / 2
+        padding: $marginSize / 2 0
+    a
+      display: block
+      padding: 4px
 
-#success .content
-  margin: 0 auto 64px auto
-  max-width: 800px
-  text-align: center
-  width: 100%
+      &:hover, &:focus
+        svg
+          fill: #{"{{ theme.link_hover }}"}
 
-  p
-    padding: 0 $marginSize
+    svg
+      display: block
+      fill: #{"{{ theme.link_color }}"}
+      height: 20px
+      width: 20px
+
+  .footernav
+    order: 3
+    margin-left: auto
+    white-space: nowrap
+    max-width: 60%
+    width: 100%
+
+    @media screen and (max-width: $breakpoint-small)
+      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      order: 1
+      margin: 0
+      text-align: center
+      max-width: 100%
+
+    ul
+      +flexbox
+      +flex-direction(row)
+      +justify-content(flex-end)
+      +flex-wrap(wrap)
+
+      @media screen and (max-width: $breakpoint-small)
+        +flex-direction(column)
+        +justify-content(center)
+
+      li
+        margin-bottom: $marginSize / 3
+        margin-left: $marginSize
+
+        @media screen and (max-width: $breakpoint-small)
+          border-bottom: 1px solid #{"{{ theme.border_color }}"}
+          margin: 0
+
+          &:last-child
+            border: 0
+
+        a
+          display: block
+          padding: 2px
+
+          &:hover, &:focus
+            text-decoration: underline
+
+          @media screen and (max-width: $breakpoint-small)
+            padding: $marginSize / 3
+

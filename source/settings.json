@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "images": [
     {
       "variable": "logo",
@@ -76,7 +76,7 @@
     {
       "variable": "error_color",
       "label": "Errors",
-      "default": "#f25749"
+      "default": "#a92d22"
     }
   ],
   "checkout": {
