@@ -25,18 +25,19 @@ hr
 
 // CSS3 Global Animation
 
-header:after
-  +transition-property(all)
+header
+  +transition-property(background)
   +transition-duration(.5s)
   +transition-timing-function(ease-in)
 
-a,
-header a:after,
-.slideshow div a,
-.button, submit, input[type='submit'], button, select, path, circle, .select
-  +transition-property(all)
-  +transition-duration(.25s)
-  +transition-timing-function(ease-in-out)
+  a
+    +transition(color .25s ease-in-out)
+
+    &:after
+      +transition(background .25s ease-in-out)
+
+  svg
+    +transition(fill .25s ease-in-out)
 
 // Links
 
@@ -52,7 +53,7 @@ a:hover
 
 .button, submit, input[type='submit'], button
   +border-radius(0)
-  +font-size(14)
+  +font-size(16)
   background-color: #{"{{ theme.text_color }}"}
   border: none
   box-sizing: border-box
@@ -90,9 +91,12 @@ a:hover
 
 // Typography
 
+a[href], label[for], select, button, .pointer
+  cursor: pointer
+
 form, input, textarea, submit, input[type='submit'], input[type='text'], button, select
   font-family: #{"{{ theme.text_font | font_family }}"}
-  +font-size(14)
+  +font-size(16)
   font-style: normal
   -webkit-font-smoothing: antialiased
   -webkit-appearance: none
@@ -111,7 +115,7 @@ input[type='text'], input[type='textarea'], textarea
   white-space: nowrap
   text-indent: 16px
 
-  &:focus
+  &:focus, &:hover
     border: 1px solid #{"{{ theme.link_hover }}"}
     color: #{"{{ theme.link_hover }}"}
 
@@ -128,13 +132,16 @@ input[type='textarea'], textarea
   margin-bottom: 16px
   position: relative
 
-  &:hover
+  &:hover, &:focus, &:focus-within
     background-color: #{"{{ theme.link_hover }}"}
     border: 1px solid #{"{{ theme.link_hover }}"}
     color: #{"{{ theme.background_color }}"}
 
-  &:hover select
-    color: #{"{{ theme.background_color }}"}
+    select
+      color: #{"{{ theme.background_color }}"}
+
+    svg
+      fill: #{"{{ theme.background_color }}"}
 
   select
     background: none
@@ -165,9 +172,6 @@ input[type='textarea'], textarea
     right: 32px
     top: 26px
     z-index: 1
-
-  &:hover svg
-    fill: #{"{{ theme.background_color }}"}
 
 h1, h2, h3, h4, h5, h6, strong
   font-family: #{"{{ theme.header_font | font_family }}"}

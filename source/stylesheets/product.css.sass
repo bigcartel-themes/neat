@@ -13,6 +13,10 @@
     padding-left: $marginSize
     padding-right: $marginSize
 
+    @media screen and (max-width: $breakpoint-small)
+      padding-left: $marginSize / 2
+      padding-right: $marginSize / 2
+
     h1
       margin-bottom: 16px
 
@@ -29,7 +33,7 @@
       color: #{"{{ theme.link_color }}"}
 
     .product_description
-      +font-size(14)
+      +font-size(16)
       box-sizing: border-box
       float: right
       margin: 0 0 64px
@@ -236,3 +240,6 @@ option[disabled-type="unavailable"]
 #instant-checkout-button
   box-sizing: border-box
   margin-top: 12px
+
+button.mfp-close
+  background: none
