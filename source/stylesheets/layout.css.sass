@@ -124,6 +124,7 @@ header
 
         a
           padding: 4px 0
+          text-align: center
 
     @media only screen and (max-width:$breakpoint-small)
       display: none
@@ -188,6 +189,9 @@ header
   top: 0
   width: 100%
   z-index: 10001
+
+  &.open
+    display: block
 
   a
     color: #FFF
@@ -315,11 +319,11 @@ header
   .content
     padding: 144px 0 0 0
 
+    @media only screen and (max-width:$breakpoint-small)
+      padding-bottom: $marginSize
+
   .slideshow + .content
     padding-top: 64px
-
-  @media only screen and (max-width:$breakpoint-small)
-    padding-top: $marginSize
 
   h1
     margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
