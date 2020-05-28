@@ -46,6 +46,9 @@
         text-align: left
         text-indent: 0
 
+      @media screen and (max-width: $breakpoint-medium)
+        width: 45%
+
       @media only screen and (max-width:$breakpoint-small)
         float: none
         margin-bottom: $marginSize
@@ -54,6 +57,9 @@
 
       small
         +font-size(14)
+
+      a
+        text-decoration: underline
 
       img, iframe
         max-width: 100%
@@ -140,6 +146,9 @@
       margin: 0 0 64px 0
       overflow: hidden
       width: 60%
+
+      @media screen and (max-width: $breakpoint-medium)
+        width: 55%
 
       @media only screen and (max-width:$breakpoint-small)
         float: none
