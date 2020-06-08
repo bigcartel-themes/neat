@@ -12,7 +12,7 @@ header
   +align-items(center)
   border-bottom: 1px solid transparent
   +box-sizing(border-box)
-  font-family: #{"{{ theme.text_font | font_family }}"}
+  font-family: $text-font
   font-weight: 600
   height: 88px
   padding: 0 $marginSize
@@ -77,7 +77,7 @@ header
   .logo
     +box-sizing(border-box)
     +font-size(24)
-    font-family: #{"{{ theme.header_font | font_family }}"}
+    font-family: $header-font
     text-align: left
     z-index: 98
     width: 25%
@@ -519,3 +519,9 @@ footer
           @media screen and (max-width: $breakpoint-small)
             padding: $marginSize / 3
 
+.blur-up
+  +transition(filter .2s ease)
+  filter: blur(5px)
+
+  &.lazyloaded
+    filter: blur(0)

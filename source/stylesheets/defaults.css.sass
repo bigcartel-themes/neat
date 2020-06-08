@@ -10,7 +10,7 @@ html, body
 body
   background: #{"{{ theme.background_color }}"}
   color: #{"{{ theme.text_color }}"}
-  font: normal 100%/1.5 #{"{{ theme.text_font | font_family }}"}
+  font: normal 100%/1.5 $text-font
   -webkit-font-smoothing: antialiased
 
 hr
@@ -54,10 +54,11 @@ a:hover
 .button, submit, input[type='submit'], button
   +border-radius(0)
   +font-size(16)
-  background-color: #{"{{ theme.text_color }}"}
+  +transition(background .2s ease-in-out)
+  background-color: $button-background-color
   border: none
   box-sizing: border-box
-  color: #{"{{ theme.background_color }}"}
+  color: $button-text-color
   display: inline-block
   font-weight: 600
   height: 56px
@@ -83,11 +84,11 @@ a:hover
       text-decoration: underline
 
   &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
-    opacity: .8
+    background-color: $button-background-hover-color
 
   &:disabled, &.disabled
     cursor: not-allowed
-    opacity: .3
+    opacity: .6
 
 // Typography
 
@@ -95,7 +96,7 @@ a[href], label[for], select, button, .pointer
   cursor: pointer
 
 form, input, textarea, submit, input[type='submit'], input[type='text'], button, select
-  font-family: #{"{{ theme.text_font | font_family }}"}
+  font-family: $text-font
   +font-size(16)
   font-style: normal
   -webkit-font-smoothing: antialiased
@@ -174,7 +175,7 @@ input[type='textarea'], textarea
     z-index: 1
 
 h1, h2, h3, h4, h5, h6, strong
-  font-family: #{"{{ theme.header_font | font_family }}"}
+  font-family: $header-font
   text-transform: uppercase
   letter-spacing: .2em
   text-indent: .2em

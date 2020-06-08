@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.7.40",
+  "version": "1.8.001",
   "images": [
     {
       "variable": "logo",
@@ -56,12 +56,12 @@
     {
       "variable": "text_color",
       "label": "Text",
-      "default": "#1b1b1b"
+      "default": "#111111"
     },
     {
       "variable": "link_color",
       "label": "Links",
-      "default": "#656565"
+      "default": "#444444"
     },
     {
       "variable": "link_hover",
@@ -72,6 +72,21 @@
       "variable": "border_color",
       "label": "Borders",
       "default": "#e2e2e2"
+    },
+    {
+      "variable": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+    {
+      "variable": "button_background_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "variable": "button_background_hover_color",
+      "label": "Button background hover",
+      "default": "#444444"
     },
     {
       "variable": "error_color",
@@ -163,11 +178,23 @@
       "description": "The number of custom page links show in the main navigation."
     },
     {
+      "variable": "grid_image_style",
+      "label": "Product grid image style",
+      "type": "select",
+      "options": [
+        ["Normal", "default"],
+        ["Fit to square", "contain"],
+        ["Crop to square", "cover"]
+      ],
+      "default": "default",
+      "description": "Sets the display of images in the product grid"
+    },
+    {
       "variable": "products_per_page",
       "label": "Products per page",
       "type": "select",
       "options": "1..100",
-      "default": 36,
+      "default": 3,
       "description": "The number of products shown at a time on the Products page"
     },
     {
@@ -175,8 +202,16 @@
       "label": "Featured products",
       "type": "select",
       "options": "0..100",
-      "default": 12,
-      "description": "The number of products featured on the Home page"
+      "default": 2,
+      "description": "The number of products displayed on the home page"
+    },
+    {
+      "variable": "featured_order",
+      "label": "Featured products order",
+      "type": "select",
+      "options": "product_orders",
+      "default": "position",
+      "description": "The order of products on the Home page"
     },
     {
       "variable": "secondary_product_images",
