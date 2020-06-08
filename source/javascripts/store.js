@@ -98,16 +98,6 @@ $(document).ready(function () {
     mobileNav.removeClass('open');
   });
 
-  $('#cart input[id$=_qty]').blur(function(e) {
-    e.preventDefault();
-    $(this).closest('form').submit();
-  });
-
-  $('#cart .remove').click(function(e) {
-    e.preventDefault();
-    $(this).closest('li').find('input[id$=_qty]').val(0).closest('form').submit();
-  });
-
 });
 $(document).keyup(function (e) {
   if (e.keyCode == 27) {
