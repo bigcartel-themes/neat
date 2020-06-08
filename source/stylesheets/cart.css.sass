@@ -3,176 +3,217 @@
 @import 'remfont'
 @import 'verticalalign'
 
-#cart
 
-  section.content
-    +pie-clearfix
-    box-sizing: border-box
-    margin: 0 auto
-    max-width: 1280px
-    padding-left: $marginSize
-    padding-right: $marginSize
+.cart-container
+  box-sizing: border-box
+  margin: 0 auto
+  max-width: 864px
+  padding: $marginSize $marginSize * 2 $marginSize * 2
+  width: 100%
 
-    @media only screen and (max-width:$breakpoint-small)
-      padding-left: $marginSize/2
-      padding-right: $marginSize/2
+  @media screen and (max-width: $breakpoint-small)
+    padding: $marginSize / 2 $marginSize / 2 $marginSize
 
-    h1
-      margin-bottom: 16px
+.empty-cart-message
+  display: none
 
-    h4
-      margin: 16px auto 64px auto
-      padding: 0
-      text-align: center
+  a
+    text-decoration: underline
 
-      @media only screen and (max-width:$breakpoint-small)
-        margin-bottom: $marginSize
+  .empty-cart &
+    display: block
 
-    p
-      margin: 0 auto 64px auto
-      max-width: 800px
-      text-align: center
+.cart-items
+  border-top: 1px solid $border-color
+  padding: 0
+  margin: 0
+
+.cart-item
+  +flexbox
+  +align-items(center)
+  border-bottom: 1px solid $border-color
+  padding: 24px 0
+
+  @media screen and (max-width: $breakpoint-medium)
+    +flex-wrap(wrap)
+    +align-items(flex-start)
+    padding: 16px 0
+
+.cart-item-image
+  +flex-shrink(0)
+  display: block
+  height: 90px
+  margin-right: 16px
+  width: 90px
+
+  @media screen and (max-width: $breakpoint-medium)
+    height: 60px
+    margin-right: 8px
+    width: 60px
+
+  img
+    display: block
+    object-fit: cover
+    height: 100%
+    width: 100%
+
+.cart-item-details
+  line-height: 1.25em
+  padding-right: 24px
+  width: 55%
+
+  @media screen and (max-width: $breakpoint-medium)
+    +flex(1)
+    +flex-basis(30%)
+    padding-right: 16px
+
+_:-ms-fullscreen, :root .cart-item-details
+  width: calc(55% - 106px)
+
+.cart-item-details-name
+  font-size: 16px
+
+.cart-item-details-option
+  font-size: 15px
+  margin-top: 5px
+
+.cart-item-quantity-price
+  +flexbox
+  +align-items(center)
+  +justify-content(flex-end)
+  width: 45%
+
+  @media screen and (max-width: $breakpoint-medium)
+    +flex(1)
+    +flex-direction(column)
+    +align-items(flex-end)
+    width: 45%
+
+_:-ms-fullscreen, :root .cart-item-quantity-price
+  width: calc(45% - 106px)
+
+.cart-item-details-price
+  margin-right: 24px
+  padding-left: 16px
+
+  @media screen and (max-width: $breakpoint-medium)
+    margin-right: 0
+    margin-top: 16px
+
+.cart-item-quantity-holder
+  margin-right: auto
+
+  @media screen and (max-width: $breakpoint-medium)
+    margin-right: 0
+
+  input
+    height: 48px
+    padding: 10px
+    text-align: center
+    text-indent: 0
+    width: 64px
+
+    @media screen and (max-width: $breakpoint-medium)
+      height: 40px
+      padding: 5px
+      width: 56px
+
+button.cart-item-remove
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  +flex-shrink(0)
+  background: none
+  border-radius: 50%
+  height: 32px
+  padding: 0
+  width: 32px
+
+  @media screen and (max-width: $breakpoint-medium)
+    display: none
+
+  &:hover, &:focus
+    background: none
+
+    .cart-item-remove-icon
+      fill: $link-hover-color
+
+  .cart-item-remove-icon
+    display: block
+    fill: $link-color
+    height: 16px
+    width: 16px
+
+button.cart-item-remove-text
+  color: $link-color
+  display: none
+  font-size: 14px
+  height: auto
+  line-height: normal
+  margin: 0
+  margin-top: 6px
+  padding: 0
+  text-decoration: underline
+  width: auto
+
+  @media screen and (max-width: $breakpoint-medium)
+    display: inline-block
+
+.cart_footer
+  +pie-clearfix
+  clear: both
+  text-align: right
+
+  .cart_total
+    font-weight: 500
+    margin: 0
+    font-size: 24px
+    padding: 48px 0
+    text-align: right
+
+    > span
+      display: inline-block
+      margin-left: 8px
+
+  button, .button
+    margin-left: 12px
+    padding: 0 35px
+
+    @media screen and (max-width: $breakpoint-medium)
+      float: none
+      margin: 5px 0
       width: 100%
 
-      strong
-        display: block
-        clear: both
-        margin-bottom: 15px
+    &.checkout_btn
+      max-width: 300px
+      width: 48%
 
-.cart_form
-  margin: 0 auto
-  max-width: 800px
+      @media screen and (max-width: $breakpoint-medium)
+        margin: 0 0 10px
+        max-width: 100%
+        width: 100%
 
-  .cart_details
-    +box-sizing(border-box)
-    list-style: none
+a.button.continue_shopping
+  border: 1px solid $link-color
+  color: $link-color
+  float: left
+  font-size: 16px
+  margin-left: 0
+  max-width: 300px
+  width: 48%
+
+  &:hover, &:focus
+    border-color: $link-hover-color
+    color: $link-hover-color
+
+  @media screen and (max-width: $breakpoint-medium)
+    border: 1px solid transparent !important
+    float: none
     margin: 0
-    padding: 0
-    +pie-clearfix
+    max-width: 100%
+    width: 100%
 
-    li
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
-      display: block
-      height: 144px
-      margin-bottom: $marginSize
-      padding-bottom: $marginSize
-      overflow: hidden
-
-      @media only screen and (max-width:$breakpoint-small)
-        max-height: 72px
-        margin-bottom: $marginSize/2
-        padding-bottom: $marginSize/2
-
-      a.product_image
-        display: inline
-        float: left
-        margin-right: $marginSize
-        +vertical-align
-
-        img
-          float: left
-          max-height: 144px
-          max-width: 120px
-          width: auto
-
-          @media only screen and (max-width:$breakpoint-small)
-            display: none
-
-      .product_details
-        +box-sizing(border-box)
-        display: inline
-        float: left
-        font-family: #{"{{ theme.text_font | font_family }}"}
-        font-style: normal
-        height: 144px
-        letter-spacing: 0
-        margin: 0
-        max-width: 280px
-        padding: 0 15px 0 0
-        width: 100%
-
-        @media only screen and (max-width:$breakpoint-small)
-          font-size: 13px
-          height: 72px
-          width: 40%
-
-        a
-          +vertical-align
-          display: block
-
-          em
-            display: block
-            font-style: normal
-
-      .product_actions
-        display: flex
-        align-items: center
-        float: right
-        height: 144px
-        line-height: 144px
-        max-width: 40%
-        text-align: right
-        width: 100%
-
-        @media only screen and (max-width:$breakpoint-small)
-          max-width: 60%
-          max-height: 72px
-          line-height: 72px
-
-        div
-          display: inline-block
-
-          &.quantity
-            text-align: center
-            width: 128px
-
-            @media only screen and (max-width:$breakpoint-small)
-              width: 56px
-
-            input[type='text']
-              height: 56px
-              margin: 0 auto
-              text-align: center
-              text-indent: 0
-              width: 56px
-
-              @media only screen and (max-width:$breakpoint-small)
-                height: 48px
-                width: 48px
-
-          &.price
-            margin-left: auto
-
-          &.remove
-            padding-left: 20px
-            text-align: center
-
-            a.remove
-              display: block
-              padding: 4px
-
-              svg
-                display: block
-                fill: #{"{{ theme.link_color }}"}
-                height: 16px
-                position: relative
-                width: 16px
-
-              &:hover svg
-                fill: #{"{{ theme.link_hover }}"}
-
-  .cart_totals
-
-    @media only screen and (max-width:$breakpoint-small)
-      margin: 15px 0
-
-  button
-    display: block
-    margin: 64px auto 64px auto
-    max-width: 320px
-
-    @media only screen and (max-width:$breakpoint-small)
-      margin: 32px auto 32px auto
-      max-width: 100%
-
+.empty-cart
+  line-height: 1.3em
+  text-align: center
 
