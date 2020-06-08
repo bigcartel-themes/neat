@@ -64,8 +64,8 @@ a:hover
   height: 56px
   line-height: 56px
   margin: 0
-  outline: 0
   padding: 0 $marginSize/2
+  text-align: center
   white-space: nowrap
   width: 100%
 
@@ -112,7 +112,6 @@ input[type='text'], input[type='textarea'], textarea
   box-sizing: border-box
   color: #{"{{ theme.link_color }}"}
   margin: 0
-  outline: 0
   white-space: nowrap
   text-indent: 16px
 
@@ -126,7 +125,6 @@ input[type='textarea'], textarea
   white-space: normal
 
 .select
-  +pie-clearfix
   border: 1px solid #{"{{ theme.link_color }}"}
   box-sizing: border-box
   color: #{"{{ theme.link_color }}"}
@@ -169,9 +167,12 @@ input[type='textarea'], textarea
 
   svg
     fill: #{"{{ theme.link_color }}"}
+    height: 14px
     position: absolute
-    right: 32px
-    top: 26px
+    right: 24px
+    top: 50%
+    transform: translateY(-50%)
+    width: 14px
     z-index: 1
 
 h1, h2, h3, h4, h5, h6, strong

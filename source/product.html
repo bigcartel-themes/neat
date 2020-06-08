@@ -9,13 +9,13 @@
   {% endcapture %}
   {% case product.status %}
   {% when 'sold-out' %}
-  <h4>{{ product_pricing }} <em>Sold Out</em></h4>
+  <div class="product-subheader">{{ product_pricing }} <em>Sold Out</em></div>
 
   {% when 'coming-soon' %}
-  <h4>{{ product_pricing }} <em>Coming Soon</em></h4>
+  <div class="product-subheader">{{ product_pricing }} <em>Coming Soon</em></div>
 
   {% when 'active' %}
-  <h4>{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></h4>
+  <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></div>
   {% endcase %}
 
   <section class="product_image {% if theme.secondary_product_images == 'thumbs' %}image_gallery{% endif %}">
