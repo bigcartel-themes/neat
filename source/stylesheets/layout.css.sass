@@ -1,7 +1,4 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
-@import 'verticalalign'
 
 div.wrap
   height: 100%
@@ -236,7 +233,7 @@ header
 
   div.featured_holder
     background-color: rgba(black, .3)
-    +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}'))
+    background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
     background-repeat: repeat
     background-size: 4px
     height: 100%

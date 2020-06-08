@@ -22,3 +22,64 @@ $button-background-hover-color: #{'{{ theme.button_background_hover_color }}'}
 
 $header-font: #{"{{ theme.header_font }}"}
 $text-font: #{"{{ theme.text_font }}"}
+
+@mixin border-radius($radius...)
+  border-radius: $radius
+
+@mixin box-shadow($shadow...)
+  box-shadow: $shadow
+
+@mixin vertical-align
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+
+@mixin all-transitions
+  +transition(.2s linear)
+
+@mixin transition($transition...)
+  -webkit-transition: #{$transition}
+  transition: #{$transition}
+
+@mixin transform($str...)
+  -webkit-transform: $str
+  transform: $str
+
+@mixin transform-origin($str...)
+  -webkit-transform-origin: $str
+  transform-origin: $str
+
+@mixin appearance($str...)
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+
+@mixin keyframes($animation...)
+  @-webkit-keyframes #{$animation}
+    @content
+
+  @keyframes #{$animation}
+    @content
+
+@mixin animation($str...)
+  -webkit-animation: $str
+  animation: $str
+
+@mixin pie-clearfix
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+@mixin hide-text
+  overflow: hidden
+  text-indent: 100%
+  white-space: nowrap
+
+@mixin font-size($fontsize: 16, $lineheight: $fontsize * 1.5)
+  font-size: ($fontsize) + px
+  line-height: ($lineheight) + px
+  font-size: ($fontsize/16) + rem
+  line-height: ($lineheight/16) + rem

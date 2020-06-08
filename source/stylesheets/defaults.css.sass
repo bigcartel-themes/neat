@@ -1,6 +1,4 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
 
 // Global
 *
@@ -27,9 +25,7 @@ hr
 // CSS3 Global Animation
 
 header
-  +transition-property(background)
-  +transition-duration(.5s)
-  +transition-timing-function(ease-in)
+  +transition(background .5s ease-in)
 
   a
     +transition(color .25s ease-in-out)

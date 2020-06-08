@@ -1,7 +1,4 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
-@import 'verticalalign'
 
 #contact
 
@@ -71,14 +68,14 @@
           width: 100%
 
       span
-        +clearfix
+        +pie-clearfix
         +font-size(14)
         display: inline-block
         margin-top: 16px
         white-space: nowrap
 
       .captcha_image
-        +clearfix
+        +pie-clearfix
         border: 1px solid #{"{{ theme.text_color }}"}
         display: block
         height: 50px
@@ -90,6 +87,7 @@
 
         img
           display: block
+          height: 100%
 
       textarea
         height: 256px
