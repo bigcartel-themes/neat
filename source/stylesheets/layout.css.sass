@@ -28,7 +28,7 @@ header
 
     &:after
       background: transparent
-      bottom: 0
+      bottom: 3px
       content: " "
       height: 1px
       position: absolute
@@ -158,14 +158,13 @@ header
           padding: 4px 0
 
         &.cart
+          .cart-link > span
+            margin-left: 5px
+
           .desktop
-            margin-left: 4px
 
             @media screen and (max-width: $breakpoint-small)
               display: none
-
-          svg
-            margin-right: 5px
 
     @media only screen and (max-width:$breakpoint-small)
       width: 50%
@@ -525,3 +524,13 @@ footer
 
   &.lazyloaded
     filter: blur(0)
+
+.sr-only
+  border: 0
+  clip: rect(0 0 0 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
