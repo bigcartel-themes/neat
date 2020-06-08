@@ -11,7 +11,6 @@ header
   +flexbox
   +align-items(center)
   border-bottom: 1px solid transparent
-  +box-sizing(border-box)
   font-family: $text-font
   font-weight: 600
   height: 88px
@@ -75,7 +74,6 @@ header
       fill: #{"{{ theme.header_link_color }}"}
 
   .logo
-    +box-sizing(border-box)
     +font-size(24)
     font-family: $header-font
     text-align: left
@@ -174,7 +172,6 @@ header
   width: 22px
 
 .mobile_nav
-  +box-sizing(border-box)
   background-color: rgba(black, .95)
   display: none
   height: 100%
@@ -359,7 +356,6 @@ header
       margin: 0 auto
 
   .social_links
-    +box-sizing(border-box)
     +font-size(16)
     line-height: normal
     list-style: none
@@ -370,7 +366,6 @@ header
     width: 100%
 
     li
-      +box-sizing(border-box)
       border: 1px solid #{"{{ theme.border_color }}"}
       border-width: 1px 0 1px 1px
       display: inline-block
@@ -408,7 +403,6 @@ footer
   +flexbox
   +align-items(center)
   +flex-direction(row)
-  +box-sizing(border-box)
   +font-size(15)
   +flex-wrap(wrap)
   border-top: 1px solid #{"{{ theme.border_color }}"}

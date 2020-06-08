@@ -3,6 +3,8 @@
 @import 'remfont'
 
 // Global
+*
+  box-sizing: border-box
 
 html, body
   height: 100%
@@ -17,7 +19,6 @@ hr
   background-color: 1px solid #{"{{ theme.border_color }}"}
   border-style: none
   border: none
-  box-sizing: border-box
   height: 1px
   margin: 16px 0
   padding: 0
@@ -57,7 +58,6 @@ a:hover
   +transition(background .2s ease-in-out)
   background-color: $button-background-color
   border: none
-  box-sizing: border-box
   color: $button-text-color
   display: inline-block
   font-weight: 600
@@ -109,7 +109,6 @@ input[type='text'], input[type='textarea'], textarea
   +font-size(16)
   background-color: rgba(white, 0)
   border: 1px solid #{"{{ theme.link_color }}"}
-  box-sizing: border-box
   color: #{"{{ theme.link_color }}"}
   margin: 0
   white-space: nowrap
@@ -126,7 +125,6 @@ input[type='textarea'], textarea
 
 .select
   border: 1px solid #{"{{ theme.link_color }}"}
-  box-sizing: border-box
   color: #{"{{ theme.link_color }}"}
   margin-bottom: 16px
   position: relative
