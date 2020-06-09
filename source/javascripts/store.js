@@ -1,17 +1,13 @@
-function isIE() {
-  var rv = -1;
-  if (navigator.appName == 'Microsoft Internet Explorer') {
-    var ua = navigator.userAgent;
-    var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-    if (re.exec(ua) != null) rv = parseFloat(RegExp.$1);
-  }
-  else if (navigator.appName == 'Netscape') {
-    var ua = navigator.userAgent;
-    var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
-    if (re.exec(ua) != null) rv = parseFloat(RegExp.$1);
-  }
-  return rv == -1 ? false : true;
+function setDocHeight(win_width, win_height) {
+  document.documentElement.style.setProperty('--vh', win_height/100 + "px");
 }
+
+$(document).ready(function() {
+  win_width = window.innerWidth;
+  win_height = window.innerHeight;
+  setDocHeight(win_width, win_height);
+});
+
 $(document).ready(function () {
 
   $('.image_gallery').magnificPopup({
@@ -70,18 +66,16 @@ $(document).ready(function () {
     }, 800);
   }
 
-  searchForm = $('form.search');
-  if (searchForm.length) {
-    $('body').on('click', 'a[href^="#search"]', function (e) {
+  searchOverlay = $('.search-overlay');
+  if (searchOverlay.length) {
+    $('body').on('click', '.open-search-button', function (e) {
       e.preventDefault();
-      searchForm.addClass('open');
-      if (!isIE()) {
-        searchForm.find('input[type=text]').focus()
-      }
+      searchOverlay.addClass('open');
+      $('#search-input').focus();
     });
-    $('body').on('click', '.close_search', function (e) {
+    $('body').on('click', '.close-search', function (e) {
       e.preventDefault();
-      searchForm.removeClass('open');
+      searchOverlay.removeClass('open');
     });
   }
   mobileNav = $('.mobile_nav')
@@ -185,9 +179,11 @@ if (!Array.prototype.includes) {
   });
 }
 
-Array.prototype.count = function(filterMethod) {
-  return this.reduce((count, item) => filterMethod(item)? count + 1 : count, 0);
-}
+Array.prototype.count = function (filterMethod) {
+  return this.reduce(function (count, item) {
+    return filterMethod(item) ? count + 1 : count;
+  }, 0);
+};
 
 $('.product_option_select').on('change',function() {
   var option_price = $(this).find("option:selected").attr("data-price");
