@@ -4,8 +4,6 @@
 
   section.content
     +pie-clearfix
-    margin: 0 auto
-    max-width: 1280px
     padding-left: $marginSize
     padding-right: $marginSize
 
@@ -32,185 +30,197 @@
 
     em
       font-style: normal
-      color: #{"{{ theme.link_color }}"}
+      color: $link-color
 
-    .product_description
-      +font-size(16)
-      float: right
-      margin: 0 0 64px
-      padding-left: $marginSize
-      width: 40%
-      text-align: left
+.product-description
+  +font-size(16)
+  float: right
+  margin: 0 0 64px
+  padding-left: $marginSize
+  width: 40%
+  text-align: left
 
-      h1, h2, h3, h5
-        letter-spacing: .2em
-        text-align: left
-        text-indent: 0
+  @media screen and (max-width: $breakpoint-medium)
+    width: 45%
 
-      @media screen and (max-width: $breakpoint-medium)
-        width: 45%
+  @media only screen and (max-width:$breakpoint-small)
+    float: none
+    margin-bottom: $marginSize
+    padding-left: 0
+    width: 100%
 
-      @media only screen and (max-width:$breakpoint-small)
-        float: none
-        margin-bottom: $marginSize
-        padding-left: 0
-        width: 100%
+  a
+    text-decoration: underline
 
-      small
-        +font-size(14)
+  img, iframe
+    max-width: 100%
 
-      a
-        text-decoration: underline
+  p
+    margin-bottom: 16px
+    padding: 0
+    text-align: left
 
-      img, iframe
-        max-width: 100%
+    &:first-child
+      margin-top: 0
+      padding-top: 0
 
-      p
-        margin-bottom: 16px
-        padding: 0
-        text-align: left
+  ul
+    +font-size(14)
+    margin: 0
+    padding: 0 $marginSize/2
 
-        &:first-child
-          margin-top: 0
-          padding-top: 0
+    li
+      list-style-position: inside
 
-      h4
-        border-bottom: 1px solid #{"{{ theme.border_color }}"}
-        margin: $marginSize auto
-        padding: 16px 0
+ul.product-availability
+  list-style: none
+  margin: 0 0 $marginSize/2 0
+  padding: 0
 
-      ul
-        +font-size(14)
-        margin: 0
-        padding: 0 $marginSize/2
+  li
+    +font-size(14)
+    border: 1px solid $border-color
+    border-width: 1px 1px 0 1px
+    height: 56px
+    list-style: none
+    padding: 8px 12px
+    position: relative
+    width: 100%
 
-        li
-          list-style-position: inside
+    &:last-child
+      margin-bottom: 0
+      border-width: 1px
 
-      .availability
-        margin: 0 0 $marginSize/2 0
-        padding: 0
+    div
+      position: relative
+      top: 50%
+      transform: translateY(-50%)
+      z-index: 99
 
-        li
-          +font-size(12)
-          border: 1px solid #{"{{ theme.border_color }}"}
-          border-width: 1px 1px 0 1px
-          height: 56px
-          list-style: none
-          padding: 8px 12px
-          position: relative
-          width: 100%
+    span
+      display: inline
 
-          &:last-child
-            margin-bottom: 0
-            border-width: 1px
+      &.sold_out
+        margin-right: 8px
+        text-decoration: line-through
 
-          div
-            position: relative
-            top: 50%
-            transform: translateY(-50%)
-            z-index: 99
+      &.sold_out_text
+        white-space: nowrap
 
-          span
-            display: inline
+    b
+      display: block
+      left: 0
+      position: absolute
+      width: 100%
+      z-index: 1
+      top: 0
 
-            &.sold_out
-              margin-right: 8px
-              text-decoration: line-through
-
-            &.sold_out_text
-              white-space: nowrap
-
-          b
-            display: block
-            left: 0
-            position: absolute
-            width: 100%
-            z-index: 1
-            top: 0
-
-            b
-              opacity: .5
-              background-color: #{"{{ theme.border_color }}"}
-              display: block
-              height: 55px
-              left: 0
-              position: relative
-              top: 0
-              z-index: 1
-
-
-    .product_image
-      float: left
-      margin: 0 0 64px 0
-      overflow: hidden
-      width: 60%
-
-      @media screen and (max-width: $breakpoint-medium)
-        width: 55%
-
-      @media only screen and (max-width:$breakpoint-small)
-        float: none
-        margin-bottom: $marginSize
-        width: 100%
-
-      .default_image
+      b
+        opacity: .5
+        background-color: $border-color
         display: block
-        width: 100%
-
-        img
-          display: block
-          margin: 0 auto
-          text-align: center
-          width: 100%
-
-      .product_thumbnails
-        +pie-clearfix
-        font-size: 0
-        list-style: none
-        margin: 20px -20px
-        text-align: center
-        padding: 0
-
-        @media only screen and (max-width:$breakpoint-small)
-          margin: 5px -10px
-
-        li
-          display: inline-block
-          padding: 0 10px
-          vertical-align: top
-          width: 25%
-
-          @media only screen and (max-width:$breakpoint-small)
-            padding: 5px
-
-          a
-            display: block
-
-          img
-            display: block
-            width: 100%
-
-  .social_links
-
-    .social_pinterest
-
-      a
-        cursor: pointer
-        display: inline-block
+        height: 55px
+        left: 0
         position: relative
+        top: 0
+        z-index: 1
 
-        &:after
-          content: ""
-          position: absolute
-          top: 0
-          right: 0
-          bottom: 0
-          left: 0
+.product-artists
+  font-family: $header-font
+  letter-spacing: .1em
+  text-transform: uppercase
+  margin-bottom: $marginSize
 
-        svg
-          height: 16px
-          width: 16px
+  a
+    font-weight: bold
+
+.product-images
+  float: left
+  margin: 0 0 $marginSize 0
+  overflow: hidden
+  width: 60%
+
+  @media screen and (max-width: $breakpoint-medium)
+    width: 55%
+
+  @media only screen and (max-width:$breakpoint-small)
+    float: none
+    margin-bottom: $marginSize
+    width: 100%
+
+.default-product-image
+  display: block
+  width: 100%
+
+  img
+    display: block
+    margin: 0 auto
+    text-align: center
+    width: 100%
+
+.product-thumbnails
+  +pie-clearfix
+  font-size: 0
+  list-style: none
+  margin: 20px -20px
+  text-align: center
+  padding: 0
+
+  @media only screen and (max-width:$breakpoint-small)
+    margin: 5px -10px
+
+  li
+    display: inline-block
+    padding: 0 10px
+    vertical-align: top
+    width: 25%
+
+    @media only screen and (max-width:$breakpoint-small)
+      padding: 5px
+
+    a
+      display: block
+
+    img
+      display: block
+      width: 100%
+
+.product-section-subheader
+  border-bottom: 1px solid $border-color
+  margin: $marginSize auto
+  padding: $marginSize / 2 0
+  text-align: center
+  text-transform: uppercase
+  font-family: $header-font
+  font-weight: bold
+  letter-spacing: .2em
+
+
+.share-pinterest
+
+  a
+    cursor: pointer
+    display: inline-block
+    position: relative
+
+    &:after
+      content: ""
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
+    svg
+      height: 16px
+      width: 16px
+
+.secondary-product-images
+  margin-top: 32px
+
+.secondary-product-image
+  display: block
+  width: 100%
 
 .reset-selection-button-container
   text-align: center
@@ -223,13 +233,6 @@ button.reset-selection-button
   line-height: normal
   margin: 20px auto 0
   padding: 4px
-
-.product_photos
-  margin-top: 32px
-
-  .product_photo
-    display: block
-    width: 100%
 
 option[disabled-type="unavailable"]
   display: none

@@ -3,6 +3,7 @@
 header
   +flexbox
   +align-items(center)
+  +flex-shrink(0)
   border-bottom: 1px solid transparent
   font-family: $text-font
   font-weight: 600
@@ -15,7 +16,7 @@ header
   a
     +flexbox
     +align-items(center)
-    color: #{"{{ theme.welcome_text_color }}"}
+    color: $welcome-text-color
     position: relative
 
     &:after
@@ -28,17 +29,17 @@ header
       width: 100%
 
     &:hover, &:focus
-      color: #{"{{ theme.welcome_text_color }}"}
+      color: $welcome-text-color
 
       @media screen and (min-width: $breakpoint-small + 1)
         &:after
-          background: #{"{{ theme.welcome_text_color }}"}
+          background: $welcome-text-color
 
       svg
-        fill: #{"{{ theme.welcome_text_color }}"}
+        fill: $welcome-text-color
 
   svg
-    fill: #{"{{ theme.welcome_text_color }}"}
+    fill: $welcome-text-color
 
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
@@ -48,24 +49,24 @@ header
       position: absolute
 
   &.overlay, &.page
-    background-color: #{"{{ theme.header_color }}"}
-    border-bottom: 1px solid #{"{{ theme.border_color }}"}
+    background-color: $header-background-color
+    border-bottom: 1px solid $border-color
 
-    a
-      color: #{"{{ theme.header_link_color }}"}
+    a, .button
+      color: $header-link-color
 
       &:hover, &:focus
-        color: #{"{{ theme.header_link_hover }}"}
+        color: $header-link-hover
 
         @media screen and (min-width: $breakpoint-small + 1)
           &:after
-            background: #{"{{ theme.header_link_hover }}"}
+            background: $header-link-hover
 
         svg
-          fill: #{"{{ theme.header_link_hover }}"}
+          fill: $header-link-hover
 
     svg
-      fill: #{"{{ theme.header_link_color }}"}
+      fill: $header-link-color
 
   .logo
     +font-size(24)
@@ -137,6 +138,8 @@ header
     +flexbox
     +align-items(center)
     list-style: none
+    margin: 0
+    padding: 0
 
     li
       margin-left: $marginSize
@@ -154,70 +157,21 @@ header
         padding: 4px 0
 
       button
-        background: none !important
+        +flexbox
+        +align-items(center)
+        +justify-content(center)
+        padding: 8px 4px !important
+        width: auto
+        height: auto
 
       &.cart
         .cart-link > span
-          margin-left: 5px
+          margin-left: 6px
 
         .desktop
 
           @media screen and (max-width: $breakpoint-small)
             display: none
-
-.nav_trigger svg
-  height: 22px
-  width: 22px
-
-.mobile_nav
-  background-color: rgba(black, .95)
-  display: none
-  height: 100%
-  left: 0
-  list-style: none
-  margin: 0
-  overflow: auto
-  padding: 15%
-  position: fixed
-  text-align: center
-  top: 0
-  width: 100%
-  z-index: 10001
-
-  &.open
-    display: block
-
-  a
-    color: #FFF
-
-    &:hover
-      opacity: .6
-
-  .close_nav
-    line-height: 22px
-    position: fixed
-    right: 15px
-    top: 36px
-
-    path
-      fill: #FFF
-
-      &:hover
-        opacity: .6
-
-  ul
-    list-style-type: none
-    margin: 0
-    padding: 0
-
-  li
-    height: auto
-    line-height: 30px
-    margin-left: 0
-
-    a
-      display: block
-      padding: 15px 0
 
 .slideshow
   height: calc((var(--vh, 1vh) * 100))
@@ -236,6 +190,9 @@ _:-ms-fullscreen, :root .slideshow
 
   &:after
     background-color: rgba(black, .3)
+    background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
+    background-repeat: repeat
+    background-size: 4px
     content: ""
     height: 100%
     position: absolute
@@ -306,11 +263,10 @@ _:-ms-fullscreen, :root .carousel
 
 #home
   .content
-    padding: 144px 0 0 0
+    padding-top: 144px
 
     @media only screen and (max-width:$breakpoint-small)
       padding-top: 32px
-      padding-bottom: $marginSize
 
   .slideshow + .content
     padding-top: 64px
@@ -321,6 +277,8 @@ _:-ms-fullscreen, :root .carousel
 .content
   +flex(1)
   margin: 0 auto
+  max-width: 1364px
+  padding-bottom: $marginSize * 2
   padding-top: 144px
   position: relative
   width: 100%
@@ -330,7 +288,7 @@ _:-ms-fullscreen, :root .carousel
     padding-top: $marginSize
 
   h1
-    color: #{"{{ theme.text_color }}"}
+    color: $text-color
     display: block
     margin: 0 auto
     text-align: center
@@ -350,7 +308,7 @@ _:-ms-fullscreen, :root .carousel
 _:-ms-fullscreen, :root .content
   +flex(1 0 auto)
 
-.social_links
+.social-icons
   +font-size(16)
   line-height: normal
   list-style: none
@@ -361,7 +319,7 @@ _:-ms-fullscreen, :root .content
   width: 100%
 
   li
-    border: 1px solid #{"{{ theme.border_color }}"}
+    border: 1px solid $border-color
     border-width: 1px 0 1px 1px
     display: inline-block
     height: 56px
@@ -374,8 +332,8 @@ _:-ms-fullscreen, :root .content
       border-width: 1px
 
     &:hover
-      background-color: #{"{{ theme.link_hover }}"}
-      border-color: #{"{{ theme.link_hover }}"}
+      background-color: $link-hover-color
+      border-color: $link-hover-color
 
     a
       display: block
@@ -385,26 +343,28 @@ _:-ms-fullscreen, :root .content
 
       svg
         cursor: pointer
-        fill: #{"{{ theme.link_color }}"}
+        fill: $link-color
         height: 16px
         position: relative
         +vertical-align
         width: 16px
 
     &:hover svg
-      fill: #{"{{ theme.background_color }}"}
+      fill: $background-color
 
 footer
   +flexbox
   +align-items(flex-start)
   +flex-direction(row)
   +flex-wrap(wrap)
-  border-top: 1px solid #{"{{ theme.border_color }}"}
+  +flex-shrink(0)
+  border-top: 1px solid $border-color
   position: relative
   padding: $marginSize $marginSize $marginSize * 2
 
   @media screen and (max-width: $breakpoint-small)
     +flex-direction(column)
+    +align-items(center)
     +justify-content(center)
     padding: 0
 
@@ -437,7 +397,7 @@ footer
 
     @media screen and (max-width: $breakpoint-small)
       +justify-content(center)
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      border-bottom: 1px solid $border-color
       order: 2
       width: 100%
 
@@ -453,11 +413,11 @@ footer
 
       &:hover, &:focus
         svg
-          fill: #{"{{ theme.link_hover }}"}
+          fill: $link-hover-color
 
     svg
       display: block
-      fill: #{"{{ theme.link_color }}"}
+      fill: $link-color
       height: 20px
       width: 20px
 
@@ -469,7 +429,7 @@ footer
     width: 100%
 
     @media screen and (max-width: $breakpoint-small)
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      border-bottom: 1px solid $border-color
       order: 1
       margin: 0
       text-align: center
@@ -490,7 +450,7 @@ footer
         margin-left: $marginSize
 
         @media screen and (max-width: $breakpoint-small)
-          border-bottom: 1px solid #{"{{ theme.border_color }}"}
+          border-bottom: 1px solid $border-color
           margin: 0
 
           &:last-child
@@ -522,3 +482,6 @@ footer
   padding: 0
   position: absolute
   width: 1px
+
+.centered-message
+  text-align: center

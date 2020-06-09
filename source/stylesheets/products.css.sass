@@ -1,6 +1,10 @@
 @import 'config'
 
 .categories
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  +flex-wrap(wrap)
   margin: 0 auto
   max-width: 960px
   text-align: center
@@ -8,16 +12,18 @@
 
   li
     display: inline-block
-    height: 16px
     white-space: nowrap
 
-    a:hover, a:focus
-      text-decoration: underline
+    a
+      padding: 6px 8px
+
+      &:hover
+        text-decoration: underline
 
     &:after
       content: '/'
       display: inline-block
-      padding: 0 8px
+      padding: 0 2px
 
     &:last-child:after
       content: ''
@@ -28,9 +34,6 @@
 
   @media screen and (max-width: $breakpoint-medium)
     margin: 0 32px
-
-  @media screen and (max-width: $breakpoint-small)
-    margin: 0 16px
 
 .product-list
   +flexbox
@@ -49,7 +52,7 @@
   display: block
   font-size: 0
   padding: 16px 3%
-  padding-bottom: $marginSize * 2
+  padding-bottom: $marginSize
   position: relative
   text-align: center
   vertical-align: middle
@@ -57,16 +60,14 @@
   word-break: break-word
 
   @media screen and (max-width: $breakpoint-medium)
-    padding: 16px 32px
+    padding: 16px
     padding-bottom: $marginSize
     width: calc(100% / 2)
 
   @media screen and (max-width: $breakpoint-small)
     padding: 16px
-    padding-bottom: $marginSize
 
   @media screen and (max-width: $breakpoint-xsmall)
-    padding: 16px
     width: 100%
 
 _:-ms-fullscreen, :root .product-list-thumb
@@ -133,13 +134,13 @@ _:-ms-fullscreen, :root .product-list-thumb
 .product-list-thumb-name
   +transition(color .2s ease)
   color: $link-color
+  font-weight: bold
   overflow-wrap: break-word
   position: relative
 
 .product-list-thumb-price
   +transition(color .2s ease)
   color: $text-color
-  font-size: 15px
   margin-top: 6px
 
 .product-list-thumb-status
@@ -163,6 +164,7 @@ _:-ms-fullscreen, :root .product-list-thumb
 
   @media screen and (max-width: $breakpoint-medium)
     font-size: 15px
+    padding: $marginSize / 2
 
 @media screen and (min-width: $breakpoint-xsmall+1)
   .pagination-caption

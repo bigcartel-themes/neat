@@ -12,13 +12,13 @@ html, body
 body
   +flexbox
   +flex-direction(column)
-  background: #{"{{ theme.background_color }}"}
-  color: #{"{{ theme.text_color }}"}
+  background: $background-color
+  color: $text-color
   font: normal 100%/1.5 $text-font
   -webkit-font-smoothing: antialiased
 
 hr
-  background-color: 1px solid #{"{{ theme.border_color }}"}
+  background-color: 1px solid $border-color
   border-style: none
   border: none
   height: 1px
@@ -43,11 +43,11 @@ header
 // Links
 
 a
-  color: #{"{{ theme.link_color }}"}
+  color: $link-color
   text-decoration: none
 
   &:hover, &:focus
-    color: #{"{{ theme.link_hover }}"}
+    color: $link-hover-color
 
 // Buttons
 
@@ -71,7 +71,7 @@ a
 
   &.minimal-button
     background: none
-    color: #{"{{ theme.text_color }}"}
+    color: $text-color
     border: none
     font-size: 13px
     padding: 0
@@ -108,15 +108,15 @@ input[type='text'], input[type='textarea'], textarea
   +border-radius(0)
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 1px solid #{"{{ theme.link_color }}"}
-  color: #{"{{ theme.link_color }}"}
+  border: 1px solid $link-color
+  color: $link-color
   margin: 0
   white-space: nowrap
   text-indent: 16px
 
   &:focus, &:hover
-    border: 1px solid #{"{{ theme.link_hover }}"}
-    color: #{"{{ theme.link_hover }}"}
+    border: 1px solid $link-hover-color
+    color: $link-hover-color
 
 input[type='textarea'], textarea
   padding: 16px
@@ -124,27 +124,26 @@ input[type='textarea'], textarea
   white-space: normal
 
 .select
-  border: 1px solid #{"{{ theme.link_color }}"}
-  color: #{"{{ theme.link_color }}"}
+  border: 1px solid $link-color
+  color: $link-color
   margin-bottom: 16px
   position: relative
 
   &:hover, &:focus, &:focus-within
-    background-color: #{"{{ theme.link_hover }}"}
-    border: 1px solid #{"{{ theme.link_hover }}"}
-    color: #{"{{ theme.background_color }}"}
+    border: 1px solid $link-hover-color
+    color: $link-hover-color
 
     select
-      color: #{"{{ theme.background_color }}"}
+      color: $link-hover-color
 
     svg
-      fill: #{"{{ theme.background_color }}"}
+      fill: $link-hover-color
 
   select
     background: none
     border: 0px
     border-radius: 0px
-    color: #{"{{ theme.link_color }}"}
+    color: $link-color
     font-weight: 600
     height: 56px
     line-height: 56px
@@ -157,14 +156,11 @@ input[type='textarea'], textarea
       color: #000
       background: #FFF
 
-    &:focus
-      outline: none
-
     &::-ms-expand
       display: none
 
   svg
-    fill: #{"{{ theme.link_color }}"}
+    fill: $link-color
     height: 14px
     position: absolute
     right: 24px
@@ -214,8 +210,8 @@ h6
 // Errors
 
 .errors
-  background: #{"{{ theme.error_color }}"}
-  color: #{"{{ theme.background_color }}"}
+  background: $error-background-color
+  color: $button-text-color
   list-style-type: none
   text-align: center
   padding: 16px
