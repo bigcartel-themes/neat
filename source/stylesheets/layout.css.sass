@@ -1,9 +1,5 @@
 @import 'config'
 
-div.wrap
-  height: 100%
-  width: 100%
-
 header
   +flexbox
   +align-items(center)
@@ -26,6 +22,7 @@ header
       background: transparent
       bottom: 3px
       content: " "
+      left: 0
       height: 1px
       position: absolute
       width: 100%
@@ -106,6 +103,9 @@ header
     width: 50%
     z-index: 97
 
+    @media only screen and (max-width:$breakpoint-small)
+      display: none
+
     .navigation
       +flexbox
       +align-items(center)
@@ -119,50 +119,51 @@ header
 
         a
           padding: 4px 0
+          position: relative
           text-align: center
 
-    @media only screen and (max-width:$breakpoint-small)
-      display: none
+.utility
+  +flexbox
+  +justify-content(flex-end)
+  position: relative
+  white-space: nowrap
+  width: 25%
+  z-index: 99
 
-  .utility
+  @media only screen and (max-width:$breakpoint-small)
+    width: 50%
+
+  ul
     +flexbox
-    +justify-content(flex-end)
-    position: relative
-    white-space: nowrap
-    width: 25%
-    z-index: 99
+    +align-items(center)
+    list-style: none
 
-    ul
-      +flexbox
-      +align-items(center)
-      list-style: none
+    li
+      margin-left: $marginSize
 
-      li
-        margin-left: $marginSize
+      @media screen and (max-width: $breakpoint-small)
+        margin-left: $marginSize / 1.5
+
+      &:last-child
+        display: none
 
         @media screen and (max-width: $breakpoint-small)
-          margin-left: $marginSize / 1.5
+          display: block
 
-        &:last-child
-          display: none
+      a
+        padding: 4px 0
+
+      button
+        background: none !important
+
+      &.cart
+        .cart-link > span
+          margin-left: 5px
+
+        .desktop
 
           @media screen and (max-width: $breakpoint-small)
-            display: block
-
-        a
-          padding: 4px 0
-
-        &.cart
-          .cart-link > span
-            margin-left: 5px
-
-          .desktop
-
-            @media screen and (max-width: $breakpoint-small)
-              display: none
-
-    @media only screen and (max-width:$breakpoint-small)
-      width: 50%
+            display: none
 
 .nav_trigger svg
   height: 22px
@@ -219,94 +220,89 @@ header
       padding: 15px 0
 
 .slideshow
-  display: block
-  height: 100%
+  height: calc((var(--vh, 1vh) * 100))
   margin: 0
-  overflow: hidden
   padding: 0
   position: relative
   width: 100%
   z-index: 1
 
-  @media only screen and (max-width: $breakpoint-small)
-    height: 100vh
+_:-ms-fullscreen, :root .slideshow
+  height: 100vh
 
-  div.featured_holder
+.carousel
+  width: 100%
+  height: calc((var(--vh, 1vh) * 100))
+
+  &:after
     background-color: rgba(black, .3)
-    background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
-    background-repeat: repeat
-    background-size: 4px
+    content: ""
     height: 100%
     position: absolute
     top: 0
     width: 100%
-    z-index: 100
+    z-index: -1
 
-  div.featured
-    +vertical-align
-    color: #{"{{ theme.welcome_text_color }}"}
-    overflow: hidden
-    position: absolute
-    text-align: center
-    z-index: 2
-    width: 100%
+_:-ms-fullscreen, :root .carousel
+  height: 100vh
 
-    p
-      +font-size(14,20)
-      font-weight: 600
-      line-height: 18px
-      padding: 20px 16px 0px
-      text-transform: uppercase
+.carousel-cell
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: cover
+  height: 100%
+  width: 100%
 
-      @media only screen and (max-width:$breakpoint-small)
-        line-height: 1.75rem
+.flickity-page-dots
+  bottom: 40px
+  z-index: 5
 
-    h2
-      +font-size(64)
-      letter-spacing: .25em
-      margin: 0 0 24px 0
-      text-transform: uppercase
+  .dot
+    background-color: $button-background-color
+    height: 14px
+    width: 14px
 
-      @media only screen and (max-width:$breakpoint-small)
-        font-size: 9vw
-        letter-spacing: 0
-        line-height: 3.5rem
-        padding: 0 16px
-        text-indent: 0
-        white-space: normal
+.featured
+  +transform(translateY(-50%) translateX(-50%))
+  color: $welcome-text-color
+  left: 50%
+  top: 50%
+  position: absolute
+  max-width: 600px
+  text-align: center
+  z-index: 2
+  width: 100%
 
-    a
-      border: 1px solid #{"{{ theme.welcome_text_color }}"}
-      color: #{"{{ theme.welcome_text_color }}"}
-      width: auto
-      line-height: 56px
+.welcome-subheader
+  +font-size(14,20)
+  font-weight: 600
+  line-height: 18px
+  padding: 20px 16px 0px
+  text-transform: uppercase
 
-      &:hover, &:focus
-        border: 1px solid #{"{{ theme.link_hover }}"}
-        background-color: #{"{{ theme.link_hover }}"}
-        color: #{"{{ theme.welcome_text_color }}"}
-        opacity: 1
+  @media only screen and (max-width:$breakpoint-small)
+    line-height: 1.75rem
 
-  ul
-    display: block
-    height: 100%
-    margin: 0
-    padding: 0
-    position: relative
-    width: 100%
+.welcome-header
+  +font-size(64)
+  letter-spacing: .25em
+  margin: 0 0 24px 0
+  text-transform: uppercase
 
-    li
-      background-size: cover
-      background-position: 50% 50%
-      background-repeat: no-repeat
-      display: inline-block
-      height: 100%
-      list-style: none
-      position: relative
-      width: 100%
+  @media only screen and (max-width:$breakpoint-small)
+    font-size: 9vw
+    letter-spacing: 0
+    line-height: 3.5rem
+    padding: 0 16px
+    text-indent: 0
+    white-space: normal
 
-      img
-        -webkit-backface-visibility: hidden
+.shop-now-button
+  color: $button-text-color
+  width: auto
+
+  &:hover, &:focus
+    color: $button-text-color
 
 #home
   .content
@@ -323,8 +319,7 @@ header
     margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
 
 .content
-  +pie-clearfix
-  display: block
+  +flex(1)
   margin: 0 auto
   padding-top: 144px
   position: relative
@@ -352,55 +347,57 @@ header
       max-width: 800px
       margin: 0 auto
 
-  .social_links
-    +font-size(16)
-    line-height: normal
-    list-style: none
-    margin: 0 auto $marginSize auto
-    max-width: 800px
-    padding: 0
-    text-align: center
-    width: 100%
+_:-ms-fullscreen, :root .content
+  +flex(1 0 auto)
 
-    li
-      border: 1px solid #{"{{ theme.border_color }}"}
-      border-width: 1px 0 1px 1px
-      display: inline-block
+.social_links
+  +font-size(16)
+  line-height: normal
+  list-style: none
+  margin: 0 auto $marginSize auto
+  max-width: 800px
+  padding: 0
+  text-align: center
+  width: 100%
+
+  li
+    border: 1px solid #{"{{ theme.border_color }}"}
+    border-width: 1px 0 1px 1px
+    display: inline-block
+    height: 56px
+    line-height: normal
+    margin: 0
+    padding: 0
+    width: 56px
+
+    &:last-child
+      border-width: 1px
+
+    &:hover
+      background-color: #{"{{ theme.link_hover }}"}
+      border-color: #{"{{ theme.link_hover }}"}
+
+    a
+      display: block
+      width: 56px
       height: 56px
       line-height: normal
-      margin: 0
-      padding: 0
-      width: 56px
 
-      &:last-child
-        border-width: 1px
+      svg
+        cursor: pointer
+        fill: #{"{{ theme.link_color }}"}
+        height: 16px
+        position: relative
+        +vertical-align
+        width: 16px
 
-      &:hover
-        background-color: #{"{{ theme.link_hover }}"}
-        border-color: #{"{{ theme.link_hover }}"}
-
-      a
-        display: block
-        width: 56px
-        height: 56px
-        line-height: normal
-
-        svg
-          cursor: pointer
-          fill: #{"{{ theme.link_color }}"}
-          height: 16px
-          position: relative
-          +vertical-align
-          width: 16px
-
-      &:hover svg
-        fill: #{"{{ theme.background_color }}"}
+    &:hover svg
+      fill: #{"{{ theme.background_color }}"}
 
 footer
   +flexbox
-  +align-items(center)
+  +align-items(flex-start)
   +flex-direction(row)
-  +font-size(15)
   +flex-wrap(wrap)
   border-top: 1px solid #{"{{ theme.border_color }}"}
   position: relative

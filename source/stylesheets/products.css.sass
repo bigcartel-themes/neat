@@ -1,35 +1,27 @@
 @import 'config'
 
-section.content
-  +pie-clearfix
-  max-width: 1280px
+.categories
   margin: 0 auto
+  max-width: 960px
+  text-align: center
+  padding: 0
 
-  h1
-    margin-bottom: 16px
+  li
+    display: inline-block
+    height: 16px
+    white-space: nowrap
 
-  .categories
-    margin: 0 auto
-    max-width: 960px
-    text-align: center
-    padding: 0
+    a:hover, a:focus
+      text-decoration: underline
 
-    li
+    &:after
+      content: '/'
       display: inline-block
-      height: 16px
-      white-space: nowrap
+      padding: 0 8px
 
-      a:hover, a:focus
-        text-decoration: underline
-
-      &:after
-        content: '/'
-        display: inline-block
-        padding: 0 8px
-
-      &:last-child:after
-        content: ''
-        padding: 0
+    &:last-child:after
+      content: ''
+      padding: 0
 
 .product-list-container
   margin: 0 6%

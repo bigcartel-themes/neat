@@ -6,8 +6,12 @@
 
 html, body
   height: 100%
+  min-height: 100%
+  position: relative
 
 body
+  +flexbox
+  +flex-direction(column)
   background: #{"{{ theme.background_color }}"}
   color: #{"{{ theme.text_color }}"}
   font: normal 100%/1.5 $text-font
@@ -25,7 +29,7 @@ hr
 // CSS3 Global Animation
 
 header
-  +transition(background .5s ease-in)
+  +transition(background .25s ease-in)
 
   a
     +transition(color .25s ease-in-out)
@@ -42,9 +46,8 @@ a
   color: #{"{{ theme.link_color }}"}
   text-decoration: none
 
-a:hover
-  color: #{"{{ theme.link_hover }}"}
-
+  &:hover, &:focus
+    color: #{"{{ theme.link_hover }}"}
 
 // Buttons
 
@@ -62,6 +65,7 @@ a:hover
   margin: 0
   padding: 0 $marginSize/2
   text-align: center
+  text-decoration: none
   white-space: nowrap
   width: 100%
 

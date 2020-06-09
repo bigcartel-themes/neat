@@ -2,7 +2,7 @@
 
 .cart-container
   margin: 0 auto
-  max-width: 864px
+  max-width: 928px
   padding: $marginSize $marginSize * 2 $marginSize * 2
   width: 100%
 
@@ -165,6 +165,9 @@ button.cart-item-remove-text
     font-size: 24px
     padding: 48px 0
     text-align: right
+
+    @media screen and (max-width: $breakpoint-medium)
+      padding: 32px 0
 
     > span
       display: inline-block
