@@ -18,13 +18,13 @@
   <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></div>
   {% endcase %}
 
-  <section class="product_image {% if theme.secondary_product_images == 'thumbs' %}image_gallery{% endif %}">
-    <div class="default_image">
+  <section class="product-images {% if theme.secondary_product_images == 'thumbs' %}image-gallery{% endif %}">
+    <div class="default-product-image">
       {% if theme.secondary_product_images == 'thumbs' %}
         <a href="{{ product.image | product_image_url | constrain: 2000 }}">
           <img
             alt="{{ product.name | escape }}"
-            class="blur-up primary_image lazyload"
+            class="blur-up primary-image lazyload"
             src="{{ product.image | product_image_url | constrain: 100 }}"
             data-srcset="
               {{ product.image | product_image_url | constrain: 400 }} 400w,
@@ -42,7 +42,7 @@
       {% else %}
         <img
           alt="{{ product.name | escape }}"
-          class="blur-up primary_image lazyload"
+          class="blur-up primary-image lazyload"
           src="{{ product.image | product_image_url | constrain: 100 }}"
           data-srcset="
             {{ product.image | product_image_url | constrain: 400 }} 400w,
@@ -59,13 +59,13 @@
       {% endif %}
     </div>
     {% if theme.secondary_product_images == 'thumbs' and product.images.size > 1 %}
-      <ul class="product_thumbnails">
+      <ul class="product-thumbnails">
         {% for image in product.images offset: 1 %}
           <li>
             <a href="{{ image | product_image_url | constrain: '2000' }}">
               <img
                 alt="{{ product.name | escape }}"
-                class="blur-up lazyload"
+                class="blur-up product-image-thumbnail lazyload"
                 src="{{ product.image | product_image_url | constrain: 100 }}"
                 data-srcset="
                   {{ image | product_image_url | constrain: 100 }} 100w,
@@ -82,27 +82,27 @@
     {% endif %}
   </section>
 
-  <section class="product_description">
+  <section class="product-description">
     {% if product.description != blank %}
       {{ product.description | paragraphs }}
     {% endif %}
 
     {% if product.artists != blank %}
-      <section class="product_artists">
+      <section class="product-artists">
         {% for artist in product.artists %}
-          {% if forloop.first %}<h5> by {% endif %}
+          {% if forloop.first %}by {% endif %}
           {% if forloop.last and forloop.length > 1 %} and {% endif %}
           <a href="{{ artist.url }}">{{ artist.name }}</a>
           {% if forloop.length > 2 %}, {% endif %}
-          {% if forloop.last %}</h5>{% endif %}
+          {% if forloop.last %}{% endif %}
         {% endfor %}
       </section>
     {% endif %}
 
     {% if product.status == 'active' %}
 	    {% if theme.show_inventory_bars %}
-		    <h4>Availability</h4>
-		    <ul class="availability">
+		    <div class="product-section-subheader">Availability</div>
+		    <ul class="product-availability">
 		      {% for option in product.options %}
 		      <li>
 		        <b>
@@ -159,11 +159,11 @@
     {% endif %}
 
     {% if theme.share_buttons %}
-      <h4>Share</h4>
-      <ul class="social_links">
-        <li><a target="_blank" title="Share on Twitter" href="https://twitter.com/intent/tweet?status={{product.name}}%20-%20{{store.name}}%20{{store.url}}{{product.url}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"><path d="M605.886 208.899c-22.068 9.841-45.777 16.493-70.667 19.486 25.397-15.318 44.908-39.572 54.106-68.477-23.776 14.186-50.104 24.48-78.14 30.037-22.442-24.058-54.426-39.088-89.817-39.088-67.956 0-123.055 55.41-123.055 123.765 0 9.7 1.083 19.144 3.182 28.207-102.265-5.171-192.933-54.438-253.625-129.322-10.587 18.287-16.659 39.547-16.659 62.228 0 42.944 21.726 80.833 54.744 103.024-20.172-.637-39.15-6.206-55.729-15.478-.012.52-.012 1.041-.012 1.561 0 59.97 42.418 109.988 98.709 121.366-10.331 2.833-21.193 4.345-32.417 4.345-7.932 0-15.637-.777-23.152-2.222 15.662 49.169 61.103 84.959 114.946 85.956-42.112 33.195-95.172 52.981-152.823 52.981-9.933 0-19.725-.588-29.352-1.726 54.456 35.116 119.138 55.612 188.619 55.612 226.33 0 350.101-188.601 350.101-352.164 0-5.367-.123-10.698-.361-16.016 24.039-17.458 44.903-39.264 61.402-64.075z"/></svg></a>
-        <li><a target="_blank" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ page.full_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="157.162 90 297.799 612" enable-background="new 157.162 90 297.799 612"><path d="M369.036 193.795h85.68v-103.795h-121.054c-97.553 19.707-98.776 108.936-98.776 108.936v105.753h-77.724v102.938h77.724v294.373h108.324v-294.617h102.081l9.67-102.938h-111.017v-75.521c-.123-33.171 25.092-35.129 25.092-35.129z"/></svg></a>
-        <li class="social_pinterest"><a title="Pin" data-pin-custom="true" data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url={{ page.full_url }}&media={{ product.images.first.url }}&description={{ product.description | escape | truncate: 200 }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 12 16"><path d="M4.933 10.582c-.406 2.203-.9 4.314-2.366 5.418-.452-3.33.665-5.83 1.183-8.484C2.866 6 3.9 2.9 5.7 3.63c2.315.97-2 5.77.9 6.34 3 .6 4.225-5.4 2.365-7.36C6.285-.22 1.1 2.5 1.8 6.596c.154 1 1.1 1.3.4 2.658C.48 8.858-.034 7.45.032 5.574.138 2.504 2.692.352 5.255.054c3.24-.376 6.3 1.2 6.7 4.396.473 3.568-1.462 7.433-4.927 7.2C6.063 11.5 5.7 11 4.9 10.582z"/></svg>
+      <div class="product-section-subheader">Share</div>
+      <ul class="social-icons product-share-buttons">
+        <li class="share-twitter"><a target="_blank" title="Share on Twitter" href="https://twitter.com/intent/tweet?status={{product.name}}%20-%20{{store.name}}%20{{store.url}}{{product.url}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 150.857 612 490.298" enable-background="new 0 150.857 612 490.298"><path d="M605.886 208.899c-22.068 9.841-45.777 16.493-70.667 19.486 25.397-15.318 44.908-39.572 54.106-68.477-23.776 14.186-50.104 24.48-78.14 30.037-22.442-24.058-54.426-39.088-89.817-39.088-67.956 0-123.055 55.41-123.055 123.765 0 9.7 1.083 19.144 3.182 28.207-102.265-5.171-192.933-54.438-253.625-129.322-10.587 18.287-16.659 39.547-16.659 62.228 0 42.944 21.726 80.833 54.744 103.024-20.172-.637-39.15-6.206-55.729-15.478-.012.52-.012 1.041-.012 1.561 0 59.97 42.418 109.988 98.709 121.366-10.331 2.833-21.193 4.345-32.417 4.345-7.932 0-15.637-.777-23.152-2.222 15.662 49.169 61.103 84.959 114.946 85.956-42.112 33.195-95.172 52.981-152.823 52.981-9.933 0-19.725-.588-29.352-1.726 54.456 35.116 119.138 55.612 188.619 55.612 226.33 0 350.101-188.601 350.101-352.164 0-5.367-.123-10.698-.361-16.016 24.039-17.458 44.903-39.264 61.402-64.075z"/></svg></a>
+        <li class="share-facebook"><a target="_blank" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ page.full_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="157.162 90 297.799 612" enable-background="new 157.162 90 297.799 612"><path d="M369.036 193.795h85.68v-103.795h-121.054c-97.553 19.707-98.776 108.936-98.776 108.936v105.753h-77.724v102.938h77.724v294.373h108.324v-294.617h102.081l9.67-102.938h-111.017v-75.521c-.123-33.171 25.092-35.129 25.092-35.129z"/></svg></a>
+        <li class="share-pinterest"><a title="Pin" data-pin-custom="true" data-pin-do="buttonPin" href="https://www.pinterest.com/pin/create/button/?url={{ page.full_url }}&media={{ product.images.first.url }}&description={{ product.description | escape | truncate: 200 }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 12 16"><path d="M4.933 10.582c-.406 2.203-.9 4.314-2.366 5.418-.452-3.33.665-5.83 1.183-8.484C2.866 6 3.9 2.9 5.7 3.63c2.315.97-2 5.77.9 6.34 3 .6 4.225-5.4 2.365-7.36C6.285-.22 1.1 2.5 1.8 6.596c.154 1 1.1 1.3.4 2.658C.48 8.858-.034 7.45.032 5.574.138 2.504 2.692.352 5.255.054c3.24-.376 6.3 1.2 6.7 4.396.473 3.568-1.462 7.433-4.927 7.2C6.063 11.5 5.7 11 4.9 10.582z"/></svg>
       </a></li>
       </ul>
     {% endif %}
@@ -172,11 +172,11 @@
 </section>
 
 {% if theme.secondary_product_images == 'full' and product.images.size > 1 %}
-  <section class="product_photos">
+  <section class="secondary-product-images">
     {% for image in product.images offset: 1 %}
       <img
         alt="{{ product.name | escape }}"
-        class="blur-up product_photo lazyload"
+        class="blur-up secondary-product-image lazyload"
         src="{{ product.image | product_image_url | constrain: 100 }}"
         data-srcset="
           {{ image | product_image_url | constrain: 400 }} 400w,

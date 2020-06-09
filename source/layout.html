@@ -11,7 +11,7 @@
     <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
       <a href="/" title="{{ store.name | escape }}">
         {% if theme.logo != blank %}
-          <img src="{{ theme.logo.url | constrain: '400' }}" alt="{{ store.name }}">
+          <img src="{{ theme.logo.url | constrain: '416' }}" alt="{{ store.name }}">
         {% else %}
           {{ store.name }}
         {% endif %}
@@ -29,7 +29,7 @@
       <ul>
         {% if theme.show_search %}
           <li>
-            <button class="open-search-button" type="button" aria-label="Search products">
+            <button class="button minimal-button open-search-button" type="button" aria-label="Search products">
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.707 14.293l-3.112-3.092-.006-.004c.882-1.197 1.411-2.597 1.411-4.197 0-3.859-3.141-7-7-7s-7 3.1-7 7 3.141 7 7 7c1.575 0 3.025-.529 4.196-1.41v.006l3.093 3.111c.199.193.411.293.711.293s.512-.098.707-.293c.391-.407.393-1.007-.007-1.414zm-8.707-2.293c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.2 5 5-2.243 5-5 5z"/></svg>
             </a>
           </li>
@@ -43,27 +43,13 @@
           </a>
         </li>
         <li>
-          <a href="#nav" class="nav_trigger mobile">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="10" viewBox="0 0 16 10"><path d="M15.5 0h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 4h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 8h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.224.5-.5v-1c0-.3-.2-.5-.5-.5z"/></svg>
-          </a>
+          <button class="button minimal-button open-mobile-navigation mobile" aria-label="Open mobile navigation" type="button">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 10"><path d="M15.5 0h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 4h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 8h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.224.5-.5v-1c0-.3-.2-.5-.5-.5z"/></svg>
+          </button>
         </li>
       </ul>
     </nav>
   </header>
-
-  <div class="mobile_nav">
-		<a href="#" class="close_nav">
-			<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 10 10"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
-		</a>
-		<ul>
-		  <li><a href="/products">{% if theme.collections %}Collections{% else %}{{ pages.products.name }}{% endif %}</a></li>
-		  {% for page in pages.all limit: theme.nav_items %}
-		    <li>{{ page | link_to }}</li>
-		  {% endfor %}
-		  <li><a href="/contact">Contact</a></li>
-		</ul>
-  </div>
-
   {% if page.category == 'custom' %}
     <section class="content">
       <h1>{{ page.name }}</h1>
@@ -108,17 +94,37 @@
     <cite><span class="badge">{{ bigcartel_credit }}</span></cite>
   </footer>
 
+  <div class="full-screen-overlay mobile-navigation">
+    <button class="close-overlay" aria-label="Close navigation" type="button">
+      <svg aria-hidden="true" class="close-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
+    </button>
+    <div class="overlay-content">
+      <nav class="mobile-navigation-items">
+        <ul class="mobile-navigation-list">
+          <li><a href="/products">{% if theme.collections %}Collections{% else %}{{ pages.products.name }}{% endif %}</a></li>
+          {% for page in pages.all %}
+            <li>{{ page | link_to }}</li>
+          {% endfor %}
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
   {% if theme.show_search %}
-    <div class="search-overlay">
-      <form action="/products" method="get" class="search-form">
-        <input type="text" name="search" id="search-input" placeholder="Search products...">
-    		<button class="close-search" aria-label="Close search window" type="button">
-    			<svg aria-hidden="true" class="close-search-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
-    		</button>
-      </form>
+    <div class="full-screen-overlay search-overlay">
+      <button class="close-overlay" aria-label="Close search window" type="button">
+        <svg aria-hidden="true" class="close-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
+      </button>
+      <div class="overlay-content">
+        <form action="/products" method="get" class="search-form">
+          <input type="text" name="search" id="search-input" placeholder="Search products...">
+        </form>
+      </div>
     </div>
   {% endif %}
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="{{ 'api' | theme_js_url }}"></script>
   <script src="{{ theme | theme_js_url }}"></script>
   {% if page.full_url contains '/product/' %}
@@ -132,84 +138,26 @@
     $(function() {
   		if ($('.slideshow').length) {
         $('.carousel').flickity({
-          // options, defaults listed
-
           accessibility: true,
-          // enable keyboard navigation, pressing left & right keys
-
           adaptiveHeight: false,
-          // set carousel height to the selected slide
-
           autoPlay: 6000,
-          // advances to the next cell
-          // if true, default is 3 seconds
-          // or set time between advances in milliseconds
-          // i.e. `autoPlay: 1000` will advance every 1 second
-
           cellAlign: 'center',
-          // alignment of cells, 'center', 'left', or 'right'
-          // or a decimal 0-1, 0 is beginning (left) of container, 1 is end (right)
-
           cellSelector: undefined,
-          // specify selector for cell elements
-
           contain: false,
-          // will contain cells to container
-          // so no excess scroll at beginning or end
-          // has no effect if wrapAround is enabled
-
           draggable: '>1',
-          // enables dragging & flicking
-          // if at least 2 cells
-
           dragThreshold: 3,
-          // number of pixels a user must scroll horizontally to start dragging
-          // increase to allow more room for vertical scroll for touch devices
-
           freeScroll: false,
-          // enables content to be freely scrolled and flicked
-          // without aligning cells
-
-
           groupCells: false,
-          // group cells together in slides
-
           initialIndex: 0,
-          // zero-based index of the initial selected cell
-
           lazyLoad: true,
-          // enable lazy-loading images
-          // set img data-flickity-lazyload="src.jpg"
-          // set to number to load images adjacent cells
-
           percentPosition: true,
-          // sets positioning in percent values, rather than pixels
-          // Enable if items have percent widths
-          // Disable if items have pixel widths, like images
-
           prevNextButtons: false,
-          // creates and enables buttons to click to previous & next cells
-
           pageDots: true,
-          // create and enable page dots
-
           resize: true,
-          // listens to window resize events to adjust size & positions
-
           rightToLeft: false,
-          // enables right-to-left layout
-
           setGallerySize: false,
-          // sets the height of gallery
-          // disable if gallery already has height set with CSS
-
           watchCSS: false,
-          // watches the content of :after of the element
-          // activates if #element:after { content: 'flickity' }
-
           wrapAround: true
-          // at end of cells, wraps-around to first for infinite scrolling
-
         });
   		}
     });
