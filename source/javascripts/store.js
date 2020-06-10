@@ -1,20 +1,14 @@
-function isIE() {
-  var rv = -1;
-  if (navigator.appName == 'Microsoft Internet Explorer') {
-    var ua = navigator.userAgent;
-    var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-    if (re.exec(ua) != null) rv = parseFloat(RegExp.$1);
-  }
-  else if (navigator.appName == 'Netscape') {
-    var ua = navigator.userAgent;
-    var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
-    if (re.exec(ua) != null) rv = parseFloat(RegExp.$1);
-  }
-  return rv == -1 ? false : true;
+
+
+function setDocHeight() {
+  win_width = window.innerWidth;
+  win_height = window.innerHeight;
+  document.documentElement.style.setProperty('--vh', win_height/100 + "px");
 }
+
 $(document).ready(function () {
 
-  $('.image_gallery').magnificPopup({
+  $('.image-gallery').magnificPopup({
     delegate: 'a',
     type: 'image',
     tLoading: 'Loading...',
@@ -67,58 +61,46 @@ $(document).ready(function () {
   if (this.inPreview) {
     setTimeout(function () {
       Waypoint.refreshAll();
+      setDocHeight();
     }, 800);
   }
-
-  searchForm = $('form.search');
-  if (searchForm.length) {
-    $('body').on('click', 'a[href^="#search"]', function (e) {
-      e.preventDefault();
-      searchForm.addClass('open');
-      if (!isIE()) {
-        searchForm.find('input[type=text]').focus()
-      }
-    });
-    $('body').on('click', '.close_search', function (e) {
-      e.preventDefault();
-      searchForm.removeClass('open');
-    });
+  else {
+    setDocHeight();
   }
-  mobileNav = $('.mobile_nav')
-  $('body').on('click', '.nav_trigger', function (e) {
-    e.preventDefault();
-    mobileNav.addClass('open');
-  });
-  $('select').change(function (e) {
-    e.preventDefault();
-    $(this).blur();
-  })
-  $('body').on('click', '.close_nav', function (e) {
-    e.preventDefault();
-    mobileNav.removeClass('open');
+
+  $('body').on('click', '.open-search-button', function (e) {
+    openOverlay('.search-overlay');
+    $('#search-input').focus();
   });
 
-  $('#cart input[id$=_qty]').blur(function(e) {
-    e.preventDefault();
-    $(this).closest('form').submit();
-  });
-
-  $('#cart .remove').click(function(e) {
-    e.preventDefault();
-    $(this).closest('li').find('input[id$=_qty]').val(0).closest('form').submit();
+  $('body').on('click', '.open-mobile-navigation', function (e) {
+    openOverlay('.mobile-navigation');
   });
 
 });
+$('body').on('click', '.close-overlay', function (e) {
+  closeOverlay();
+});
+
 $(document).keyup(function (e) {
   if (e.keyCode == 27) {
-    if (searchForm.length) {
-      searchForm.removeClass('open');
-    }
-    if (mobileNav.length) {
-      mobileNav.removeClass('open');
-    }
+    closeOverlay();
   }
 });
+
+var openOverlay = function(overlay_type) {
+  $('body').addClass('no-scroll');
+  $(overlay_type).addClass('open');
+}
+var closeOverlay = function(overlay_type = '') {
+  if (overlay_type) {
+    $(overlay_type).removeClass('open');
+  }
+  else {
+    $('.full-screen-overlay').removeClass('open');
+  }
+  $('body').removeClass('no-scroll');
+}
 var isGreaterThanZero = function(currentValue) {
   return currentValue > 0;
 }
@@ -195,9 +177,11 @@ if (!Array.prototype.includes) {
   });
 }
 
-Array.prototype.count = function(filterMethod) {
-  return this.reduce((count, item) => filterMethod(item)? count + 1 : count, 0);
-}
+Array.prototype.count = function (filterMethod) {
+  return this.reduce(function (count, item) {
+    return filterMethod(item) ? count + 1 : count;
+  }, 0);
+};
 
 $('.product_option_select').on('change',function() {
   var option_price = $(this).find("option:selected").attr("data-price");
@@ -214,6 +198,7 @@ function enableAddButton(updated_price) {
     priceTitle = '';
   }
   addButton.html(addButtonTitle + priceTitle);
+  addButton.attr('aria-label',addButton.text());
 }
 
 function disableAddButton(type) {
@@ -226,6 +211,7 @@ function disableAddButton(type) {
     addButton.attr("disabled","disabled");
   }
   addButton.html(addButtonTitle);
+  addButton.attr('aria-label','');
 }
 
 function enableSelectOption(select_option) {

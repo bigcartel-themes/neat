@@ -1,18 +1,11 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
-@import 'verticalalign'
-
-div.wrap
-  height: 100%
-  width: 100%
 
 header
   +flexbox
   +align-items(center)
+  +flex-shrink(0)
   border-bottom: 1px solid transparent
-  +box-sizing(border-box)
-  font-family: #{"{{ theme.text_font | font_family }}"}
+  font-family: $text-font
   font-weight: 600
   height: 88px
   padding: 0 $marginSize
@@ -23,29 +16,30 @@ header
   a
     +flexbox
     +align-items(center)
-    color: #{"{{ theme.welcome_text_color }}"}
+    color: $welcome-text-color
     position: relative
 
     &:after
       background: transparent
-      bottom: 0
+      bottom: 3px
       content: " "
+      left: 0
       height: 1px
       position: absolute
       width: 100%
 
     &:hover, &:focus
-      color: #{"{{ theme.welcome_text_color }}"}
+      color: $welcome-text-color
 
       @media screen and (min-width: $breakpoint-small + 1)
         &:after
-          background: #{"{{ theme.welcome_text_color }}"}
+          background: $welcome-text-color
 
       svg
-        fill: #{"{{ theme.welcome_text_color }}"}
+        fill: $welcome-text-color
 
   svg
-    fill: #{"{{ theme.welcome_text_color }}"}
+    fill: $welcome-text-color
 
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
@@ -55,29 +49,28 @@ header
       position: absolute
 
   &.overlay, &.page
-    background-color: #{"{{ theme.header_color }}"}
-    border-bottom: 1px solid #{"{{ theme.border_color }}"}
+    background-color: $header-background-color
+    border-bottom: 1px solid $border-color
 
-    a
-      color: #{"{{ theme.header_link_color }}"}
+    a, .button
+      color: $header-link-color
 
       &:hover, &:focus
-        color: #{"{{ theme.header_link_hover }}"}
+        color: $header-link-hover
 
         @media screen and (min-width: $breakpoint-small + 1)
           &:after
-            background: #{"{{ theme.header_link_hover }}"}
+            background: $header-link-hover
 
         svg
-          fill: #{"{{ theme.header_link_hover }}"}
+          fill: $header-link-hover
 
     svg
-      fill: #{"{{ theme.header_link_color }}"}
+      fill: $header-link-color
 
   .logo
-    +box-sizing(border-box)
     +font-size(24)
-    font-family: #{"{{ theme.header_font | font_family }}"}
+    font-family: $header-font
     text-align: left
     z-index: 98
     width: 25%
@@ -111,6 +104,9 @@ header
     width: 50%
     z-index: 97
 
+    @media only screen and (max-width:$breakpoint-small)
+      display: none
+
     .navigation
       +flexbox
       +align-items(center)
@@ -124,204 +120,153 @@ header
 
         a
           padding: 4px 0
+          position: relative
           text-align: center
 
-    @media only screen and (max-width:$breakpoint-small)
-      display: none
+.utility
+  +flexbox
+  +justify-content(flex-end)
+  position: relative
+  white-space: nowrap
+  width: 25%
+  z-index: 99
 
-  .utility
-    +flexbox
-    +justify-content(flex-end)
-    position: relative
-    white-space: nowrap
-    width: 25%
-    z-index: 99
-
-    ul
-      +flexbox
-      +align-items(center)
-      list-style: none
-
-      li
-        margin-left: $marginSize
-
-        @media screen and (max-width: $breakpoint-small)
-          margin-left: $marginSize / 1.5
-
-        &:last-child
-          display: none
-
-          @media screen and (max-width: $breakpoint-small)
-            display: block
-
-        a
-          padding: 4px 0
-
-        &.cart
-          .desktop
-            margin-left: 4px
-
-            @media screen and (max-width: $breakpoint-small)
-              display: none
-
-          svg
-            margin-right: 5px
-
-    @media only screen and (max-width:$breakpoint-small)
-      width: 50%
-
-.nav_trigger svg
-  height: 22px
-  width: 22px
-
-.mobile_nav
-  +box-sizing(border-box)
-  background-color: rgba(black, .95)
-  display: none
-  height: 100%
-  left: 0
-  list-style: none
-  margin: 0
-  overflow: auto
-  padding: 15%
-  position: fixed
-  text-align: center
-  top: 0
-  width: 100%
-  z-index: 10001
-
-  &.open
-    display: block
-
-  a
-    color: #FFF
-
-    &:hover
-      opacity: .6
-
-  .close_nav
-    line-height: 22px
-    position: fixed
-    right: 15px
-    top: 36px
-
-    path
-      fill: #FFF
-
-      &:hover
-        opacity: .6
+  @media only screen and (max-width:$breakpoint-small)
+    width: 50%
 
   ul
-    list-style-type: none
+    +flexbox
+    +align-items(center)
+    list-style: none
     margin: 0
     padding: 0
 
-  li
-    height: auto
-    line-height: 30px
-    margin-left: 0
+    li
+      margin-left: $marginSize
 
-    a
-      display: block
-      padding: 15px 0
+      @media screen and (max-width: $breakpoint-small)
+        margin-left: $marginSize / 1.5
+
+      &:last-child
+        display: none
+
+        @media screen and (max-width: $breakpoint-small)
+          display: block
+
+      a
+        padding: 4px 0
+
+      button
+        +flexbox
+        +align-items(center)
+        +justify-content(center)
+        padding: 8px 4px !important
+        width: auto
+        height: auto
+
+      &.cart
+        .cart-link > span
+          margin-left: 6px
+
+        .desktop
+
+          @media screen and (max-width: $breakpoint-small)
+            display: none
 
 .slideshow
-  display: block
-  height: 100%
+  height: calc((var(--vh, 1vh) * 100))
   margin: 0
-  overflow: hidden
   padding: 0
   position: relative
   width: 100%
   z-index: 1
 
-  @media only screen and (max-width: $breakpoint-small)
-    height: 100vh
+_:-ms-fullscreen, :root .slideshow
+  height: 100vh
 
-  div.featured_holder
-    background-color: rgba(black, .3)
-    +background(url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}'))
-    background-repeat: repeat
-    background-size: 4px
-    height: 100%
-    position: absolute
-    top: 0
-    width: 100%
-    z-index: 100
+.carousel
+  width: 100%
+  height: calc((var(--vh, 1vh) * 100))
 
-  div.featured
-    +vertical-align
-    color: #{"{{ theme.welcome_text_color }}"}
-    overflow: hidden
-    position: absolute
-    text-align: center
-    z-index: 2
-    width: 100%
+_:-ms-fullscreen, :root .carousel
+  height: 100vh
 
-    p
-      +font-size(14,20)
-      font-weight: 600
-      line-height: 18px
-      padding: 20px 16px 0px
-      text-transform: uppercase
+.carousel-cell
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: cover
+  height: 100%
+  width: 100%
 
-      @media only screen and (max-width:$breakpoint-small)
-        line-height: 1.75rem
+.flickity-page-dots
+  bottom: 40px
+  z-index: 5
 
-    h2
-      +font-size(64)
-      letter-spacing: .25em
-      margin: 0 0 24px 0
-      text-transform: uppercase
+  .dot
+    background-color: $button-background-color
+    height: 14px
+    width: 14px
 
-      @media only screen and (max-width:$breakpoint-small)
-        font-size: 9vw
-        letter-spacing: 0
-        line-height: 3.5rem
-        padding: 0 16px
-        text-indent: 0
-        white-space: normal
+.flickity-viewport:after
+  background-color: rgba(black, .1)
+  background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
+  background-repeat: repeat
+  background-size: 4px
+  content: ""
+  height: 100%
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 1
 
-    a
-      border: 1px solid #{"{{ theme.welcome_text_color }}"}
-      color: #{"{{ theme.welcome_text_color }}"}
-      width: auto
-      line-height: 56px
+.featured
+  +transform(translateY(-50%) translateX(-50%))
+  color: $welcome-text-color
+  left: 50%
+  top: 50%
+  position: absolute
+  max-width: 600px
+  text-align: center
+  z-index: 2
+  width: 100%
 
-      &:hover, &:focus
-        border: 1px solid #{"{{ theme.link_hover }}"}
-        background-color: #{"{{ theme.link_hover }}"}
-        color: #{"{{ theme.welcome_text_color }}"}
-        opacity: 1
+.welcome-subheader
+  +font-size(14,20)
+  font-weight: 600
+  line-height: 18px
+  padding: 20px 16px 0px
+  text-transform: uppercase
 
-  ul
-    display: block
-    height: 100%
-    margin: 0
-    padding: 0
-    position: relative
-    width: 100%
+  @media only screen and (max-width:$breakpoint-small)
+    line-height: 1.75rem
 
-    li
-      background-size: cover
-      background-position: 50% 50%
-      background-repeat: no-repeat
-      display: inline-block
-      height: 100%
-      list-style: none
-      position: relative
-      width: 100%
+.welcome-header
+  +font-size(64)
+  letter-spacing: .25em
+  margin: 0 0 24px 0
+  text-transform: uppercase
 
-      img
-        -webkit-backface-visibility: hidden
+  @media only screen and (max-width:$breakpoint-small)
+    font-size: 9vw
+    letter-spacing: 0
+    line-height: 3.5rem
+    padding: 0 16px
+    text-indent: 0
+    white-space: normal
+
+.shop-now-button
+  color: $button-text-color
+  width: auto
+
+  &:hover, &:focus
+    color: $button-text-color
 
 #home
   .content
-    padding: 144px 0 0 0
+    padding-top: 144px
 
     @media only screen and (max-width:$breakpoint-small)
       padding-top: 32px
-      padding-bottom: $marginSize
 
   .slideshow + .content
     padding-top: 64px
@@ -330,9 +275,10 @@ header
     margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
 
 .content
-  +pie-clearfix
-  display: block
+  +flex(1)
   margin: 0 auto
+  max-width: 1364px
+  padding-bottom: $marginSize * 2
   padding-top: 144px
   position: relative
   width: 100%
@@ -342,7 +288,7 @@ header
     padding-top: $marginSize
 
   h1
-    color: #{"{{ theme.text_color }}"}
+    color: $text-color
     display: block
     margin: 0 auto
     text-align: center
@@ -359,65 +305,66 @@ header
       max-width: 800px
       margin: 0 auto
 
-  .social_links
-    +box-sizing(border-box)
-    +font-size(16)
-    line-height: normal
-    list-style: none
-    margin: 0 auto $marginSize auto
-    max-width: 800px
-    padding: 0
-    text-align: center
-    width: 100%
+_:-ms-fullscreen, :root .content
+  +flex(1 0 auto)
 
-    li
-      +box-sizing(border-box)
-      border: 1px solid #{"{{ theme.border_color }}"}
-      border-width: 1px 0 1px 1px
-      display: inline-block
+.social-icons
+  +font-size(16)
+  line-height: normal
+  list-style: none
+  margin: 0 auto $marginSize auto
+  max-width: 800px
+  padding: 0
+  text-align: center
+  width: 100%
+
+  li
+    border: 1px solid $border-color
+    border-width: 1px 0 1px 1px
+    display: inline-block
+    height: 56px
+    line-height: normal
+    margin: 0
+    padding: 0
+    width: 56px
+
+    &:last-child
+      border-width: 1px
+
+    &:hover
+      background-color: $link-hover-color
+      border-color: $link-hover-color
+
+    a
+      display: block
+      width: 56px
       height: 56px
       line-height: normal
-      margin: 0
-      padding: 0
-      width: 56px
 
-      &:last-child
-        border-width: 1px
+      svg
+        cursor: pointer
+        fill: $link-color
+        height: 16px
+        position: relative
+        +vertical-align
+        width: 16px
 
-      &:hover
-        background-color: #{"{{ theme.link_hover }}"}
-        border-color: #{"{{ theme.link_hover }}"}
-
-      a
-        display: block
-        width: 56px
-        height: 56px
-        line-height: normal
-
-        svg
-          cursor: pointer
-          fill: #{"{{ theme.link_color }}"}
-          height: 16px
-          position: relative
-          +vertical-align
-          width: 16px
-
-      &:hover svg
-        fill: #{"{{ theme.background_color }}"}
+    &:hover svg
+      fill: $background-color
 
 footer
   +flexbox
-  +align-items(center)
+  +align-items(flex-start)
   +flex-direction(row)
-  +box-sizing(border-box)
-  +font-size(15)
   +flex-wrap(wrap)
-  border-top: 1px solid #{"{{ theme.border_color }}"}
+  +flex-shrink(0)
+  border-top: 1px solid $border-color
   position: relative
   padding: $marginSize $marginSize $marginSize * 2
 
   @media screen and (max-width: $breakpoint-small)
     +flex-direction(column)
+    +align-items(center)
     +justify-content(center)
     padding: 0
 
@@ -450,7 +397,7 @@ footer
 
     @media screen and (max-width: $breakpoint-small)
       +justify-content(center)
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      border-bottom: 1px solid $border-color
       order: 2
       width: 100%
 
@@ -466,11 +413,11 @@ footer
 
       &:hover, &:focus
         svg
-          fill: #{"{{ theme.link_hover }}"}
+          fill: $link-hover-color
 
     svg
       display: block
-      fill: #{"{{ theme.link_color }}"}
+      fill: $link-color
       height: 20px
       width: 20px
 
@@ -482,7 +429,7 @@ footer
     width: 100%
 
     @media screen and (max-width: $breakpoint-small)
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      border-bottom: 1px solid $border-color
       order: 1
       margin: 0
       text-align: center
@@ -503,7 +450,7 @@ footer
         margin-left: $marginSize
 
         @media screen and (max-width: $breakpoint-small)
-          border-bottom: 1px solid #{"{{ theme.border_color }}"}
+          border-bottom: 1px solid $border-color
           margin: 0
 
           &:last-child
@@ -519,3 +466,22 @@ footer
           @media screen and (max-width: $breakpoint-small)
             padding: $marginSize / 3
 
+.blur-up
+  +transition(filter .2s ease)
+  filter: blur(5px)
+
+  &.lazyloaded
+    filter: blur(0)
+
+.sr-only
+  border: 0
+  clip: rect(0 0 0 0)
+  height: 1px
+  margin: -1px
+  overflow: hidden
+  padding: 0
+  position: absolute
+  width: 1px
+
+.centered-message
+  text-align: center

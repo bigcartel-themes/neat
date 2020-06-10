@@ -1,23 +1,26 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
 
 // Global
+*
+  box-sizing: border-box
 
 html, body
   height: 100%
+  min-height: 100%
+  position: relative
 
 body
-  background: #{"{{ theme.background_color }}"}
-  color: #{"{{ theme.text_color }}"}
-  font: normal 100%/1.5 #{"{{ theme.text_font | font_family }}"}
+  +flexbox
+  +flex-direction(column)
+  background: $background-color
+  color: $text-color
+  font: normal 100%/1.5 $text-font
   -webkit-font-smoothing: antialiased
 
 hr
-  background-color: 1px solid #{"{{ theme.border_color }}"}
+  background-color: 1px solid $border-color
   border-style: none
   border: none
-  box-sizing: border-box
   height: 1px
   margin: 16px 0
   padding: 0
@@ -26,9 +29,7 @@ hr
 // CSS3 Global Animation
 
 header
-  +transition-property(background)
-  +transition-duration(.5s)
-  +transition-timing-function(ease-in)
+  +transition(background .25s ease-in)
 
   a
     +transition(color .25s ease-in-out)
@@ -42,35 +43,35 @@ header
 // Links
 
 a
-  color: #{"{{ theme.link_color }}"}
+  color: $link-color
   text-decoration: none
 
-a:hover
-  color: #{"{{ theme.link_hover }}"}
-
+  &:hover, &:focus
+    color: $link-hover-color
 
 // Buttons
 
 .button, submit, input[type='submit'], button
   +border-radius(0)
   +font-size(16)
-  background-color: #{"{{ theme.text_color }}"}
+  +transition(background .2s ease-in-out)
+  background-color: $button-background-color
   border: none
-  box-sizing: border-box
-  color: #{"{{ theme.background_color }}"}
+  color: $button-text-color
   display: inline-block
   font-weight: 600
   height: 56px
   line-height: 56px
   margin: 0
-  outline: 0
   padding: 0 $marginSize/2
+  text-align: center
+  text-decoration: none
   white-space: nowrap
   width: 100%
 
   &.minimal-button
     background: none
-    color: #{"{{ theme.text_color }}"}
+    color: $text-color
     border: none
     font-size: 13px
     padding: 0
@@ -83,11 +84,11 @@ a:hover
       text-decoration: underline
 
   &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
-    opacity: .8
+    background-color: $button-background-hover-color
 
   &:disabled, &.disabled
     cursor: not-allowed
-    opacity: .3
+    opacity: .6
 
 // Typography
 
@@ -95,7 +96,7 @@ a[href], label[for], select, button, .pointer
   cursor: pointer
 
 form, input, textarea, submit, input[type='submit'], input[type='text'], button, select
-  font-family: #{"{{ theme.text_font | font_family }}"}
+  font-family: $text-font
   +font-size(16)
   font-style: normal
   -webkit-font-smoothing: antialiased
@@ -107,17 +108,15 @@ input[type='text'], input[type='textarea'], textarea
   +border-radius(0)
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 1px solid #{"{{ theme.link_color }}"}
-  box-sizing: border-box
-  color: #{"{{ theme.link_color }}"}
+  border: 1px solid $link-color
+  color: $link-color
   margin: 0
-  outline: 0
   white-space: nowrap
   text-indent: 16px
 
   &:focus, &:hover
-    border: 1px solid #{"{{ theme.link_hover }}"}
-    color: #{"{{ theme.link_hover }}"}
+    border: 1px solid $link-hover-color
+    color: $link-hover-color
 
 input[type='textarea'], textarea
   padding: 16px
@@ -125,29 +124,26 @@ input[type='textarea'], textarea
   white-space: normal
 
 .select
-  +pie-clearfix
-  border: 1px solid #{"{{ theme.link_color }}"}
-  box-sizing: border-box
-  color: #{"{{ theme.link_color }}"}
+  border: 1px solid $link-color
+  color: $link-color
   margin-bottom: 16px
   position: relative
 
   &:hover, &:focus, &:focus-within
-    background-color: #{"{{ theme.link_hover }}"}
-    border: 1px solid #{"{{ theme.link_hover }}"}
-    color: #{"{{ theme.background_color }}"}
+    border: 1px solid $link-hover-color
+    color: $link-hover-color
 
     select
-      color: #{"{{ theme.background_color }}"}
+      color: $link-hover-color
 
     svg
-      fill: #{"{{ theme.background_color }}"}
+      fill: $link-hover-color
 
   select
     background: none
     border: 0px
     border-radius: 0px
-    color: #{"{{ theme.link_color }}"}
+    color: $link-color
     font-weight: 600
     height: 56px
     line-height: 56px
@@ -160,21 +156,21 @@ input[type='textarea'], textarea
       color: #000
       background: #FFF
 
-    &:focus
-      outline: none
-
     &::-ms-expand
       display: none
 
   svg
-    fill: #{"{{ theme.link_color }}"}
+    fill: $link-color
+    height: 14px
     position: absolute
-    right: 32px
-    top: 26px
+    right: 24px
+    top: 50%
+    transform: translateY(-50%)
+    width: 14px
     z-index: 1
 
 h1, h2, h3, h4, h5, h6, strong
-  font-family: #{"{{ theme.header_font | font_family }}"}
+  font-family: $header-font
   text-transform: uppercase
   letter-spacing: .2em
   text-indent: .2em
@@ -214,8 +210,8 @@ h6
 // Errors
 
 .errors
-  background: #{"{{ theme.error_color }}"}
-  color: #{"{{ theme.background_color }}"}
+  background: $error-background-color
+  color: $button-text-color
   list-style-type: none
   text-align: center
   padding: 16px

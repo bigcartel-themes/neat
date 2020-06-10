@@ -1,172 +1,260 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
 
-section.content
-  +pie-clearfix
-  max-width: 1280px
+.categories
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  +flex-wrap(wrap)
   margin: 0 auto
+  max-width: 960px
+  text-align: center
+  padding: 0
 
-  h1
-    margin-bottom: 16px
-
-  .categories
-    margin: 0 auto
-    max-width: 800px
-    text-align: center
-    padding: 0
-
-    li
-      display: inline-block
-      height: 16px
-      white-space: nowrap
-
-      a:hover, a:focus
-        text-decoration: underline
-
-      &:after
-        content: '/'
-        display: inline-block
-        padding: 0 8px
-
-      &:last-child:after
-        content: ''
-        padding: 0
-
-  .products_list
-    +pie-clearfix
-    display: -webkit-flex
-    display: -ms-flexbox
-    display: flex
-
-    -webkit-flex-wrap: wrap
-    -ms-flex-wrap: wrap
-    flex-wrap: wrap
-    position: relative
-    padding: 0
-    margin-top: 0
-
-    &.collections
-      margin-top: 32px
-
-    li
-      +box-sizing(border-box)
-      position: relative
-      display: -webkit-flex
-      display: -ms-flexbox
-      display: flex
-      overflow: hidden
-      width: 33.333333%
-      padding-right: 3.23232323%
-      padding-left: 3.23232323%
-      margin-bottom: 64px
-      text-align: center
-
-      &:last-child
-        margin-bottom: 32px
-
-        @media only screen and (max-width:990px)
-          margin-bottom: 0
-
-
-      @media only screen and (max-width:990px)
-        width: 50%
-
-
-      @media only screen and (max-width:$breakpoint-xsmall)
-        max-width: 100%
-        margin-bottom: $marginSize/2
-        width: 100%
+  li
+    display: inline-block
+    margin: 4px 0
+    white-space: nowrap
 
     a
-      display: block
-      text-align: center
-      margin: 0 auto
-      color: #{"{{ theme.link_color }}"}
-      max-width: 100%
+      display: inline-block
+      padding: 6px 8px
 
-      &:hover, &:focus
-        color: #{"{{ theme.link_hover }}"}
+      &:hover
+        text-decoration: underline
 
-      img
-        margin: 0 auto 16px auto
-        display: block
-        width: 100%
+    &:after
+      content: '/'
+      display: inline-block
+      padding: 0 2px
 
-      b, i
-        font-weight: normal
-        font-style: normal
-        text-align: center
-        whitespace: nowrap
+    &:last-child:after
+      content: ''
+      padding: 0
 
-      b
-        display: block
-        margin-bottom: 4px
+.product-list-container
+  margin: 0 6%
 
-      i, em
-        display: inline-block
-        font-style: normal
-        color: #{"{{ theme.text_color }}"}
+  @media screen and (max-width: $breakpoint-medium)
+    margin: 0 32px
 
-    h4
-      text-align: center
+.product-list
+  +flexbox
+  +flex-wrap(wrap)
+  +justify-content(flex-start)
+  margin: 0 -3%
 
-  .products_list
+  @media screen and (max-width: $breakpoint-medium)
+    margin: 0 -24px
 
-    li
-      @media only screen and (max-width:$breakpoint-small)
-        margin-bottom: 45px
+  @media screen and (max-width: $breakpoint-small)
+    margin: 0 -16px
 
-      em
-        font-style: italic
-        color: #{"{{ theme.link_color }}"}
+.product-list-thumb
+  color: $link-color
+  display: block
+  font-size: 0
+  padding: 16px 3%
+  padding-bottom: $marginSize
+  position: relative
+  text-align: center
+  vertical-align: middle
+  width: calc(100% / 3)
+  word-break: break-word
 
-  .pagination
-    +font-size(14)
-    +pie-clearfix
-    border-top: 1px solid #{"{{ theme.border_color }}"}
-    display: block
-    line-height: 44px
-    margin: 0 auto $marginSize auto
-    max-width: 640px
-    padding-top: $marginSize
-    text-align: center
+  @media screen and (max-width: $breakpoint-medium)
+    padding: 16px
+    padding-bottom: $marginSize
+    width: calc(100% / 2)
+
+  @media screen and (max-width: $breakpoint-small)
+    padding: 16px
+
+  @media screen and (max-width: $breakpoint-xsmall)
     width: 100%
-    font-family: #{"{{ theme.header_font | font_family }}"}
-    text-transform: uppercase
 
-    span, a
-      padding: 16px
+_:-ms-fullscreen, :root .product-list-thumb
+  width: calc(100% / 3 - .1px)
 
-      &.current
-        border: 1px solid #{"{{ theme.link_color }}"}
+  @media screen and (max-width: $breakpoint-medium)
+    width: calc(100% / 2 - .1px)
 
-    .previous,
-    .next
-      svg
-        position: relative
-        top: -2px
+  @media screen and (max-width: $breakpoint-small)
 
-      path
-        fill: #{"{{ theme.link_color }}"}
-        +transition(all .25s ease-in-out)
+  @media screen and (max-width: $breakpoint-xsmall)
+    padding: 10px
+    width: 100%
 
-      &:hover path
-        fill: #{"{{ theme.link_hover }}"}
+.product-list-link
+  +transition(color .2s ease)
+  color: $link-color
+  text-decoration: none
 
-      @media only screen and (max-width:$breakpoint-small)
-        display: none
+  &:hover, &:focus
+    color: $link-hover-color
+    text-decoration: none
 
-    .previous svg
-      left: -2px
-      +rotate(90deg)
+    .product-list-thumb-name, .product-list-thumb-price
+      color: $link-hover-color
 
-    .next svg
-      left: 1px
-      +rotate(-90deg)
+.product-list-image-container
+  overflow: hidden
+  position: relative
 
-    .disabled
-      display: none
+  &.product-list-image-container-default:before
+    display: none
+
+  &:before
+    display: block
+    width: 100%
+    content: ""
+    padding-bottom: 100%
+    height: 0
+
+.product-list-image
+  position: absolute
+  display: block
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+  &.grid-default
+    position: relative
+
+  &.grid-cover
+    object-fit: cover
+
+  &.grid-contain
+    object-fit: contain
+
+.product-list-thumb-info
+  font-size: 16px
+  line-height: 1.25em
+  padding: 16px 0
+  position: relative
+
+.product-list-thumb-name
+  +transition(color .2s ease)
+  color: $link-color
+  font-weight: bold
+  overflow-wrap: break-word
+  position: relative
+
+.product-list-thumb-price
+  +transition(color .2s ease)
+  color: $text-color
+  margin-top: 6px
+
+.product-list-thumb-status
+  color: $link-color
+  display: inline-block
+  font-style: italic
+  font-weight: normal
+
+.pagination
+  +flexbox
+  +flex-direction(row)
+  +justify-content(space-between)
+  +align-items(center)
+  border-top: 1px solid $border-color
+  font-family: $header-font
+  line-height: 40px
+  margin: 0 auto $marginSize auto
+  max-width: 640px
+  padding-top: $marginSize
+  text-transform: uppercase
+
+  @media screen and (max-width: $breakpoint-medium)
+    font-size: 15px
+    padding: $marginSize / 2
+
+@media screen and (min-width: $breakpoint-xsmall+1)
+  .pagination-caption
+    display: none
+
+.page-numbers
+  +flexbox
+  +flex-wrap(wrap)
+  +justify-content(center)
+  margin: 0 20px
+
+  @media screen and (max-width: $breakpoint-xsmall)
+    display: none
+
+  .previous, .next
+    display: none
+
+  > a, > span
+    +flexbox
+    +align-items(center)
+    +justify-content(center)
+    background: $background-color
+    border-radius: 0
+    border: 1px solid transparent
+    color: $link-color
+    text-align: center
+    height: 40px
+    margin-right: 8px
+    order: 1
+    position: relative
+    text-decoration: none
+    width: 40px
+
+    &.current
+      border: 1px solid $link-hover-color
+      color: $link-hover-color
+
+    &.disabled
+      cursor: not-allowed
+      opacity: .4
+
+  > a
+    &:hover, &:focus
+      color: $link-hover-color
+      text-decoration: underline
+
+.page-link
+  +flexbox
+  +align-items(center)
+  color: $link-color
+  line-height: 40px
+  text-align: center
+  height: 40px
+  padding: 0
+  position: relative
+  text-decoration: none
+
+  &:not(.disabled):hover, &:not(.disabled):focus
+    background: none
+    color: $link-hover-color
+    text-decoration: underline
+
+    svg
+      fill: $link-hover-color
+
+  &.next-page-link
+
+    span
+      margin-right: 5px
+
+  &.previous-page-link
+
+    span
+      margin-left: 5px
+
+    svg
+      +transform(rotate(-180deg))
+
+  &.disabled
+    cursor: not-allowed
+    opacity: 0
+    visibility: hidden
+
+  svg
+    display: block
+    fill: $link-color
+    height: 12px
+    width: 12px
 
 .no_results
   text-align: center

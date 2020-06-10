@@ -1,30 +1,28 @@
-@import 'compass'
 @import 'config'
-@import 'remfont'
-@import 'verticalalign'
 
 #contact
-
-  section.content
-    +pie-clearfix
-    box-sizing: border-box
-    margin: 0 auto
-    max-width: 1280px
+  .content
+    max-width: 864px
     padding-left: $marginSize
     padding-right: $marginSize
 
     h1
       margin: 0 auto 32px auto
 
+    button
+      display: block
+      margin: 64px auto 64px auto
+      max-width: 320px
+
   .contact
-    +box-sizing(border-box)
     list-style: none
     margin: 0 auto
     max-width: 800px
     padding: 0
 
+
     li
-      border-bottom: 1px solid #{"{{ theme.border_color }}"}
+      border-bottom: 1px solid $border-color
       display: block
       margin: $marginSize auto
       padding-bottom: $marginSize
@@ -45,7 +43,6 @@
           padding-right: 143px
           width: 100%
 
-
       @media only screen and (max-width:$breakpoint-small)
         margin: 0
 
@@ -53,7 +50,7 @@
         +font-size(16)
         display: block
         float: left
-        line-height: 56px
+        line-height: 50px
         margin-right: $marginSize
         text-align: right
         width: 20%
@@ -67,25 +64,24 @@
       input[type='text'], textarea
         display: block
         float: left
-        height: 56px
+        height: 50px
         width: 55%
 
         @media only screen and (max-width:$breakpoint-small)
           width: 100%
 
       span
-        +clearfix
+        +pie-clearfix
         +font-size(14)
         display: inline-block
         margin-top: 16px
         white-space: nowrap
 
       .captcha_image
-        +box-sizing(border-box)
-        +clearfix
-        border: 1px solid #{"{{ theme.text_color }}"}
+        +pie-clearfix
+        border: 1px solid $text-color
         display: block
-        height: 56px
+        height: 50px
         right: 0
         max-width: 128px
         position: absolute
@@ -94,12 +90,8 @@
 
         img
           display: block
+          height: 100%
 
       textarea
         height: 256px
         padding-top: 16px
-
-  button
-    display: block
-    margin: 64px auto 64px auto
-    max-width: 320px

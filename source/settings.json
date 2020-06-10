@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.7.40",
+  "version": "1.8.0",
   "images": [
     {
       "variable": "logo",
@@ -56,12 +56,12 @@
     {
       "variable": "text_color",
       "label": "Text",
-      "default": "#1b1b1b"
+      "default": "#111111"
     },
     {
       "variable": "link_color",
       "label": "Links",
-      "default": "#656565"
+      "default": "#444444"
     },
     {
       "variable": "link_hover",
@@ -74,8 +74,23 @@
       "default": "#e2e2e2"
     },
     {
+      "variable": "button_text_color",
+      "label": "Button & error text",
+      "default": "#FFFFFF"
+    },
+    {
+      "variable": "button_background_color",
+      "label": "Button background",
+      "default": "#000000"
+    },
+    {
+      "variable": "button_background_hover_color",
+      "label": "Button background hover",
+      "default": "#444444"
+    },
+    {
       "variable": "error_color",
-      "label": "Errors",
+      "label": "Error background",
       "default": "#a92d22"
     }
   ],
@@ -89,7 +104,7 @@
     "title_background_color": "transparent",
     "background_color": "{{ header_color }}",
     "body_font": "{{ text_font }}",
-    "body_font_size": "14px",
+    "body_font_size": "16px",
     "step_border_color":"{{ border_color }}",
     "step_header_color":"{{ text_color }}",
     "step_inactive_header_color":" {{ text_color }}",
@@ -103,14 +118,14 @@
     "content_header_font_size":"18px",
     "content_border_color":"transparent",
     "content_border_radius":"0px",
-    "error_background_color": "#ea4859",
+    "error_background_color": "#a92d22",
     "error_color": "#ffffff",
     "error_border_radius": "0",
-    "error_border_color": "#ea4859",
+    "error_border_color": "#a92d22",
     "input_focus_color": "#000000",
     "input_focus_background_color": "#ffffff",
-    "input_focus_border_color": "#bfbfbf",
-    "input_error_border_color": "#ea4859",
+    "input_focus_border_color": "#000000",
+    "input_error_border_color": "#a92d22",
     "input_color": "#000000",
     "input_error_color": "#000000",
     "input_border_color": "#bfbfbf",
@@ -118,14 +133,14 @@
     "input_error_background_color": "#ffffff",
     "input_border_radius":"0px",
     "input_font":"{{ text_font }}",
-    "button_color":"{{ link_color }}",
+    "button_color":"{{ button_text_color }}",
     "button_border_width":"1px",
     "button_border_radius":"0px",
-    "button_hover_color":"{{ background_color }}",
-    "button_background_color":"transparent",
-    "button_hover_background_color":"{{ link_hover }}",
-    "button_border_color":"{{ link_color }}",
-    "button_hover_border_color":"{{ link_hover }}",
+    "button_hover_color":"{{ button_text_color }}",
+    "button_background_color":"{{ button_background_color }}",
+    "button_hover_background_color":"{{ button_background_hover_color }}",
+    "button_border_color":"{{ button_background_color }}",
+    "button_hover_border_color":"{{ button_background_hover_color }}",
     "link_color":"{{ link_color }}",
     "link_hover_color":"{{ link_hover }}",
     "step_header_font_size":"18px",
@@ -163,6 +178,18 @@
       "description": "The number of custom page links show in the main navigation."
     },
     {
+      "variable": "grid_image_style",
+      "label": "Product grid image style",
+      "type": "select",
+      "options": [
+        ["Normal", "default"],
+        ["Fit to square", "contain"],
+        ["Crop to square", "cover"]
+      ],
+      "default": "default",
+      "description": "Sets the display of images in the product grid"
+    },
+    {
       "variable": "products_per_page",
       "label": "Products per page",
       "type": "select",
@@ -176,7 +203,15 @@
       "type": "select",
       "options": "0..100",
       "default": 12,
-      "description": "The number of products featured on the Home page"
+      "description": "The number of products displayed on the home page"
+    },
+    {
+      "variable": "featured_order",
+      "label": "Featured products order",
+      "type": "select",
+      "options": "product_orders",
+      "default": "position",
+      "description": "The order of products on the Home page"
     },
     {
       "variable": "secondary_product_images",
