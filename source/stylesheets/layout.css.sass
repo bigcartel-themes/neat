@@ -188,18 +188,6 @@ _:-ms-fullscreen, :root .slideshow
   width: 100%
   height: calc((var(--vh, 1vh) * 100))
 
-  &:after
-    background-color: rgba(black, .3)
-    background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
-    background-repeat: repeat
-    background-size: 4px
-    content: ""
-    height: 100%
-    position: absolute
-    top: 0
-    width: 100%
-    z-index: -1
-
 _:-ms-fullscreen, :root .carousel
   height: 100vh
 
@@ -218,6 +206,18 @@ _:-ms-fullscreen, :root .carousel
     background-color: $button-background-color
     height: 14px
     width: 14px
+
+.flickity-viewport:after
+  background-color: rgba(black, .1)
+  background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
+  background-repeat: repeat
+  background-size: 4px
+  content: ""
+  height: 100%
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 1
 
 .featured
   +transform(translateY(-50%) translateX(-50%))
