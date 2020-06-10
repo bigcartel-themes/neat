@@ -17,7 +17,7 @@
         {% endif %}
       </a>
     </div>
-    <nav class="sections">
+    <nav class="sections" aria-label="Primary navigation">
       <ul class="navigation">
         <li><a href="/products">{% if theme.collections %}Collections{% else %}{{ pages.products.name }}{% endif %}</a></li>
         {% for page in pages.all limit: theme.nav_items %}
@@ -25,7 +25,7 @@
         {% endfor %}
       </ul>
     </nav>
-    <nav class="utility">
+    <nav class="utility" aria-label="Secondary navigation">
       <ul>
         {% if theme.show_search %}
           <li>
@@ -51,12 +51,36 @@
     </nav>
   </header>
   {% if page.category == 'custom' %}
-    <section class="content">
+    <main id="main" class="content custom-content">
       <h1>{{ page.name }}</h1>
       {{ page_content | paragraphs }}
-    </section>
+    </main>
   {% else %}
-    {{ page_content }}
+    {% if page.permalink == 'home' %}
+      {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank %}
+        <section class="slideshow">
+          {% if theme.image_sets.slideshow_images.size > 0 %}
+            <div class="carousel">
+              {% for image in theme.image_sets.slideshow_images %}
+                <div class="carousel-cell" style="background-image: url('{{ image.url | constrain: '1500' }}');"></div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="carousel carousel-empty"></div>
+          {% endif %}
+          {% if theme.welcome_header != blank or theme.welcome_subheader != blank %}
+            <div class="featured">
+              {% if theme.welcome_subheader != blank %}<div class="welcome-subheader">{{ theme.welcome_subheader }}</div>{% endif %}
+              {% if theme.welcome_header != blank %}<div class="welcome-header">{{ theme.welcome_header }}</div>{% endif %}
+              <a href="/products" class="button shop-now-button">Shop Now</a>
+            </div>
+          {% endif %}
+        </section>
+      {% endif %}
+    {% endif %}
+    <main id="main" class="content">
+      {{ page_content }}
+    </main>
   {% endif %}
 
   <footer>

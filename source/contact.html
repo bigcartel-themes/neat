@@ -1,23 +1,24 @@
-<section class="content">
-   {% if errors != blank %}
-    <ul class="errors">
-      {% for error in errors %}
-        <li>{% if forloop.length != 1 %}&bull; {% endif %}{{ error }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  <h1>{{ page.name }}</h1>
-  {% if theme.twitter_url != blank or theme.facebook_url != blank or theme.tumblr_url != blank or theme.instagram_url != blank or theme.pinterest_url != blank %}
+{% if errors != blank %}
+  <ul class="errors">
+    {% for error in errors %}
+      <li>{% if forloop.length != 1 %}&bull; {% endif %}{{ error }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<h1>{{ page.name }}</h1>
+
+{% if theme.twitter_url != blank or theme.facebook_url != blank or theme.tumblr_url != blank or theme.instagram_url != blank or theme.pinterest_url != blank %}
   <ul class="social-links">
     {% if theme.twitter_url != blank %}
       <li><a href="{{ theme.twitter_url }}" title="Follow us on Twitter"><svg xmlns="http://www.w3.org/2000/svg" width="15.995" height="16" viewBox="0 0 15.995 13.004"><path d="M15.995 1.539c-.589.262-1.221.438-1.885.518.678-.406 1.197-1.049 1.443-1.816-.635.377-1.338.65-2.085.797-.598-.638-1.468-1.038-2.368-1.038-1.841 0-3.3 1.5-3.3 3.3 0 .3 0 .5.1.748-2.728-.137-5.147-1.443-6.767-3.43-.306.482-.433.982-.433 1.682 0 1.1.8 2.1 1.6 2.732-.535-.032-1.3-.232-1.3-.46v.043c0 1.6 1 2.9 2.5 3.2-.327.085-.7.085-1 .134-.212 0-.461-.021-.663-.061.418 1.3 1.6 2.3 3 2.3-1.123.879-2.55 1.404-4.087 1.404-.266 0-.532-.016-.789-.045 1.453.9 3.2 1.5 5 1.5 6.039 0 9.338-5.002 9.338-9.34l-.011-.426c.711-.481 1.312-1.081 1.712-1.742z"/></svg></a></li>{% endif %}{% if theme.facebook_url != blank %}<li><a href="{{ theme.facebook_url }}" title="Friend us on Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="9" height="16" viewBox="157.162 90 297.799 612" enable-background="new 157.162 90 297.799 612"><path d="M369.036 193.795h85.68v-103.795h-121.054c-97.553 19.707-98.776 108.936-98.776 108.936v105.753h-77.724v102.938h77.724v294.373h108.324v-294.617h102.081l9.67-102.938h-111.017v-75.521c-.123-33.171 25.092-35.129 25.092-35.129z"/></svg></a></li>{% endif %}{% if theme.tumblr_url != blank %}<li><a href="{{ theme.tumblr_url }}" title="Follow us on Tumblr"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="117.504 90 377.114 611.937" enable-background="new 117.504 90 377.114 611.937"><path d="M493.272 571.276c-14.566 13.832-55.692 26.194-55.692 26.194-115.179 27.907-107.957-66.464-107.957-66.464v-189.72h144.31v-96.818h-144.31v-154.468h-87.883c-11.383 139.658-124.236 164.628-124.236 164.628v87.394h67.81v224.604c-.979 62.424 36.475 92.656 36.475 92.656 115.056 89.964 272.83 9.67 272.83 9.67v-99.021l-1.347 1.345z"/></svg></a></li>{% endif %}{% if theme.instagram_url != blank %}<li><a href="{{ theme.instagram_url }}" title="Follow us on Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="16" viewBox="0 90 612 612" enable-background="new 0 90 612 612"><path d="M540.273 90h-468.546c-39.536 0-71.727 32.191-71.727 71.727v468.67c0 39.412 32.191 71.603 71.727 71.603h468.67c39.535 0 71.726-32.191 71.726-71.727v-468.546c-.123-39.414-32.436-71.727-71.85-71.727zm-234.273 190.332c63.893 0 115.668 51.775 115.668 115.668s-51.775 115.668-115.668 115.668-115.668-51.775-115.668-115.668 51.775-115.668 115.668-115.668zm236.232 327.787c0 13.097-10.771 23.868-23.868 23.868h-425.952c-13.097 0-23.868-10.771-23.868-23.868v-259.61h56.304c-3.917 15.178-6.12 31.212-6.12 47.491 0 103.551 83.966 187.272 187.272 187.272s187.272-83.721 187.272-187.272c0-16.524-2.204-32.313-6.12-47.491h55.08v259.61zm0-353.001c0 13.097-10.771 23.868-23.868 23.868h-69.769c-13.097 0-23.868-10.771-23.868-23.868v-69.768c0-13.097 10.771-23.868 23.868-23.868h69.769c13.097 0 23.868 10.771 23.868 23.868v69.768z"/></svg></a></li>{% endif %}{% if theme.pinterest_url != blank %}<li><a title="Pinterest" href="{{ theme.pinterest_url }}"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 12 16"><path d="M4.933 10.582c-.406 2.203-.9 4.314-2.366 5.418-.452-3.33.665-5.83 1.183-8.484C2.866 6 3.9 2.9 5.7 3.63c2.315.97-2 5.77.9 6.34 3 .6 4.225-5.4 2.365-7.36C6.285-.22 1.1 2.5 1.8 6.596c.154 1 1.1 1.3.4 2.658C.48 8.858-.034 7.45.032 5.574.138 2.504 2.692.352 5.255.054c3.24-.376 6.3 1.2 6.7 4.396.473 3.568-1.462 7.433-4.927 7.2C6.063 11.5 5.7 11 4.9 10.582z"/></svg></a></li>
     {% endif %}
   </ul>
-  {% endif %}
-  {% if contact.sent %}
-    <div class="centered-message">Thanks! Your message has been sent and we'll get back to you soon.</div>
-  {% else %}
+{% endif %}
 
+{% if contact.sent %}
+  <div class="centered-message">Thanks! Your message has been sent and we'll get back to you soon.</div>
+{% else %}
   <form method="post" action="/contact">
     <ul class="contact">
       <li>
@@ -47,5 +48,4 @@
     </ul>
     <button type="submit" name="submit" tabindex="6" title="Send us an email">Send</button>
   </form>
-  {% endif %}
-</section>
+{% endif %}

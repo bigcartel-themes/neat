@@ -1,32 +1,30 @@
 @import 'config'
 
-#product
+.product-container
+  +pie-clearfix
+  padding-left: $marginSize
+  padding-right: $marginSize
 
-  section.content
-    +pie-clearfix
-    padding-left: $marginSize
-    padding-right: $marginSize
+  @media screen and (max-width: $breakpoint-small)
+    padding-left: $marginSize / 2
+    padding-right: $marginSize / 2
 
-    @media screen and (max-width: $breakpoint-small)
-      padding-left: $marginSize / 2
-      padding-right: $marginSize / 2
+  h1
+    margin-bottom: 16px
 
-    h1
-      margin-bottom: 16px
+  .product-subheader
+    +font-size(18)
+    font-weight: bold
+    font-family: $header-font
+    text-transform: uppercase
+    letter-spacing: .2em
+    text-indent: .2em
+    margin: 16px auto 64px auto
+    padding: 0
+    text-align: center
 
-    .product-subheader
-      +font-size(18)
-      font-weight: bold
-      font-family: $header-font
-      text-transform: uppercase
-      letter-spacing: .2em
-      text-indent: .2em
-      margin: 16px auto 64px auto
-      padding: 0
-      text-align: center
-
-      @media only screen and (max-width:$breakpoint-small)
-        margin: 16px auto 16px auto
+    @media only screen and (max-width:$breakpoint-small)
+      margin: 16px auto 16px auto
 
     em
       font-style: normal
