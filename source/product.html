@@ -1,4 +1,4 @@
-<section class="content">
+<div class="product-container">
   <h1>{{ product.name }}</h1>
   {% capture product_pricing %}
     {% if product.variable_pricing %}
@@ -9,13 +9,11 @@
   {% endcapture %}
   {% case product.status %}
   {% when 'sold-out' %}
-  <div class="product-subheader">{{ product_pricing }} <em>Sold Out</em></div>
-
+    <div class="product-subheader">{{ product_pricing }} <em>Sold Out</em></div>
   {% when 'coming-soon' %}
-  <div class="product-subheader">{{ product_pricing }} <em>Coming Soon</em></div>
-
+    <div class="product-subheader">{{ product_pricing }} <em>Coming Soon</em></div>
   {% when 'active' %}
-  <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></div>
+    <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></div>
   {% endcase %}
 
   <section class="product-images {% if theme.secondary_product_images == 'thumbs' %}image-gallery{% endif %}">
@@ -100,22 +98,22 @@
     {% endif %}
 
     {% if product.status == 'active' %}
-	    {% if theme.show_inventory_bars %}
-		    <div class="product-section-subheader">Availability</div>
-		    <ul class="product-availability">
-		      {% for option in product.options %}
-		      <li>
-		        <b>
-		          <b style="width:{{ option.inventory }}%"></b>
-		        </b>
-		        <div>
+      {% if theme.show_inventory_bars %}
+  	    <div class="product-section-subheader">Availability</div>
+  	    <ul class="product-availability">
+  	      {% for option in product.options %}
+  	      <li>
+  	        <b>
+  	          <b style="width:{{ option.inventory }}%"></b>
+  	        </b>
+  	        <div>
   		        {% unless product.has_default_option %}<span {% if option.sold_out %}class="sold_out"{% endif %}>{{ option.name }}</span>{% endunless %}
   		        {% if option.sold_out %}<span class="sold_out_text">Sold Out</span>{% endif %}
-		        </div>
-		      </li>
-		      {% endfor %}
-		    </ul>
-	    {% endif %}
+  	        </div>
+  	      </li>
+  	      {% endfor %}
+  	    </ul>
+      {% endif %}
       <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
         <input type="hidden" name="utf8" value='✓'>
         {% if product.has_default_option %}
@@ -132,7 +130,7 @@
                       <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
                     {% endfor %}
                   </select>
-                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
                 </div>
               {% endfor %}
             </div>
@@ -144,11 +142,11 @@
                   <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
                 {% endfor %}
               </select>
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
             </div>
           {% endif %}
         {% endif %}
-        <button class="button add-to-cart-button" name="submit" type="submit" title="Add to Cart" data-add-title="Add to Cart" data-sold-title="Sold out"{% if product.has_default_option %}{% else %}disabled="disabled"{% endif %}>Add to Cart</button>
+        <button class="button add-to-cart-button" name="submit" type="submit" data-add-title="Add to Cart" data-sold-title="Sold out"{% if product.has_default_option %}{% else %}disabled="disabled"{% endif %}>Add to Cart</button>
         {{ store | instant_checkout_button: 'dark', '44px' }}
         {% if product.has_option_groups %}
           <div class="reset-selection-button-container">
@@ -169,7 +167,7 @@
     {% endif %}
 
   </section>
-</section>
+</div>
 
 {% if theme.secondary_product_images == 'full' and product.images.size > 1 %}
   <section class="secondary-product-images">

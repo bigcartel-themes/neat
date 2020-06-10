@@ -198,6 +198,7 @@ function enableAddButton(updated_price) {
     priceTitle = '';
   }
   addButton.html(addButtonTitle + priceTitle);
+  addButton.attr('aria-label',addButton.text());
 }
 
 function disableAddButton(type) {
@@ -210,6 +211,7 @@ function disableAddButton(type) {
     addButton.attr("disabled","disabled");
   }
   addButton.html(addButtonTitle);
+  addButton.attr('aria-label','');
 }
 
 function enableSelectOption(select_option) {
