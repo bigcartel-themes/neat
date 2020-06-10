@@ -6,6 +6,7 @@ function setDocHeight() {
   document.documentElement.style.setProperty('--vh', win_height/100 + "px");
 }
 
+
 $(document).ready(function () {
 
   $('.image-gallery').magnificPopup({
@@ -67,7 +68,13 @@ $(document).ready(function () {
   else {
     setDocHeight();
   }
-
+  var windowWidth = $(window).width();
+  $(window).resize(function(){
+    if ($(window).width() != windowWidth) {
+      windowWidth = $(window).width();
+      setDocHeight()
+    }
+  });
   $('body').on('click', '.open-search-button', function (e) {
     openOverlay('.search-overlay');
     $('#search-input').focus();
