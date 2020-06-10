@@ -224,41 +224,50 @@ _:-ms-fullscreen, :root .carousel
   color: $welcome-text-color
   left: 50%
   top: 50%
+  padding: 0 $marginSize
   position: absolute
-  max-width: 600px
+  max-width: 1280px
   text-align: center
   z-index: 2
   width: 100%
 
 .welcome-subheader
-  +font-size(14,20)
+  +fluid-type(14px, 20px)
+  font-family: $header-font
   font-weight: 600
-  line-height: 18px
-  padding: 20px 16px 0px
+  letter-spacing: .2em
+  line-height: 1.25em
+  padding: 24px 16px
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
-    line-height: 1.75rem
+    letter-spacing: .1em
 
 .welcome-header
-  +font-size(64)
-  letter-spacing: .25em
+  +fluid-type(24px, 64px)
+  font-family: $header-font
+  font-weight: bold
+  letter-spacing: .2em
   margin: 0 0 24px 0
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
-    font-size: 9vw
-    letter-spacing: 0
-    line-height: 3.5rem
+    letter-spacing: .1em
     padding: 0 16px
-    text-indent: 0
     white-space: normal
 
-.shop-now-button
-  color: $button-text-color
+a.shop-now-button
+  +transition(background .2s linear, border .2s linear)
+  border: 1px solid $welcome-text-color
+  background: transparent
+  color: $welcome-text-color
+  height: auto
+  padding: 0 $marginSize
   width: auto
 
   &:hover, &:focus
+    border: 1px solid $button-background-hover-color
+    background: $button-background-hover-color
     color: $button-text-color
 
 #home
