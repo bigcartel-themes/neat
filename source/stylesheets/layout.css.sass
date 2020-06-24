@@ -219,6 +219,9 @@ _:-ms-fullscreen, :root .carousel
       background: $welcome-text-color
       opacity: .8
 
+    &:only-child
+      display: none
+
 .flickity-viewport:after
   background-color: rgba(black, .3)
   background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
