@@ -4,19 +4,14 @@
   background-color: $announcement-background-color
   color: $announcement-text-color
   display: none
-  padding: 16px 144px
+  padding: 20px 144px
   position: relative
   text-align: center
-  top: 0
-  left: 0
   width: 100%
-  z-index: 1001
-
-  &.has_featured
-    position: absolute
+  z-index: 1
 
   @media screen and (max-width: $breakpoint-medium)
-    padding: 16px 64px
+    padding: 20px 64px
 
   &.visible
     display: block
@@ -27,8 +22,8 @@
   +flexbox
   +align-items(center)
   +justify-content(center)
-  height: 32px
   background: none
+  height: 32px
   padding: 0
   position: absolute
   right: 16px
@@ -64,14 +59,9 @@ header
   width: 100%
   z-index: 999
 
-  &.has_featured
-    position: absolute
-
-  &.sticky
-    position: fixed !important
-    top: 0 !important
-    margin-top: 0 !important
-    width: 100%
+  &.page-head-scrolled
+    position: fixed
+    top: 0
 
   a
     +flexbox
@@ -103,10 +93,6 @@ header
 
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
-    position: relative
-
-    &.home.has_featured
-      position: absolute
 
   &.overlay, &.page
     background-color: $header-background-color
@@ -242,6 +228,9 @@ header
   width: 100%
   z-index: 1
 
+header.has_featured + .slideshow
+  top: -88px
+
 _:-ms-fullscreen, :root .slideshow
   height: 100vh
 
@@ -313,18 +302,20 @@ _:-ms-fullscreen, :root .carousel
   font-weight: 600
   letter-spacing: .2em
   line-height: 1.25em
+  margin-right: -.2em
   padding: 24px 16px
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
     letter-spacing: .1em
+    margin-right: -.1em
 
 .welcome-header
   +fluid-type(24px, 64px)
   font-family: $header-font
   font-weight: bold
   letter-spacing: .2em
-  margin: 0 0 24px 0
+  margin: 0 -.2em 24px 0
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
@@ -362,6 +353,9 @@ a.shop-now-button
     padding-bottom: $marginSize
     padding-top: $marginSize
 
+  &.no-featured-products
+    padding: 0
+
   h1
     color: $text-color
     display: block
@@ -379,12 +373,6 @@ a.shop-now-button
       text-align: center
       max-width: 800px
       margin: 0 auto
-
-.sticky + .content
-  padding-top: 144px
-
-  @media screen and (max-width: $breakpoint-small)
-    padding-top: 124px
 
 _:-ms-fullscreen, :root .content
   +flex(1 0 auto)

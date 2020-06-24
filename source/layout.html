@@ -88,7 +88,7 @@
         </section>
       {% endif %}
     {% endif %}
-    <main id="main" class="content">
+    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 %}no-featured-products{% endif %}">
       {{ page_content }}
     </main>
   {% endif %}
@@ -212,13 +212,6 @@
           }
         }
       }
-      window.onload = (event) => {
-        var sticky = document.querySelector(".header").offsetTop;
-        toggleStickyHeader(sticky);
-        window.onscroll = function() {
-          toggleStickyHeader(sticky)
-        };
-      };
     </script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="{{ 'api' | theme_js_url }}"></script>
