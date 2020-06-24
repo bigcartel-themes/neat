@@ -20,8 +20,11 @@ $button-text-color: #{'{{ theme.button_text_color }}'}
 $button-background-color: #{'{{ theme.button_background_color }}'}
 $button-background-hover-color: #{'{{ theme.button_background_hover_color }}'}
 
-$header-font: #{"{{ theme.header_font }}"}
-$text-font: #{"{{ theme.text_font }}"}
+$announcement-text-color: #{"{{ theme.announcement_text_color }}"}
+$announcement-background-color: #{"{{ theme.announcement_background_color }}"}
+
+$header-font: #{"{{ theme.header_font | font_family }}"}
+$text-font: #{"{{ theme.text_font | font_family }}"}
 
 @mixin border-radius($radius...)
   border-radius: $radius
