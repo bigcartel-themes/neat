@@ -1,5 +1,5 @@
 
-<h1>
+<h1 {% if page.full_url contains "search=" or theme.collections and page.full_url contains '/products' %}class="bottom-margin"{% endif %}>
   {% if page.full_url contains "search=" %}
     Product Search
   {% elsif theme.collections and page.full_url contains '/products' %}
