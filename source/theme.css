@@ -1,8 +1,4 @@
-
 /*
- * Here we're including a 3rd-party stylesheet we put in stylesheets/vendor written in normal CSS,
- * as well as a few custom Sass stylesheets we've written for different areas of the store
- *
  *= require_directory ./stylesheets/vendor
  *= require stylesheets/defaults
  *= require stylesheets/layout
@@ -12,5 +8,7 @@
  *= require stylesheets/cart
  *= require stylesheets/contact
  *= require stylesheets/overlay
- *
  */
+/*============================================================
+  Custom Styles - add and override styles below.
+============================================================*/

@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "1.8.5",
+  "version": "1.9.1",
   "images": [
     {
       "variable": "logo",
@@ -92,6 +92,16 @@
       "variable": "error_color",
       "label": "Error background",
       "default": "#a92d22"
+    },
+    {
+      "variable": "announcement_text_color",
+      "label": "Announcement Message Text",
+      "default": "#FFFFFF"
+    },
+    {
+      "variable": "announcement_background_color",
+      "label": "Announcement Message Background",
+      "default": "#000000"
     }
   ],
   "checkout": {
@@ -151,6 +161,12 @@
     "summary_item_list_border_color": "{{ border_color }}"
   },
   "options": [
+    {
+      "variable": "announcement_message_text",
+      "label": "Announcement text",
+      "type": "text",
+      "description": "Displays an announcement message on the top of every page"
+    },
     {
       "variable": "welcome_header",
       "label": "Welcome header",
@@ -256,7 +272,7 @@
     },
     {
       "variable": "share_buttons",
-      "label": "Show social buttons",
+      "label": "Show product share buttons",
       "type": "boolean",
       "default": false,
       "description": "Adds Facebook, Twitter, and Pinterest buttons to Product pages"

@@ -1,5 +1,51 @@
 @import 'config'
 
+.announcement-message
+  background-color: $announcement-background-color
+  color: $announcement-text-color
+  display: none
+  padding: 20px 144px
+  position: relative
+  text-align: center
+  width: 100%
+  z-index: 1
+
+  @media screen and (max-width: $breakpoint-medium)
+    padding: 20px 64px
+
+  &.visible
+    display: block
+
+.button.announcement-message-close
+  +transform(translateY(-50%))
+  +transition(none)
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  background: none
+  height: 32px
+  padding: 0
+  position: absolute
+  right: 16px
+  top: 50%
+  width: 32px
+
+  @media screen and (max-width: $breakpoint-small)
+    right: 4px
+
+  &:hover, &:focus
+    background: none !important
+    opacity: .7
+
+    svg
+      fill: $announcement-text-color
+
+  svg
+    display: block
+    fill: $announcement-text-color
+    height: 14px
+    width: 14px
+
 header
   +flexbox
   +align-items(center)
@@ -9,9 +55,13 @@ header
   font-weight: 600
   height: 88px
   padding: 0 $marginSize
-  position: fixed
+  margin-top: 0
   width: 100%
   z-index: 999
+
+  &.page-head-scrolled
+    position: fixed
+    top: 0
 
   a
     +flexbox
@@ -43,10 +93,6 @@ header
 
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
-    position: relative
-
-    &.home.has_featured
-      position: absolute
 
   &.overlay, &.page
     background-color: $header-background-color
@@ -81,7 +127,7 @@ header
       width: 50%
 
     a
-      max-width: 208px
+      max-width: 500px
 
       &:after
         content: none !important
@@ -94,6 +140,7 @@ header
 
       a
         height: 66px
+        max-width: 208px
 
   .sections
     +flexbox
@@ -181,6 +228,9 @@ header
   width: 100%
   z-index: 1
 
+header.has_featured + .slideshow
+  top: -88px
+
 _:-ms-fullscreen, :root .slideshow
   height: 100vh
 
@@ -252,18 +302,20 @@ _:-ms-fullscreen, :root .carousel
   font-weight: 600
   letter-spacing: .2em
   line-height: 1.25em
+  margin-right: -.2em
   padding: 24px 16px
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
     letter-spacing: .1em
+    margin-right: -.1em
 
 .welcome-header
   +fluid-type(24px, 64px)
   font-family: $header-font
   font-weight: bold
   letter-spacing: .2em
-  margin: 0 0 24px 0
+  margin: 0 -.2em 24px 0
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
@@ -285,31 +337,24 @@ a.shop-now-button
     background: $button-background-hover-color
     color: $button-text-color
 
-#home
-  .content
-    padding-top: 144px
-
-    @media only screen and (max-width:$breakpoint-small)
-      padding-top: 32px
-
-  .slideshow + .content
-    padding-top: 64px
-
-  h1
-    margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
+#home h1
+  margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
 
 .content
   +flex(1)
   margin: 0 auto
   max-width: 1364px
   padding-bottom: $marginSize * 2
-  padding-top: 144px
+  padding-top: 56px
   position: relative
   width: 100%
 
   @media only screen and (max-width:$breakpoint-small)
     padding-bottom: $marginSize
     padding-top: $marginSize
+
+  &.no-featured-products
+    padding: 0
 
   h1
     color: $text-color
@@ -332,7 +377,9 @@ a.shop-now-button
 _:-ms-fullscreen, :root .content
   +flex(1 0 auto)
 
-.social-icons, .social-links
+.social-links
+  +flexbox
+  +justify-content(center)
   +font-size(16)
   line-height: normal
   list-style: none
@@ -345,40 +392,38 @@ _:-ms-fullscreen, :root .content
   li
     border: 1px solid $border-color
     border-width: 1px 0 1px 1px
-    display: inline-block
     height: 56px
-    line-height: normal
-    margin: 0
-    padding: 0
     width: 56px
 
     &:last-child
       border-width: 1px
 
-    &:hover
-      background-color: $link-hover-color
-      border-color: $link-hover-color
-
     a
-      display: block
+      +flexbox
+      +align-items(center)
+      +justify-content(center)
       width: 56px
       height: 56px
-      line-height: normal
+
+      &:hover, &:focus
+        background-color: $link-hover-color
+        color: $background-color
+
+        svg
+          fill: white
 
       svg
+        display: block
         cursor: pointer
         fill: $link-color
-        height: 16px
+        height: 22px
         position: relative
-        +vertical-align
-        width: 16px
-
-    &:hover svg
-      fill: $background-color
+        width: 22px
 
 footer
   +flexbox
   +align-items(flex-start)
+  +align-items(center)
   +flex-direction(row)
   +flex-wrap(wrap)
   +flex-shrink(0)
@@ -388,7 +433,6 @@ footer
 
   @media screen and (max-width: $breakpoint-small)
     +flex-direction(column)
-    +align-items(center)
     +justify-content(center)
     padding: 0
 
@@ -433,17 +477,19 @@ footer
         padding: $marginSize / 2 0
     a
       display: block
-      padding: 4px
+      padding: 4px 8px
 
       &:hover, &:focus
         svg
           fill: $link-hover-color
-
     svg
       display: block
       fill: $link-color
-      height: 20px
-      width: 20px
+      height: 24px
+      width: 24px
+
+      &.tumblr-icon
+        width: 15px
 
   .footernav
     order: 3
