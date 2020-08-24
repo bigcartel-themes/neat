@@ -288,7 +288,7 @@ _:-ms-fullscreen, :root .carousel
   +transform(translateY(-50%) translateX(-50%))
   color: $welcome-text-color
   left: 50%
-  top: 50%
+  top: calc(50% + 88px)
   padding: 0 $marginSize
   position: absolute
   max-width: 1280px
@@ -297,13 +297,13 @@ _:-ms-fullscreen, :root .carousel
   width: 100%
 
 .welcome-subheader
-  +fluid-type(14px, 20px)
+  +fluid-type(16px, 20px)
   font-family: $header-font
   font-weight: 600
   letter-spacing: .2em
   line-height: 1.25em
   margin-right: -.2em
-  padding: 24px 16px
+  padding: 0 16px 24px 16px
   text-transform: uppercase
 
   @media only screen and (max-width:$breakpoint-small)
@@ -311,10 +311,11 @@ _:-ms-fullscreen, :root .carousel
     margin-right: -.1em
 
 .welcome-header
-  +fluid-type(24px, 64px)
+  +fluid-type(20px, 60px)
   font-family: $header-font
   font-weight: bold
   letter-spacing: .2em
+  line-height: 1.3em
   margin: 0 -.2em 24px 0
   text-transform: uppercase
 
