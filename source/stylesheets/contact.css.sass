@@ -2,96 +2,47 @@
 
 #contact
   .content
-    max-width: 864px
+    max-width: 664px
     padding-left: $marginSize
     padding-right: $marginSize
 
+    @media only screen and (max-width:$breakpoint-small)
+      padding-left: $marginSize/2
+      padding-right: $marginSize/2
+
     h1
-      margin: 0 auto 32px auto
+      margin: 0 auto $marginSize * 2 auto
 
-    button
-      display: block
-      margin: 64px auto 64px auto
-      max-width: 320px
+.contact-form-block
+  display: block
+  margin: $marginSize auto
+  position: relative
 
-  .contact
-    list-style: none
-    margin: 0 auto
-    max-width: 800px
-    padding: 0
+  input[type='text'], textarea
+    height: 50px
+    padding: 8px
+    text-indent: 0
+    width: 100%
 
+  textarea
+    height: 256px
 
-    li
-      border-bottom: 1px solid $border-color
-      display: block
-      margin: $marginSize auto
-      padding-bottom: $marginSize
-      position: relative
-      overflow: hidden
+.contact-label
+  display: block
+  margin-bottom: $marginSize / 4
 
-      > div
-        display: block
-        float: left
-        overflow: hidden
-        position: relative
-        width: 55%
+.send-message-button
+  display: block
+  margin: $marginSize * 2 auto
+  max-width: 320px
 
-        @media only screen and (max-width:$breakpoint-small)
-          width: 100%
+  @media screen and (max-width: $breakpoint-small)
+    margin-top: $marginSize
+    max-width: 100%
 
-        input[type='text']
-          padding-right: 143px
-          width: 100%
+.recaptcha-note
+  +font-size(14)
+  margin-top: 16px
 
-      @media only screen and (max-width:$breakpoint-small)
-        margin: 0
-
-      label
-        +font-size(16)
-        display: block
-        float: left
-        line-height: 50px
-        margin-right: $marginSize
-        text-align: right
-        width: 20%
-
-        @media only screen and (max-width:$breakpoint-small)
-          clear: both
-          margin: 0
-          text-align: left
-          width: 100%
-
-      input[type='text'], textarea
-        display: block
-        float: left
-        height: 50px
-        width: 55%
-
-        @media only screen and (max-width:$breakpoint-small)
-          width: 100%
-
-      span
-        +pie-clearfix
-        +font-size(14)
-        display: inline-block
-        margin-top: 16px
-        white-space: nowrap
-
-      .captcha_image
-        +pie-clearfix
-        border: 1px solid $text-color
-        display: block
-        height: 50px
-        right: 0
-        max-width: 128px
-        position: absolute
-        text-align: center
-        top: 0
-
-        img
-          display: block
-          height: 100%
-
-      textarea
-        height: 256px
-        padding-top: 16px
+  a
+    text-decoration: underline

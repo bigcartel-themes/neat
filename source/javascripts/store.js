@@ -103,7 +103,7 @@ $(document).ready(function () {
       offset: new_offset
     });
   }
-  this.inPreview = (/\/admin\/design/.test(top.location.pathname));
+  this.inPreview = (/http(s?):\/\/draft-+\w+\.bigcartel\.(test|biz|com)/.test(window.origin)||(/\/admin\/design/.test(top.location.pathname)));
   if (this.inPreview) {
     setTimeout(function () {
       Waypoint.refreshAll();
