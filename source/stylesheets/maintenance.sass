@@ -1,0 +1,32 @@
+@import 'config'
+
+.maintenance-page
+  +align-items(center)
+  padding: 100px 20px
+
+.maintenance-content
+  +flexbox
+  +align-items(center)
+  +justify-content(center)
+  +flex-direction(column)
+  font-size: 1.5em
+  line-height: 1.25em
+  padding: $marginSize $marginSize/2
+  max-width: 600px
+  min-height: 200px
+  text-align: center
+  width: 100%
+
+.social-links
+  margin: $marginSize 0 0
+
+  li
+    border: 0
+
+    a
+      &:hover, &:focus
+        background: none
+        color: inherit
+
+        svg
+          fill: $link-hover-color
