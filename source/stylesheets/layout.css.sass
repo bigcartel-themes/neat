@@ -440,27 +440,36 @@ footer
     +justify-content(center)
     padding: 0
 
-  ul
-    list-style: none
-    margin: 0
-    padding: 0
-
-  cite
-    margin-right: $marginSize
+  .bigcartel-credit
+    font-size: 14px
+    line-height: 1em
+    display: flex
+    align-items: center
+    gap: 8px
+    outline-offset: 4px
+    padding: 2px 0
     order: 1
+    margin-right: $marginSize
 
     @media screen and (max-width: $breakpoint-small)
       margin: $marginSize 0
       order: 3
 
-    a
-      +hide-text
-      background: url(#{'{{ "bc_badge.svg" | theme_image_url }}'}) no-repeat
-      border: none
+    &__text
+      position: relative
+
+    &__lockup
       display: block
-      height: 24px
+      fill: currentColor
+      padding-top: 1px
       width: 80px
-      margin: 0 auto
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    column-gap: 32px
+    row-gap: 12px
 
   .social_footer
     +flexbox
@@ -473,12 +482,6 @@ footer
       order: 2
       width: 100%
 
-    li
-      margin-right: $marginSize / 3
-
-      @media screen and (max-width: $breakpoint-small)
-        margin: 0 $marginSize / 2
-        padding: $marginSize / 2 0
     a
       display: block
       padding: 4px 8px
@@ -518,14 +521,11 @@ footer
       @media screen and (max-width: $breakpoint-small)
         +flex-direction(column)
         +justify-content(center)
+        gap: 0
 
       li
-        margin-bottom: $marginSize / 3
-        margin-left: $marginSize
-
         @media screen and (max-width: $breakpoint-small)
           border-bottom: 1px solid $border-color
-          margin: 0
 
           &:last-child
             border: 0
@@ -538,7 +538,7 @@ footer
             text-decoration: underline
 
           @media screen and (max-width: $breakpoint-small)
-            padding: $marginSize / 3
+            padding: $marginSize / 2
 
 .blur-up
   +transition(filter .2s ease)
