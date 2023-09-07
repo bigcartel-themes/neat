@@ -71,7 +71,7 @@ $(document).ready(function () {
       var new_offset = 166;
     }
     else {
-      var new_offset = 88;
+      var new_offset = 96;
     }
     var waypoint = new Waypoint({
       element: $('.content'),
