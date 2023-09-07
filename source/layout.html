@@ -7,6 +7,7 @@
     {{ head_content }}
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }}">
+    <a class="skip-link" href="#main">Skip to main content</a>
     {% if theme.announcement_message_text != blank %}
       <aside role="complementary" aria-label="Announcement message" class="announcement-message {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" id="announce-message">
         <div class="announcement-wrapper">
@@ -161,8 +162,12 @@
     </div>
   {% endif %}
    <script>
-      var themeOptions = {
-        hasAnnouncement: {% if theme.announcement_message_text %}true{%else %}false{%endif %}
+      const themeOptions = {
+        hasAnnouncement: {% if theme.announcement_message_text %}true{%else %}false{%endif %},
+        showSoldOutOptions: {{ theme.show_sold_out_product_options }},
+        desktopProductPageImages: '{{ theme.desktop_product_page_images }}',
+        mobileProductPageImages: '{{ theme.mobile_product_page_images }}',
+        productImageZoom: '{{ theme.product_image_zoom }}',
       }
       function setCookie(name,value,days) {
         var expires = "";

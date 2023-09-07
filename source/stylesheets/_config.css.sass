@@ -4,7 +4,7 @@ $marginSize: 32px
 $breakpoint-medium: 1024px
 $breakpoint-small: 800px
 $breakpoint-xsmall: 500px
-
+$break-small: 800px
 $background-color: #{'{{ theme.background_color }}'}
 $header-background-color: #{'{{ theme.header_color }}'}
 $header-link-color: #{'{{ theme.header_link_color }}'}
@@ -112,3 +112,34 @@ $max_font: 24px
       @media screen and (min-width: $max-vw)
         font-size: $max-font-size
 
+
+*, *::before, *::after
+  box-sizing: border-box
+
+*
+  margin: 0
+  padding: 0
+  border: 0
+
+body
+  line-height: 1.5
+  -webkit-font-smoothing: antialiased
+
+img, picture, video, canvas, svg, iframe, embed, audio
+  display: block
+  max-width: 100%
+
+input, button, textarea, select
+  +appearance(none)
+  border: 0
+  background: none
+  font: inherit
+
+button
+  cursor: pointer
+
+p, h1, h2, h3, h4, h5, h6
+  overflow-wrap: break-word
+
+ol, ul
+  list-style: none

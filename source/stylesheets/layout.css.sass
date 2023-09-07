@@ -1,4 +1,17 @@
-@import 'config'
+a.skip-link
+  transition: top .2s ease
+  background: $background-color
+  border: 1px solid $text-color
+  color: $text-color
+  left: 25px
+  padding: 15px 20px
+  position: absolute
+  text-decoration: underline
+  top: -150px
+  z-index: 100
+
+  &:focus
+    top: 20px
 
 .announcement-message
   background-color: $announcement-background-color
@@ -53,11 +66,11 @@ header
   border-bottom: 1px solid transparent
   font-family: $text-font
   font-weight: 600
-  height: 88px
+  height: 96px
   padding: 0 $marginSize
   margin-top: 0
   width: 100%
-  z-index: 999
+  z-index: 99
 
   &.page-head-scrolled
     position: fixed
@@ -176,7 +189,6 @@ header
   position: relative
   white-space: nowrap
   width: 25%
-  z-index: 99
 
   @media only screen and (max-width:$breakpoint-small)
     width: 50%

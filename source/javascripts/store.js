@@ -52,21 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 $(document).ready(function () {
-  $('.image-gallery').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    tLoading: 'Loading...',
-    mainClass: 'mfp-img-mobile',
-    gallery: {
-      enabled: true,
-      navigateByImgClick: true,
-      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-    },
-    image: {
-      tError: '<a href="%url%">The image </a> could not be loaded.',
-    }
-  });
-
   if ($('.featured').length) {
     var waypoint = new Waypoint({
       element: $('.featured'),
@@ -103,16 +88,7 @@ $(document).ready(function () {
       offset: new_offset
     });
   }
-  this.inPreview = (/http(s?):\/\/draft-+\w+\.bigcartel\.(test|biz|com)/.test(window.origin)||(/\/admin\/design/.test(top.location.pathname)));
-  if (this.inPreview) {
-    setTimeout(function () {
-      Waypoint.refreshAll();
-      setDocHeight();
-    }, 800);
-  }
-  else {
-    setDocHeight();
-  }
+  setDocHeight();
   var windowWidth = $(window).width();
   $(window).resize(function(){
     if ($(window).width() != windowWidth) {

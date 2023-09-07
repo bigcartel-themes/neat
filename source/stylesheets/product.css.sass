@@ -1,5 +1,3 @@
-@import 'config'
-
 .product-container
   +pie-clearfix
   padding-left: $marginSize
@@ -30,12 +28,12 @@
       font-style: normal
       color: $link-color
 
-.product-description
+.product-details
   +font-size(16)
   float: right
   margin: 0 0 64px
   padding-left: $marginSize
-  width: 40%
+  width: 38%
   text-align: left
 
   @media screen and (max-width: $breakpoint-medium)
@@ -93,7 +91,7 @@ ul.product-availability
       position: relative
       top: 50%
       transform: translateY(-50%)
-      z-index: 99
+      z-index: 2
 
     span
       display: inline
@@ -135,7 +133,6 @@ ul.product-availability
 .product-images
   float: left
   margin: 0 0 $marginSize 0
-  overflow: hidden
   width: 60%
 
   @media screen and (max-width: $breakpoint-medium)
@@ -146,43 +143,6 @@ ul.product-availability
     margin-bottom: $marginSize
     width: 100%
 
-.default-product-image
-  display: block
-  width: 100%
-
-  img
-    display: block
-    margin: 0 auto
-    text-align: center
-    width: 100%
-
-.product-thumbnails
-  +pie-clearfix
-  font-size: 0
-  list-style: none
-  margin: 20px -20px
-  text-align: center
-  padding: 0
-
-  @media only screen and (max-width:$breakpoint-small)
-    margin: 5px -10px
-
-  li
-    display: inline-block
-    padding: 0 10px
-    vertical-align: top
-    width: 25%
-
-    @media only screen and (max-width:$breakpoint-small)
-      padding: 5px
-
-    a
-      display: block
-
-    img
-      display: block
-      width: 100%
-
 .product-section-subheader
   border-bottom: 1px solid $border-color
   margin: $marginSize auto
@@ -192,7 +152,6 @@ ul.product-availability
   font-family: $header-font
   font-weight: bold
   letter-spacing: .2em
-
 
 .share-pinterest
 
@@ -213,13 +172,6 @@ ul.product-availability
       height: 16px
       width: 16px
 
-.secondary-product-images
-  margin-top: 32px
-
-.secondary-product-image
-  display: block
-  width: 100%
-
 .reset-selection-button-container
   text-align: center
   width: 100%
@@ -236,6 +188,8 @@ option[disabled-type="unavailable"]
   display: none
 
 .product-form
+  margin-bottom: $marginSize * 1.5
+
   &.show-sold-out
     option[disabled-type="sold-out"]
       display: block
@@ -246,105 +200,3 @@ option[disabled-type="unavailable"]
 
 #instant-checkout-button
   margin-top: 12px
-
-.mfp-top-bar
-  +flexbox
-  +align-items(center)
-  padding: 5px 0
-  position: absolute
-  top: 48px
-  width: 100%
-
-.mfp-title
-  display: none
-
-.mfp-counter
-  color: #F7F7F7
-  font-size: 15px
-  position: relative
-
-.mfp-arrow:before, .mfp-arrow:after
-  display: none
-
-.mfp-image-holder button.mfp-close
-  +flexbox
-  +align-items(center)
-  +justify-content(center)
-  background: none !important
-  margin-left: auto
-  opacity: 1
-  padding: 6px
-  right: 0
-  position: relative
-  width: auto !important
-
-  svg
-    fill: #F7F7F7
-    pointer-events: none
-
-img.mfp-img
-  padding: 100px 0 40px
-
-.mfp-figure:after
-  display: none
-
-.mfp-arrow
-  +flexbox
-  +align-items(center)
-  +justify-content(center)
-  background: #FFF !important
-  height: 65px
-  margin-top: 0
-  opacity: .7
-  width: 65px
-
-  &:active
-    margin-top: 0
-
-  svg
-    display: block
-    fill: #000
-    height: 20px
-    margin: 0 auto
-    pointer-events: none
-    width: 20px
-
-  &:hover
-    opacity: 1
-
-  @media (max-width: 900px)
-    +transform(scale(.7))
-
-.mfp-container
-  padding: 0 10px !important
-
-.mfp-arrow-left
-  left: 40px
-
-  @media (max-width: $breakpoint-medium)
-    left: 14px
-
-.mfp-arrow-right
-  right: 40px
-
-  @media (max-width: $breakpoint-medium)
-    right: 14px
-
-.mfp-preloader
-  +animation(loading-animation 1.5s infinite ease-in-out)
-  +border-radius(100%)
-  background: #FFF
-  height: 40px
-  margin: 0 auto
-  opacity: 1
-  width: 40px
-
-+keyframes(loading-animation)
-  0%
-    -webkit-transform: scale(0.1, 0.1)
-    opacity: 0.0
-  50%
-    opacity: 1.0
-  100%
-    -webkit-transform: scale(1.2, 1.2)
-    opacity: 0.0
