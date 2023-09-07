@@ -1,10 +1,11 @@
 \:root
   --thumbnail-active-color: $link-hover-color
-  --thumb-scroller-color: $text-color
-  --thumb-scroller-background: #{rgba(0,0,0,.1)}
+  --thumb-scroller-color: $button-text-color
+  --thumb-scroller-background: $button-background-color
   --current-slide-background: $background-color
-  --current-slide-color: $text-color
-  --active-slide-border-width: 2px
+  --current-slide-color: $link-color
+  --active-slide-border-width: 4px
+  --active-slide-border-width-offset: -4px
   --gap-width: 16px
   --num-images: 5
 
@@ -66,14 +67,16 @@
     position: relative
 
     &.mobile-overflow
-      padding: 0
+      padding-left: 0
+      padding-right: 0
 
     @media screen and (max-width: $break-small)
       .product-thumbnails--item
         --num-images: 4
 
       &.mobile-overflow
-        padding: 0
+        padding-left: 0
+        padding-right: 0
 
         .product-thumbnails--item
           --num-images: 5
@@ -112,7 +115,9 @@
 
     &[aria-current="true"]
       .product-thumbnails--change-slide
-        box-shadow: 0 0 0 var(--active-slide-border-width) var(--thumbnail-active-color)
+        img
+          outline: var(--active-slide-border-width) solid var(--thumbnail-active-color)
+          outline-offset: var(--active-slide-border-width-offset)
 
     .product-thumbnails--change-slide
       position: absolute
