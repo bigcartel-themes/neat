@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
     {{ head_content }}
+    <style type="text/css">.preload * { transition: none !important;display: none !important } .transition-preload { transition: none !important }</style>
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }}">
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -168,6 +169,10 @@
         desktopProductPageImages: '{{ theme.desktop_product_page_images }}',
         mobileProductPageImages: '{{ theme.mobile_product_page_images }}',
         productImageZoom: '{{ theme.product_image_zoom }}',
+      }
+      const themeColors = {
+        textColor: '{{ theme.text_color }}',
+        backgroundColor: '{{ theme.background_color }}',
       }
       function setCookie(name,value,days) {
         var expires = "";

@@ -1,11 +1,14 @@
 \:root
-  --thumbnail-active-color: $link-hover-color
-  --thumb-scroller-color: $button-text-color
-  --thumb-scroller-background: $button-background-color
+  --thumbnail-active-color: $link-color
+  --thumb-scroller-color: $text-color
+  --thumb-scroller-background: $background-color
+  --thumb-scroller-background-hover: var(--background-color-80)
   --current-slide-background: $background-color
-  --current-slide-color: $link-color
-  --active-slide-border-width: 4px
-  --active-slide-border-width-offset: -4px
+  --current-slide-color: $text-color
+  --active-slide-border-width: 2px
+  --active-slide-border-width-offset: #{-2px}
+  --arrow-background-color: $background-color
+  --arrow-color: $text-color
   --gap-width: 16px
   --num-images: 5
 
@@ -38,7 +41,9 @@
   opacity: 0
   border-radius: var(--border-radius)
   width: 2em
-  height: 4em
+  height: 3em
+  background: var(--arrow-background-color)
+  color: var(--arrow-color)
 
   &:disabled
     opacity: 0
@@ -48,6 +53,9 @@
 
   &--next
     right: .75em
+
+  svg
+    fill: currentColor
 
 .splide:hover, .splide:focus-within
   .splide__arrow:not(:disabled)
@@ -60,11 +68,12 @@
     gap: var(--gap-width)
     list-style: none
     flex: 1
-    padding: calc(var(--gap-width) / 2)
+    padding: 0 calc(var(--gap-width) / 2)
     scroll-padding-left: calc(var(--gap-width) / 2)
     align-items: center
     justify-content: center
     position: relative
+    border-radius: var(--border-radius)
 
     &.mobile-overflow
       padding-left: 0
@@ -133,6 +142,7 @@
       pointer-events: auto
 
       img
+        border-radius: var(--border-radius)
         height: 100%
         width: 100%
         object-fit: cover
@@ -144,7 +154,7 @@
   align-items: center
   display: flex
   gap: 4px
-  margin-top: 0
+  margin-top: var(--gap-width)
   width: 100%
 
   .thumb-scroller
@@ -154,6 +164,7 @@
     width: 32px
     height: 56px
     color: var(--thumb-scroller-color)
+    background: var(--thumb-scroller-background)
     border-radius: var(--border-radius)
 
     @media screen and (max-width: $break-small)
@@ -164,9 +175,10 @@
       cursor: not-allowed
 
     &:not([disabled]):hover
-      background: var(--thumb-scroller-background)
+      background: var(--thumb-scroller-background-hover)
 
     svg
+      fill: currentColor
       display: block
       width: 16px
 
@@ -257,7 +269,7 @@
         list-style: none
         display: grid
         grid-template-columns: repeat(5, 1fr)
-        padding: 4px 0
+        padding: 0
 
       &--item
         width: 100%
@@ -309,7 +321,6 @@
         &--right
           svg
             transform: rotate(-90deg)
-
 
 .overlay-image-counter
   position: absolute
