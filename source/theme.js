@@ -4,3 +4,4 @@
 //= require javascripts/product-option-groups
 //= require javascripts/product-carousel
 //= require javascripts/product
+//= require javascripts/home-carousel

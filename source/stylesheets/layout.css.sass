@@ -242,30 +242,26 @@ header
   z-index: 1
 
 header.has_featured + .slideshow
-  top: -88px
-
-_:-ms-fullscreen, :root .slideshow
-  height: 100vh
+  top: -96px
 
 .carousel
   width: 100%
-  height: calc((var(--vh, 1vh) * 100))
-
-_:-ms-fullscreen, :root .carousel
   height: 100vh
 
 .carousel-cell
-  background-position: 50% 50%
-  background-repeat: no-repeat
-  background-size: cover
   height: 100%
   width: 100%
 
-.flickity-page-dots
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+
+.splide__pagination
   bottom: 24px
   z-index: 5
 
-  .dot
+  button
     background: transparent
     border: 2px solid $welcome-text-color
     cursor: pointer
@@ -278,15 +274,13 @@ _:-ms-fullscreen, :root .carousel
       opacity: 1
       opacity: .8
 
-    &.is-selected
+    &.is-active
       background: $welcome-text-color
       opacity: .8
+      transform: scale(1.3)
 
-    &:only-child
-      display: none
-
-.flickity-viewport:after
-  background-color: rgba(black, .3)
+.carousel:after
+  background-color: rgba(black, .4)
   background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
   background-repeat: repeat
   background-size: 4px
@@ -296,12 +290,13 @@ _:-ms-fullscreen, :root .carousel
   top: 0
   width: 100%
   z-index: 1
+  opacity: #{"{{ theme.featured_overlay_opacity }}"}
 
 .featured
   +transform(translateY(-50%) translateX(-50%))
   color: $welcome-text-color
   left: 50%
-  top: calc(50% + 88px)
+  top: 50%
   padding: 0 $marginSize
   position: absolute
   max-width: 1280px

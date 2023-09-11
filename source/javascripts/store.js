@@ -59,8 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if ($('.header').hasClass('has_featured')) {
     var core = $('.slideshow').eq(0);
     var secondary_height = ($('.announcement-message.visible').outerHeight() > 0) ? $('.announcement-message.visible').outerHeight() : 0
-    $('.slideshow').css('height','calc(100vh - 88px - ' + secondary_height + 'px)');
-    $('.carousel').css('height','calc(100vh - ' + secondary_height + 'px)');
+    $('.slideshow, .splide__track').css('height','calc(100vh - ' + secondary_height + 'px)');
+    setTimeout(() => {
+      $('.splide__track').css('height','calc(100vh - ' + secondary_height + 'px)');
+    }, 100);
+
     if (!$('#main').hasClass('no-featured-products')) {
       if (secondary_height > 0) {
         $('#main').css('padding-top',secondary_height+'px');
@@ -112,7 +115,7 @@ $(document).ready(function () {
       var new_offset = 166;
     }
     else {
-      var new_offset = 96;
+      var new_offset = 240;
     }
     var waypoint = new Waypoint({
       element: $('.content'),
