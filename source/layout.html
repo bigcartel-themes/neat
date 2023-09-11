@@ -7,7 +7,7 @@
     {{ head_content }}
     <style type="text/css">.preload * { transition: none !important;display: none !important } .transition-preload { transition: none !important }</style>
   </head>
-  <body id="{{ page.permalink }}" class="{{ page.category }}">
+  <body id="{{ page.permalink }}" class="{{ page.category }} preload transition-preload">
     <a class="skip-link" href="#main">Skip to main content</a>
     {% if theme.announcement_message_text != blank %}
       <aside role="complementary" aria-label="Announcement message" class="announcement-message {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" id="announce-message">
@@ -41,7 +41,7 @@
       <ul>
         {% if theme.show_search %}
           <li>
-            <button class="button minimal-button open-search-button" type="button" aria-label="Search products">
+            <button class="button minimal-button open-search-button" type="button" aria-haspopup="dialog" aria-controls="search-modal" title="Open search menu">
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.707 14.293l-3.112-3.092-.006-.004c.882-1.197 1.411-2.597 1.411-4.197 0-3.859-3.141-7-7-7s-7 3.1-7 7 3.141 7 7 7c1.575 0 3.025-.529 4.196-1.41v.006l3.093 3.111c.199.193.411.293.711.293s.512-.098.707-.293c.391-.407.393-1.007-.007-1.414zm-8.707-2.293c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.2 5 5-2.243 5-5 5z"/></svg>
             </a>
           </li>
@@ -155,79 +155,88 @@
   </div>
 
   {% if theme.show_search %}
-    <div class="full-screen-overlay search-overlay">
-      <button class="close-overlay" aria-label="Close search window" type="button">
-        <svg aria-hidden="true" class="close-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
-      </button>
-      <div class="overlay-content">
-        <form action="/products" method="get" class="search-form">
-          <input type="text" name="search" id="search-input" placeholder="Search products...">
-        </form>
+    <div id="search-modal" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal-content">
+        <div class="modal-content--inner">
+          <div class="wrapper">
+            <button class="close-modal" aria-label="Close search dialog" data-dismiss="modal" type="button">
+              <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="218.92 -741.08 522.15 522.15"><path d="m250.923-218.924-31.999-31.999L448.001-480 218.924-709.077l31.999-31.999L480-511.999l229.077-229.077 31.999 31.999L511.999-480l229.077 229.077-31.999 31.999L480-448.001 250.923-218.924Z"></path></svg>
+            </button>
+            <form class="search-form" name="search" action="/products" method="get" accept-charset="utf8" role="search">
+              <input type="hidden" name="utf8" value='✓'>
+              <label for="desktop-search">Search products</label>
+              <input class="search-input" id="desktop-search" name="search" type="search" autocomplete="off" />
+              <button type="submit" class="button search-button" aria-label="Submit search form">
+                <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="120 -841 720 720"><path d="M796-121 533-384q-30 26-69.959 40.5T378-329q-108.162 0-183.081-75Q120-479 120-585t75-181q75-75 181.5-75t181 75Q632-691 632-584.85 632-542 618-502q-14 40-42 75l264 262-44 44ZM377-389q81.25 0 138.125-57.5T572-585q0-81-56.875-138.5T377-781q-82.083 0-139.542 57.5Q180-666 180-585t57.458 138.5Q294.917-389 377-389Z"></path></svg>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   {% endif %}
 
-   <script>
-      const themeOptions = {
-        hasAnnouncement: {% if theme.announcement_message_text %}true{%else %}false{%endif %},
-        showSoldOutOptions: {{ theme.show_sold_out_product_options }},
-        desktopProductPageImages: '{{ theme.desktop_product_page_images }}',
-        mobileProductPageImages: '{{ theme.mobile_product_page_images }}',
-        productImageZoom: '{{ theme.product_image_zoom }}',
+  <script>
+    const themeOptions = {
+      hasAnnouncement: {% if theme.announcement_message_text %}true{%else %}false{%endif %},
+      showSoldOutOptions: {{ theme.show_sold_out_product_options }},
+      desktopProductPageImages: '{{ theme.desktop_product_page_images }}',
+      mobileProductPageImages: '{{ theme.mobile_product_page_images }}',
+      productImageZoom: '{{ theme.product_image_zoom }}',
+    }
+    const themeColors = {
+      textColor: '{{ theme.text_color }}',
+      backgroundColor: '{{ theme.background_color }}',
+    }
+    function setCookie(name,value,days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
       }
-      const themeColors = {
-        textColor: '{{ theme.text_color }}',
-        backgroundColor: '{{ theme.background_color }}',
+      document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
       }
-      function setCookie(name,value,days) {
-        var expires = "";
-        if (days) {
-          var date = new Date();
-          date.setTime(date.getTime() + (days*24*60*60*1000));
-          expires = "; expires=" + date.toUTCString();
-        }
-        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+      return null;
+    }
+    function eraseCookie(name) {
+      document.cookie = name+'=; Max-Age=-99999999;';
+    }
+    String.prototype.hashCode = function() {
+      var hash = 0, i, chr;
+      if (this.length === 0) return hash;
+      for (i = 0; i < this.length; i++) {
+        chr   = this.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0;
       }
-      function getCookie(name) {
-        var nameEQ = name + "=";
-        var ca = document.cookie.split(';');
-        for(var i=0;i < ca.length;i++) {
-          var c = ca[i];
-          while (c.charAt(0)==' ') c = c.substring(1,c.length);
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-        }
-        return null;
-      }
-      function eraseCookie(name) {
-        document.cookie = name+'=; Max-Age=-99999999;';
-      }
-      String.prototype.hashCode = function() {
-        var hash = 0, i, chr;
-        if (this.length === 0) return hash;
-        for (i = 0; i < this.length; i++) {
-          chr   = this.charCodeAt(i);
-          hash  = ((hash << 5) - hash) + chr;
-          hash |= 0;
-        }
-        return hash;
-      };
-      if (themeOptions.hasAnnouncement) {
-        announceDiv = document.getElementById("announce-message");
-        if (announceDiv) {
-          announcementMessage =document.querySelector(".announcement-message-text").innerHTML;
-          hashedMessage = announcementMessage.hashCode();
-          cookieValue = getCookie("hide-announcement-message");
-          if (cookieValue) {
-            if (cookieValue != hashedMessage) {
-              announceDiv.classList.add('visible');
-            }
-          }
-          else {
+      return hash;
+    };
+    if (themeOptions.hasAnnouncement) {
+      announceDiv = document.getElementById("announce-message");
+      if (announceDiv) {
+        announcementMessage =document.querySelector(".announcement-message-text").innerHTML;
+        hashedMessage = announcementMessage.hashCode();
+        cookieValue = getCookie("hide-announcement-message");
+        if (cookieValue) {
+          if (cookieValue != hashedMessage) {
             announceDiv.classList.add('visible');
           }
         }
+        else {
+          announceDiv.classList.add('visible');
+        }
       }
-    </script>
+    }
+  </script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="{{ 'api' | theme_js_url }}"></script>
   <script src="{{ theme | theme_js_url }}"></script>

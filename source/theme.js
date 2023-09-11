@@ -5,3 +5,4 @@
 //= require javascripts/product-carousel
 //= require javascripts/product
 //= require javascripts/home-carousel
+//= require javascripts/search
