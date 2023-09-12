@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
     {{ head_content }}
-    <style type="text/css">.preload * { transition: none !important;display: none !important } .transition-preload { transition: none !important }</style>
+    <style type="text/css">.preload *, .transition-preload * { display:none;transition:none!important; }</style>
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }} preload transition-preload">
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -223,7 +223,7 @@
     if (themeOptions.hasAnnouncement) {
       announceDiv = document.getElementById("announce-message");
       if (announceDiv) {
-        announcementMessage =document.querySelector(".announcement-message-text").innerHTML;
+        announcementMessage = document.querySelector(".announcement-message-text").innerHTML;
         hashedMessage = announcementMessage.hashCode();
         cookieValue = getCookie("hide-announcement-message");
         if (cookieValue) {
@@ -233,6 +233,12 @@
         }
         else {
           announceDiv.classList.add('visible');
+        }
+        if (announceDiv.classList.contains('visible')) {
+          document.querySelector('.announcement-message-close').addEventListener('click', function(e) {
+            announceDiv.remove();
+            setCookie('hide-announcement-message', hashedMessage, 7);
+          });
         }
       }
     }

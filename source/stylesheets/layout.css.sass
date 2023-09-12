@@ -1,3 +1,6 @@
+\:root
+  --border-radius: 0px
+
 a.skip-link
   transition: top .2s ease
   background: $background-color
@@ -13,52 +16,6 @@ a.skip-link
   &:focus
     top: 20px
 
-.announcement-message
-  background-color: $announcement-background-color
-  color: $announcement-text-color
-  display: none
-  padding: 20px 144px
-  position: relative
-  text-align: center
-  width: 100%
-  z-index: 1
-
-  @media screen and (max-width: $breakpoint-medium)
-    padding: 20px 64px
-
-  &.visible
-    display: block
-
-.button.announcement-message-close
-  +transform(translateY(-50%))
-  +transition(none)
-  +flexbox
-  +align-items(center)
-  +justify-content(center)
-  background: none
-  height: 32px
-  padding: 0
-  position: absolute
-  right: 16px
-  top: 50%
-  width: 32px
-
-  @media screen and (max-width: $breakpoint-small)
-    right: 4px
-
-  &:hover, &:focus
-    background: none !important
-    opacity: .7
-
-    svg
-      fill: $announcement-text-color
-
-  svg
-    display: block
-    fill: $announcement-text-color
-    height: 14px
-    width: 14px
-
 header
   +flexbox
   +align-items(center)
@@ -72,9 +29,10 @@ header
   width: 100%
   z-index: 99
 
-  &.page-head-scrolled
+  &.fixed
     position: fixed
     top: 0
+    left: 0
 
   a
     +flexbox
@@ -232,130 +190,6 @@ header
 
           @media screen and (max-width: $breakpoint-small)
             display: none
-
-.slideshow
-  height: calc((var(--vh, 1vh) * 100))
-  margin: 0
-  padding: 0
-  position: relative
-  width: 100%
-  z-index: 1
-
-header.has_featured + .slideshow
-  top: -96px
-
-.carousel
-  width: 100%
-  height: 100vh
-
-.carousel-cell
-  height: 100%
-  width: 100%
-
-  img
-    width: 100%
-    height: 100%
-    object-fit: cover
-
-.splide__pagination
-  bottom: 24px
-  z-index: 5
-
-  button
-    background: transparent
-    border: 2px solid $welcome-text-color
-    cursor: pointer
-    height: 18px
-    margin: 8px
-    opacity: .5
-    width: 18px
-
-    &:hover
-      opacity: 1
-
-    &.is-active
-      background: $welcome-text-color
-      opacity: 1
-      transform: none
-
-.carousel:after
-  background-color: $overlay-background-color
-  content: ""
-  height: 100%
-  position: absolute
-  top: 0
-  width: 100%
-  z-index: 1
-  opacity: #{"{{ theme.featured_overlay_opacity }}"}
-
-.featured
-  +transform(translateY(-50%) translateX(-50%))
-  color: $welcome-text-color
-  left: 50%
-  top: 50%
-  padding: 0 $marginSize
-  position: absolute
-  max-width: 1280px
-  text-align: center
-  z-index: 2
-  width: 100%
-
-.welcome-subheader
-  +fluid-type(16px, 20px)
-  font-family: $header-font
-  font-weight: 600
-  letter-spacing: .2em
-  line-height: 1.25em
-  margin-right: -.2em
-  padding: 0 16px 24px 16px
-  text-transform: uppercase
-
-  @media only screen and (max-width:$breakpoint-small)
-    letter-spacing: .1em
-    margin-right: -.1em
-
-.welcome-header
-  +fluid-type(20px, 60px)
-  font-family: $header-font
-  font-weight: bold
-  letter-spacing: .2em
-  line-height: 1.3em
-  margin: 0 -.2em 24px 0
-  text-transform: uppercase
-
-  @media only screen and (max-width:$breakpoint-small)
-    letter-spacing: .1em
-    padding: 0 16px
-    white-space: normal
-
-a.shop-now-button
-  +transition(background .2s linear, border .2s linear)
-  border: 1px solid $welcome-text-color
-  background: transparent
-  color: $welcome-text-color
-  height: auto
-  padding: 0 $marginSize
-  width: auto
-
-  &:hover, &:focus
-    border: 1px solid $button-background-hover-color
-    background: $button-background-hover-color
-    color: $button-text-color
-
-a.button.view-all-products
-  border: 1px solid $link-color
-  color: $link-color
-  display: block
-  max-width: 300px
-  width: 48%
-  margin: 0 auto
-
-  &:hover, &:focus
-    border-color: $link-hover-color
-    color: $link-hover-color
-
-#home h1
-  margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
 
 .content
   +flex(1)
