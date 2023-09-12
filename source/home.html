@@ -65,6 +65,9 @@
           {% endfor %}
         </div>
       </div>
+      {% if paginate.pages > 1 %}
+        <a href="/products" class="button minimal-button view-all-products">View all products</a>
+      {% endif %}
 	  {% else %}
 	    <p class="no_results">No products found.</p>
 	  {% endif %}
