@@ -77,11 +77,6 @@ $text-font: #{"{{ theme.text_font | font_family }}"}
     display: table
     clear: both
 
-@mixin hide-text
-  overflow: hidden
-  text-indent: 100%
-  white-space: nowrap
-
 @mixin font-size($fontsize: 16, $lineheight: $fontsize * 1.5)
   font-size: ($fontsize) + px
   line-height: ($lineheight) + px
