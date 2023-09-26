@@ -5,10 +5,9 @@ const closeBtn = document.querySelector('.close-modal');
 const inputField = document.querySelector('#search-modal input[type="search"]');
 
 const openSearch = () => {
-
   if (modal && inputField) {
     document.addEventListener("click", clickOutsideToClose);
-    document.addEventListener('keydown', closeOnEscape, { once: true });
+    document.addEventListener('keydown', closeOnEscape);
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('overlay-open');
     modal.addEventListener("transitionend", focusInputField, { once: true });
@@ -26,6 +25,7 @@ const closeSearch = () => {
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('overlay-open');
     document.removeEventListener("click", clickOutsideToClose);
+    document.removeEventListener('keydown', closeOnEscape);
     modal.addEventListener("transitionend", focusSearchButton, { once: true });
   }
 };
