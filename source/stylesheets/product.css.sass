@@ -48,11 +48,9 @@
     padding-left: 0
     width: 100%
 
+.product-description
   a
     text-decoration: underline
-
-  img, iframe
-    max-width: 100%
 
   p
     margin-bottom: 16px
@@ -63,66 +61,56 @@
       margin-top: 0
       padding-top: 0
 
+  ol, ul
+    margin: 1em 0
+
   ul
-    +font-size(14)
-    margin: 0
-    padding: 0 $marginSize/2
+    list-style: disc
+    list-style-position: inside
 
-    li
-      list-style-position: inside
+  ol
+    list-style: decimal
+    list-style-position: inside
 
-ul.product-availability
-  list-style: none
+.product-availability
   margin: 0 0 $marginSize/2 0
   padding: 0
 
-  li
+  &--option
     +font-size(14)
     border: 1px solid $border-color
     border-width: 1px 1px 0 1px
-    height: 56px
-    list-style: none
+    height: 48px
+    display: flex
+    gap: 16px
+    align-items: center
+    justify-content: flex-start
     padding: 8px 12px
     position: relative
     width: 100%
 
     &:last-child
-      margin-bottom: 0
       border-width: 1px
 
-    div
-      position: relative
-      top: 50%
-      transform: translateY(-50%)
-      z-index: 2
+  &--bar
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    background: #{"rgba(var(--text-color-rgb),.08)"}
+    pointer-events: none
+    opacity: .5
+    z-index: 1
 
-    span
-      display: inline
+  &--option-name
+    z-index: 2
+    color: $text-color
 
-      &.sold_out
-        margin-right: 8px
-        text-decoration: line-through
+  .sold_out_text
+    margin-left: auto
 
-      &.sold_out_text
-        white-space: nowrap
-
-    b
-      display: block
-      left: 0
-      position: absolute
-      width: 100%
-      z-index: 1
-      top: 0
-
-      b
-        opacity: .5
-        background-color: $border-color
-        display: block
-        height: 55px
-        left: 0
-        position: relative
-        top: 0
-        z-index: 1
+ul.product-share-buttons
+  margin: 0
 
 .product-artists
   font-family: $header-font
@@ -148,7 +136,7 @@ ul.product-availability
 
 .product-section-subheader
   border-bottom: 1px solid $border-color
-  margin: $marginSize auto
+  margin: $marginSize auto $marginSize / 2
   padding: $marginSize / 2 0
   text-align: center
   text-transform: uppercase
