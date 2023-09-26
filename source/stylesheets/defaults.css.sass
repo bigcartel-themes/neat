@@ -94,29 +94,18 @@ a[href], label[for], select, button, .pointer
 input, textarea
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 1px solid var(--link-color)
-  color: var(--link-color)
+  border: 1px solid var(--text-color)
+  color: var(--text-color)
   margin: 0
   padding: 8px
 
 .select
-  border: 1px solid var(--link-color)
-  color: var(--link-color)
+  border: 1px solid var(--text-color)
+  color: var(--text-color)
   margin-bottom: 16px
   position: relative
 
-  &:hover, &:focus, &:focus-within
-    border: 1px solid var(--link-hover-color)
-    color: var(--link-hover-color)
-
-    select
-      color: var(--link-hover-color)
-
-    svg
-      fill: var(--link-hover-color)
-
   select
-    color: var(--link-color)
     font-weight: 600
     height: 56px
     line-height: 56px
@@ -133,7 +122,6 @@ input, textarea
       display: none
 
   svg
-    fill: var(--link-color)
     height: 14px
     position: absolute
     right: 24px
