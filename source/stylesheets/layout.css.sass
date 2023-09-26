@@ -65,20 +65,20 @@ header
     top: 0
     left: 0
 
-  a
+  a:after
+    background: transparent
+    bottom: 3px
+    content: " "
+    left: 4px
+    height: 1px
+    position: absolute
+    width: calc(100% - 8px)
+
+  a, button
     +flexbox
     +align-items(center)
     color: var(--welcome-text-color)
     position: relative
-
-    &:after
-      background: transparent
-      bottom: 3px
-      content: " "
-      left: 4px
-      height: 1px
-      position: absolute
-      width: calc(100% - 8px)
 
     &:hover, &:focus
       color: var(--welcome-text-color)
@@ -94,7 +94,7 @@ header
     background-color: var(--header-background-color)
     border-bottom: 1px solid var(--border-color)
 
-    a, .button
+    a, button
       color: var(--header-text-color)
 
       &:hover

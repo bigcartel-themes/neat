@@ -1,8 +1,7 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-  document.body.classList.remove("preload");
-
+  document.body.classList.remove("preloader");
   let contactFields = document.querySelectorAll(".contact-form input, .contact-form textarea");
   contactFields.forEach(function (contactField) {
     contactField.removeAttribute("tabindex");
@@ -38,7 +37,6 @@ function camelCaseToDash(string) {
 }
 
 window.addEventListener("load", () => {
-  document.body.classList.remove("transition-preload");
   setDocHeight();
   setHeaderPosition();
   resizeHomeWelcome();

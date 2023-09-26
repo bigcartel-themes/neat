@@ -35,9 +35,6 @@ if (productSlideshowContainer) {
       splide.go(index);
     });
   }
-  splide.on('resize', function () {
-    updateSlideContainer();
-  });
   splide.on('mounted move', function () {
 
     updateSlideContainer();
@@ -105,6 +102,11 @@ thumbContainer?.addEventListener('scroll', function () {
 });
 
 window.addEventListener('resize', function() {
+  if (productSlideshowContainer) {
+    updateSlideContainer();
+  }
+});
+document.addEventListener("DOMContentLoaded", function () {
   if (productSlideshowContainer) {
     updateSlideContainer();
   }
