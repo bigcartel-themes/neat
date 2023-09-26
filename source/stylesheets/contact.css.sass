@@ -11,14 +11,20 @@
     h1
       margin: 0 auto $marginSize * 2 auto
 
+.contact-form
+  display: grid
+  row-gap: 32px
+
 .contact-form-block
   display: block
-  margin: $marginSize auto
   position: relative
+  width: 100%
 
   input, textarea
-    height: 50px
     width: 100%
+
+  input
+    height: 50px
 
   textarea
     height: 256px
@@ -29,16 +35,14 @@
 
 .send-message-button
   display: block
-  margin: $marginSize * 2 auto
+  margin: 0 auto
   max-width: 320px
 
   @media screen and (max-width: $breakpoint-small)
-    margin-top: $marginSize
     max-width: 100%
 
 .recaptcha-note
   +font-size(14)
-  margin-top: 16px
 
   a
     text-decoration: underline
