@@ -326,6 +326,12 @@
       "description": "Sets the display of prices in your shop"
     },
     {
+      "variable": "instagram_url",
+      "label": "Instagram URL",
+      "type": "text",
+      "description": "Ex: http://instagram.com/bigcartel"
+    },
+    {
       "variable": "twitter_url",
       "label": "Twitter URL",
       "type": "text",
@@ -338,22 +344,16 @@
       "description": "Ex: http://facebook.com/bigcartel"
     },
     {
-      "variable": "tumblr_url",
-      "label": "Tumblr URL",
-      "type": "text",
-      "description": "Ex: http://bigcartel.tumblr.com"
-    },
-    {
-      "variable": "instagram_url",
-      "label": "Instagram URL",
-      "type": "text",
-      "description": "Ex: http://instagram.com/bigcartel"
-    },
-    {
       "variable": "pinterest_url",
       "label": "Pinterest URL",
       "type": "text",
       "description": "Ex: http://pinterest.com/bigcartel"
+    },
+    {
+      "variable": "tumblr_url",
+      "label": "Tumblr URL",
+      "type": "text",
+      "description": "Ex: http://bigcartel.tumblr.com"
     }
   ]
 }

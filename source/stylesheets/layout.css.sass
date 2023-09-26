@@ -17,9 +17,9 @@
   --link-hover-color: #{'{{ theme.link_hover }}'}
 
   --error-text-color: #FFFFFF
-  --error-background-color: #a92d22
+  --error-background-color: #851106
 
-  --overlay-background-color: rgba(0,0,0,1)
+  --overlay-background-color: #000000
 
   --button-text-color: #{'{{ theme.button_text_color }}'}
   --button-background-color: #{'{{ theme.button_background_color }}'}
@@ -250,51 +250,32 @@ header
       max-width: 800px
       margin: 0 auto
 
-_:-ms-fullscreen, :root .content
-  +flex(1 0 auto)
-
 .social-links
   +flexbox
   +justify-content(center)
-  +font-size(16)
-  line-height: normal
   list-style: none
-  margin: 0 auto $marginSize auto
-  max-width: 800px
+  gap: 48px
   padding: 0
   text-align: center
   width: 100%
 
-  li
-    border: 1px solid var(--border-color)
-    border-width: 1px 0 1px 1px
-    height: 56px
-    width: 56px
+  a
+    +flexbox
+    +align-items(center)
+    +justify-content(center)
+    color: var(--link-color)
 
-    &:last-child
-      border-width: 1px
+    &:hover, &:focus
+      color: var(--link-hover-color)
 
-    a
-      +flexbox
-      +align-items(center)
-      +justify-content(center)
-      width: 56px
-      height: 56px
+    svg
+      cursor: pointer
+      height: 22px
+      position: relative
+      width: 22px
 
-      &:hover, &:focus
-        background-color: var(--link-hover-color)
-        color: var(--background-color)
-
-        svg
-          fill: white
-
-      svg
-        display: block
-        cursor: pointer
-        fill: var(--link-color)
-        height: 22px
-        position: relative
-        width: 22px
+      &.tumblr-icon
+        width: 14px
 
 footer
   +flex-shrink(0)
@@ -305,10 +286,11 @@ footer
   border-top: 1px solid var(--border-color)
   position: relative
   padding: $marginSize * 2
-  gap: 32px
+  gap: 48px
 
   @media screen and (max-width: $breakpoint-small)
     padding: $marginSize * 1.5 $marginSize
+    gap: 32px
 
   .bigcartel-credit
     font-size: 14px
@@ -340,26 +322,6 @@ footer
     padding: 0
     column-gap: 28px
     row-gap: 12px
-
-  .social_footer
-    +flexbox
-
-    a
-      color: var(--link-color)
-      display: block
-      padding: 4px 8px
-
-      &:hover, &:focus
-        color: var(--link-hover-color)
-
-    svg
-      display: block
-      fill: currentColor
-      height: 24px
-      width: 24px
-
-      &.tumblr-icon
-        width: 15px
 
   .footernav
 
