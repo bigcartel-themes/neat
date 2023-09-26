@@ -6,12 +6,6 @@ $breakpoint-small: 800px
 $breakpoint-xsmall: 500px
 $break-small: 800px
 
-@mixin border-radius($radius...)
-  border-radius: $radius
-
-@mixin box-shadow($shadow...)
-  box-shadow: $shadow
-
 @mixin vertical-align
   position: relative
   top: 50%
@@ -107,6 +101,7 @@ img, picture, video, canvas, svg, iframe, embed, audio
 input, button, textarea, select
   +appearance(none)
   border: 0
+  border-radius: 0
   background: none
   font: inherit
 
