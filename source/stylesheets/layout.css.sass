@@ -1,5 +1,6 @@
 \:root
   --border-radius: 0px
+  --header-height: 96px
 
 a.skip-link
   transition: top .2s ease
@@ -23,7 +24,8 @@ header
   border-bottom: 1px solid transparent
   font-family: $text-font
   font-weight: 600
-  height: 96px
+  height: var(--header-height)
+  gap: 16px
   padding: 0 $marginSize
   margin-top: 0
   width: 100%
@@ -52,12 +54,12 @@ header
     &:hover, &:focus
       color: $welcome-text-color
 
-      @media screen and (min-width: $breakpoint-small + 1)
-        &:after
-          background: $welcome-text-color
-
       svg
         fill: $welcome-text-color
+
+    &:hover
+      &:after
+        background: $welcome-text-color
 
   svg
     fill: $welcome-text-color
@@ -65,7 +67,7 @@ header
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
 
-  &.overlay, &.page
+  &.background_overlay, &.page
     background-color: $header-background-color
     border-bottom: 1px solid $border-color
 
@@ -75,18 +77,20 @@ header
       &:hover, &:focus
         color: $header-link-hover
 
-        @media screen and (min-width: $breakpoint-small + 1)
-          &:after
-            background: $header-link-hover
-
         svg
           fill: $header-link-hover
 
+      &:hover
+        &:after
+          background: $header-link-hover
     svg
       fill: $header-link-color
 
   .logo
     +font-size(24)
+    line-height: 2rem
+    display: inline-flex
+    align-items: center
     font-family: $header-font
     text-align: left
     z-index: 98
@@ -99,6 +103,7 @@ header
 
     a
       max-width: 500px
+      width: auto
 
       &:after
         content: none !important
@@ -122,7 +127,7 @@ header
     width: 50%
     z-index: 97
 
-    @media only screen and (max-width:$breakpoint-small)
+    @media only screen and (max-width: $breakpoint-small)
       display: none
 
     .navigation
@@ -137,7 +142,7 @@ header
         margin: 0 16px
 
         a
-          padding: 4px 0
+          padding: 4px
           position: relative
           text-align: center
 
@@ -148,7 +153,7 @@ header
   white-space: nowrap
   width: 25%
 
-  @media only screen and (max-width:$breakpoint-small)
+  @media only screen and (max-width: $breakpoint-small)
     width: 50%
 
   ul
@@ -278,7 +283,8 @@ footer
   +flex-shrink(0)
   +align-items(center)
   +justify-content(center)
-  display: grid
+  flex-direction: column
+  display: flex
   border-top: 1px solid $border-color
   position: relative
   padding: $marginSize * 2
@@ -292,15 +298,13 @@ footer
     line-height: 1em
     +align-items(center)
     +justify-content(center)
-    display: flex
+    display: inline-flex
     gap: 8px
     outline-offset: 4px
     padding: 2px 0
-    order: 1
 
     @media screen and (max-width: $breakpoint-small)
       margin: $marginSize 0
-      order: 3
 
     &__text
       position: relative
@@ -317,7 +321,7 @@ footer
     list-style: none
     margin: 0
     padding: 0
-    column-gap: 32px
+    column-gap: 28px
     row-gap: 12px
 
   .social_footer
@@ -345,6 +349,13 @@ footer
     ul
       max-width: 800px
       flex-wrap: wrap
+
+      a
+        padding: 4px
+
+        &:hover
+          text-decoration: underline
+          text-underline-offset: 2px
 
 .blur-up
   +transition(filter .2s ease)
