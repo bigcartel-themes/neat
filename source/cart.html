@@ -1,11 +1,11 @@
+<h1 class="page-title">{{ page.name }}</h1>
 {% if errors != blank %}
   <ul class="errors">
     {% for error in errors %}
-      <li>{% if forloop.length != 1 %}&bull; {% endif %}{{ error }}</li>
+      <li>{{ error }}</li>
     {% endfor %}
   </ul>
 {% endif %}
-<h1 class="page-title">{{ page.name }}</h1>
 <div class="cart-container{% if cart.item_count == 0 %} empty-cart{% endif %}">
   <div class="empty-cart-message">
     <p class="empty-cart-message centered-message" aria-live="polite" aria-atomic="true">
@@ -55,7 +55,7 @@
             <span class="cart_subtotal_label">Subtotal:</span>
             <span class="cart-subtotal-amount">{{ cart.total | money: theme.money_format }}</span>
           </div>
-          <button type="submit" name="checkout" title="Checkout" class="button checkout_btn">Checkout</button>
+          <button type="submit" name="checkout" class="button checkout_btn">Checkout</button>
           <a class="button continue_shopping minimal-button" href="/products">Continue Shopping</a>
         </div>
       </form>
