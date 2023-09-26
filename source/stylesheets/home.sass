@@ -14,8 +14,8 @@
     opacity: 0
 
 .welcome_image
-  background: $header-background-color
-  color: $welcome-text-color
+  background: var(--header-background-color)
+  color: var(--welcome-text-color)
   height: 100vh
   height: 100svh
   left: 0
@@ -57,7 +57,7 @@
 
     button
       background: transparent
-      border: 2px solid $welcome-text-color
+      border: 2px solid var(--welcome-text-color)
       cursor: pointer
       height: 14px
       margin: 8px
@@ -68,12 +68,12 @@
         opacity: 1
 
       &.is-active
-        background: $welcome-text-color
+        background: var(--welcome-text-color)
         opacity: 1
         transform: none
 
   .welcome_overlay
-    background-color: $overlay-background-color
+    background-color: var(--overlay-background-color)
     content: ""
     height: 100%
     position: absolute
@@ -96,7 +96,7 @@
 
   .welcome-subheader
     +fluid-type(16px, 20px)
-    font-family: $header-font
+    font-family: var(--header-font)
     font-weight: 600
     letter-spacing: .2em
     line-height: 1.25em
@@ -110,7 +110,7 @@
 
   .welcome-header
     +fluid-type(20px, 60px)
-    font-family: $header-font
+    font-family: var(--header-font)
     font-weight: bold
     letter-spacing: .2em
     line-height: 1.3em
@@ -124,30 +124,30 @@
 
   a.welcome_button
     +transition(background .2s linear, border .2s linear)
-    border: 1px solid $welcome-text-color
+    border: 1px solid var(--welcome-text-color)
     background: transparent
-    color: $welcome-text-color
+    color: var(--welcome-text-color)
     height: auto
     display: inline-flex
     padding: $marginSize / 2 $marginSize
     width: auto
 
     &:hover, &:focus
-      border: 1px solid $button-background-hover-color
-      background: $button-background-hover-color
-      color: $button-text-color
+      border: 1px solid var(--button-background-hover-color)
+      background: var(--button-background-hover-color)
+      color: var(--button-text-color)
 
 a.button.view-all-products
-  border: 1px solid $link-color
-  color: $link-color
+  border: 1px solid var(--link-color)
+  color: var(--link-color)
   display: block
   max-width: 240px
   width: 48%
   margin: 40px auto
 
   &:hover, &:focus
-    border-color: $link-hover-color
-    color: $link-hover-color
+    border-color: var(--link-hover-color)
+    color: var(--link-hover-color)
 
   @media screen and (max-width: $breakpoint-small)
     margin-top: 32px

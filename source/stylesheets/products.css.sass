@@ -54,7 +54,7 @@
     margin: 0 -16px
 
 .product-list-thumb
-  color: $link-color
+  color: var(--link-color)
   display: block
   font-size: 0
   padding: 16px 3%
@@ -75,15 +75,15 @@
 
 .product-list-link
   +transition(color .2s ease)
-  color: $link-color
+  color: var(--link-color)
   text-decoration: none
 
   &:hover, &:focus
-    color: $link-hover-color
+    color: var(--link-hover-color)
     text-decoration: none
 
     .product-list-thumb-name, .product-list-thumb-price
-      color: $link-hover-color
+      color: var(--link-hover-color)
 
 .product-list-image-container
   overflow: hidden
@@ -124,18 +124,18 @@
 
 .product-list-thumb-name
   +transition(color .2s ease)
-  color: $link-color
+  color: var(--link-color)
   font-weight: bold
   overflow-wrap: break-word
   position: relative
 
 .product-list-thumb-price
   +transition(color .2s ease)
-  color: $text-color
+  color: var(--text-color)
   margin-top: 6px
 
 .product-list-thumb-status
-  color: $link-color
+  color: var(--link-color)
   display: inline-block
   font-style: italic
   font-weight: normal
@@ -146,7 +146,7 @@
   +justify-content(space-between)
   +align-items(center)
   border-top: 1px solid var(--border-color)
-  font-family: $header-font
+  font-family: var(--header-font)
   line-height: 40px
   margin: 0 auto $marginSize auto
   max-width: 640px
@@ -177,10 +177,10 @@
     +flexbox
     +align-items(center)
     +justify-content(center)
-    background: $background-color
+    background: var(--background-color)
     border-radius: 0
     border: 1px solid transparent
-    color: $link-color
+    color: var(--link-color)
     text-align: center
     height: 40px
     margin-right: 8px
@@ -190,8 +190,8 @@
     width: 40px
 
     &.current
-      border: 1px solid $link-hover-color
-      color: $link-hover-color
+      border: 1px solid var(--link-hover-color)
+      color: var(--link-hover-color)
 
     &.disabled
       cursor: not-allowed
@@ -199,13 +199,13 @@
 
   > a
     &:hover, &:focus
-      color: $link-hover-color
+      color: var(--link-hover-color)
       text-decoration: underline
 
 .page-link
   +flexbox
   +align-items(center)
-  color: $link-color
+  color: var(--link-color)
   line-height: 40px
   text-align: center
   height: 40px
@@ -215,11 +215,11 @@
 
   &:not(.disabled):hover, &:not(.disabled):focus
     background: none
-    color: $link-hover-color
+    color: var(--link-hover-color)
     text-decoration: underline
 
     svg
-      fill: $link-hover-color
+      fill: var(--link-hover-color)
 
   &.next-page-link
 
@@ -241,7 +241,7 @@
 
   svg
     display: block
-    fill: $link-color
+    fill: var(--link-color)
     height: 12px
     width: 12px
 

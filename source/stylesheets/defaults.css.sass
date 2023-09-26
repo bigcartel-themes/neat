@@ -10,9 +10,9 @@ html, body
 body
   +flexbox
   +flex-direction(column)
-  background: $background-color
-  color: $text-color
-  font: normal 100%/1.5 $text-font
+  background: var(--background-color)
+  color: var(--text-color)
+  font: normal 100%/1.5 var(--text-font)
   -webkit-font-smoothing: antialiased
 
 hr
@@ -41,11 +41,11 @@ header
 // Links
 
 a
-  color: $link-color
+  color: var(--link-color)
   text-decoration: none
 
   &:hover, &:focus
-    color: $link-hover-color
+    color: var(--link-hover-color)
 
 // Buttons
 
@@ -53,9 +53,9 @@ a
   +border-radius(0)
   +font-size(16)
   +transition(background .2s ease-in-out)
-  background-color: $button-background-color
+  background-color: var(--button-background-color)
   border: none
-  color: $button-text-color
+  color: var(--button-text-color)
   display: inline-block
   font-weight: 600
   height: 56px
@@ -69,7 +69,7 @@ a
 
   &.minimal-button
     background: none
-    color: $text-color
+    color: var(--text-color)
     border: none
     font-size: 15px
     padding: 0
@@ -82,7 +82,7 @@ a
       text-decoration: underline
 
   &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
-    background-color: $button-background-hover-color
+    background-color: var(--button-background-hover-color)
 
   &:disabled, &.disabled
     cursor: not-allowed
@@ -97,32 +97,32 @@ input, textarea
   +border-radius(0)
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 1px solid $link-color
-  color: $link-color
+  border: 1px solid var(--link-color)
+  color: var(--link-color)
   margin: 0
   padding: 8px
 
 .select
-  border: 1px solid $link-color
-  color: $link-color
+  border: 1px solid var(--link-color)
+  color: var(--link-color)
   margin-bottom: 16px
   position: relative
 
   &:hover, &:focus, &:focus-within
-    border: 1px solid $link-hover-color
-    color: $link-hover-color
+    border: 1px solid var(--link-hover-color)
+    color: var(--link-hover-color)
 
     select
-      color: $link-hover-color
+      color: var(--link-hover-color)
 
     svg
-      fill: $link-hover-color
+      fill: var(--link-hover-color)
 
   select
     background: none
     border: 0px
     border-radius: 0px
-    color: $link-color
+    color: var(--link-color)
     font-weight: 600
     height: 56px
     line-height: 56px
@@ -139,7 +139,7 @@ input, textarea
       display: none
 
   svg
-    fill: $link-color
+    fill: var(--link-color)
     height: 14px
     position: absolute
     right: 24px
@@ -149,7 +149,7 @@ input, textarea
     z-index: 1
 
 h1, h2, h3, h4, h5, h6
-  font-family: $header-font
+  font-family: var(--header-font)
   text-transform: uppercase
   letter-spacing: .2em
   text-indent: .2em
@@ -185,18 +185,8 @@ h6
 // Errors
 
 .errors
-  background: $error-background-color
-  color: $button-text-color
+  background: var(--error-background-color)
+  color: var(--error-text-color)
   list-style-type: none
   text-align: center
   padding: 16px
-
-.standalone
-  height: auto
-  margin: 0 auto
-  max-width: 500px
-  padding-top: 120px
-  text-align: center
-
-  div
-    padding: 0 $marginSize

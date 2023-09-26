@@ -65,7 +65,7 @@
     },
     {
       "variable": "button_text_color",
-      "label": "Button & error text",
+      "label": "Button text",
       "default": "#FFFFFF"
     },
     {
@@ -76,12 +76,7 @@
     {
       "variable": "button_background_hover_color",
       "label": "Button background hover",
-      "default": "#444444"
-    },
-    {
-      "variable": "error_color",
-      "label": "Error background",
-      "default": "#a92d22"
+      "default": "#333333"
     },
     {
       "variable": "announcement_text_color",
