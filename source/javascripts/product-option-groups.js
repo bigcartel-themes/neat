@@ -18,7 +18,7 @@ function processProduct(product) {
     $('#option').val(0);
     $(this).hide();
     enableAddButton();
-    $(".product_option_group option").each(function(element) {
+    $(".product_option_group option").each(function(index,element) {
       if (element.value > 0) {
         enableSelectOption($(element));
       }
