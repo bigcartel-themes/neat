@@ -178,19 +178,32 @@
       "variable": "welcome_header",
       "label": "Welcome header",
       "type": "text",
-      "description": "Welcome header for homepage"
+      "description": "Welcome header for the Home page"
     },
     {
       "variable": "welcome_subheader",
       "label": "Welcome subheader",
       "type": "text",
-      "description": "Welcome subheader for homepage"
+      "description": "Welcome subheader for the Home page"
+    },
+    {
+      "variable": "welcome_button_text",
+      "label": "Welcome button text",
+      "type": "text",
+      "description": "Displays underneath the welcome text on the Home page and links to your Products page"
+    },
+    {
+      "variable": "featured_header",
+      "label": "Featured header",
+      "type": "text",
+      "description": "Featured products header on the Home page",
+      "default": "Featured"
     },
     {
       "variable": "featured_subheader",
       "label": "Featured subheader",
       "type": "text",
-      "description": "Featured products subheader on homepage"
+      "description": "Featured products subheader on the Home page"
     },
     {
       "variable": "nav_items",
@@ -201,6 +214,18 @@
       "description": "The number of custom page links show in the main navigation."
     },
     {
+      "variable": "featured_overlay_opacity",
+      "label": "Slideshow overlay opacity",
+      "type": "select",
+      "options": [
+        ["None", "0"],
+        ["25%", ".25"],
+        ["50%", ".5"]
+      ],
+      "default": ".5",
+      "description": "Darken the home page slideshow. Helps legibility of your menu items and welcome headers."
+    },
+    {
       "variable": "grid_image_style",
       "label": "Product grid image style",
       "type": "select",
@@ -209,7 +234,7 @@
         ["Fit to square", "contain"],
         ["Crop to square", "cover"]
       ],
-      "default": "default",
+      "default": "cover",
       "description": "Sets the display of images in the product grid"
     },
     {
@@ -217,7 +242,7 @@
       "label": "Products per page",
       "type": "select",
       "options": "1..100",
-      "default": 36,
+      "default": 48,
       "description": "The number of products shown at a time on the Products page"
     },
     {
@@ -278,7 +303,7 @@
       "variable": "show_search",
       "label": "Show search",
       "type": "boolean",
-      "default": true,
+      "default": false,
       "description": "Shows the product search area"
     },
     {
