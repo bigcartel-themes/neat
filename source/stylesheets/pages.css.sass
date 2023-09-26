@@ -22,36 +22,34 @@
     text-align: center
 
   p
-    margin: 0 auto 16px auto
-    width: 100%
-    max-width: 800px
+    margin: revert
 
-    img
-      display: block
-      margin: 0 auto
-      text-align: center
-      padding-bottom: 16px
-      max-width: 100%
+  &>:first-child
+    margin-top: 0
 
-      @media only screen and (max-width:$breakpoint-small)
-        width: 100%
+  &>:last-child
+    margin-bottom: 0
 
-  iframe
-    display: block
+  img
     margin: 0 auto
     text-align: center
-    max-width: 100%
+    padding-bottom: 16px
+
+    @media only screen and (max-width:$breakpoint-small)
+      width: 100%
+
+  iframe
+    margin: 0 auto
+    text-align: center
 
     @media only screen and (max-width:$breakpoint-small)
       width: 100%
 
   ol, ul
-    margin: 1em 0
+    margin: 1em
 
   ul
     list-style: disc
-    list-style-position: inside
 
   ol
     list-style: decimal
-    list-style-position: inside
