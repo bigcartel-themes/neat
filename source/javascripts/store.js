@@ -37,6 +37,7 @@ function camelCaseToDash(string) {
 }
 
 window.addEventListener("load", () => {
+  document.body.classList.remove("transition-preloader");
   setDocHeight();
   setHeaderPosition();
   resizeHomeWelcome();

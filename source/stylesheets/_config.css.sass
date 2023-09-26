@@ -13,19 +13,13 @@ $break-small: 800px
   -ms-transform: translateY(-50%)
   transform: translateY(-50%)
 
-@mixin all-transitions
-  +transition(.2s linear)
-
 @mixin transition($transition...)
-  -webkit-transition: #{$transition}
   transition: #{$transition}
 
 @mixin transform($str...)
-  -webkit-transform: $str
   transform: $str
 
 @mixin transform-origin($str...)
-  -webkit-transform-origin: $str
   transform-origin: $str
 
 @mixin appearance($str...)
@@ -41,7 +35,6 @@ $break-small: 800px
     @content
 
 @mixin animation($str...)
-  -webkit-animation: $str
   animation: $str
 
 @mixin pie-clearfix

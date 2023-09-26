@@ -1,6 +1,4 @@
 // Global
-*
-  box-sizing: border-box
 
 html, body
   height: 100%
@@ -15,25 +13,16 @@ body
   font: normal 100%/1.5 var(--text-font)
   -webkit-font-smoothing: antialiased
 
-hr
-  background-color: 1px solid var(--border-color)
-  border-style: none
-  border: none
-  height: 1px
-  margin: 16px 0
-  padding: 0
-  width: 100%
-
 // CSS3 Global Animation
 
 header
   +transition(background .25s ease-in)
 
-  a
+  a, button
     +transition(color .25s ease-in-out)
 
-    &:after
-      +transition(background .25s ease-in-out)
+  a:after
+    +transition(background .25s ease-in-out)
 
   svg
     +transition(fill .25s ease-in-out)
