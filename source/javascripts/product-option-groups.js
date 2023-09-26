@@ -10,15 +10,15 @@ function processProduct(product) {
     }
   }
   if ($('.product_option_select').length) {
-    if (showSoldOutOptions === false) {
+    if (themeOptions.showSoldOutOptions === false) {
       $('option[disabled-type="sold-out"]').wrap('<span>');
     }
   }
-  $('.reset-selection-button').on('click', () => {
+  $('.reset-selection-button').on('click', function() {
     $('#option').val(0);
     $(this).hide();
     enableAddButton();
-    $(".product_option_group option").each((element) => {
+    $(".product_option_group option").each(function(element) {
       if (element.value > 0) {
         enableSelectOption($(element));
       }
