@@ -1,6 +1,9 @@
 \:root
   --border-radius: 0px
   --header-height: 96px
+  --header-text-color: #{'rgba(var(--header-text-color-rgb), 1)'}
+  --header-text-hover-color: #{'rgba(var(--header-text-color-rgb), .75)'}
+  --border-color: #{'rgba(var(--text-color-rgb), .2)'}
 
 a.skip-link
   transition: top .2s ease
@@ -46,45 +49,33 @@ header
       background: transparent
       bottom: 3px
       content: " "
-      left: 0
+      left: 4px
       height: 1px
       position: absolute
-      width: 100%
+      width: calc(100% - 8px)
 
     &:hover, &:focus
       color: $welcome-text-color
 
-      svg
-        fill: $welcome-text-color
-
     &:hover
       &:after
         background: $welcome-text-color
-
-  svg
-    fill: $welcome-text-color
 
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
 
   &.background_overlay, &.page
     background-color: $header-background-color
-    border-bottom: 1px solid $border-color
+    border-bottom: 1px solid var(--border-color)
 
     a, .button
-      color: $header-link-color
-
-      &:hover, &:focus
-        color: $header-link-hover
-
-        svg
-          fill: $header-link-hover
+      color: var(--header-text-color)
 
       &:hover
+        color: var(--header-text-hover-color)
+
         &:after
-          background: $header-link-hover
-    svg
-      fill: $header-link-color
+          background: var(--header-text-hover-color)
 
   .logo
     +font-size(24)
@@ -177,7 +168,7 @@ header
           display: block
 
       a
-        padding: 4px 0
+        padding: 4px
 
       button
         +flexbox
@@ -249,7 +240,7 @@ _:-ms-fullscreen, :root .content
   width: 100%
 
   li
-    border: 1px solid $border-color
+    border: 1px solid var(--border-color)
     border-width: 1px 0 1px 1px
     height: 56px
     width: 56px
@@ -285,7 +276,7 @@ footer
   +justify-content(center)
   flex-direction: column
   display: flex
-  border-top: 1px solid $border-color
+  border-top: 1px solid var(--border-color)
   position: relative
   padding: $marginSize * 2
   gap: 32px

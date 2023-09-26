@@ -39,14 +39,9 @@
       "default": "#ffffff"
     },
     {
-      "variable": "header_link_color",
-      "label": "Header Links",
-      "default": "#656565"
-    },
-    {
-      "variable": "header_link_hover",
-      "label": "Header Link Hover",
-      "default": "#1b1b1b"
+      "variable": "header_text_color",
+      "label": "Header Text",
+      "default": "#000000"
     },
     {
       "variable": "welcome_text_color",
@@ -67,11 +62,6 @@
       "variable": "link_hover",
       "label": "Link Hover",
       "default": "#1b1b1b"
-    },
-    {
-      "variable": "border_color",
-      "label": "Borders",
-      "default": "#e2e2e2"
     },
     {
       "variable": "button_text_color",
@@ -110,12 +100,12 @@
     "header_image_max_height": "66px",
     "title_font": "{{ header_font }}",
     "title_font_size": "22px",
-    "title_color": "{{ header_link_color }}",
+    "title_color": "{{ header_text_color }}",
     "title_background_color": "transparent",
     "background_color": "{{ header_color }}",
     "body_font": "{{ text_font }}",
     "body_font_size": "16px",
-    "step_border_color":"{{ border_color }}",
+    "step_border_color":"{{ text_color }}",
     "step_header_color":"{{ text_color }}",
     "step_inactive_header_color":" {{ text_color }}",
     "step_header_font":"{{ header_font }}",
@@ -157,8 +147,8 @@
     "summary_color":"{{ text_color }}",
     "summary_secondary_color":"{{ link_color }}",
     "summary_submit_background_color":"{{ background_color }}",
-    "summary_item_border_color":"{{ border_color }}",
-    "summary_item_list_border_color": "{{ border_color }}"
+    "summary_item_border_color":"{{ text_color }}",
+    "summary_item_list_border_color": "{{ text_color }}"
   },
   "options": [
     {
@@ -303,7 +293,7 @@
       "variable": "show_search",
       "label": "Show search",
       "type": "boolean",
-      "default": false,
+      "default": true,
       "description": "Shows the product search area"
     },
     {

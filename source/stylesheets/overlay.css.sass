@@ -37,7 +37,7 @@
 
   .close_overlay
     cursor: pointer
-    color: $header-link-color
+    color: var(--header-text-color)
     height: 40px
     display: flex
     align-items: center
@@ -50,7 +50,7 @@
     z-index: 6
 
     &:hover
-      color: $header-link-hover
+      color: var(--header-text-hover-color)
 
     svg
       fill: currentColor
@@ -71,13 +71,13 @@
       margin: 10px 0
 
       a
-        color: $header-link-color
+        color: var(--header-text-color)
         display: inline-block
         font-size: 26px
         padding: 15px
 
         &:hover
-          color: $header-link-hover
+          color: var(--header-text-hover-color)
           text-decoration: underline
 
         @media screen and (max-width: $break-small)
