@@ -160,6 +160,14 @@
       "default": "We're working on our shop right now.<br /><br />Please check back soon."
     },
     {
+      "variable": "nav_items",
+      "label": "Navigation items",
+      "type": "select",
+      "options": "0..6",
+      "default": 2,
+      "description": "The number of custom page links show in the main navigation."
+    },
+    {
       "variable": "welcome_header",
       "label": "Welcome header",
       "type": "text",
@@ -189,14 +197,6 @@
       "label": "Featured subheader",
       "type": "text",
       "description": "Featured products subheader on the Home page"
-    },
-    {
-      "variable": "nav_items",
-      "label": "Navigation items",
-      "type": "select",
-      "options": "0..6",
-      "default": 2,
-      "description": "The number of custom page links show in the main navigation."
     },
     {
       "variable": "featured_overlay_opacity",
