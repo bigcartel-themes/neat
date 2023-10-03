@@ -14,7 +14,7 @@
         <div class="announcement-wrapper">
           <div class="announcement-message-text">{{ theme.announcement_message_text }}</div>
         </div>
-        <button aria-label="Close announcement" class="button announcement-message-close" title="Close announcement message">
+        <button aria-label="Close announcement" class="button announcement-message-close" title="Close announcement message" id="close-announce-message">
           <svg aria-hidden="true" class="close-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 8 8"><path d="M7.924 6.51l-2.474-2.475 2.475-2.475c.196-.195.196-.512 0-.707l-.708-.753c-.195-.195-.512-.195-.707 0l-2.474 2.521-2.475-2.475c-.195-.195-.512-.195-.707 0l-.707.754c-.196.195-.196.5 0 .707l2.475 2.475-2.475 2.428c-.196.195-.196.5 0 .707l.707.7c.195.2.5.2.7 0l2.475-2.475 2.481 2.482c.195.2.5.2.7 0l.707-.707c.204-.217.183-.517-.017-.707z"/></svg>
         </button>
       </aside>
@@ -201,56 +201,19 @@
       backgroundColor: '{{ theme.background_color }}',
       headerTextColor: '{{ theme.header_text_color }}'
     }
-    function setCookie(name,value,days) {
-      var expires = "";
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    function closeAnnouncement() {
+      let announcement = document.getElementById("announce-message");
+      announcement.remove();
+      sessionStorage.setItem("announcementClosed", "true");
     }
-    function getCookie(name) {
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for(var i=0;i < ca.length;i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1,c.length);
-        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-      }
-      return null;
-    }
-    String.prototype.hashCode = function() {
-      var hash = 0, i, chr;
-      if (this.length === 0) return hash;
-      for (i = 0; i < this.length; i++) {
-        chr   = this.charCodeAt(i);
-        hash  = ((hash << 5) - hash) + chr;
-        hash |= 0;
-      }
-      return hash;
-    };
     if (themeOptions.hasAnnouncement) {
-      announceDiv = document.getElementById("announce-message");
-      if (announceDiv) {
-        announcementMessage = document.querySelector(".announcement-message-text").innerHTML;
-        hashedMessage = announcementMessage.hashCode();
-        cookieValue = getCookie("hide-announcement-message");
-        if (cookieValue) {
-          if (cookieValue != hashedMessage) {
-            announceDiv.classList.add('visible');
-          }
-        }
-        else {
-          announceDiv.classList.add('visible');
-        }
-        if (announceDiv.classList.contains('visible')) {
-          document.querySelector('.announcement-message-close').addEventListener('click', function(e) {
-            announceDiv.remove();
-            setCookie('hide-announcement-message', hashedMessage);
-          });
-        }
+      let announcement = document.getElementById("announce-message");
+      let closeAnnounceBtn = document.getElementById("close-announce-message");
+      let announcementClosed = sessionStorage.getItem("announcementClosed");
+      if (!announcementClosed) {
+        announcement.classList.add('visible');
       }
+      closeAnnounceBtn.addEventListener("click", closeAnnouncement);
     }
   </script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
