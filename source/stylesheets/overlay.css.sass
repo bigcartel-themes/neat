@@ -9,6 +9,7 @@
   visibility: hidden
   width: 100%
   z-index: 1000
+  overscroll-behavior: contain
 
   &[aria-hidden="false"]
     +transition(opacity 0.4s)
@@ -24,7 +25,7 @@
     background: var(--header-background-color)
     bottom: 0
     left: 0
-    opacity: .99
+    opacity: .9
     position: absolute
     right: 0
     top: 0
@@ -60,15 +61,19 @@
 
   .page_list
     margin: 40px auto
-    max-width: 80%
     opacity: 0
     position: relative
     z-index: 6
     visibility: hidden
+    z-index: 5
+    display: flex
+    align-items: center
+    flex-direction: column
 
     li
       display: block
       margin: 10px 0
+      max-width: 80%
 
       a
         color: var(--header-text-color)
