@@ -47,8 +47,8 @@ a.skip-link
     top: 20px
 
 header
-  +flexbox
-  +align-items(center)
+  display: grid
+  grid-template-columns: 1fr 50% 1fr
   +flex-shrink(0)
   border-bottom: 1px solid transparent
   font-family: var(--text-font)
@@ -60,6 +60,9 @@ header
   width: 100%
   z-index: 99
 
+  @media only screen and (max-width: $breakpoint-small)
+    grid-template-columns: auto 1fr
+
   &.fixed
     position: fixed
     top: 0
@@ -67,7 +70,7 @@ header
 
   a:after
     background: transparent
-    bottom: 3px
+    bottom: 2px
     content: " "
     left: 4px
     height: 1px
@@ -110,13 +113,10 @@ header
     align-items: center
     font-family: var(--header-font)
     text-align: left
-    z-index: 98
-    width: 25%
 
     @media only screen and (max-width:$breakpoint-small)
       +font-size(18)
-      line-height: 25px
-      width: 50%
+      line-height: 1.5rem
 
     a
       max-width: 500px
@@ -141,8 +141,6 @@ header
     +justify-content(center)
     padding: 0 $marginSize
     position: relative
-    width: 50%
-    z-index: 97
 
     @media only screen and (max-width: $breakpoint-small)
       display: none
@@ -150,16 +148,19 @@ header
     .navigation
       +flexbox
       +align-items(center)
+      flex-wrap: wrap
+      justify-content: center
       list-style: none
+      column-gap: 32px
+      row-gap: 4px
       margin: 0
       padding: 0
 
       li
         display: block
-        margin: 0 16px
 
         a
-          padding: 4px
+          padding: 2px 4px
           position: relative
           text-align: center
 
@@ -168,10 +169,6 @@ header
   +justify-content(flex-end)
   position: relative
   white-space: nowrap
-  width: 25%
-
-  @media only screen and (max-width: $breakpoint-small)
-    width: 50%
 
   ul
     +flexbox
@@ -179,13 +176,13 @@ header
     list-style: none
     margin: 0
     padding: 0
+    gap: $marginSize
+
+    @media screen and (max-width: $breakpoint-small)
+      gap: $marginSize / 1.5
 
     li
       flex-shrink: 0
-      margin-left: $marginSize
-
-      @media screen and (max-width: $breakpoint-small)
-        margin-left: $marginSize / 1.5
 
       &:last-child
         display: none
