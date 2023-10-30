@@ -16,20 +16,14 @@
     opacity: 1
     visibility: visible
 
-    .page_list
-      +transition(opacity 0.2s, visibility 0s 0.2s)
-      opacity: 1
-      visibility: visible
-
   .overlay_background
     background: var(--header-background-color)
     bottom: 0
     left: 0
-    opacity: .9
+    opacity: 1
     position: absolute
     right: 0
     top: 0
-    z-index: 5
 
   .overlay_content
     height: 100%
@@ -48,7 +42,6 @@
     right: 40px
     top: 26px
     width: 40px
-    z-index: 6
 
     &:hover
       color: var(--header-text-hover-color)
@@ -60,26 +53,22 @@
       right: 20px
 
   .page_list
-    margin: 40px auto
-    opacity: 0
+    margin: 0 auto
     position: relative
-    z-index: 6
-    visibility: hidden
-    z-index: 5
     display: flex
     align-items: center
     flex-direction: column
 
     li
       display: block
-      margin: 10px 0
+      margin: 8px 0
       max-width: 80%
 
       a
         color: var(--header-text-color)
         display: inline-block
         font-size: 26px
-        padding: 15px
+        padding: 8px
 
         &:hover
           color: var(--header-text-hover-color)
