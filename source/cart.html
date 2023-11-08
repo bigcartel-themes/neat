@@ -1,5 +1,5 @@
 <div class="cart-wrapper">
-  <div class="cart-header">
+  <div class="cart-header{% if cart.items == blank %} cart-empty{% endif %}">
     <h1>{{ page.name }}</h1>
     {% if cart.item_count > 0 %}<a class="continue-shopping" href="/products">Continue Shopping</a>{% endif %}
   </div>
