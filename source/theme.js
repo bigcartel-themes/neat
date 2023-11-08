@@ -1,4 +1,5 @@
 //= require_directory ./javascripts/vendor
+//= require javascripts/functions
 //= require javascripts/cart
 //= require javascripts/store
 //= require javascripts/product-option-groups
