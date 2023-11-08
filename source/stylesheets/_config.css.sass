@@ -4,33 +4,7 @@ $marginSize: 32px
 $breakpoint-medium: 1024px
 $breakpoint-small: 800px
 $breakpoint-xsmall: 500px
-
-$background-color: #{'{{ theme.background_color }}'}
-$header-background-color: #{'{{ theme.header_color }}'}
-$header-link-color: #{'{{ theme.header_link_color }}'}
-$header-link-hover: #{'{{ theme.header_link_hover }}'}
-$welcome-text-color: #{'{{ theme.welcome_text_color }}'}
-$text-color: #{'{{ theme.text_color }}'}
-$link-color: #{'{{ theme.link_color }}'}
-$link-hover-color: #{'{{ theme.link_hover }}'}
-$border-color: #{'{{ theme.border_color }}'}
-$error-background-color: #{'{{ theme.error_color }}'}
-
-$button-text-color: #{'{{ theme.button_text_color }}'}
-$button-background-color: #{'{{ theme.button_background_color }}'}
-$button-background-hover-color: #{'{{ theme.button_background_hover_color }}'}
-
-$announcement-text-color: #{"{{ theme.announcement_text_color }}"}
-$announcement-background-color: #{"{{ theme.announcement_background_color }}"}
-
-$header-font: #{"{{ theme.header_font | font_family }}"}
-$text-font: #{"{{ theme.text_font | font_family }}"}
-
-@mixin border-radius($radius...)
-  border-radius: $radius
-
-@mixin box-shadow($shadow...)
-  box-shadow: $shadow
+$break-small: 800px
 
 @mixin vertical-align
   position: relative
@@ -39,19 +13,13 @@ $text-font: #{"{{ theme.text_font | font_family }}"}
   -ms-transform: translateY(-50%)
   transform: translateY(-50%)
 
-@mixin all-transitions
-  +transition(.2s linear)
-
 @mixin transition($transition...)
-  -webkit-transition: #{$transition}
   transition: #{$transition}
 
 @mixin transform($str...)
-  -webkit-transform: $str
   transform: $str
 
 @mixin transform-origin($str...)
-  -webkit-transform-origin: $str
   transform-origin: $str
 
 @mixin appearance($str...)
@@ -67,7 +35,6 @@ $text-font: #{"{{ theme.text_font | font_family }}"}
     @content
 
 @mixin animation($str...)
-  -webkit-animation: $str
   animation: $str
 
 @mixin pie-clearfix
@@ -75,11 +42,6 @@ $text-font: #{"{{ theme.text_font | font_family }}"}
     content: ""
     display: table
     clear: both
-
-@mixin hide-text
-  overflow: hidden
-  text-indent: 100%
-  white-space: nowrap
 
 @mixin font-size($fontsize: 16, $lineheight: $fontsize * 1.5)
   font-size: ($fontsize) + px
@@ -112,3 +74,36 @@ $max_font: 24px
       @media screen and (min-width: $max-vw)
         font-size: $max-font-size
 
+
+*, *::before, *::after
+  box-sizing: border-box
+
+*
+  margin: 0
+  padding: 0
+  border: 0
+
+body
+  line-height: 1.5
+  -webkit-font-smoothing: antialiased
+
+img, picture, video, canvas, svg, iframe, embed, audio
+  display: block
+  max-width: 100%
+
+input, button, textarea, select
+  +appearance(none)
+  border: 0
+  border-radius: 0
+  background: none
+  color: inherit
+  font: inherit
+
+button
+  cursor: pointer
+
+p, h1, h2, h3, h4, h5, h6
+  overflow-wrap: break-word
+
+ol, ul
+  list-style: none

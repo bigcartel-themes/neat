@@ -1,0 +1,159 @@
++keyframes(welcome-text)
+  0%
+    opacity: 0
+
+  100%
+    +transform(none)
+    opacity: 1
+
++keyframes(hide-welcome-text)
+  0%
+    opacity: 1
+
+  100%
+    opacity: 0
+
+.welcome_image
+  background: var(--header-background-color)
+  color: var(--welcome-text-color)
+  height: 100vh
+  height: 100svh
+  left: 0
+  position: relative
+  text-align: center
+  top: calc(var(--header-height) * -1)
+  width: 100%
+  display: flex
+  align-items: center
+  z-index: 2
+  flex-shrink: 0
+  overflow: hidden
+
+  .carousel
+    height: 100%
+
+  .home-carousel
+    transition: opacity .3s ease-in
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 0
+
+    img
+      object-fit: cover
+      width: 100%
+      height: 100%
+
+  .splide__pagination
+    bottom: 24px
+    z-index: 5
+    gap: 4px
+
+    li
+      height: 24px
+      width: 24px
+
+    button
+      background: transparent
+      border: 2px solid var(--welcome-text-color)
+      cursor: pointer
+      height: 14px
+      margin: 8px
+      opacity: .5
+      width: 14px
+
+      &:hover
+        opacity: 1
+
+      &.is-active
+        background: var(--welcome-text-color)
+        opacity: 1
+        transform: none
+
+  .welcome_overlay
+    background-color: var(--overlay-background-color)
+    content: ""
+    height: 100%
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: 1
+    opacity: #{"{{ theme.featured_overlay_opacity }}"}
+    pointer-events: none
+
+  .welcome_text
+    position: relative
+    +animation(welcome-text ease-in 900ms forwards)
+    padding: 0 20px
+    max-width: 1200px
+    margin: 0 auto
+    z-index: 2
+
+    &.fade_out
+      +animation(hide-welcome-text ease-in 200ms forwards)
+
+  .welcome-subheader
+    +fluid-type(16px, 20px)
+    font-family: var(--header-font)
+    font-weight: 600
+    letter-spacing: .2em
+    line-height: 1.25em
+    margin-right: -.2em
+    padding: 0 16px 24px 16px
+    text-transform: uppercase
+
+    @media only screen and (max-width: $breakpoint-small)
+      letter-spacing: .1em
+      margin-right: -.1em
+
+  .welcome-header
+    +fluid-type(20px, 60px)
+    font-family: var(--header-font)
+    font-weight: bold
+    letter-spacing: .2em
+    line-height: 1.3em
+    margin: 0 -.2em 24px 0
+    text-transform: uppercase
+
+    @media only screen and (max-width: $breakpoint-small)
+      letter-spacing: .1em
+      padding: 0 16px
+      white-space: normal
+
+  a.welcome_button
+    +transition(background .2s linear, border .2s linear)
+    border: 1px solid var(--welcome-text-color)
+    background: transparent
+    color: var(--welcome-text-color)
+    height: auto
+    display: inline-flex
+    padding: $marginSize / 2 $marginSize
+    width: auto
+
+    &:hover, &:focus
+      border: 1px solid var(--button-background-hover-color)
+      background: var(--button-background-hover-color)
+      color: var(--button-text-color)
+
+.welcome_image + main
+  margin-top: calc(var(--header-height) * -1)
+
+a.button.view-all-products
+  border: 1px solid var(--link-color)
+  color: var(--link-color)
+  display: block
+  max-width: 240px
+  width: 48%
+  margin: 40px auto
+
+  &:hover, &:focus
+    border-color: var(--link-hover-color)
+    color: var(--link-hover-color)
+
+  @media screen and (max-width: $breakpoint-small)
+    margin-top: 32px
+
+#home h1
+  margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}

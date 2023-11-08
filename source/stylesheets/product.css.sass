@@ -1,4 +1,5 @@
-@import 'config'
+#product .content
+  max-width: 1200px
 
 .product-container
   +pie-clearfix
@@ -13,9 +14,9 @@
     margin-bottom: 16px
 
   .product-subheader
-    +font-size(18)
+    +font-size(20)
     font-weight: bold
-    font-family: $header-font
+    font-family: var(--header-font)
     text-transform: uppercase
     letter-spacing: .2em
     text-indent: .2em
@@ -28,14 +29,14 @@
 
     em
       font-style: normal
-      color: $link-color
+      color: var(--link-color)
 
-.product-description
+.product-details
   +font-size(16)
   float: right
   margin: 0 0 64px
   padding-left: $marginSize
-  width: 40%
+  width: 38%
   text-align: left
 
   @media screen and (max-width: $breakpoint-medium)
@@ -47,87 +48,73 @@
     padding-left: 0
     width: 100%
 
+.product-description
   a
     text-decoration: underline
 
-  img, iframe
-    max-width: 100%
-
   p
-    margin-bottom: 16px
-    padding: 0
-    text-align: left
+    margin: revert
 
-    &:first-child
-      margin-top: 0
-      padding-top: 0
+  &>:first-child
+    margin-top: 0
+
+  &>:last-child
+    margin-bottom: 0
+
+  ol, ul
+    margin: 1em
 
   ul
-    +font-size(14)
-    margin: 0
-    padding: 0 $marginSize/2
+    list-style: disc
 
-    li
-      list-style-position: inside
+  ol
+    list-style: decimal
 
-ul.product-availability
-  list-style: none
+.product-availability
   margin: 0 0 $marginSize/2 0
   padding: 0
 
-  li
+  &--option
     +font-size(14)
-    border: 1px solid $border-color
+    border: 1px solid var(--border-color)
     border-width: 1px 1px 0 1px
-    height: 56px
-    list-style: none
+    height: 48px
+    display: flex
+    gap: 16px
+    align-items: center
+    justify-content: flex-start
     padding: 8px 12px
     position: relative
     width: 100%
 
     &:last-child
-      margin-bottom: 0
       border-width: 1px
 
-    div
-      position: relative
-      top: 50%
-      transform: translateY(-50%)
-      z-index: 99
+  &--bar
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    background: #{"rgba(var(--text-color-rgb),.08)"}
+    pointer-events: none
+    opacity: .5
+    z-index: 1
 
-    span
-      display: inline
+  &--option-name
+    z-index: 2
+    color: var(--text-color)
 
-      &.sold_out
-        margin-right: 8px
-        text-decoration: line-through
+  .sold_out_text
+    margin-left: auto
 
-      &.sold_out_text
-        white-space: nowrap
-
-    b
-      display: block
-      left: 0
-      position: absolute
-      width: 100%
-      z-index: 1
-      top: 0
-
-      b
-        opacity: .5
-        background-color: $border-color
-        display: block
-        height: 55px
-        left: 0
-        position: relative
-        top: 0
-        z-index: 1
+ul.product-share-buttons
+  margin: 0
 
 .product-artists
-  font-family: $header-font
+  font-family: var(--header-font)
   letter-spacing: .1em
   text-transform: uppercase
-  margin-bottom: $marginSize
+  margin: $marginSize 0
 
   a
     font-weight: bold
@@ -135,7 +122,6 @@ ul.product-availability
 .product-images
   float: left
   margin: 0 0 $marginSize 0
-  overflow: hidden
   width: 60%
 
   @media screen and (max-width: $breakpoint-medium)
@@ -146,53 +132,15 @@ ul.product-availability
     margin-bottom: $marginSize
     width: 100%
 
-.default-product-image
-  display: block
-  width: 100%
-
-  img
-    display: block
-    margin: 0 auto
-    text-align: center
-    width: 100%
-
-.product-thumbnails
-  +pie-clearfix
-  font-size: 0
-  list-style: none
-  margin: 20px -20px
-  text-align: center
-  padding: 0
-
-  @media only screen and (max-width:$breakpoint-small)
-    margin: 5px -10px
-
-  li
-    display: inline-block
-    padding: 0 10px
-    vertical-align: top
-    width: 25%
-
-    @media only screen and (max-width:$breakpoint-small)
-      padding: 5px
-
-    a
-      display: block
-
-    img
-      display: block
-      width: 100%
-
 .product-section-subheader
-  border-bottom: 1px solid $border-color
-  margin: $marginSize auto
+  border-bottom: 1px solid var(--border-color)
+  margin: $marginSize auto $marginSize / 2
   padding: $marginSize / 2 0
   text-align: center
   text-transform: uppercase
-  font-family: $header-font
+  font-family: var(--header-font)
   font-weight: bold
   letter-spacing: .2em
-
 
 .share-pinterest
 
@@ -208,17 +156,6 @@ ul.product-availability
       right: 0
       bottom: 0
       left: 0
-
-    svg
-      height: 16px
-      width: 16px
-
-.secondary-product-images
-  margin-top: 32px
-
-.secondary-product-image
-  display: block
-  width: 100%
 
 .reset-selection-button-container
   text-align: center
@@ -236,6 +173,8 @@ option[disabled-type="unavailable"]
   display: none
 
 .product-form
+  margin-bottom: $marginSize * 1.5
+
   &.show-sold-out
     option[disabled-type="sold-out"]
       display: block
@@ -246,105 +185,3 @@ option[disabled-type="unavailable"]
 
 #instant-checkout-button
   margin-top: 12px
-
-.mfp-top-bar
-  +flexbox
-  +align-items(center)
-  padding: 5px 0
-  position: absolute
-  top: 48px
-  width: 100%
-
-.mfp-title
-  display: none
-
-.mfp-counter
-  color: #F7F7F7
-  font-size: 15px
-  position: relative
-
-.mfp-arrow:before, .mfp-arrow:after
-  display: none
-
-.mfp-image-holder button.mfp-close
-  +flexbox
-  +align-items(center)
-  +justify-content(center)
-  background: none !important
-  margin-left: auto
-  opacity: 1
-  padding: 6px
-  right: 0
-  position: relative
-  width: auto !important
-
-  svg
-    fill: #F7F7F7
-    pointer-events: none
-
-img.mfp-img
-  padding: 100px 0 40px
-
-.mfp-figure:after
-  display: none
-
-.mfp-arrow
-  +flexbox
-  +align-items(center)
-  +justify-content(center)
-  background: #FFF !important
-  height: 65px
-  margin-top: 0
-  opacity: .7
-  width: 65px
-
-  &:active
-    margin-top: 0
-
-  svg
-    display: block
-    fill: #000
-    height: 20px
-    margin: 0 auto
-    pointer-events: none
-    width: 20px
-
-  &:hover
-    opacity: 1
-
-  @media (max-width: 900px)
-    +transform(scale(.7))
-
-.mfp-container
-  padding: 0 10px !important
-
-.mfp-arrow-left
-  left: 40px
-
-  @media (max-width: $breakpoint-medium)
-    left: 14px
-
-.mfp-arrow-right
-  right: 40px
-
-  @media (max-width: $breakpoint-medium)
-    right: 14px
-
-.mfp-preloader
-  +animation(loading-animation 1.5s infinite ease-in-out)
-  +border-radius(100%)
-  background: #FFF
-  height: 40px
-  margin: 0 auto
-  opacity: 1
-  width: 40px
-
-+keyframes(loading-animation)
-  0%
-    -webkit-transform: scale(0.1, 0.1)
-    opacity: 0.0
-  50%
-    opacity: 1.0
-  100%
-    -webkit-transform: scale(1.2, 1.2)
-    opacity: 0.0

@@ -1,133 +1,126 @@
-@import 'config'
+\:root
+  --border-radius: 0px
+  --header-height: 96px
 
-.announcement-message
-  background-color: $announcement-background-color
-  color: $announcement-text-color
-  display: none
-  padding: 20px 144px
-  position: relative
-  text-align: center
-  width: 100%
-  z-index: 1
+  --border-color: #{'rgba(var(--text-color-rgb), .2)'}
 
-  @media screen and (max-width: $breakpoint-medium)
-    padding: 20px 64px
+  --background-color: #{'{{ theme.background_color }}'}
 
-  &.visible
-    display: block
+  --header-background-color: #{'{{ theme.header_color }}'}
+  --header-text-color: #{'rgba(var(--header-text-color-rgb), 1)'}
+  --header-text-hover-color: #{'rgba(var(--header-text-color-rgb), .75)'}
 
-.button.announcement-message-close
-  +transform(translateY(-50%))
-  +transition(none)
-  +flexbox
-  +align-items(center)
-  +justify-content(center)
-  background: none
-  height: 32px
-  padding: 0
+  --welcome-text-color: #{'{{ theme.welcome_text_color }}'}
+
+  --text-color: #{'{{ theme.text_color }}'}
+  --link-color: #{'{{ theme.link_color }}'}
+  --link-hover-color: #{'{{ theme.link_hover }}'}
+
+  --error-text-color: #FFFFFF
+  --error-background-color: #851106
+
+  --overlay-background-color: #000000
+
+  --button-text-color: #{'{{ theme.button_text_color }}'}
+  --button-background-color: #{'{{ theme.button_background_color }}'}
+  --button-background-hover-color: #{'{{ theme.button_background_hover_color }}'}
+
+  --announcement-text-color: #{"{{ theme.announcement_text_color }}"}
+  --announcement-background-color: #{"{{ theme.announcement_background_color }}"}
+
+  --header-font: #{"{{ theme.header_font | font_family }}"}
+  --text-font: #{"{{ theme.text_font | font_family }}"}
+
+a.skip-link
+  transition: top .2s ease
+  background: var(--background-color)
+  border: 1px solid var(--text-color)
+  color: var(--text-color)
+  left: 25px
+  padding: 15px 20px
   position: absolute
-  right: 16px
-  top: 50%
-  width: 32px
+  text-decoration: underline
+  top: -150px
+  z-index: 100
 
-  @media screen and (max-width: $breakpoint-small)
-    right: 4px
-
-  &:hover, &:focus
-    background: none !important
-    opacity: .7
-
-    svg
-      fill: $announcement-text-color
-
-  svg
-    display: block
-    fill: $announcement-text-color
-    height: 14px
-    width: 14px
+  &:focus
+    top: 20px
 
 header
-  +flexbox
-  +align-items(center)
+  display: grid
+  grid-template-columns: 1fr 50% 1fr
   +flex-shrink(0)
   border-bottom: 1px solid transparent
-  font-family: $text-font
+  font-family: var(--text-font)
   font-weight: 600
-  height: 88px
+  height: var(--header-height)
+  gap: 16px
   padding: 0 $marginSize
   margin-top: 0
   width: 100%
-  z-index: 999
+  z-index: 99
 
-  &.page-head-scrolled
+  @media only screen and (max-width: $breakpoint-small)
+    grid-template-columns: auto 1fr
+
+  &.fixed
     position: fixed
     top: 0
+    left: 0
 
-  a
+  a:after
+    background: transparent
+    bottom: 2px
+    content: " "
+    left: 4px
+    height: 1px
+    position: absolute
+    width: calc(100% - 8px)
+
+  a, button
     +flexbox
     +align-items(center)
-    color: $welcome-text-color
+    color: var(--welcome-text-color)
     position: relative
 
-    &:after
-      background: transparent
-      bottom: 3px
-      content: " "
-      left: 0
-      height: 1px
-      position: absolute
-      width: 100%
-
     &:hover, &:focus
-      color: $welcome-text-color
+      color: var(--welcome-text-color)
 
-      @media screen and (min-width: $breakpoint-small + 1)
-        &:after
-          background: $welcome-text-color
-
-      svg
-        fill: $welcome-text-color
-
-  svg
-    fill: $welcome-text-color
+    &:hover
+      &:after
+        background: var(--welcome-text-color)
 
   @media screen and (max-width: $breakpoint-small)
     padding: 0 $marginSize / 2
 
-  &.overlay, &.page
-    background-color: $header-background-color
-    border-bottom: 1px solid $border-color
+  &.background_overlay, &.page
+    background-color: var(--header-background-color)
+    border-bottom: 1px solid var(--border-color)
 
-    a, .button
-      color: $header-link-color
+    a, button
+      color: var(--header-text-color)
 
-      &:hover, &:focus
-        color: $header-link-hover
+      &:hover
+        color: var(--header-text-hover-color)
 
-        @media screen and (min-width: $breakpoint-small + 1)
-          &:after
-            background: $header-link-hover
-
-        svg
-          fill: $header-link-hover
-
-    svg
-      fill: $header-link-color
+        &:after
+          background: var(--header-text-hover-color)
 
   .logo
     +font-size(24)
-    font-family: $header-font
+    line-height: 2rem
+    display: inline-flex
+    align-items: center
+    font-family: var(--header-font)
     text-align: left
-    z-index: 98
-    width: 25%
 
     @media only screen and (max-width:$breakpoint-small)
       +font-size(18)
-      line-height: 25px
-      width: 50%
+      line-height: 1.5rem
 
     a
       max-width: 500px
+      width: auto
 
       &:after
         content: none !important
@@ -148,25 +141,26 @@ header
     +justify-content(center)
     padding: 0 $marginSize
     position: relative
-    width: 50%
-    z-index: 97
 
-    @media only screen and (max-width:$breakpoint-small)
+    @media only screen and (max-width: $breakpoint-small)
       display: none
 
     .navigation
       +flexbox
       +align-items(center)
+      flex-wrap: wrap
+      justify-content: center
       list-style: none
+      column-gap: 32px
+      row-gap: 4px
       margin: 0
       padding: 0
 
       li
         display: block
-        margin: 0 16px
 
         a
-          padding: 4px 0
+          padding: 2px 4px
           position: relative
           text-align: center
 
@@ -175,11 +169,6 @@ header
   +justify-content(flex-end)
   position: relative
   white-space: nowrap
-  width: 25%
-  z-index: 99
-
-  @media only screen and (max-width:$breakpoint-small)
-    width: 50%
 
   ul
     +flexbox
@@ -187,12 +176,13 @@ header
     list-style: none
     margin: 0
     padding: 0
+    gap: $marginSize
+
+    @media screen and (max-width: $breakpoint-small)
+      gap: $marginSize / 1.5
 
     li
-      margin-left: $marginSize
-
-      @media screen and (max-width: $breakpoint-small)
-        margin-left: $marginSize / 1.5
+      flex-shrink: 0
 
       &:last-child
         display: none
@@ -201,7 +191,7 @@ header
           display: block
 
       a
-        padding: 4px 0
+        padding: 4px
 
       button
         +flexbox
@@ -220,131 +210,10 @@ header
           @media screen and (max-width: $breakpoint-small)
             display: none
 
-.slideshow
-  height: calc((var(--vh, 1vh) * 100))
-  margin: 0
-  padding: 0
-  position: relative
-  width: 100%
-  z-index: 1
-
-header.has_featured + .slideshow
-  top: -88px
-
-_:-ms-fullscreen, :root .slideshow
-  height: 100vh
-
-.carousel
-  width: 100%
-  height: calc((var(--vh, 1vh) * 100))
-
-_:-ms-fullscreen, :root .carousel
-  height: 100vh
-
-.carousel-cell
-  background-position: 50% 50%
-  background-repeat: no-repeat
-  background-size: cover
-  height: 100%
-  width: 100%
-
-.flickity-page-dots
-  bottom: 24px
-  z-index: 5
-
-  .dot
-    background: transparent
-    border: 2px solid $welcome-text-color
-    cursor: pointer
-    height: 18px
-    margin: 8px
-    opacity: .5
-    width: 18px
-
-    &:hover
-      opacity: 1
-      opacity: .8
-
-    &.is-selected
-      background: $welcome-text-color
-      opacity: .8
-
-    &:only-child
-      display: none
-
-.flickity-viewport:after
-  background-color: rgba(black, .3)
-  background-image: url('#{"{{ 'overlay_pattern.png' | theme_image_url }}"}')
-  background-repeat: repeat
-  background-size: 4px
-  content: ""
-  height: 100%
-  position: absolute
-  top: 0
-  width: 100%
-  z-index: 1
-
-.featured
-  +transform(translateY(-50%) translateX(-50%))
-  color: $welcome-text-color
-  left: 50%
-  top: calc(50% + 88px)
-  padding: 0 $marginSize
-  position: absolute
-  max-width: 1280px
-  text-align: center
-  z-index: 2
-  width: 100%
-
-.welcome-subheader
-  +fluid-type(16px, 20px)
-  font-family: $header-font
-  font-weight: 600
-  letter-spacing: .2em
-  line-height: 1.25em
-  margin-right: -.2em
-  padding: 0 16px 24px 16px
-  text-transform: uppercase
-
-  @media only screen and (max-width:$breakpoint-small)
-    letter-spacing: .1em
-    margin-right: -.1em
-
-.welcome-header
-  +fluid-type(20px, 60px)
-  font-family: $header-font
-  font-weight: bold
-  letter-spacing: .2em
-  line-height: 1.3em
-  margin: 0 -.2em 24px 0
-  text-transform: uppercase
-
-  @media only screen and (max-width:$breakpoint-small)
-    letter-spacing: .1em
-    padding: 0 16px
-    white-space: normal
-
-a.shop-now-button
-  +transition(background .2s linear, border .2s linear)
-  border: 1px solid $welcome-text-color
-  background: transparent
-  color: $welcome-text-color
-  height: auto
-  padding: 0 $marginSize
-  width: auto
-
-  &:hover, &:focus
-    border: 1px solid $button-background-hover-color
-    background: $button-background-hover-color
-    color: $button-text-color
-
-#home h1
-  margin-bottom: #{"{% if theme.featured_subheader == blank %} 48px {% else %} 16px {% endif %}"}
-
 .content
   +flex(1)
   margin: 0 auto
-  max-width: 1364px
+  max-width: 1264px
   padding-bottom: $marginSize * 2
   padding-top: 56px
   position: relative
@@ -358,7 +227,7 @@ a.shop-now-button
     padding: 0
 
   h1
-    color: $text-color
+    color: var(--text-color)
     display: block
     margin: 0 auto
     text-align: center
@@ -378,61 +247,44 @@ a.shop-now-button
       max-width: 800px
       margin: 0 auto
 
-_:-ms-fullscreen, :root .content
-  +flex(1 0 auto)
-
-.social-links
+.social_icons
   +flexbox
-  +justify-content(center)
-  +font-size(16)
-  line-height: normal
+  gap: 16px
   list-style: none
-  margin: 0 auto $marginSize auto
-  max-width: 800px
+  margin: 0
   padding: 0
-  text-align: center
-  width: 100%
+  flex-wrap: wrap
+  justify-content: center
 
-  li
-    border: 1px solid $border-color
-    border-width: 1px 0 1px 1px
-    height: 56px
-    width: 56px
+  @media screen and (max-width: $break-small)
+    gap: 8px
 
-    &:last-child
-      border-width: 1px
+  a
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-shrink: 0
+    width: 36px
+    height: 36px
 
-    a
-      +flexbox
-      +align-items(center)
-      +justify-content(center)
-      width: 56px
-      height: 56px
+    svg
+      fill: currentColor
+      height: 22px
+      width: 22px
 
-      &:hover, &:focus
-        background-color: $link-hover-color
-        color: $background-color
-
-        svg
-          fill: white
-
-      svg
-        display: block
-        cursor: pointer
-        fill: $link-color
-        height: 22px
-        position: relative
-        width: 22px
+      &.tumblr-icon
+        width: 14px
 
 footer
   +flex-shrink(0)
   +align-items(center)
   +justify-content(center)
-  display: grid
-  border-top: 1px solid $border-color
+  flex-direction: column
+  display: flex
+  border-top: 1px solid var(--border-color)
   position: relative
   padding: $marginSize * 2
-  gap: 32px
+  gap: 48px
 
   @media screen and (max-width: $breakpoint-small)
     padding: $marginSize * 1.5 $marginSize
@@ -442,15 +294,10 @@ footer
     line-height: 1em
     +align-items(center)
     +justify-content(center)
-    display: flex
+    display: inline-flex
     gap: 8px
     outline-offset: 4px
     padding: 2px 0
-    order: 1
-
-    @media screen and (max-width: $breakpoint-small)
-      margin: $marginSize 0
-      order: 3
 
     &__text
       position: relative
@@ -467,28 +314,8 @@ footer
     list-style: none
     margin: 0
     padding: 0
-    column-gap: 32px
+    column-gap: 28px
     row-gap: 12px
-
-  .social_footer
-    +flexbox
-
-    a
-      color: $link-color
-      display: block
-      padding: 4px 8px
-
-      &:hover, &:focus
-        color: $link-hover-color
-
-    svg
-      display: block
-      fill: currentColor
-      height: 24px
-      width: 24px
-
-      &.tumblr-icon
-        width: 15px
 
   .footernav
 
@@ -496,9 +323,17 @@ footer
       max-width: 800px
       flex-wrap: wrap
 
+      a
+        padding: 4px
+
+        &:hover
+          text-decoration: underline
+          text-underline-offset: 2px
+
 .blur-up
   +transition(filter .2s ease)
   filter: blur(5px)
+  transform: translate3d(0, 0, 0)
 
   &.lazyloaded
     filter: blur(0)
@@ -515,3 +350,10 @@ footer
 
 .centered-message
   text-align: center
+
+.alert-message
+  font-weight: normal
+  text-align: center
+
+  a
+    text-decoration: underline

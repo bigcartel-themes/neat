@@ -1,8 +1,4 @@
-@import 'config'
-
 // Global
-*
-  box-sizing: border-box
 
 html, body
   height: 100%
@@ -12,52 +8,44 @@ html, body
 body
   +flexbox
   +flex-direction(column)
-  background: $background-color
-  color: $text-color
-  font: normal 100%/1.5 $text-font
+  background: var(--background-color)
+  color: var(--text-color)
+  font: normal 100%/1.5 var(--text-font)
   -webkit-font-smoothing: antialiased
 
-hr
-  background-color: 1px solid $border-color
-  border-style: none
-  border: none
-  height: 1px
-  margin: 16px 0
-  padding: 0
-  width: 100%
+  &.overlay-open
+    overflow: hidden
 
 // CSS3 Global Animation
 
 header
-  +transition(background .25s ease-in)
+  +transition(background .1s ease-in)
 
-  a
-    +transition(color .25s ease-in-out)
+  a, button
+    +transition(color .1s ease-in-out)
 
-    &:after
-      +transition(background .25s ease-in-out)
+  a:after
+    +transition(background .1s ease-in-out)
 
   svg
-    +transition(fill .25s ease-in-out)
+    +transition(fill .1s ease-in-out)
 
 // Links
 
 a
-  color: $link-color
+  color: var(--link-color)
   text-decoration: none
 
   &:hover, &:focus
-    color: $link-hover-color
+    color: var(--link-hover-color)
 
 // Buttons
 
-.button, submit, input[type='submit'], button
-  +border-radius(0)
+.button
   +font-size(16)
   +transition(background .2s ease-in-out)
-  background-color: $button-background-color
-  border: none
-  color: $button-text-color
+  background-color: var(--button-background-color)
+  color: var(--button-text-color)
   display: inline-block
   font-weight: 600
   height: 56px
@@ -71,9 +59,9 @@ a
 
   &.minimal-button
     background: none
-    color: $text-color
+    color: var(--text-color)
     border: none
-    font-size: 13px
+    font-size: 15px
     padding: 0
     width: auto
 
@@ -84,7 +72,7 @@ a
       text-decoration: underline
 
   &:not(:disabled):hover, &:not(:disabled):active, &:not(:disabled):focus
-    background-color: $button-background-hover-color
+    background-color: var(--button-background-hover-color)
 
   &:disabled, &.disabled
     cursor: not-allowed
@@ -95,58 +83,23 @@ a
 a[href], label[for], select, button, .pointer
   cursor: pointer
 
-form, input, textarea, submit, input[type='submit'], input[type='text'], button, select
-  font-family: $text-font
-  +font-size(16)
-  font-style: normal
-  -webkit-font-smoothing: antialiased
-  -webkit-appearance: none
-  -moz-appearance:    none
-  appearance:         none
-
-input[type='text'], input[type='textarea'], textarea
-  +border-radius(0)
+input, textarea
   +font-size(16)
   background-color: rgba(white, 0)
-  border: 1px solid $link-color
-  color: $link-color
+  border: 1px solid var(--text-color)
+  color: var(--text-color)
   margin: 0
-  white-space: nowrap
-  text-indent: 16px
-
-  &:focus, &:hover
-    border: 1px solid $link-hover-color
-    color: $link-hover-color
-
-input[type='textarea'], textarea
-  padding: 16px
-  text-indent: 0px
-  white-space: normal
+  padding: 8px
 
 .select
-  border: 1px solid $link-color
-  color: $link-color
+  border: 1px solid var(--text-color)
+  color: var(--text-color)
+  height: 52px
   margin-bottom: 16px
   position: relative
 
-  &:hover, &:focus, &:focus-within
-    border: 1px solid $link-hover-color
-    color: $link-hover-color
-
-    select
-      color: $link-hover-color
-
-    svg
-      fill: $link-hover-color
-
   select
-    background: none
-    border: 0px
-    border-radius: 0px
-    color: $link-color
-    font-weight: 600
-    height: 56px
-    line-height: 56px
+    height: 100%
     padding: 0 55px 0 12px
     position: relative
     width: 100%
@@ -160,17 +113,16 @@ input[type='textarea'], textarea
       display: none
 
   svg
-    fill: $link-color
     height: 14px
     position: absolute
-    right: 24px
+    right: 16px
     top: 50%
     transform: translateY(-50%)
     width: 14px
     z-index: 1
 
 h1, h2, h3, h4, h5, h6
-  font-family: $header-font
+  font-family: var(--header-font)
   text-transform: uppercase
   letter-spacing: .2em
   text-indent: .2em
@@ -206,18 +158,9 @@ h6
 // Errors
 
 .errors
-  background: $error-background-color
-  color: $button-text-color
+  background: var(--error-background-color)
+  color: var(--error-text-color)
   list-style-type: none
   text-align: center
   padding: 16px
-
-.standalone
-  height: auto
-  margin: 0 auto
-  max-width: 500px
-  padding-top: 120px
-  text-align: center
-
-  div
-    padding: 0 $marginSize
+  margin-bottom: 32px

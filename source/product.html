@@ -16,73 +16,154 @@
     <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></div>
   {% endcase %}
 
-  <section class="product-images {% if theme.secondary_product_images == 'thumbs' %}image-gallery{% endif %}">
-    <div class="default-product-image">
-      {% if theme.secondary_product_images == 'thumbs' %}
-        <a href="{{ product.image | product_image_url | constrain: 2000 }}">
-          <img
-            alt="{{ product.name | escape }}"
-            class="blur-up primary-image lazyload"
-            src="{{ product.image | product_image_url | constrain: 100 }}"
-            data-srcset="
-              {{ product.image | product_image_url | constrain: 400 }} 400w,
-              {{ product.image | product_image_url | constrain: 460 }} 460w,
-              {{ product.image | product_image_url | constrain: 530 }} 530w,
-              {{ product.image | product_image_url | constrain: 800 }} 800w,
-              {{ product.image | product_image_url | constrain: 1050 }} 1050w,
-              {{ product.image | product_image_url | constrain: 1300 }} 1300w,
-              {{ product.image | product_image_url | constrain: 1500 }} 1500w,
-              {{ product.image | product_image_url | constrain: 1800 }} 1800w
-            "
-            data-sizes="auto"
-          >
-        </a>
+  <div class="product-images desktop-{{ theme.desktop_product_page_images }} mobile-{{ theme.mobile_product_page_images }}" data-total-images="{{ product.images.size }}">
+    {% if product.images.size > 1 %}
+      <div class="splide product-carousel" role="group" aria-label="{{ product.name | escape }} images">
+        {% if product.images.size > 5 %}
+          <div class="overlay-image-counter">
+            <span class="current-slide-number">1</span>&nbsp;/&nbsp;{{ product.images.size }}
+          </div>
+        {% endif %}
+        <div class="splide__track">
+          <div class="splide__list">
+            {% for image in product.images %}
+              {% assign image_width = image.width | times: 1.0 %}
+              {% assign image_height = image.height | times: 1.0 %}
+              {% assign aspect_ratio = image_width | divided_by: image_height %}
+              <div class="splide__slide">
+                {% if theme.product_image_zoom %}
+                  <a aria-label="Open image {{ forloop.index }} in image viewer" class="zoom-image-container gallery-link" href="{{ image | product_image_url | constrain: 2000 }}" data-pswp-width="{{ image_width | times: 2 }}" data-pswp-height="{{ image_height | times: 2 }}" >
+                {% else %}
+                  <div class="zoom-image-container">
+                {% endif %}
+                  <img
+                    alt="Image {{ forloop.index }} of {{ product.name | escape }}"
+                    class="product-image lazyload"
+                    {% if forloop.index == 1 %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+                    src="{{ image | product_image_url | constrain: 200 }}"
+                    data-srcset="
+                      {{ image | product_image_url | constrain: 400 }} 400w,
+                      {{ image | product_image_url | constrain: 700 }} 700w,
+                      {{ image | product_image_url | constrain: 1000 }} 1000w,
+                      {{ image | product_image_url | constrain: 1400 }} 1400w,
+                      {{ image | product_image_url | constrain: 2000 }} 2000w,
+                    "
+                    width="{{ image.height | times: aspect_ratio }}"
+                    height="{{ image.height }}"
+                    data-sizes="auto"
+                  >
+                {% if theme.product_image_zoom %}</a>{% else %}</div>{% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="product-thumbnails-buttons-container">
+        <button aria-label="Slide left" aria-controls="carousel-thumbnail" class="thumb-scroller thumb-scroller--left" disabled data-direction="left">
+          <svg aria-hidden="true" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"/></svg>
+        </button>
+        <ul class="product-thumbnails--list{% if product.images.size == 5 %} mobile-overflow{% endif %}{% if product.images.size > 5 %} is-overflow{% endif %}" id="carousel-thumbnail">
+          {% for image in product.images %}
+            <li class="product-thumbnails--item">
+              <button class="product-thumbnails--change-slide" type="button" tabindex="0" aria-label="View image {{ forloop.index }} of {{ product.images.size }}">
+                <img
+                  alt=""
+                  class="lazyload"
+                  src="{{ image | product_image_url | constrain: 150 }}"
+                  data-srcset="
+                    {{ image | product_image_url | constrain: 250 }} 250w,
+                    {{ image | product_image_url | constrain: 300 }} 300w
+                  "
+                  data-sizes="auto"
+                >
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+        <button aria-label="Slide right" aria-controls="carousel-thumbnail" class="thumb-scroller thumb-scroller--right" data-direction="right">
+          <svg aria-hidden="true" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"/></svg>
+        </button>
+      </div>
+      <div class="mobile-buttons-indicator">
+        <button aria-label="View previous image" class="change-slide change-slide--left previous-slide">
+          <svg aria-hidden="true" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"/></svg>
+        </button>
+        <div><span class="current-slide-number">1</span> of {{ product.images.size }}</div>
+        <button aria-label="View next image" class="change-slide change-slide--right next-slide">
+          <svg aria-hidden="true" viewBox="0 0 15 7.6" enable-background="new 0 0 15 7.6"><path d="M15 1.1l-7.5 6.5-7.5-6.3 1-1.2 6.5 5.5 6.5-5.6z"/></svg>
+        </button>
+      </div>
+    {% else %}
+      {% assign image_width = product.image.width | times: 1.0 %}
+      {% assign image_height = product.image.height | times: 1.0 %}
+      {% if theme.product_image_zoom %}
+        <a aria-label="Open image of {{ product.name | escape }} in image viewer" class="zoom-image-container gallery-link" href="{{ product.image | product_image_url | constrain: 2000 }}" data-pswp-width="{{ image_width | times: 2 }}" data-pswp-height="{{ image_height | times: 2 }}" >
       {% else %}
+        <div class="zoom-image-container">
+      {% endif %}
         <img
           alt="{{ product.name | escape }}"
-          class="blur-up primary-image lazyload"
-          src="{{ product.image | product_image_url | constrain: 100 }}"
+          class="blur-up product-image lazyload"
+          fetchpriority="high"
+          src="{{ product.image | product_image_url | constrain: 200 }}"
           data-srcset="
             {{ product.image | product_image_url | constrain: 400 }} 400w,
-            {{ product.image | product_image_url | constrain: 460 }} 460w,
-            {{ product.image | product_image_url | constrain: 530 }} 530w,
-            {{ product.image | product_image_url | constrain: 800 }} 800w,
-            {{ product.image | product_image_url | constrain: 1050 }} 1050w,
-            {{ product.image | product_image_url | constrain: 1300 }} 1300w,
-            {{ product.image | product_image_url | constrain: 1500 }} 1500w,
-            {{ product.image | product_image_url | constrain: 1800 }} 1800w
+            {{ product.image | product_image_url | constrain: 700 }} 700w,
+            {{ product.image | product_image_url | constrain: 1000 }} 1000w,
+            {{ product.image | product_image_url | constrain: 1400 }} 1400w,
+            {{ product.image | product_image_url | constrain: 2000 }} 2000w,
           "
           data-sizes="auto"
         >
-      {% endif %}
-    </div>
-    {% if theme.secondary_product_images == 'thumbs' and product.images.size > 1 %}
-      <ul class="product-thumbnails">
-        {% for image in product.images offset: 1 %}
-          <li>
-            <a href="{{ image | product_image_url | constrain: '2000' }}">
-              <img
-                alt="{{ product.name | escape }}"
-                class="blur-up product-image-thumbnail lazyload"
-                src="{{ product.image | product_image_url | constrain: 100 }}"
-                data-srcset="
-                  {{ image | product_image_url | constrain: 100 }} 100w,
-                  {{ image | product_image_url | constrain: 200 }} 200w,
-                  {{ image | product_image_url | constrain: 300 }} 300w,
-                  {{ image | product_image_url | constrain: 500 }} 500w
-                "
-                data-sizes="auto"
-              >
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+      {% if theme.product_image_zoom %}</a>{% else %}</div>{% endif %}
     {% endif %}
-  </section>
+  </div>
 
-  <section class="product-description">
+  <section class="product-details">
+    {% if product.status == 'active' %}
+      <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
+        <input type="hidden" name="utf8" value='✓'>
+        {% if product.has_default_option %}
+          {{ product.option | hidden_option_input }}
+        {% else %}
+          {% if product.has_option_groups %}
+            <div class="product_option_groups">
+              <input id="option" name="cart[add][id]" type="hidden" value="0">
+              {% for option_group in product.option_groups %}
+                <div class="select">
+                  <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}" required>
+                    <option value="" disabled="disabled" selected>Select {{ option_group.name }}</option>
+                    {% for value in option_group.values %}
+                      <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
+                    {% endfor %}
+                  </select>
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" xml:space="preserve" viewBox="0 0 10 5.96"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"></path></svg>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="select">
+              <select class="product_option_select" id="option" name="cart[add][id]" aria-label="Select variant" required>
+                <option value="" disabled="disabled" selected>Select variant</option>
+                {% for option in product.options %}
+                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
+                {% endfor %}
+              </select>
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" xml:space="preserve" viewBox="0 0 10 5.96"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"></path></svg>
+            </div>
+          {% endif %}
+        {% endif %}
+        <button class="button add-to-cart-button" name="submit" type="submit" data-add-title="Add to cart" data-sold-title="Sold out">Add to cart</button>
+        {{ store | instant_checkout_button: 'dark', '44px' }}
+        {% if product.has_option_groups %}
+          <div class="reset-selection-button-container">
+            <button class="button minimal-button reset-selection-button" title="Reset selection" type="reset">Reset selection</button>
+          </div>
+        {% endif %}
+      </form>
+    {% endif %}
     {% if product.description != blank %}
-      {{ product.description | paragraphs }}
+      <div class="product-description">{{ product.description | paragraphs }}</div>
     {% endif %}
 
     {% if product.artists != blank %}
@@ -102,58 +183,20 @@
   	    <div class="product-section-subheader">Availability</div>
   	    <ul class="product-availability">
   	      {% for option in product.options %}
-  	      <li>
-  	        <b>
-  	          <b style="width:{{ option.inventory }}%"></b>
-  	        </b>
-  	        <div>
-  		        {% unless product.has_default_option %}<span {% if option.sold_out %}class="sold_out"{% endif %}>{{ option.name }}</span>{% endunless %}
-  		        {% if option.sold_out %}<span class="sold_out_text">Sold Out</span>{% endif %}
-  	        </div>
+  	      <li class="product-availability--option">
+            <div class="product-availability--bar" style="width: {{ option.inventory }}%"></div>
+  	        {% unless product.has_default_option %}
+              <div class="product-availability--option-name">
+  		          {{ option.name }}
+              </div>
+              {% if option.sold_out %}
+                <div class="sold_out_text">Sold out</div>
+              {% endif %}
+            {% endunless %}
   	      </li>
   	      {% endfor %}
   	    </ul>
       {% endif %}
-      <form method="post" class="product-form {% if theme.show_sold_out_product_options %}show-sold-out{% else %}hide-sold-out{% endif %}" action="/cart" accept-charset="utf8">
-        <input type="hidden" name="utf8" value='✓'>
-        {% if product.has_default_option %}
-          {{ product.option | hidden_option_input }}
-        {% else %}
-          {% if product.has_option_groups %}
-            <div class="product_option_groups">
-              <input id="option" name="cart[add][id]" type="hidden" value="0">
-              {% for option_group in product.option_groups %}
-                <div class="select">
-                  <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" title="Select {{ option_group.name | escape }}" required>
-                    <option value="" disabled="disabled" selected>Select {{ option_group.name }}</option>
-                    {% for value in option_group.values %}
-                      <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
-                    {% endfor %}
-                  </select>
-                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
-                </div>
-              {% endfor %}
-            </div>
-          {% else %}
-            <div class="select">
-              <select class="product_option_select" id="option" name="cart[add][id]" title="Select variant" required>
-                <option value="" disabled="disabled" selected>Select variant</option>
-                {% for option in product.options %}
-                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
-                {% endfor %}
-              </select>
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="10.001px" height="6px" viewBox="0 0 10.001 6" xml:space="preserve"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"/></svg>
-            </div>
-          {% endif %}
-        {% endif %}
-        <button class="button add-to-cart-button" name="submit" type="submit" data-add-title="Add to Cart" data-sold-title="Sold out">Add to Cart</button>
-        {{ store | instant_checkout_button: 'dark', '44px' }}
-        {% if product.has_option_groups %}
-          <div class="reset-selection-button-container">
-            <button class="button minimal-button reset-selection-button" title="Reset selection" type="reset">Reset selection</button>
-          </div>
-        {% endif %}
-      </form>
     {% endif %}
 
     {% if theme.share_buttons %}
@@ -183,27 +226,3 @@
 
   </section>
 </div>
-
-{% if theme.secondary_product_images == 'full' and product.images.size > 1 %}
-  <section class="secondary-product-images">
-    {% for image in product.images offset: 1 %}
-      <img
-        alt="{{ product.name | escape }}"
-        class="blur-up secondary-product-image lazyload"
-        src="{{ product.image | product_image_url | constrain: 100 }}"
-        data-srcset="
-          {{ image | product_image_url | constrain: 400 }} 400w,
-          {{ image | product_image_url | constrain: 530 }} 530w,
-          {{ image | product_image_url | constrain: 700 }} 700w,
-          {{ image | product_image_url | constrain: 950 }} 950w,
-          {{ image | product_image_url | constrain: 1100 }} 1100w,
-          {{ image | product_image_url | constrain: 1300 }} 1300w,
-          {{ image | product_image_url | constrain: 1700 }} 1700w,
-          {{ image | product_image_url | constrain: 2000 }} 2000w,
-          {{ image | product_image_url | constrain: 2500 }} 2500w
-        "
-        data-sizes="auto"
-      >
-    {% endfor %}
-  </section>
-{% endif %}

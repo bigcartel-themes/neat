@@ -1,14 +1,14 @@
 {% if theme.featured_products > 0 %}
-  <h1>Featured</h1>
+  <h1>{{ theme.featured_header }}</h1>
   {% if theme.featured_subheader != blank %}
-  <div class="subheader">
-    <p>{{ theme.featured_subheader }}</p>
-  </div>
+    <div class="subheader">
+      <p>{{ theme.featured_subheader }}</p>
+    </div>
   {% endif %}
   {% paginate products from products.current by theme.featured_products order:theme.featured_order %}
 	  {% if products != blank %}
       <div class="product-list-container">
-        <div class="product-list">
+        <div class="product-list {% if products.size < 3 %}justify-center{% endif %}">
           {% for product in products %}
             {% assign image_width = product.image.width | times: 1.0 %}
             {% assign image_height = product.image.height | times: 1.0 %}
@@ -65,6 +65,9 @@
           {% endfor %}
         </div>
       </div>
+      {% if paginate.pages > 1 %}
+        <a href="/products" class="button minimal-button view-all-products">View all products</a>
+      {% endif %}
 	  {% else %}
 	    <p class="no_results">No products found.</p>
 	  {% endif %}

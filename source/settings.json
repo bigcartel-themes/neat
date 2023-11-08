@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "images": [
     {
       "variable": "logo",
@@ -39,14 +39,9 @@
       "default": "#ffffff"
     },
     {
-      "variable": "header_link_color",
-      "label": "Header Links",
-      "default": "#656565"
-    },
-    {
-      "variable": "header_link_hover",
-      "label": "Header Link Hover",
-      "default": "#1b1b1b"
+      "variable": "header_text_color",
+      "label": "Header Text",
+      "default": "#000000"
     },
     {
       "variable": "welcome_text_color",
@@ -69,13 +64,8 @@
       "default": "#1b1b1b"
     },
     {
-      "variable": "border_color",
-      "label": "Borders",
-      "default": "#e2e2e2"
-    },
-    {
       "variable": "button_text_color",
-      "label": "Button & error text",
+      "label": "Button text",
       "default": "#FFFFFF"
     },
     {
@@ -86,12 +76,7 @@
     {
       "variable": "button_background_hover_color",
       "label": "Button background hover",
-      "default": "#444444"
-    },
-    {
-      "variable": "error_color",
-      "label": "Error background",
-      "default": "#a92d22"
+      "default": "#333333"
     },
     {
       "variable": "announcement_text_color",
@@ -110,12 +95,12 @@
     "header_image_max_height": "66px",
     "title_font": "{{ header_font }}",
     "title_font_size": "22px",
-    "title_color": "{{ header_link_color }}",
+    "title_color": "{{ header_text_color }}",
     "title_background_color": "transparent",
     "background_color": "{{ header_color }}",
     "body_font": "{{ text_font }}",
     "body_font_size": "16px",
-    "step_border_color":"{{ border_color }}",
+    "step_border_color":"{{ text_color }}",
     "step_header_color":"{{ text_color }}",
     "step_inactive_header_color":" {{ text_color }}",
     "step_header_font":"{{ header_font }}",
@@ -157,8 +142,8 @@
     "summary_color":"{{ text_color }}",
     "summary_secondary_color":"{{ link_color }}",
     "summary_submit_background_color":"{{ background_color }}",
-    "summary_item_border_color":"{{ border_color }}",
-    "summary_item_list_border_color": "{{ border_color }}"
+    "summary_item_border_color":"{{ text_color }}",
+    "summary_item_list_border_color": "{{ text_color }}"
   },
   "options": [
     {
@@ -175,30 +160,55 @@
       "default": "We're working on our shop right now.<br /><br />Please check back soon."
     },
     {
-      "variable": "welcome_header",
-      "label": "Welcome header",
-      "type": "text",
-      "description": "Welcome header for homepage"
-    },
-    {
-      "variable": "welcome_subheader",
-      "label": "Welcome subheader",
-      "type": "text",
-      "description": "Welcome subheader for homepage"
-    },
-    {
-      "variable": "featured_subheader",
-      "label": "Featured subheader",
-      "type": "text",
-      "description": "Featured products subheader on homepage"
-    },
-    {
       "variable": "nav_items",
       "label": "Navigation items",
       "type": "select",
       "options": "0..6",
       "default": 2,
       "description": "The number of custom page links show in the main navigation."
+    },
+    {
+      "variable": "welcome_header",
+      "label": "Welcome header",
+      "type": "text",
+      "description": "Welcome header for the Home page"
+    },
+    {
+      "variable": "welcome_subheader",
+      "label": "Welcome subheader",
+      "type": "text",
+      "description": "Welcome subheader for the Home page"
+    },
+    {
+      "variable": "welcome_button_text",
+      "label": "Welcome button text",
+      "type": "text",
+      "description": "Displays underneath the welcome text on the Home page and links to your Products page"
+    },
+    {
+      "variable": "featured_header",
+      "label": "Featured header",
+      "type": "text",
+      "description": "Featured products header on the Home page",
+      "default": "Featured"
+    },
+    {
+      "variable": "featured_subheader",
+      "label": "Featured subheader",
+      "type": "text",
+      "description": "Featured products subheader on the Home page"
+    },
+    {
+      "variable": "featured_overlay_opacity",
+      "label": "Slideshow overlay opacity",
+      "type": "select",
+      "options": [
+        ["None", "0"],
+        ["25%", ".25"],
+        ["50%", ".5"]
+      ],
+      "default": ".5",
+      "description": "Darken the home page slideshow. Helps legibility of your menu items and welcome headers."
     },
     {
       "variable": "grid_image_style",
@@ -209,7 +219,7 @@
         ["Fit to square", "contain"],
         ["Crop to square", "cover"]
       ],
-      "default": "default",
+      "default": "cover",
       "description": "Sets the display of images in the product grid"
     },
     {
@@ -217,7 +227,7 @@
       "label": "Products per page",
       "type": "select",
       "options": "1..100",
-      "default": 36,
+      "default": 48,
       "description": "The number of products shown at a time on the Products page"
     },
     {
@@ -237,15 +247,35 @@
       "description": "The order of products on the Home page"
     },
     {
-      "variable": "secondary_product_images",
-      "label": "Secondary product images",
+      "variable": "product_image_zoom",
+      "label": "Enable product image zoom",
+      "type": "boolean",
+      "default": true,
+      "description": "Click to open a larger version of the Product page image"
+    },
+    {
+      "variable": "desktop_product_page_images",
+      "label": "Desktop product page images",
       "type": "select",
       "options": [
-        ["Full width", "full"],
-        ["Thumbnails", "thumbs"]
+        ["Thumbnails", "thumbnails"],
+        ["Carousel", "carousel"],
+        ["Stacked 2 column", "two-column"],
+        ["Stacked full width", "stacked"]
       ],
-      "default": "thumbs",
-      "description": "Display secondary product images full-width or as thumbnails on the Product page"
+      "default": "carousel",
+      "description": "Sets the display of the Product page gallery"
+    },
+    {
+      "variable": "mobile_product_page_images",
+      "label": "Mobile product page image carousel",
+      "type": "select",
+      "options": [
+        ["Show thumbnails", "show-thumbnails"],
+        ["Hide thumbnails", "hide-thumbnails"]
+      ],
+      "default": "show-thumbnails",
+      "description": "Choose to hide or show thumbnails on the mobile Product page carousel"
     },
     {
       "variable": "collections",
@@ -258,7 +288,7 @@
       "variable": "show_search",
       "label": "Show search",
       "type": "boolean",
-      "default": false,
+      "default": true,
       "description": "Shows the product search area"
     },
     {
@@ -296,34 +326,58 @@
       "description": "Sets the display of prices in your shop"
     },
     {
+      "variable": "instagram_url",
+      "label": "Instagram URL",
+      "type": "text",
+      "description": "Ex: https://instagram.com/bigcartel"
+    },
+    {
+      "variable": "tiktok_url",
+      "label": "TikTok URL",
+      "type": "text",
+      "description": "Ex: https://tiktok.com/@bigcartelofficial"
+    },
+    {
       "variable": "twitter_url",
       "label": "Twitter URL",
       "type": "text",
-      "description": "Ex: http://twitter.com/bigcartel"
+      "description": "Ex: https://twitter.com/bigcartel"
     },
     {
       "variable": "facebook_url",
       "label": "Facebook URL",
       "type": "text",
-      "description": "Ex: http://facebook.com/bigcartel"
+      "description": "Ex: https://facebook.com/bigcartel"
     },
     {
-      "variable": "tumblr_url",
-      "label": "Tumblr URL",
+      "variable": "snapchat_url",
+      "label": "Snapchat URL",
       "type": "text",
-      "description": "Ex: http://bigcartel.tumblr.com"
-    },
-    {
-      "variable": "instagram_url",
-      "label": "Instagram URL",
-      "type": "text",
-      "description": "Ex: http://instagram.com/bigcartel"
+      "description": "Ex: https://snapchat.com/add/bigcartel"
     },
     {
       "variable": "pinterest_url",
       "label": "Pinterest URL",
       "type": "text",
-      "description": "Ex: http://pinterest.com/bigcartel"
+      "description": "Ex: https://pinterest.com/big_cartel"
+    },
+    {
+      "variable": "youtube_url",
+      "label": "YouTube URL",
+      "type": "text",
+      "description": "Ex: https://youtube.com/@BigCartelDotCom"
+    },
+    {
+      "variable": "tumblr_url",
+      "label": "Tumblr URL",
+      "type": "text",
+      "description": "Ex: https://bigcartel.tumblr.com"
+    },
+    {
+      "variable": "bandcamp_url",
+      "label": "Bandcamp URL",
+      "type": "text",
+      "description": "Ex: https://bigcartel.bandcamp.com"
     }
   ]
 }
