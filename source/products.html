@@ -113,7 +113,7 @@
 {% else %}
   {% if categories.active != blank %}
     <div class="product-list-container collections-list-container">
-      <div class="product-list">
+      <div class="product-list {% if categories.active.size < 3 %}justify-center{% endif %}">
         {% for category in categories.active %}
           <div class="product-list-thumb">
             <a class="product-list-link" href="{{ category.url }}" title="View {{ category.name | escape }}">
