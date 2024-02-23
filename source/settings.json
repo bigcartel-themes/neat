@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "images": [
     {
       "variable": "logo",
@@ -15,6 +15,152 @@
       "description": "Adds a full screen slideshow to the homepage"
     }
   ],
+  "preset_styles": {
+    "preview": {
+      "title_font": "header_font",
+      "body_font": "text_font",
+      "text_color": "text_color",
+      "background_color": "background_color"
+    },
+    "presets": [
+      {
+        "group_name": "Classic",
+        "styles": [
+          {
+            "style_name": "Classic #1",
+            "fonts": {
+              "header_font": "Dosis",
+              "text_font": "Open Sans"
+            },
+            "colors": {
+              "background_color": "#FFFFFF",
+              "header_background_color": "#FFFFFF",
+              "header_text_color": "#000000",
+              "welcome_text_color": "#FFFFFF",
+              "text_color": "#111111",
+              "link_color": "#444444",
+              "link_hover_color": "#1B1B1B",
+              "button_text_color": "#FFFFFF",
+              "button_background_color": "#000000",
+              "button_background_hover_color": "#333333",
+              "announcement_text_color": "#FFFFFF",
+              "announcement_background_color": "#000000"
+            }
+          },
+          {
+            "style_name": "Classic #2",
+            "fonts": {
+              "header_font": "DM Sans",
+              "text_font": "DM Sans"
+            },
+            "colors": {
+              "background_color": "#141415",
+              "header_background_color": "#141415",
+              "header_text_color": "#F8F8F8",
+              "welcome_text_color": "#F8F8F8",
+              "text_color": "#F8F8F8",
+              "link_color": "#F8F8F8",
+              "link_hover_color": "#B7B6B6",
+              "button_text_color": "#141415",
+              "button_background_color": "#F8F8F8",
+              "button_background_hover_color": "#B7B6B6",
+              "announcement_text_color": "#141415",
+              "announcement_background_color": "#F8F8F8"
+            }
+          },
+          {
+            "style_name": "Classic #3",
+            "fonts": {
+              "header_font": "Cabin",
+              "text_font": "Cabin"
+            },
+            "colors": {
+              "background_color": "#F8F8FA",
+              "header_background_color": "#F8F8FA",
+              "header_text_color": "#2A2A2C",
+              "welcome_text_color": "#FFFFFF",
+              "text_color": "#2A2A2C",
+              "link_color": "#2A2A2C",
+              "link_hover_color": "#203BE1",
+              "button_text_color": "#F8F8FA",
+              "button_background_color": "#2A2A2C",
+              "button_background_hover_color": "#203BE1",
+              "announcement_text_color": "#2A2A2C",
+              "announcement_background_color": "#E3E4EA"
+            }
+          }
+        ]
+      },
+      {
+        "group_name": "Playful",
+        "styles": [
+          {
+            "style_name": "Playful #1",
+            "fonts": {
+              "header_font": "Syne",
+              "text_font": "Syne"
+            },
+            "colors": {
+              "background_color": "#FFFFFF",
+              "header_background_color": "#FFFFFF",
+              "header_text_color": "#0000FF",
+              "welcome_text_color": "#FFFFFF",
+              "text_color": "#0000FF",
+              "link_color": "#0000FF",
+              "link_hover_color": "#000098",
+              "button_text_color": "#0000FF",
+              "button_background_color": "#FFE500",
+              "button_background_hover_color": "#EBD300",
+              "announcement_text_color": "#FFFFFF",
+              "announcement_background_color": "#0000FF"
+            }
+          },
+          {
+            "style_name": "Playful #2",
+            "fonts": {
+              "header_font": "Quicksand",
+              "text_font": "Quicksand"
+            },
+            "colors": {
+              "background_color": "#FFFBFD",
+              "header_background_color": "#FFE9F4",
+              "header_text_color": "#243588",
+              "welcome_text_color": "#FFFFFF",
+              "text_color": "#243588",
+              "link_color": "#243588",
+              "link_hover_color": "#0C143B",
+              "button_text_color": "#243588",
+              "button_background_color": "#FFFA8D",
+              "button_background_hover_color": "#FFF520",
+              "announcement_text_color": "#243588",
+              "announcement_background_color": "#FFFA8D"
+            }
+          },
+          {
+            "style_name": "Playful #3",
+            "fonts": {
+              "header_font": "Concert One",
+              "text_font": "Dosis"
+            },
+            "colors": {
+              "background_color": "#FFFFFF",
+              "header_background_color": "#9DFFFC",
+              "header_text_color": "#0B0423",
+              "welcome_text_color": "#FFFFFF",
+              "text_color": "#0B0423",
+              "link_color": "#0B0423",
+              "link_hover_color": "#F90081",
+              "button_text_color": "#FFFFFF",
+              "button_background_color": "#F90081",
+              "button_background_hover_color": "#D1006C",
+              "announcement_text_color": "#0B0423",
+              "announcement_background_color": "#F6FF20"
+            }
+          }
+        ]
+      }
+    ]
+  },
   "fonts": [
     {
       "variable": "header_font",
@@ -34,7 +180,7 @@
       "default": "#ffffff"
     },
     {
-      "variable": "header_color",
+      "variable": "header_background_color",
       "label": "Header Background",
       "default": "#ffffff"
     },
@@ -59,7 +205,7 @@
       "default": "#444444"
     },
     {
-      "variable": "link_hover",
+      "variable": "link_hover_color",
       "label": "Link Hover",
       "default": "#1b1b1b"
     },
@@ -97,7 +243,7 @@
     "title_font_size": "22px",
     "title_color": "{{ header_text_color }}",
     "title_background_color": "transparent",
-    "background_color": "{{ header_color }}",
+    "background_color": "{{ header_background_color }}",
     "body_font": "{{ text_font }}",
     "body_font_size": "16px",
     "step_border_color":"{{ text_color }}",
@@ -137,7 +283,7 @@
     "button_border_color":"{{ button_background_color }}",
     "button_hover_border_color":"{{ button_background_hover_color }}",
     "link_color":"{{ link_color }}",
-    "link_hover_color":"{{ link_hover }}",
+    "link_hover_color":"{{ link_hover_color }}",
     "step_header_font_size":"18px",
     "summary_color":"{{ text_color }}",
     "summary_secondary_color":"{{ link_color }}",
