@@ -3,7 +3,7 @@
   {% if page.full_url contains "search=" %}
     Product Search
   {% elsif theme.collections and page.full_url contains '/products' %}
-    Collections
+    Categories
   {% else %}
     {{ page.name }}
   {% endif %}
@@ -168,6 +168,6 @@
       </div>
     </div>
   {% else %}
-    <p class="no_results">No collections found.</p>
+    <p class="no_results">No categories found.</p>
   {% endif %}
 {% endif %}
