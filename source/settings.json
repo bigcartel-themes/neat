@@ -425,7 +425,7 @@
     },
     {
       "variable": "collections",
-      "label": "Enable collections",
+      "label": "Enable category collections",
       "type": "boolean",
       "default": false,
       "description": "Use category collections instead of the traditional product listing page"
