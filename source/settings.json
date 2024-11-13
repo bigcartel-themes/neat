@@ -339,6 +339,13 @@
       "default": "Featured"
     },
     {
+      "variable": "categories_header",
+      "label": "Categories header",
+      "type": "text",
+      "description": "Text for categories in navigation and on the categories page when using category collections",
+      "default": "Categories"
+    },
+    {
       "variable": "featured_subheader",
       "label": "Featured subheader",
       "type": "text",
