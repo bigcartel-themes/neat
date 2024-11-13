@@ -1,6 +1,6 @@
 <!DOCTYPE html>
   <head>
-    <title>{% if page.full_url contains "search=" %}Product Search{% elsif theme.collections and page.full_url contains '/products' %}Categories{% else %}{{ page.name }}{% endif %} | {{ store.name }}</title>
+    <title>{% if page.full_url contains "search=" %}Product Search{% elsif theme.collections and page.full_url contains '/products' %}{{ theme.categories_header }}{% else %}{{ page.name }}{% endif %} | {{ store.name }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
@@ -29,7 +29,7 @@
     </div>
     <nav class="sections" aria-label="Primary navigation">
       <ul class="navigation">
-        <li><a href="/products">{% if theme.collections %}Categories{% else %}{{ pages.products.name }}{% endif %}</a></li>
+        <li><a href="/products">{% if theme.collections %}{{ theme.categories_header }}{% else %}{{ pages.products.name }}{% endif %}</a></li>
         {% for page in pages.all limit: theme.nav_items %}
           <li>{{ page | link_to }}</li>
         {% endfor %}
@@ -112,7 +112,7 @@
     <nav class="footernav">
       <ul>
         <li><a href="/">{{ pages.home.name }}</a></li>
-        <li><a href="/products">{% if theme.collections %}Categories{% else %}{{ pages.products.name }}{% endif %}</a></li>
+        <li><a href="/products">{% if theme.collections %}{{ theme.categories_header }}{% else %}{{ pages.products.name }}{% endif %}</a></li>
         {% for page in pages.all %}
           <li>{{ page | link_to }}</li>
         {% endfor %}
@@ -182,7 +182,7 @@
       </button>
       <nav class="primary_navigation" aria-label="Primary navigation">
         <ul class="page_list">
-          <li><a href="/products">{% if theme.collections %}Categories{% else %}{{ pages.products.name }}{% endif %}</a></li>
+          <li><a href="/products">{% if theme.collections %}{{ theme.categories_header }}{% else %}{{ pages.products.name }}{% endif %}</a></li>
           {% for page in pages.all %}
             <li>{{ page | link_to }}</li>
           {% endfor %}
