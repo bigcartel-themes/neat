@@ -27,9 +27,14 @@
     @media only screen and (max-width:$breakpoint-small)
       margin: 16px auto 16px auto
 
-    em
+    .product-status
       font-style: normal
-      color: var(--link-color)
+
+      &.status-primary
+        color: var(--product-status-text-color-primary)
+
+      &.status-secondary
+        color: var(--product-status-text-color-secondary)
 
 .product-details
   +font-size(16)

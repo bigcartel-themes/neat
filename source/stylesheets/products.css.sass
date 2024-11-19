@@ -135,10 +135,15 @@
   margin-top: 6px
 
 .product-list-thumb-status
-  color: var(--link-color)
   display: inline-block
   font-style: italic
   font-weight: normal
+
+  &.status-primary
+    color: var(--product-status-text-color-primary)
+
+  &.status-secondary
+    color: var(--product-status-text-color-secondary)
 
 .pagination
   +flexbox

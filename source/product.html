@@ -11,14 +11,16 @@
   {% if product.status == 'sold-out' and theme.show_sold_out_product_prices == false %}
     {% assign hide_price = true %}
   {% endif %}
+  {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
   {% case product.status %}
   {% when 'sold-out' %}
-    <div class="product-subheader">{% unless hide_price %}{{ product_pricing }} {% endunless %}<em>Sold Out</em></div>
+    <div class="product-subheader">{% unless hide_price %}{{ product_pricing }} {% endunless %} <span class="product-status {{ status_class }}">Sold Out</span></div>
   {% when 'coming-soon' %}
-    <div class="product-subheader">{{ product_pricing }} <em>Coming Soon</em></div>
+    <div class="product-subheader">{{ product_pricing }} <span class="product-status {{ status_class }}">Coming Soon</span></div>
   {% when 'active' %}
-    <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <em>On Sale{% endif %}</em></div>
+    <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <span class="product-status {{ status_class }}">On Sale{% endif %}</div></div>
   {% endcase %}
+  {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
 
   <div class="product-images desktop-{{ theme.desktop_product_page_images }} mobile-{{ theme.mobile_product_page_images }}" data-total-images="{{ product.images.size }}">
     {% if product.images.size > 1 %}

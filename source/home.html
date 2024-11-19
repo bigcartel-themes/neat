@@ -31,6 +31,7 @@
                 image-square
               {% endif %}
             {% endcapture %}
+            {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
             <div class="product-list-thumb {{ product.css_class }}">
               <a class="product-list-link" href="{{ product.url }}" title="View {{ product.name | escape }}">
                 <div class="product-list-image-container product-list-image-container-{{ theme.grid_image_style }}">
@@ -58,7 +59,7 @@
                       {{ product.default_price | money: theme.money_format }}
                     {% endunless %}
                     {% if product_status != blank %}
-                      <div class="product-list-thumb-status">{{ product_status }}</div>
+                      <div class="product-list-thumb-status {{ status_class }}">{{ product_status }}</div>
                     {% endif %}
                   </div>
                 </div>
