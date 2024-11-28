@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "images": [
     {
       "variable": "logo",
@@ -489,13 +489,6 @@
       "default": true,
       "description": "Show the price of sold out products on product grids and product pages",
       "requires": "inventory"
-    },
-    {
-      "variable": "share_buttons",
-      "label": "Show product share buttons",
-      "type": "boolean",
-      "default": false,
-      "description": "Adds Facebook, Twitter, and Pinterest buttons to Product pages"
     },
     {
       "variable": "money_format",
