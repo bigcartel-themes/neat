@@ -7,7 +7,7 @@
     {{ head_content }}
     <style>.preloader * { opacity: 0; }.transition-preloader * { transition: none !important }</style>
   </head>
-  <body id="{{ page.permalink }}" class="{{ page.category }} preloader transition-preloader">
+  <body id="{{ page.permalink }}" class="{{ page.category }} preloader transition-preloader" data-bc-page-type="{% if page.category == 'custom' %}custom{% else %}{{ page.permalink }}{% endif %}">
     <a class="skip-link" href="#main">Skip to main content</a>
     {% if theme.announcement_message_text != blank %}
       <div aria-label="Announcement message" class="announcement-message">
@@ -17,7 +17,7 @@
         </button>
       </div>
     {% endif %}
-    <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}">
+    <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
     <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
       <a href="/" title="{{ store.name | escape }}">
         {% if theme.logo != blank %}
@@ -108,7 +108,7 @@
     </main>
   {% endif %}
 
-  <footer>
+  <footer data-bc-hook="footer">
     <nav class="footernav">
       <ul>
         <li><a href="/">{{ pages.home.name }}</a></li>
