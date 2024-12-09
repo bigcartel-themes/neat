@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.4.2",
+  "version": "2.5.0",
   "images": [
     {
       "variable": "logo",
@@ -352,6 +352,27 @@
       "label": "Welcome button text",
       "type": "text",
       "description": "Displays underneath the welcome text on the Home page and links to your Products page"
+    },
+    {
+      "variable": "homepage_slideshow_autoplay",
+      "label": "Auto-play homepage slideshow",
+      "type": "boolean",
+      "default": false,
+      "description": "Automatically advances slides in the homepage slideshow"
+    },
+    {
+      "variable": "homepage_slideshow_speed",
+      "label": "Slideshow speed",
+      "type": "select",
+      "options": [
+        ["Slowest", 6000],
+        ["Slower", 5000],
+        ["Normal", 4000],
+        ["Faster", 3500],
+        ["Fastest", 3000]
+      ],
+      "default": 4000,
+      "description": "Controls how quickly slides advance in the auto-playing slideshow"
     },
     {
       "variable": "featured_header",

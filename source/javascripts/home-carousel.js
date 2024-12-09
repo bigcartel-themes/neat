@@ -5,6 +5,10 @@ if (homeSlideshowContainer) {
       arrows: false,
       type: 'slide',
       keyboard: true,
+      autoplay: themeOptions.homepageSlideshowAutoplay,
+      interval: themeOptions.homepageSlideshowSpeed,
+      speed: 1500,
+      pauseOnHover: false,
     } );
     splide.mount();
   });
