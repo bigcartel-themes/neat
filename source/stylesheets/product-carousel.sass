@@ -14,7 +14,7 @@
   --gap-width: 16px
   --num-images: 5
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $breakpoint-small)
     --gap-width: 12px
 
 .product-carousel
@@ -88,7 +88,7 @@
       padding-left: 0
       padding-right: 0
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $breakpoint-small)
       .product-thumbnails--item
         --num-images: 4
 
@@ -177,7 +177,7 @@
     border-radius: var(--border-radius)
     border: var(--thumb-scroller-border-width) solid var(--thumb-scroller-border-color)
 
-    @media screen and (max-width: $break-small)
+    @media screen and (max-width: $breakpoint-small)
       height: 44px
 
     &[disabled]
@@ -205,7 +205,7 @@
       //opacity: 0
       //visibility: hidden
 
-@media screen and (min-width: $break-small + 1)
+@media screen and (min-width: $breakpoint-small + 1)
   .overlay-image-counter
     display: none
 
@@ -287,7 +287,7 @@
   .mobile-buttons-indicator
     display: none
 
-@media screen and (max-width: $break-small)
+@media screen and (max-width: $breakpoint-small)
   .mobile-show-thumbnails
     .mobile-buttons-indicator
       display: none

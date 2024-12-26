@@ -1,10 +1,12 @@
 \:root
   --border-radius: 0px
-  --header-height: 96px
 
   --border-color: #{'rgba(var(--text-color-rgb), .2)'}
 
   --background-color: #{'{{ theme.background_color }}'}
+
+  --logo-max-height: #{"{{ theme.logo_max_height }}"}
+  --header-height: calc(#{"{{ theme.logo_max_height }}"} * 1px + 30px)
 
   --header-background-color: #{'{{ theme.header_background_color }}'}
   --header-text-color: #{'rgba(var(--header-text-color-rgb), 1)'}
@@ -128,15 +130,17 @@ header
       &:after
         content: none !important
 
-    &.image
-      img
-        display: block
-        max-height: 100%
-        max-width: 100%
+    .store-logo
+      display: block
+      max-height: calc(var(--logo-max-height) * 1px)
 
-      a
-        height: 66px
-        max-width: 208px
+      @media screen and (max-width: $breakpoint-medium)
+        // Min 65px, Max 85px
+        max-height: clamp(65px, calc(var(--logo-max-height) * 0.8 * 1px), 85px)
+
+      @media screen and (max-width: $breakpoint-small)
+        // Min 50px, Max 65px
+        max-height: clamp(50px, calc(var(--logo-max-height) * 0.6 * 1px), 65px)
 
   .sections
     +flexbox
@@ -259,7 +263,7 @@ header
   flex-wrap: wrap
   justify-content: center
 
-  @media screen and (max-width: $break-small)
+  @media screen and (max-width: $breakpoint-small)
     gap: 8px
 
   a
