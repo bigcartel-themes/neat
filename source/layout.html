@@ -20,8 +20,15 @@
     <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
     <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
       <a href="/" title="{{ store.name | escape }}">
+        {% assign logo_image_height_1x = theme.logo_max_height %}
+        {% assign logo_image_height_2x = logo_image_height_1x | times: 2 %}
         {% if theme.logo != blank %}
-          <img alt="{{ store.name }} Home" src="{{ theme.images.logo.url | constrain: '416', '132' }}" srcset="{{ theme.images.logo.url | constrain: '416', '132' }} 2x, {{ theme.images.logo.url | constrain: '208', '66' }} 1x">
+          <img 
+            class="store-logo"
+            alt="{{ store.name }} Home" 
+            src="{{ theme.images.logo.url | constrain: '', logo_image_height_1x }}"
+            srcset="{{ theme.images.logo.url | constrain: '', logo_image_height_2x }} 2x, {{ theme.images.logo.url | constrain: '', logo_image_height_1x }} 1x"
+          >
         {% else %}
           {{ store.name }}
         {% endif %}
