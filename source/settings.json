@@ -368,6 +368,25 @@
       "description": "Darken the home page slideshow. Helps legibility of your menu items and welcome headers."
     },
     {
+      "variable": "featured_products",
+      "label": "Featured products",
+      "type": "select",
+      "options": "0..100",
+      "default": 12,
+      "description": "The number of products displayed on the home page"
+    },
+    {
+      "variable": "featured_order",
+      "label": "Featured products order",
+      "type": "select",
+      "options": "product_orders",
+      "default": "position",
+      "description": "The order of products on the Home page",
+      "requires": [
+        "featured_products gt 0"
+      ]
+    },
+    {
       "variable": "grid_image_style",
       "label": "Product grid image style",
       "type": "select",
@@ -386,22 +405,6 @@
       "options": "1..100",
       "default": 48,
       "description": "The number of products shown at a time on the Products page"
-    },
-    {
-      "variable": "featured_products",
-      "label": "Featured products",
-      "type": "select",
-      "options": "0..100",
-      "default": 12,
-      "description": "The number of products displayed on the home page"
-    },
-    {
-      "variable": "featured_order",
-      "label": "Featured products order",
-      "type": "select",
-      "options": "product_orders",
-      "default": "position",
-      "description": "The order of products on the Home page"
     },
     {
       "variable": "product_image_zoom",
