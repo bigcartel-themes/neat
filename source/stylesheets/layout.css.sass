@@ -65,7 +65,7 @@ header
   width: 100%
   z-index: 99
 
-  @media only screen and (max-width: $breakpoint-small)
+  @media only screen and (max-width: $breakpoint-medium)
     grid-template-columns: auto 1fr
 
   &.fixed
@@ -149,7 +149,7 @@ header
     padding: 0 $marginSize
     position: relative
 
-    @media only screen and (max-width: $breakpoint-small)
+    @media only screen and (max-width: $breakpoint-medium)
       display: none
 
     .navigation
@@ -194,7 +194,7 @@ header
       &:last-child
         display: none
 
-        @media screen and (max-width: $breakpoint-small)
+        @media screen and (max-width: $breakpoint-medium)
           display: block
 
       a
@@ -214,7 +214,7 @@ header
 
         .desktop
 
-          @media screen and (max-width: $breakpoint-small)
+          @media screen and (max-width: $breakpoint-xsmall)
             display: none
 
 .content
@@ -226,7 +226,7 @@ header
   position: relative
   width: 100%
 
-  @media only screen and (max-width:$breakpoint-small)
+  @media only screen and (max-width:$breakpoint-large)
     padding: $marginSize 20px
 
   &.no-featured-products
