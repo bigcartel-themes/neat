@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "images": [
     {
       "variable": "logo",
@@ -552,6 +552,20 @@
       "label": "Welcome button text",
       "type": "text",
       "description": "Displays underneath the welcome text on the Home page and links to your Products page"
+    },
+    {
+      "variable": "welcome_button_behavior",
+      "label": "Welcome Button Behavior",
+      "type": "select",
+      "options": [
+        ["Scroll down page", "scroll"],
+        ["Go to Products Page", "navigate"]
+      ],
+      "default": "scroll",
+      "description": "Controls the behavior of the welcome button on the Home page",
+      "requires": [
+        "welcome_button_text present"
+      ]
     },
     {
       "variable": "homepage_slideshow_autoplay",
