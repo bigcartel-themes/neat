@@ -613,15 +613,17 @@
     },
     {
       "variable": "featured_overlay_opacity",
-      "label": "Slideshow overlay opacity",
+      "label": "Slideshow overlay effect",
       "type": "select",
       "options": [
+        ["Brightest", "-0.50"],
+        ["Brighter", "-0.25"],
         ["None", "0"],
-        ["25%", ".25"],
-        ["50%", ".5"]
+        ["Darker", "0.25"],
+        ["Darkest", "0.50"]
       ],
-      "default": ".5",
-      "description": "Darken the home page slideshow. Helps legibility of your menu items and welcome headers."
+      "default": "0.5",
+      "description": "Adjust the home page slideshow overlay to enhance the legibility of menu items and welcome headers"
     },
     {
       "variable": "featured_products",
