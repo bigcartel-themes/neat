@@ -170,5 +170,34 @@ option[disabled-type="unavailable"]
     option[disabled-type="sold-out"]
       display: none
 
+.related-products-container
+  margin-bottom: $marginSize * 2
+
+  .related-products-header
+    text-align: center
+    margin: $marginSize * 0.5 0
+
+    .related-products-title
+      
+    .related-products-view-all-link
+      margin-left: auto
+
+      &:hover
+        text-decoration: underline
+        text-underline-offset: 3px
+
+  .product-list-container
+    margin: 0 20px
+
+    @media screen and (max-width: $breakpoint-small)
+      margin: 0 25px
+
 #instant-checkout-button
   margin-top: 12px
+
+.inventory-status-message
+  color: var(--inventory-status-text-color)
+  margin: 10px 0 auto
+  text-align: center
+  padding: 8px 0
+  font-weight: 500
