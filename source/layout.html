@@ -190,9 +190,7 @@
           <li>{{ page | link_to }}</li>
         {% endfor %}
         <li><a href="/contact">{{ pages.contact.name }}</a></li>
-        {% if store.website != blank %}
-          <li><a href="{{ store.website }}">Back to site</a></li>
-        {% endif %}
+        <li><a href="/cart">{{ pages.cart.name }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a></li>
       </ul>
     </nav>
     {% if theme.instagram_url != blank
