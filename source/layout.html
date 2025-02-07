@@ -182,6 +182,9 @@
   {% endif %}
 
   <footer data-bc-hook="footer">
+    {% if theme.footer_text != blank and theme.footer_text_position == "start" %}
+      <div class="footer-custom-content">{{ theme.footer_text }} </div>
+    {% endif %}
     <nav class="footernav">
       <ul>
         <li><a href="/">{{ pages.home.name }}</a></li>
@@ -190,9 +193,7 @@
           <li>{{ page | link_to }}</li>
         {% endfor %}
         <li><a href="/contact">{{ pages.contact.name }}</a></li>
-        {% if store.website != blank %}
-          <li><a href="{{ store.website }}">Back to site</a></li>
-        {% endif %}
+        <li><a href="/cart">{{ pages.cart.name }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a></li>
       </ul>
     </nav>
     {% if theme.instagram_url != blank
@@ -268,6 +269,9 @@
           {% endif %}
         </ul>
       </nav>
+    {% endif %}
+    {% if theme.footer_text != blank and theme.footer_text_position == "end" %}
+      <div class="footer-custom-content">{{ theme.footer_text }} </div>
     {% endif %}
     {{ powered_by_big_cartel }}
   </footer>

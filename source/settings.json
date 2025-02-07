@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.9.0",
+  "version": "2.10.0",
   "images": [
     {
       "variable": "logo",
@@ -821,6 +821,27 @@
         "show_inventory_bars eq false",
         "show_low_inventory_messages eq true",
         "low_inventory_threshold gt 1"
+      ]
+    },
+    {
+      "variable": "footer_text",
+      "label": "Footer text",
+      "type": "text",
+      "max_length": 2048,
+      "description": "Show a custom message to your shop's footer"
+    },
+    {
+      "variable": "footer_text_position",
+      "label": "Footer text position",
+      "type": "select",
+      "options": [
+        ["Start of footer", "start"],
+        ["End of footer", "end"]
+      ],
+      "default": "end",
+      "description": "Choose where to show your footer message",
+      "requires": [
+        "footer_text present"
       ]
     },
     {
