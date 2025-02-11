@@ -828,7 +828,7 @@
       "label": "Footer text",
       "type": "text",
       "max_length": 2048,
-      "description": "Show a custom message to your shop's footer"
+      "description": "Show a custom message in your shop's footer"
     },
     {
       "variable": "footer_text_position",
