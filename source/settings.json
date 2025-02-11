@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "images": [
     {
       "variable": "logo",
@@ -715,7 +715,9 @@
       "type": "boolean",
       "default": false,
       "description": "Shows a product's inventory amounts (when using inventory tracking)",
-      "requires": "inventory"
+      "requires": [
+        "inventory"
+      ]
     },
     {
       "variable": "show_sold_out_product_options",
@@ -723,7 +725,9 @@
       "type": "boolean",
       "default": true,
       "description": "Shows sold out product variants in the Product page dropdowns",
-      "requires": "inventory"
+      "requires": [
+        "inventory"
+      ]
     },
     {
       "variable": "show_sold_out_product_prices",
@@ -731,7 +735,9 @@
       "type": "boolean",
       "default": true,
       "description": "Show the price of sold out products on product grids and product pages",
-      "requires": "inventory"
+      "requires": [
+        "inventory"
+      ]
     },
     {
       "variable": "show_related_products",
@@ -828,7 +834,7 @@
       "label": "Footer text",
       "type": "text",
       "max_length": 2048,
-      "description": "Show a custom message to your shop's footer"
+      "description": "Show a custom message in your shop's footer"
     },
     {
       "variable": "footer_text_position",
