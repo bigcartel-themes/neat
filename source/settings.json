@@ -715,7 +715,9 @@
       "type": "boolean",
       "default": false,
       "description": "Shows a product's inventory amounts (when using inventory tracking)",
-      "requires": "inventory"
+      "requires": [
+        "inventory"
+      ]
     },
     {
       "variable": "show_sold_out_product_options",
@@ -723,7 +725,9 @@
       "type": "boolean",
       "default": true,
       "description": "Shows sold out product variants in the Product page dropdowns",
-      "requires": "inventory"
+      "requires": [
+        "inventory"
+      ]
     },
     {
       "variable": "show_sold_out_product_prices",
@@ -731,7 +735,9 @@
       "type": "boolean",
       "default": true,
       "description": "Show the price of sold out products on product grids and product pages",
-      "requires": "inventory"
+      "requires": [
+        "inventory"
+      ]
     },
     {
       "variable": "show_related_products",
