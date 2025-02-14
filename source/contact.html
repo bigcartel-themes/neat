@@ -11,36 +11,39 @@
 {% if contact.sent %}
   <div class="centered-message">Thanks! Your message has been sent and we'll get back to you soon.</div>
 {% else %}
-    <form method="post" action="/contact" class="contact-form">
-      <div class="contact-form-block contact-name">
-        <label class="contact-label" for="name">Name</label>
-        <div class="input-holder">
-          {{ contact | contact_input: 'name' }}
-        </div>
+  {% if theme.contact_text %}
+    <div class="message-banner message-banner--contact">{{ theme.contact_text }}</div>
+  {% endif %}
+  <form method="post" action="/contact" class="contact-form">
+    <div class="contact-form-block contact-name">
+      <label class="contact-label" for="name">Name</label>
+      <div class="input-holder">
+        {{ contact | contact_input: 'name' }}
       </div>
-      <div class="contact-form-block contact-email">
-        <label class="contact-label" for="email">Email</label>
-        <div class="input-holder">
-          {{ contact | contact_input: 'email' }}
-        </div>
+    </div>
+    <div class="contact-form-block contact-email">
+      <label class="contact-label" for="email">Email</label>
+      <div class="input-holder">
+        {{ contact | contact_input: 'email' }}
       </div>
-      <div class="contact-form-block contact-subject">
-        <label class="contact-label" for="subject">Subject</label>
-        <div class="input-holder">
-          {{ contact | contact_input: 'subject' }}
-        </div>
+    </div>
+    <div class="contact-form-block contact-subject">
+      <label class="contact-label" for="subject">Subject</label>
+      <div class="input-holder">
+        {{ contact | contact_input: 'subject' }}
       </div>
-      <div class="contact-form-block contact-message">
-        <label class="contact-label" for="message">Message</label>
-        <div class="input-holder">
-          {{ contact | contact_input: 'message' }}
-        </div>
+    </div>
+    <div class="contact-form-block contact-message">
+      <label class="contact-label" for="message">Message</label>
+      <div class="input-holder">
+        {{ contact | contact_input: 'message' }}
       </div>
-      <div class="contact-form-block contact-send">
-        <button class="send-message-button button" type="submit" name="submit">Send message</button>
-      </div>
-      <div class="contact-form-block recaptcha-note">
-        {{ contact.recaptcha }}
-      </div>
-    </form>
+    </div>
+    <div class="contact-form-block contact-send">
+      <button class="send-message-button button" type="submit" name="submit">Send message</button>
+    </div>
+    <div class="contact-form-block recaptcha-note">
+      {{ contact.recaptcha }}
+    </div>
+  </form>
 {% endif %}
