@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "images": [
     {
       "variable": "logo",
@@ -526,6 +526,13 @@
       "type": "text",
       "description": "A message visitors see when your shop is in Maintenance Mode",
       "default": "We're working on our shop right now.<br /><br />Please check back soon."
+    },
+    {
+      "variable": "contact_text",
+      "label": "Contact page text",
+      "type": "text",
+      "max_length": 1024,
+      "description": "Displays a message on your contact page"
     },
     {
       "variable": "nav_items",
