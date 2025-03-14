@@ -623,11 +623,11 @@
       "label": "Slideshow overlay effect",
       "type": "select",
       "options": [
-        ["Brightest", "-0.50"],
-        ["Brighter", "-0.25"],
-        ["None", "0"],
-        ["Darker", "0.25"],
-        ["Darkest", "0.50"]
+        ["Very bright", "very_bright"],
+        ["Bright", "bright"],
+        ["None", "none"],
+        ["Dark", "dark"],
+        ["Very dark", "very_dark"]
       ],
       "default": "0.5",
       "description": "Adjust the home page slideshow overlay to enhance the legibility of menu items and welcome headers"
