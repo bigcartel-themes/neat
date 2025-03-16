@@ -128,21 +128,26 @@ header
     a
       max-width: 500px
       width: auto
+      display: flex
+      align-items: center
 
       &:after
         content: none !important
 
     .store-logo
       display: block
-      max-height: calc(var(--logo-max-height) * 1px)
+      height: clamp(80px, calc(var(--logo-max-height) * 1px), 300px)
+      max-width: clamp(200px, calc(var(--logo-max-height) * 2.5 * 1px), 750px)
+      width: auto
+      object-fit: contain
 
       @media screen and (max-width: $breakpoint-medium)
-        // Min 65px, Max 85px
-        max-height: clamp(65px, calc(var(--logo-max-height) * 0.8 * 1px), 85px)
+        height: clamp(65px, calc(var(--logo-max-height) * 0.8 * 1px), 85px)
+        max-width: clamp(130px, calc(var(--logo-max-height) * 2 * 1px), 170px)
 
       @media screen and (max-width: $breakpoint-small)
-        // Min 50px, Max 65px
-        max-height: clamp(50px, calc(var(--logo-max-height) * 0.6 * 1px), 65px)
+        height: clamp(50px, calc(var(--logo-max-height) * 0.6 * 1px), 65px)
+        max-width: clamp(100px, calc(var(--logo-max-height) * 1.5 * 1px), 130px)
 
   .sections
     +flexbox
