@@ -74,6 +74,12 @@
 
   ol
     list-style: decimal
+  
+  img
+    display: inline-block
+    max-width: 100%
+    margin: 0 auto
+    padding-bottom: 16px
 
 .product-availability
   margin: 0 0 $marginSize/2 0
@@ -160,7 +166,7 @@ option[disabled-type="unavailable"]
   display: none
 
 .product-form
-  margin-bottom: $marginSize * 1.5
+  margin-bottom: $marginSize * 0.75
 
   &.show-sold-out
     option[disabled-type="sold-out"]
@@ -176,8 +182,6 @@ option[disabled-type="unavailable"]
   .related-products-header
     text-align: center
     margin: $marginSize * 0.5 0
-
-    .related-products-title
       
     .related-products-view-all-link
       margin-left: auto
@@ -201,3 +205,39 @@ option[disabled-type="unavailable"]
   text-align: center
   padding: 8px 0
   font-weight: 500
+
+#payment-processor-messaging
+  margin: 20px 0 0
+  width: 100%
+  display: block
+  
+  body[data-bc-page-type="product"] &
+    margin-bottom: 40px
+
+  body[data-bc-page-type="cart"] &
+    margin-bottom: 20px
+
+  &.display-flex
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    &.dual-messaging
+      gap: 15px
+
+  &.display-grid
+    display: grid
+  
+  &.hidden
+    position: absolute
+    left: -9999px
+    top: -9999px
+
+  > div
+    margin-bottom: 0
+  
+  // Only apply the margin for non-flex layouts when dual messaging is present
+  &:not(.display-flex)
+    &.dual-messaging > div.visible:first-of-type
+      margin-bottom: 15px

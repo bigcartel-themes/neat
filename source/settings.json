@@ -1,6 +1,6 @@
 {
   "name": "Neat",
-  "version": "2.11.0",
+  "version": "2.12.0",
   "images": [
     {
       "variable": "logo",
@@ -502,7 +502,7 @@
   "options": [
     {
       "variable": "logo_max_height",
-      "label": "Header logo image height",
+      "label": "Header logo size",
       "type": "select",
       "options": [
         ["Small", "65"],
@@ -511,8 +511,8 @@
         ["Extra Large", "115"],
         ["XX Large", "135"]
       ],
-      "default": "65",
-      "description": "Controls the maximum height of your header logo"
+      "default": "135",
+      "description": "Controls the maximum size of your header logo"
     },
     {
       "variable": "announcement_message_text",
@@ -623,13 +623,13 @@
       "label": "Slideshow overlay effect",
       "type": "select",
       "options": [
-        ["Brightest", "-0.50"],
-        ["Brighter", "-0.25"],
-        ["None", "0"],
-        ["Darker", "0.25"],
-        ["Darkest", "0.50"]
+        ["Very bright", "very_bright"],
+        ["Bright", "bright"],
+        ["None", "none"],
+        ["Dark", "dark"],
+        ["Very dark", "very_dark"]
       ],
-      "default": "0.5",
+      "default": "none",
       "description": "Adjust the home page slideshow overlay to enhance the legibility of menu items and welcome headers"
     },
     {
@@ -768,7 +768,7 @@
       "label": "Related products",
       "type": "select",
       "options": "1..8",
-      "default": 4,
+      "default": 6,
       "description": "The maximum number of related products to show on Product pages",
       "requires": [
         "show_related_products eq true"
@@ -856,6 +856,13 @@
       "requires": [
         "footer_text present"
       ]
+    },
+    {
+      "variable": "show_bnpl_messaging",
+      "label": "Buy Now, Pay Later Messaging",
+      "type": "boolean",
+      "default": true,
+      "description": "Show payment options prior to checkout on product and cart pages. Requires paid plan."
     },
     {
       "variable": "money_format",
