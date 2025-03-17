@@ -629,7 +629,7 @@
         ["Dark", "dark"],
         ["Very dark", "very_dark"]
       ],
-      "default": "0.5",
+      "default": "none",
       "description": "Adjust the home page slideshow overlay to enhance the legibility of menu items and welcome headers"
     },
     {
