@@ -2,6 +2,7 @@
 //= require javascripts/functions
 //= require javascripts/cart
 //= require javascripts/store
+//= require javascripts/product-payment-messaging
 //= require javascripts/product-option-groups
 //= require javascripts/product-carousel
 //= require javascripts/product
