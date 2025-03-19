@@ -511,7 +511,7 @@
         ["Extra Large", "115"],
         ["XX Large", "135"]
       ],
-      "default": "135",
+      "default": "85",
       "description": "Controls the maximum size of your header logo"
     },
     {
