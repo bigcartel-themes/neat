@@ -10,15 +10,25 @@
   {% assign hide_price = false %}
   {% if product.status == 'sold-out' and theme.show_sold_out_product_prices == false %}
     {% assign hide_price = true %}
+  {% endif -%}
+  {% if product.status == 'coming-soon' and theme.show_coming_soon_product_prices == false %}
+    {% assign hide_price = true %}
   {% endif %}
+
   {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
   {% case product.status %}
-  {% when 'sold-out' %}
-    <div class="product-subheader">{% unless hide_price %}{{ product_pricing }} {% endunless %} <span class="product-status {{ status_class }}">Sold Out</span></div>
-  {% when 'coming-soon' %}
-    <div class="product-subheader">{{ product_pricing }} <span class="product-status {{ status_class }}">Coming Soon</span></div>
+  {% when 'sold-out' or 'coming-soon' %}
+    <div class="product-subheader">
+      {% unless hide_price %}{{ product_pricing }} {% endunless %}
+      <span class="product-status {{ status_class }}">
+        {% if product.status == 'sold-out' %}Sold Out{% else %}Coming Soon{% endif %}
+      </span>
+    </div>
   {% when 'active' %}
-    <div class="product-subheader">{{ product_pricing }}{% if product.on_sale %} <span class="product-status {{ status_class }}">On Sale{% endif %}</div></div>
+    <div class="product-subheader">
+      {{ product_pricing }}
+      {% if product.on_sale %}<span class="product-status {{ status_class }}">On Sale</span>{% endif %}
+    </div>
   {% endcase %}
   {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
 
