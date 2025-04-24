@@ -92,3 +92,33 @@ const htmlHighlight = function(element, newText) {
     element.style.opacity = 1;
   }, 200)
 }
+
+function smoothScroll(target, duration, offset = 0) {
+  const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
+  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+  const startPosition = window.scrollY;
+  let startTime = null;
+  
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / (duration*1.5), 1);
+    
+    const easeValue = easeInOutCubic(progress);
+    const currentPosition = startPosition + (targetPosition - startPosition) * easeValue;
+    
+    window.scrollTo(0, currentPosition);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animation);
+    }
+  }
+  
+  function easeInOutCubic(t) {
+    return t < 0.5 
+      ? 4 * t * t * t 
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+  
+  requestAnimationFrame(animation);
+}
