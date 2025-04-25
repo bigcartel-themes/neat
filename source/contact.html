@@ -11,7 +11,7 @@
 {% if contact.sent %}
   <div class="centered-message">Thanks! Your message has been sent and we'll get back to you soon.</div>
 {% else %}
-  {% if theme.contact_text %}
+  {% if theme.contact_text != blank %}
     <div class="message-banner message-banner--contact">{{ theme.contact_text }}</div>
   {% endif %}
   <form method="post" action="/contact" class="contact-form">
