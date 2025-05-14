@@ -573,6 +573,17 @@
       "description": "Use category collections instead of the traditional product listing page"
     },
     {
+      "variable": "show_categories_sub_navigation",
+      "label": "Show categories navigation on category pages",
+      "section": "global_navigation",
+      "type": "boolean",
+      "default": true,
+      "description": "Controls whether to show the category list navigation under the heading on category pages",
+      "requires": [
+        "collections eq true"
+      ]
+    },
+    {
       "variable": "hide_big_cartel_credit",
       "label": "Hide Big Cartel logo in menus",
       "section": "global_navigation",
