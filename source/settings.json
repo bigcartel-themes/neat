@@ -492,12 +492,12 @@
     },
     {
       "variable": "announcement_text_color",
-      "label": "Announcement Message Text",
+      "label": "Announcement banner text",
       "default": "#FFFFFF"
     },
     {
       "variable": "announcement_background_color",
-      "label": "Announcement Message Background",
+      "label": "Announcement banner background",
       "default": "#000000"
     }
   ],
@@ -932,7 +932,7 @@
     },
     {
       "variable": "announcement_message_text",
-      "label": "Announcement text",
+      "label": "Announcement banner",
       "section": "messaging",
       "type": "textarea",
       "max_length": 500,
@@ -940,7 +940,7 @@
     },
     {
       "variable": "contact_text",
-      "label": "Contact page text",
+      "label": "Contact page",
       "section": "messaging",
       "type": "textarea",
       "max_length": 1024,
@@ -948,7 +948,7 @@
     },
     {
       "variable": "cart_text",
-      "label": "Cart page text",
+      "label": "Cart page",
       "section": "messaging",
       "max_length": 1024,
       "type": "textarea",
