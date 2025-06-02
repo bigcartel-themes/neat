@@ -1,5 +1,5 @@
 {% if theme.featured_products > 0 %}
-  <h1>{{ theme.featured_header }}</h1>
+  <h1>{{ t['home.featured'] }}</h1>
   {% if theme.featured_subheader != blank %}
     <div class="subheader">
       <p>{{ theme.featured_subheader }}</p>
@@ -16,11 +16,13 @@
             {% assign product_status = '' %}
             {% case product.status %}
               {% when 'active' %}
-                {% if product.on_sale %}{% assign product_status = 'On sale' %}{% endif %}
+                {% if product.on_sale %}
+                  {% assign product_status = t['products.on_sale'] %}
+                {% endif %}
               {% when 'sold-out' %}
-                {% assign product_status = 'Sold out' %}
+                {% assign product_status = t['products.sold_out'] %}
               {% when 'coming-soon' %}
-                {% assign product_status = 'Coming soon' %}
+                {% assign product_status = t['products.coming_soon'] %}
             {% endcase %}
             {% capture image_class %}
               {% if product.image.height > product.image.width %}
@@ -33,7 +35,7 @@
             {% endcapture %}
             {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
             <div class="product-list-thumb {{ product.css_class }}">
-              <a class="product-list-link" href="{{ product.url }}" title="View {{ product.name | escape }}">
+              <a class="product-list-link" href="{{ product.url }}" title="{{ product.name | escape }}">
                 <div class="product-list-image-container product-list-image-container-{{ theme.grid_image_style }}">
                   <img
                     alt=""
@@ -77,10 +79,10 @@
         </div>
       </div>
       {% if paginate.pages > 1 %}
-        <a href="/products" class="button minimal-button view-all-products">View all products</a>
+        <a href="/products" class="button minimal-button view-all-products">{{ t['home.all_products'] }}</a>
       {% endif %}
 	  {% else %}
-	    <p class="no_results">No products found.</p>
+	    <p class="no_results">{{ t['products.no_products'] }}</p>
 	  {% endif %}
   {% endpaginate %}
 {% endif %}
