@@ -310,6 +310,7 @@
       </button>
       <nav class="primary_navigation" aria-label="Primary navigation">
         <ul class="page_list">
+          <li><a href="/">{{ t['navigation.home'] }}</a></li>
           <li><a href="/products">{% if theme.collections %}{{ t['navigation.categories'] }}{% else %}{{ t['navigation.products'] }}{% endif %}</a></li>
           {% for page in pages.all %}
             <li>{{ page | link_to }}</li>
