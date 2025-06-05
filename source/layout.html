@@ -85,7 +85,7 @@
       </nav>
     </header>
   {% if page.category == 'custom' %}
-    <main id="main" class="content custom-content">
+    <main id="main" class="content custom-content" data-bc-hook="content">
       <h1>{{ page.name }}</h1>
       {{ page_content | paragraphs }}
     </main>
@@ -127,7 +127,7 @@
         </div>
       {% endif %}
     {% endif %}
-    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 %}no-featured-products{% endif %}">
+    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 %}no-featured-products{% endif %}" data-bc-hook="content">
       {{ page_content }}
     </main>
   {% endif %}
