@@ -548,6 +548,24 @@
       "description": "Sets the display of images in the product grid"
     },
     {
+      "variable": "max_products_per_row",
+      "label": "Maximum products per row",
+      "section": "global_navigation",
+      "type": "select",
+      "options": "1..4",
+      "default": 3,
+      "description": "The maximum number of products displayed per row on larger screens"
+    },
+    {
+      "variable": "max_products_per_row_mobile",
+      "label": "Maximum products per row (mobile)",
+      "section": "global_navigation",
+      "type": "select",
+      "options": "1..2",
+      "default": 2,
+      "description": "The number of products displayed per row on smaller screens"
+    },
+    {
       "variable": "products_per_page",
       "label": "Products per page",
       "section": "global_navigation",
