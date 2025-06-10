@@ -79,7 +79,10 @@
         </div>
       </div>
       {% if paginate.pages > 1 %}
-        <a href="/products" class="button minimal-button view-all-products">{{ t['home.all_products'] }}</a>
+        {% assign all_products_button_text = t['home.all_products'] %}
+        {% if all_products_button_text != blank %}
+          <a href="/products" class="button minimal-button view-all-products">{{ all_products_button_text }}</a>
+        {% endif %}
       {% endif %}
 	  {% else %}
 	    <p class="no_results">{{ t['products.no_products'] }}</p>
