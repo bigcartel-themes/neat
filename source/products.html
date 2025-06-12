@@ -1,20 +1,27 @@
+{% comment %}
+  Use page name from Custo if it's been customized, otherwise use the localized default.
+{% endcomment %}
+{% assign page_title = t['navigation.products'] %}
+{% if page.full_url contains "search=" %}
+  {% assign page_title = t['products.search_results'] %}
+{% elsif page.name == 'Products' and theme.collections %}
+  {% assign page_title = t['navigation.categories'] %}
+{% elsif page.name != 'Products' %}
+  {% assign page_title = page.name %}
+{% endif %}
 
 <h1 {% if page.full_url contains "search=" or theme.collections and page.full_url contains '/products' %}class="bottom-margin"{% endif %}>
-  {% if page.full_url contains "search=" %}
-    Product Search
-  {% elsif theme.collections and page.full_url contains '/products' %}
-    {{ theme.categories_header }}
-  {% else %}
-    {{ page.name }}
-  {% endif %}
+  {{ page_title }}
 </h1>
 {% if page.full_url contains "search=" or theme.collections != true or page.full_url contains '/category' %}
   {% unless page.full_url contains "search=" %}
     <div class="subheader">
       <ul class="categories">
-      {% for category in categories.active %}
-        <li class="page{% if page.full_url contains category.url %} selected{% endif %}">{{ category | link_to }}</li>
-      {% endfor %}
+        {% if theme.show_categories_sub_navigation %}
+          {% for category in categories.active %}
+            <li class="page{% if page.full_url contains category.url %} selected{% endif %}">{{ category | link_to }}</li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </div>
   {% endunless %}
@@ -29,11 +36,13 @@
             {% assign product_status = '' %}
             {% case product.status %}
               {% when 'active' %}
-                {% if product.on_sale %}{% assign product_status = 'On sale' %}{% endif %}
+                {% if product.on_sale %}
+                  {% assign product_status = t['products.on_sale'] %}
+                {% endif %}
               {% when 'sold-out' %}
-                {% assign product_status = 'Sold out' %}
+                {% assign product_status = t['products.sold_out'] %}
               {% when 'coming-soon' %}
-                {% assign product_status = 'Coming soon' %}
+                {% assign product_status = t['products.coming_soon'] %}
             {% endcase %}
             {% capture image_class %}
               {% if product.image.height > product.image.width %}
@@ -46,7 +55,7 @@
             {% endcapture %}
             {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
             <div class="product-list-thumb {{ product.css_class }}">
-              <a class="product-list-link" href="{{ product.url }}" title="View {{ product.name | escape }}">
+              <a class="product-list-link" href="{{ product.url }}" title="{{ product.name | escape }}">
                 <div class="product-list-image-container product-list-image-container-{{ theme.grid_image_style }}">
                   <img
                     alt=""
@@ -94,31 +103,31 @@
           {% if paginate.previous.is_link %}
             <a aria-label="Go to previous page" class="page-link previous-page-link" href="{{ paginate.previous.url }}">
               <svg aria-hidden="true" height="16" width="16" viewBox="0 0 7.6 15" enable-background="new 0 0 7.6 15"><path d="M1.1 0l6.5 7.5-6.3 7.5-1.2-1 5.5-6.5-5.6-6.5z"/></svg>
-              <span>Previous</span>
+              <span>{{ t['navigation.previous'] }}</span>
             </a>
           {% else %}
             <span class="page-link previous-page-link disabled">
               <svg aria-hidden="true" height="16" width="16" viewBox="0 0 7.6 15" enable-background="new 0 0 7.6 15"><path d="M1.1 0l6.5 7.5-6.3 7.5-1.2-1 5.5-6.5-5.6-6.5z"/></svg>
-              <span>Previous</span>
+              <span>{{ t['navigation.previous'] }}</span>
             </span>
           {% endif %}
           {{ paginate | default_pagination, 'page-numbers', 'page-numbers' }}
           <div class="pagination-caption">Page {{ paginate.current_page }} of {{ paginate.pages }}</div>
           {% if paginate.next.is_link %}
             <a aria-label="Go to next page" class="page-link next-page-link" href="{{ paginate.next.url }}">
-              <span>Next</span>
+              <span>{{ t['navigation.next'] }}</span>
               <svg aria-hidden="true" height="16" width="16" viewBox="0 0 7.6 15" enable-background="new 0 0 7.6 15"><path d="M1.1 0l6.5 7.5-6.3 7.5-1.2-1 5.5-6.5-5.6-6.5z"/></svg>
             </a>
           {% else %}
             <span class="page-link next-page-link disabled">
-              <span>Next</span>
+              <span>{{ t['navigation.next'] }}</span>
               <svg aria-hidden="true" height="16" width="16" viewBox="0 0 7.6 15" enable-background="new 0 0 7.6 15"><path d="M1.1 0l6.5 7.5-6.3 7.5-1.2-1 5.5-6.5-5.6-6.5z"/></svg>
             </span>
           {% endif %}
         </nav>
       {% endif %}
     {% else %}
-      <p class="no_results">No products found.</p>
+      <p class="no_results">{{ t['products.no_products'] }}</p>
     {% endif %}
   {% endpaginate %}
 {% else %}
@@ -127,7 +136,7 @@
       <div class="product-list {% if categories.active.size < 3 %}justify-center{% endif %}">
         {% for category in categories.active %}
           <div class="product-list-thumb">
-            <a class="product-list-link" href="{{ category.url }}" title="View {{ category.name | escape }}">
+            <a class="product-list-link" href="{{ category.url }}" title="{{ category.name | escape }}">
               {% for product in category.products limit:1 %}
                 {% assign image_width = product.image.width | times: 1.0 %}
                 {% assign image_height = product.image.height | times: 1.0 %}
@@ -135,11 +144,13 @@
                 {% assign product_status = '' %}
                 {% case product.status %}
                   {% when 'active' %}
-                    {% if product.on_sale %}{% assign product_status = 'On sale' %}{% endif %}
+                    {% if product.on_sale %}
+                      {% assign product_status = t['products.on_sale'] %}
+                    {% endif %}
                   {% when 'sold-out' %}
-                    {% assign product_status = 'Sold out' %}
+                    {% assign product_status = t['products.sold_out'] %}
                   {% when 'coming-soon' %}
-                    {% assign product_status = 'Coming soon' %}
+                    {% assign product_status = t['products.coming_soon'] %}
                 {% endcase %}
                 {% capture image_class %}
                   {% if product.image.height > product.image.width %}
@@ -179,6 +190,6 @@
       </div>
     </div>
   {% else %}
-    <p class="no_results">No {{ theme.categories_header | downcase }} found.</p>
+    <p class="no_results">{{ t['products.no_products'] }}</p>
   {% endif %}
 {% endif %}

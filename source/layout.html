@@ -1,6 +1,24 @@
+
+{% comment %} Define a consistent title suffix {% endcomment %}
+{% capture title_suffix %} | {{ store.name }}{% endcapture %}
+
+{% comment %} Set default page title {% endcomment %}
+{% assign page_title = page.name | append: title_suffix %}
+
+{% comment %} Handle special page cases {% endcomment %}
+{% if page.name == 'Home' %}
+  {% assign page_title = store.name %}
+{% elsif page.full_url contains '/products' %}
+  {% if page.full_url contains 'search=' %}
+    {% assign page_title = t['products.search_results'] | append: title_suffix %}
+  {% elsif theme.collections %}
+    {% assign page_title = t['navigation.categories'] | append: title_suffix %}
+  {% endif %}
+{% endif %}
+
 <!DOCTYPE html>
   <head>
-    <title>{% if page.full_url contains "search=" %}Product Search{% elsif theme.collections and page.full_url contains '/products' %}{{ theme.categories_header }}{% else %}{{ page.name }}{% endif %} | {{ store.name }}</title>
+    <title>{{ page_title }}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ theme | theme_css_url }}" media="screen" rel="stylesheet" type="text/css">
@@ -8,7 +26,6 @@
     <style>.preloader * { opacity: 0; }.transition-preloader * { transition: none !important }</style>
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }} preloader transition-preloader" data-bc-page-type="{% if page.category == 'custom' %}custom{% else %}{{ page.permalink }}{% endif %}">
-    <a class="skip-link" href="#main">Skip to main content</a>
     {% if theme.announcement_message_text != blank %}
       <div aria-label="Announcement message" class="announcement-message">
         <div class="announcement-message__text">{{ theme.announcement_message_text }}</div>
@@ -18,57 +35,57 @@
       </div>
     {% endif %}
     <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
-    <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
-      <a href="/" title="{{ store.name | escape }}">
-        {% assign logo_image_height_1x = theme.logo_max_height | times: 3 %}
-        {% assign logo_image_height_2x = logo_image_height_1x | times: 2 %}
-        {% if theme.logo != blank %}
-          <img 
-            class="store-logo"
-            alt="{{ store.name }} Home" 
-            src="{{ theme.images.logo.url | constrain: '', logo_image_height_1x }}"
-            srcset="{{ theme.images.logo.url | constrain: '', logo_image_height_2x }} 2x, {{ theme.images.logo.url | constrain: '', logo_image_height_1x }} 1x"
-          >
-        {% else %}
-          {{ store.name }}
-        {% endif %}
-      </a>
-    </div>
-    <nav class="sections" aria-label="Primary navigation">
-      <ul class="navigation">
-        <li><a href="/products">{% if theme.collections %}{{ theme.categories_header }}{% else %}{{ pages.products.name }}{% endif %}</a></li>
-        {% for page in pages.all limit: theme.nav_items %}
-          <li>{{ page | link_to }}</li>
-        {% endfor %}
-      </ul>
-    </nav>
-    <nav class="utility" aria-label="Secondary navigation">
-      <ul>
-        {% if theme.show_search %}
-          <li>
-            <button class="open-search-button" type="button" aria-haspopup="dialog" aria-controls="search-modal" title="Open search menu">
-              <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.707 14.293l-3.112-3.092-.006-.004c.882-1.197 1.411-2.597 1.411-4.197 0-3.859-3.141-7-7-7s-7 3.1-7 7 3.141 7 7 7c1.575 0 3.025-.529 4.196-1.41v.006l3.093 3.111c.199.193.411.293.711.293s.512-.098.707-.293c.391-.407.393-1.007-.007-1.414zm-8.707-2.293c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.2 5 5-2.243 5-5 5z"/></svg>
+      <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
+        <a href="/" title="{{ store.name | escape }}">
+          {% assign logo_image_height_1x = theme.logo_max_height | times: 3 %}
+          {% assign logo_image_height_2x = logo_image_height_1x | times: 2 %}
+          {% if theme.logo != blank %}
+            <img 
+              class="store-logo"
+              alt="{{ store.name }} Home" 
+              src="{{ theme.images.logo.url | constrain: '', logo_image_height_1x }}"
+              srcset="{{ theme.images.logo.url | constrain: '', logo_image_height_2x }} 2x, {{ theme.images.logo.url | constrain: '', logo_image_height_1x }} 1x"
+            >
+          {% else %}
+            {{ store.name }}
+          {% endif %}
+        </a>
+      </div>
+      <nav class="sections" aria-label="Primary navigation">
+        <ul class="navigation">
+          <li><a href="/products">{% if theme.collections %}{{ t['navigation.categories'] }}{% else %}{{ t['navigation.products'] }}{% endif %}</a></li>
+          {% for page in pages.all limit: theme.nav_items %}
+            <li>{{ page | link_to }}</li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <nav class="utility" aria-label="Secondary navigation">
+        <ul>
+          {% if theme.show_search %}
+            <li>
+              <button class="open-search-button" type="button" aria-haspopup="dialog" aria-controls="search-modal" title="{{ t['navigation.search'] }}">
+                <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.707 14.293l-3.112-3.092-.006-.004c.882-1.197 1.411-2.597 1.411-4.197 0-3.859-3.141-7-7-7s-7 3.1-7 7 3.141 7 7 7c1.575 0 3.025-.529 4.196-1.41v.006l3.093 3.111c.199.193.411.293.711.293s.512-.098.707-.293c.391-.407.393-1.007-.007-1.414zm-8.707-2.293c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.2 5 5-2.243 5-5 5z"/></svg>
+              </a>
+            </li>
+          {% endif %}
+          <li class="cart">
+            <a href="/cart" class="cart-link" title="{{ t['cart.view_cart'] }}">
+              <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.202 0h-14.188c-.561 0-1.014.4-1.014 1s.453 1 1 1h1v9c0 .6.5 1 1 1h10c.56 0 1-.447 1-1s-.44-1-1-1h-9v-2h9.175c.56 0 1.124-.435 1.259-.97l1.536-6.06c.136-.57-.17-.97-.77-.97zm-2.596 6h-8.606v-4h9.397l-.791 4z"/><circle cx="4.5" cy="14.5" r="1.5"/><circle cx="11.5" cy="14.5" r="1.5"/></svg>
+              <span class="header-item-count">{{ cart.item_count }}</span>
+              <span class="desktop header-divider">/</span>
+              <span class="desktop header-subtotal-amount">{{ cart.total | money: theme.money_format }}</span>
             </a>
           </li>
-        {% endif %}
-        <li class="cart">
-          <a href="/cart" class="cart-link" title="View cart">
-            <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.202 0h-14.188c-.561 0-1.014.4-1.014 1s.453 1 1 1h1v9c0 .6.5 1 1 1h10c.56 0 1-.447 1-1s-.44-1-1-1h-9v-2h9.175c.56 0 1.124-.435 1.259-.97l1.536-6.06c.136-.57-.17-.97-.77-.97zm-2.596 6h-8.606v-4h9.397l-.791 4z"/><circle cx="4.5" cy="14.5" r="1.5"/><circle cx="11.5" cy="14.5" r="1.5"/></svg>
-            <span class="header-item-count">{{ cart.item_count }}</span>
-            <span class="desktop header-divider">/</span>
-            <span class="desktop header-subtotal-amount">{{ cart.total | money: theme.money_format }}</span>
-          </a>
-        </li>
-        <li>
-          <button class="open-mobile-navigation mobile" aria-label="Open mobile navigation" type="button">
-            <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 10"><path d="M15.5 0h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 4h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 8h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.224.5-.5v-1c0-.3-.2-.5-.5-.5z"/></svg>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
+          <li>
+            <button class="open-mobile-navigation mobile" aria-label="Open mobile navigation" type="button">
+              <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 10"><path d="M15.5 0h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 4h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.2.5-.5v-1c0-.3-.2-.5-.5-.5zM15.5 8h-15c-.276 0-.5.2-.5.5v1c0 .3.2.5.5.5h15c.276 0 .5-.224.5-.5v-1c0-.3-.2-.5-.5-.5z"/></svg>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
   {% if page.category == 'custom' %}
-    <main id="main" class="content custom-content">
+    <main id="main" class="content custom-content" data-bc-hook="content">
       <h1>{{ page.name }}</h1>
       {{ page_content | paragraphs }}
     </main>
@@ -110,14 +127,14 @@
         </div>
       {% endif %}
     {% endif %}
-    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 %}no-featured-products{% endif %}">
+    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 %}no-featured-products{% endif %}" data-bc-hook="content">
       {{ page_content }}
     </main>
   {% endif %}
 
   {% if page.full_url contains '/product/' %}
     {% if theme.show_related_products %}
-      {% assign related_products_header = theme.related_products_header | default: 'You might also like' %}
+      {% assign related_products_header = t['products.related_products'] %}
       {% assign related_products_collection = product.related_products %}
 
       {% if related_products_collection.size > 0 %}
@@ -131,15 +148,17 @@
                 {% assign related_product_status = '' %}
                 {% case related_product.status %} 
                   {% when 'active' %} 
-                    {% if related_product.on_sale %}{% assign related_product_status = 'On sale' %}{% endif %} 
+                    {% if related_product.on_sale %}
+                      {% assign related_product_status = t['products.on_sale'] %}
+                    {% endif %} 
                   {% when 'sold-out' %} 
-                    {% assign related_product_status = 'Sold out' %} 
+                    {% assign related_product_status = t['products.sold_out'] %} 
                   {% when 'coming-soon' %} 
-                    {% assign related_product_status = 'Coming soon' %} 
+                    {% assign related_product_status = t['products.coming_soon'] %} 
                 {% endcase %}
                 {% capture related_product_status_class %}{% if related_product.status == 'active' and related_product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
                 <div class="product-list-thumb {{ related_product.css_class }}">
-                  <a class="product-list-link product-list-link--{{ theme.show_overlay }}" href="{{ related_product.url }}" title="View {{ related_product.name | escape }}">
+                  <a class="product-list-link product-list-link--{{ theme.show_overlay }}" href="{{ related_product.url }}" title="{{ related_product.name | escape }}">
                     <div class="product-list-image-container product-list-image-container-{{ theme.grid_image_style }}">
                       <img
                         alt="{{ related_product.name }}"
@@ -187,13 +206,16 @@
     {% endif %}
     <nav class="footernav">
       <ul>
-        <li><a href="/">{{ pages.home.name }}</a></li>
-        <li><a href="/products">{% if theme.collections %}{{ theme.categories_header }}{% else %}{{ pages.products.name }}{% endif %}</a></li>
+        <li><a href="/">{{ t['navigation.home'] }}</a></li>
+        <li><a href="/products">{% if theme.collections %}{{ t['navigation.categories'] }}{% else %}{{ t['navigation.products'] }}{% endif %}</a></li>
         {% for page in pages.all %}
           <li>{{ page | link_to }}</li>
         {% endfor %}
-        <li><a href="/contact">{{ pages.contact.name }}</a></li>
-        <li><a href="/cart">{{ pages.cart.name }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a></li>
+        <li><a href="/contact">{{ t['navigation.contact'] }}</a></li>
+        <li><a href="/cart">{{ t['navigation.cart'] }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a></li>
+        {% if store.website != blank %}
+          <li><a href="{{ store.website }}">{{ t['navigation.back_to_site'] }}</a></li>
+        {% endif %}
       </ul>
     </nav>
     {% if theme.instagram_url != blank
@@ -273,9 +295,11 @@
     {% if theme.footer_text != blank and theme.footer_text_position == "end" %}
       <div class="footer-custom-content">{{ theme.footer_text }} </div>
     {% endif %}
-    <div data-bc-hook="credit">
-      {{ powered_by_big_cartel }}
-    </div>
+    {% unless theme.hide_big_cartel_credit %}
+      <div data-bc-hook="credit">
+        {{ big_cartel_credit_logo }}
+      </div>
+    {% endunless %}
   </footer>
 
   <div id="navigation-modal" role="dialog" aria-modal="true" aria-hidden="true">
@@ -286,11 +310,12 @@
       </button>
       <nav class="primary_navigation" aria-label="Primary navigation">
         <ul class="page_list">
-          <li><a href="/products">{% if theme.collections %}{{ theme.categories_header }}{% else %}{{ pages.products.name }}{% endif %}</a></li>
+          <li><a href="/">{{ t['navigation.home'] }}</a></li>
+          <li><a href="/products">{% if theme.collections %}{{ t['navigation.categories'] }}{% else %}{{ t['navigation.products'] }}{% endif %}</a></li>
           {% for page in pages.all %}
             <li>{{ page | link_to }}</li>
           {% endfor %}
-          <li><a href="/contact">{{ pages.contact.name }}</a></li>
+          <li><a href="/contact">{{ t['navigation.contact'] }}</a></li>
         </ul>
       </nav>
     </div>
@@ -306,7 +331,7 @@
             </button>
             <form class="search-form" name="search" action="/products" method="get" accept-charset="utf8" role="search">
               <input type="hidden" name="utf8" value='✓'>
-              <label for="desktop-search">Search products</label>
+              <label for="desktop-search">{{ t['navigation.search'] }}</label>
               <input class="search-input" id="desktop-search" name="search" type="search" autocomplete="off" />
               <button type="submit" class="button search-button" aria-label="Submit search form">
                 <svg aria-hidden="true" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M15.707 14.293l-3.112-3.092-.006-.004c.882-1.197 1.411-2.597 1.411-4.197 0-3.859-3.141-7-7-7s-7 3.1-7 7 3.141 7 7 7c1.575 0 3.025-.529 4.196-1.41v.006l3.093 3.111c.199.193.411.293.711.293s.512-.098.707-.293c.391-.407.393-1.007-.007-1.414zm-8.707-2.293c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.2 5 5-2.243 5-5 5z"/></svg>
@@ -332,8 +357,8 @@
       showInventoryBars: {{ theme.show_inventory_bars }},
       showSoldOutOptions: {{ theme.show_sold_out_product_options }},
       showLowInventoryMessages: {{ theme.show_low_inventory_messages }},
-      lowInventoryMessage: "{{ theme.low_inventory_message | replace: '"', '\"' | replace: "'", "\\'" }}",
-      almostSoldOutMessage: "{{ theme.almost_sold_out_message | replace: '"', '\"' | replace: "'", "\\'" }}",
+      lowInventoryMessage: "{{ t['products.low_inventory'] | replace: '"', '\"' | replace: "'", "\\'" }}",
+      almostSoldOutMessage: "{{ t['products.almost_sold_out'] | replace: '"', '\"' | replace: "'", "\\'" }}",
       desktopProductPageImages: '{{ theme.desktop_product_page_images }}',
       mobileProductPageImages: '{{ theme.mobile_product_page_images }}',
       productImageZoom: {{ theme.product_image_zoom }},
@@ -347,6 +372,11 @@
       textColor: '{{ theme.text_color }}',
       backgroundColor: '{{ theme.background_color }}',
       headerTextColor: '{{ theme.header_text_color }}'
+    };
+    const themeTranslations = {
+      cart: {
+        shareThisCartLinkCopySuccess: "{{ t['cart.share_this_cart_link_copy_success'] | replace: '"', '\"' | replace: "'", "\\'" }}"
+      }
     };
   </script>
   {% if theme.announcement_message_text != blank %}
@@ -374,6 +404,12 @@
   {% endif %}
   <script src="//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="{{ 'api' | theme_js_url }}"></script>
+  <script type="text/javascript">
+    window.bigcartel = window.bigcartel || {};
+    window.bigcartel.account = window.bigcartel.account || {};
+    window.bigcartel.account.currency = window.bigcartel.account.currency || "{{ store.currency.code }}";
+    window.bigcartel.account.moneyFormat = "{{ theme.money_format }}";
+  </script>
   <script src="{{ theme | theme_js_url }}"></script>
   {% if page.full_url contains '/product/' %}
     <script>

@@ -62,16 +62,17 @@
   position: relative
   text-align: center
   vertical-align: middle
-  width: calc(100% / 3)
+  --columns: #{"{{ theme.max_products_per_row }}"}
+  width: calc(100% / var(--columns))
   word-break: break-word
-
-  @media screen and (max-width: $breakpoint-medium)
-    padding: 16px
-    padding-bottom: $marginSize
-    width: calc(100% / 2)
 
   @media screen and (max-width: $breakpoint-small)
     padding: 8px
+
+  @media screen and (max-width: $breakpoint-xsmall)
+    padding: 16px
+    padding-bottom: $marginSize
+    --columns: #{"{{ theme.max_products_per_row_mobile }}"}
 
 .product-list-link
   +transition(color .2s ease)

@@ -1,4 +1,4 @@
-<div class="product-container">
+<div class="product-container" data-bc-hook="product-container">
   <h1>{{ product.name }}</h1>
   {% capture product_pricing %}
     {% if product.variable_pricing %}
@@ -21,13 +21,13 @@
     <div class="product-subheader">
       {% unless hide_price %}{{ product_pricing }} {% endunless %}
       <span class="product-status {{ status_class }}">
-        {% if product.status == 'sold-out' %}Sold Out{% else %}Coming Soon{% endif %}
+        {% if product.status == 'sold-out' %}{{ t['products.sold_out'] }}{% else %}{{ t['products.coming_soon'] }}{% endif %}
       </span>
     </div>
   {% when 'active' %}
     <div class="product-subheader">
       {{ product_pricing }}
-      {% if product.on_sale %}<span class="product-status {{ status_class }}">On Sale</span>{% endif %}
+      {% if product.on_sale %}<span class="product-status {{ status_class }}">{{ t['products.on_sale'] }}</span>{% endif %}
     </div>
   {% endcase %}
   {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
@@ -147,8 +147,8 @@
               <input id="option" name="cart[add][id]" type="hidden" value="0">
               {% for option_group in product.option_groups %}
                 <div class="select">
-                  <select data-unavailable-text="(Unavailable)" data-sold-text="(Sold out)" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}" required>
-                    <option value="" disabled="disabled" selected>Select {{ option_group.name }}</option>
+                  <select data-unavailable-text="(Unavailable)" data-sold-text="({{ t['products.sold_out'] }})" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}" required>
+                    <option value="" disabled="disabled" selected>{{ option_group.name }}</option>
                     {% for value in option_group.values %}
                       <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
                     {% endfor %}
@@ -159,22 +159,22 @@
             </div>
           {% else %}
             <div class="select">
-              <select class="product_option_select" id="option" name="cart[add][id]" aria-label="Select variant" required>
-                <option value="" disabled="disabled" selected>Select variant</option>
+              <select class="product_option_select" id="option" name="cart[add][id]" aria-label="{{ t['products.select_variant'] }}" required>
+                <option value="" disabled="disabled" selected>{{ t['products.select_variant'] }}</option>
                 {% for option in product.options %}
-                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} (Sold out){% endif %}</option>
+                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} ({{ t['products.sold_out'] }}){% endif %}</option>
                 {% endfor %}
               </select>
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" xml:space="preserve" viewBox="0 0 10 5.96"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"></path></svg>
             </div>
           {% endif %}
         {% endif %}
-        <button class="button add-to-cart-button" name="submit" type="submit" data-add-title="Add to cart" data-sold-title="Sold out">Add to cart</button>
+        <button class="button add-to-cart-button" name="submit" type="submit" data-add-title="{{ t['products.add_to_cart'] }}" data-sold-title="{{ t['products.sold_out'] }}">{{ t['products.add_to_cart'] }}</button>
         {{ store | instant_checkout_button: 'dark', '44px' }}
         <div class="inventory-status-message" data-inventory-message></div>
         {% if product.has_option_groups %}
           <div class="reset-selection-button-container">
-            <button class="button minimal-button reset-selection-button" title="Reset selection" type="reset">Reset selection</button>
+            <button class="button minimal-button reset-selection-button" title="{{ t['products.reset'] }}" type="reset">{{ t['products.reset'] }}</button>
           </div>
         {% endif %}
       </form>
@@ -207,7 +207,7 @@
 
     {% if product.status == 'active' %}
       {% if theme.show_inventory_bars %}
-  	    <div class="product-section-subheader">Availability</div>
+  	    <div class="product-section-subheader">{{ t['products.inventory'] }}</div>
   	    <ul class="product-availability">
   	      {% for option in product.options %}
   	      <li class="product-availability--option">
@@ -217,7 +217,7 @@
   		          {{ option.name }}
               </div>
               {% if option.sold_out %}
-                <div class="sold_out_text">Sold out</div>
+                <div class="sold_out_text">{{ t['products.sold_out'] }}</div>
               {% endif %}
             {% endunless %}
   	      </li>

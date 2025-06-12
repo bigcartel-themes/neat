@@ -92,3 +92,94 @@ const htmlHighlight = function(element, newText) {
     element.style.opacity = 1;
   }, 200)
 }
+
+function smoothScroll(target, duration, offset = 0) {
+  const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
+  const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+  const startPosition = window.scrollY;
+  let startTime = null;
+  
+  function animation(currentTime) {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / (duration*1.5), 1);
+    
+    const easeValue = easeInOutCubic(progress);
+    const currentPosition = startPosition + (targetPosition - startPosition) * easeValue;
+    
+    window.scrollTo(0, currentPosition);
+    
+    if (progress < 1) {
+      requestAnimationFrame(animation);
+    }
+  }
+  
+  function easeInOutCubic(t) {
+    return t < 0.5 
+      ? 4 * t * t * t 
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+  
+  requestAnimationFrame(animation);
+}
+
+/**
+ * Format a number as currency based on the shop's settings
+ * 
+ * @param {number} amount - The amount to format
+ * @param {boolean} [withDelimiter=true] - Whether to include thousands delimiter (ignored, kept for compatibility)
+ * @param {boolean} [withSign=true] - Whether to include currency symbol
+ * @param {boolean} [withCode=false] - Whether to include currency code
+ * @returns {string} Formatted currency string
+ */
+function formatMoney(amount, withDelimiter = true, withSign = true, withCode = false) {
+  const currency = window.bigcartel?.account?.currency || 'USD';
+  const locale = navigator.language || 'en-US';
+  const moneyFormat = window.bigcartel?.account?.moneyFormat || 'sign';
+  
+  switch (moneyFormat) {
+    case 'sign':
+      withSign = true;
+      withCode = false;
+      break;
+    case 'code':
+      withSign = false;
+      withCode = true;
+      break;
+    case 'none':
+      withSign = false;
+      withCode = false;
+      break;
+    default:
+      withSign = true;
+      withCode = false;
+  }
+  
+  const currencyFormatter = new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency
+  });
+  
+  let result;
+  
+  if (withSign) {
+    result = currencyFormatter.format(amount);
+  } else {
+    const formatParts = currencyFormatter.formatToParts(amount);
+    const fractionPart = formatParts.find(part => part.type === 'fraction');
+    
+    const decimalFormatter = new Intl.NumberFormat(locale, {
+      style: 'decimal',
+      minimumFractionDigits: fractionPart ? fractionPart.value.length : 0,
+      maximumFractionDigits: fractionPart ? fractionPart.value.length : 0
+    });
+    
+    result = decimalFormatter.format(amount);
+  }
+  
+  if (withCode) {
+    result += ' <span class="currency_code">' + currency + '</span>';
+  }
+  
+  return result;
+}
