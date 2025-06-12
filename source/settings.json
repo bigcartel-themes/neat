@@ -588,10 +588,7 @@
       "section": "global_navigation",
       "type": "boolean",
       "default": true,
-      "description": "Controls whether to show the category list navigation under the heading on category pages",
-      "requires": [
-        "collections eq true"
-      ]
+      "description": "Controls whether to show the category list navigation under the heading on category pages"
     },
     {
       "variable": "hide_big_cartel_credit",
