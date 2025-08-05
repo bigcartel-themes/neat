@@ -170,6 +170,9 @@ header
       margin: 0
       padding: 0
 
+      *
+        text-transform: #{"{{ theme.nav_text_transform_header }}"}
+
       li
         display: block
 
@@ -299,6 +302,9 @@ footer
   margin-top: $marginSize * 3
   padding: $marginSize * 2
   gap: 48px
+
+  *
+    text-transform: #{"{{ theme.nav_text_transform_footer }}"}
 
   @media screen and (max-width: $breakpoint-small)
     padding: $marginSize * 1.5 $marginSize
