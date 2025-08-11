@@ -353,11 +353,17 @@ footer
           text-underline-offset: 3px
 
   .footer-custom-content
-    display: flex
-    justify-content: center
-    align-items: center
+    display: block
     text-align: center
     color: var(--link-color)
+
+    img
+      display: block
+      margin: 20px auto
+
+    a
+      text-decoration: underline
+      text-underline-offset: 3px
 
 .blur-up
   +transition(filter .2s ease)
