@@ -28,6 +28,15 @@
     <div class="product-subheader">
       {{ product_pricing }}
       {% if product.on_sale %}<span class="product-status {{ status_class }}">{{ t['products.on_sale'] }}</span>{% endif %}
+
+      {% if product.price_suffix != blank %}
+        {% if product.variable_pricing %}
+          {% assign formatted_suffix = '(' | append: product.price_suffix | append: ')' %}
+        {% else %}
+          {% assign formatted_suffix = product.price_suffix %}
+        {% endif %}
+        <div class="price-suffix">{{ formatted_suffix }}</div>
+      {% endif %}
     </div>
   {% endcase %}
   {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}
