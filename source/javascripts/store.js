@@ -104,7 +104,50 @@ document.addEventListener("DOMContentLoaded", function () {
         if (targetElement) {
           smoothScroll(targetElement, 1000, 250);
         }
+      } else if (themeOptions.welcomeButtonBehavior === "navigate") {
+        if (isExternalLink(event.target.href)) {
+          event.preventDefault();
+          event.stopPropagation();
+          window.open(event.target.href, '_blank', 'noopener,noreferrer');
+        }
+        // Let internal links use template's href naturally
       }
     });
+  }
+
+  // Handle separate button and slideshow link functionality
+  const isHomePage = document.body.getAttribute('data-bc-page-type') === 'home';
+  const welcomeButtonLink = themeOptions.welcomeButtonLink && themeOptions.welcomeButtonLink.trim() !== '' ? themeOptions.welcomeButtonLink : null;
+  const welcomeSlideshowLink = themeOptions.welcomeSlideshowLink && themeOptions.welcomeSlideshowLink.trim() !== '' ? themeOptions.welcomeSlideshowLink : null;
+  
+  // Make slideshow clickable if welcomeSlideshowLink is configured and no button is shown
+  if (isHomePage && !welcomeButton && welcomeSlideshowLink) {
+    const slideshow = document.querySelector(".home-carousel");
+    if (slideshow) {
+      // Add styling and accessibility attributes to individual slides
+      const slides = slideshow.querySelectorAll('.splide__slide');
+      slides.forEach(slide => {
+        slide.classList.add("slideshow-clickable");
+        slide.setAttribute("role", "button");
+        slide.setAttribute("aria-label", "Navigate to " + welcomeSlideshowLink);
+      });
+
+      // Use event delegation - single listener on slideshow container
+      slideshow.addEventListener("click", function(event) {
+        // Find the closest slide element
+        const clickedSlide = event.target.closest('.splide__slide');
+        
+        // Only handle clicks on slides, not on splide controls
+        if (clickedSlide && !event.target.closest('.splide__arrow, .splide__pagination')) {
+          event.preventDefault();
+          event.stopPropagation();
+          if (isExternalLink(welcomeSlideshowLink)) {
+            window.open(welcomeSlideshowLink, '_blank', 'noopener,noreferrer');
+          } else {
+            window.location.href = welcomeSlideshowLink;
+          }
+        }
+      });
+    }
   }
 });
