@@ -86,7 +86,7 @@
                     {% endif %}
 
                     {% unless hide_price %}
-                      {{ product.default_price | money: theme.money_format }}
+                      {{ product | product_price: theme.money_format, theme.product_variable_pricing_display_format }}
 
                       {% if product.price_suffix != blank %}
                         <span class="price-suffix">{{ product.price_suffix }}</span>
