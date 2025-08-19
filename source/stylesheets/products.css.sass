@@ -134,7 +134,7 @@
 .product-list-thumb-price
   +transition(color .2s ease)
   color: var(--text-color)
-  margin-top: 6px
+  margin-top: 12px
 
 .price-suffix
   white-space: nowrap
@@ -143,12 +143,16 @@
   display: inline-block
   font-style: italic
   font-weight: normal
+  margin-top: 2px
 
   &.status-primary
     color: var(--product-status-text-color-primary)
 
   &.status-secondary
     color: var(--product-status-text-color-secondary)
+
+.product-list-thumb-options-description
+  //font-style: italic
 
 .pagination
   +flexbox
