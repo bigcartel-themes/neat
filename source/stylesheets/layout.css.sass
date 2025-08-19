@@ -272,9 +272,6 @@ header
   flex-wrap: wrap
   justify-content: center
 
-  @media screen and (max-width: $breakpoint-small)
-    gap: 8px
-
   a
     display: flex
     align-items: center
@@ -285,11 +282,16 @@ header
 
     svg
       fill: currentColor
-      height: 22px
-      width: 22px
+      height: 24px
+      width: 24px
 
       &.tumblr-icon
         width: 14px
+
+      &.reddit-icon,
+      &.discord-icon
+        width: 26px
+        height: 26px
 
 footer
   +flex-shrink(0)
