@@ -70,7 +70,7 @@
   @media screen and (max-width: $breakpoint-small)
     padding: 8px
 
-  @media screen and (max-width: $breakpoint-xsmall)
+  @media screen and (max-width: $breakpoint-small)
     padding: 16px
     padding-bottom: $marginSize
     --columns: #{"{{ theme.max_products_per_row_mobile }}"}
@@ -135,6 +135,10 @@
   +transition(color .2s ease)
   color: var(--text-color)
   margin-top: 12px
+  font-size: 0.9em
+
+  @media screen and (max-width: $breakpoint-medium)
+    font-size: 0.8em
 
 .price-suffix
   white-space: nowrap
@@ -142,7 +146,6 @@
 .product-list-thumb-status
   display: inline-block
   font-weight: normal
-  margin-top: 4px
 
   &.status-primary
     color: var(--product-status-text-color-primary)
@@ -150,9 +153,13 @@
   &.status-secondary
     color: var(--product-status-text-color-secondary)
 
+
 .product-list-thumb-status,
 .product-list-thumb-options-description
-  margin-top: 4px
+  font-size: 0.9em
+
+  @media screen and (max-width: $breakpoint-medium)
+    font-size: 0.8em
 
 .pagination
   +flexbox
