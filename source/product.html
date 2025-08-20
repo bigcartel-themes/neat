@@ -15,7 +15,7 @@
   {% case product.status %}
   {% when 'sold-out' or 'coming-soon' %}
     <div class="product-subheader">
-      {% unless hide_price %}{{ product_pricing }} {% endunless %}
+      {% unless hide_price %}<div class="product-detail__price">{{ product_pricing }}</div>{% endunless %}
       <span class="product-status {{ status_class }}">
         {% if product.status == 'sold-out' %}{{ t['products.sold_out'] }}{% else %}{{ t['products.coming_soon'] }}{% endif %}
       </span>
