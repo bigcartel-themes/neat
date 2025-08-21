@@ -170,6 +170,9 @@ header
       margin: 0
       padding: 0
 
+      *
+        text-transform: #{"{{ theme.nav_text_transform_header }}"}
+
       li
         display: block
 
@@ -269,9 +272,6 @@ header
   flex-wrap: wrap
   justify-content: center
 
-  @media screen and (max-width: $breakpoint-small)
-    gap: 8px
-
   a
     display: flex
     align-items: center
@@ -282,11 +282,16 @@ header
 
     svg
       fill: currentColor
-      height: 22px
-      width: 22px
+      height: 24px
+      width: 24px
 
       &.tumblr-icon
         width: 14px
+
+      &.reddit-icon,
+      &.discord-icon
+        width: 26px
+        height: 26px
 
 footer
   +flex-shrink(0)
@@ -299,6 +304,9 @@ footer
   margin-top: $marginSize * 3
   padding: $marginSize * 2
   gap: 48px
+
+  *:not(.footer-custom-content)
+    text-transform: #{"{{ theme.nav_text_transform_footer }}"}
 
   @media screen and (max-width: $breakpoint-small)
     padding: $marginSize * 1.5 $marginSize
@@ -329,9 +337,12 @@ footer
     margin: 0
     padding: 0
     column-gap: 28px
-    row-gap: 12px
+    row-gap: 8px
+    text-align: center
 
   .footernav
+    display: grid
+    gap: 40px
 
     ul
       max-width: 800px
@@ -345,11 +356,17 @@ footer
           text-underline-offset: 3px
 
   .footer-custom-content
-    display: flex
-    justify-content: center
-    align-items: center
+    display: block
     text-align: center
     color: var(--link-color)
+
+    img
+      display: block
+      margin: 20px auto
+
+    a
+      text-decoration: underline
+      text-underline-offset: 3px
 
 .blur-up
   +transition(filter .2s ease)

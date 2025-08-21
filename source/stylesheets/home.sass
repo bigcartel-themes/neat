@@ -46,6 +46,9 @@
       width: 100%
       height: 100%
 
+    .splide__slide.slideshow-clickable
+      cursor: pointer
+
   .splide__pagination
     bottom: 24px
     z-index: 5
@@ -84,9 +87,9 @@
     // Background color based on brightening or darkening
     background: #{"{% if theme.featured_overlay_opacity == 'very_bright' or theme.featured_overlay_opacity == 'bright' %} white {% else %} black {% endif %}"}
     // Handle each specific case
+    opacity: 0
     opacity: #{"{% if theme.featured_overlay_opacity == 'very_bright' %} 0.8 {% endif %}"}
     opacity: #{"{% if theme.featured_overlay_opacity == 'bright' %} 0.3 {% endif %}"}
-    opacity: #{"{% if theme.featured_overlay_opacity == 'none' %} 0 {% endif %}"}
     opacity: #{"{% if theme.featured_overlay_opacity == 'dark' %} 0.4 {% endif %}"}
     opacity: #{"{% if theme.featured_overlay_opacity == 'very_dark' %} 0.7 {% endif %}"}
 
@@ -172,6 +175,9 @@ a.button.view-all-products
 
   .featured-title
     margin-bottom: 0
+
+    @media screen and (max-width: $breakpoint-small)
+      font-size: 1.5rem
 
   .featured-message
     text-align: center

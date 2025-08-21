@@ -1,11 +1,7 @@
 <div class="product-container" data-bc-hook="product-container">
   <h1>{{ product.name }}</h1>
   {% capture product_pricing %}
-    {% if product.variable_pricing %}
-      {{ product.min_price | money: theme.money_format }} - {{ product.max_price | money: theme.money_format }}
-    {% else %}
-      {{ product.default_price | money: theme.money_format }}
-    {% endif %}
+    {{ product | product_price: theme.money_format }}
   {% endcapture %}
   {% assign hide_price = false %}
   {% if product.status == 'sold-out' and theme.show_sold_out_product_prices == false %}
@@ -19,7 +15,7 @@
   {% case product.status %}
   {% when 'sold-out' or 'coming-soon' %}
     <div class="product-subheader">
-      {% unless hide_price %}{{ product_pricing }} {% endunless %}
+      {% unless hide_price %}<div class="product-detail__price">{{ product_pricing }}</div>{% endunless %}
       <span class="product-status {{ status_class }}">
         {% if product.status == 'sold-out' %}{{ t['products.sold_out'] }}{% else %}{{ t['products.coming_soon'] }}{% endif %}
       </span>
@@ -27,7 +23,22 @@
   {% when 'active' %}
     <div class="product-subheader">
       {{ product_pricing }}
-      {% if product.on_sale %}<span class="product-status {{ status_class }}">{{ t['products.on_sale'] }}</span>{% endif %}
+
+      {% if product.price_suffix != blank %}
+        {% assign variable_price_shown = true %}
+        {% if theme.product_variable_pricing_display_format == "min_only" or theme.product_variable_pricing_display_format == "max_only" %}
+          {% assign variable_price_shown = false %}
+        {% endif %}
+
+        {% if product.variable_pricing and variable_price_shown %}
+          {% assign formatted_suffix = '(' | append: product.price_suffix | append: ')' %}
+        {% else %}
+          {% assign formatted_suffix = product.price_suffix %}
+        {% endif %}
+        <span class="price-suffix">{{ formatted_suffix }}</span>
+      {% endif %}
+
+      {% if product.on_sale %}<div class="product-status {{ status_class }}">{{ t['products.on_sale'] }}</div>{% endif %}
     </div>
   {% endcase %}
   {% capture status_class %}{% if product.status == 'active' and product.on_sale %}status-primary{% else %}status-secondary{% endif %}{% endcapture %}

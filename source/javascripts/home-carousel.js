@@ -3,7 +3,7 @@ if (homeSlideshowContainer) {
   document.addEventListener( 'DOMContentLoaded', function() {
     var splide = new Splide( '.home-carousel', {
       arrows: false,
-      type: 'slide',
+      type: themeOptions.homepageSlideshowTransition,
       keyboard: true,
       rewind: true,
       autoplay: themeOptions.homepageSlideshowAutoplay,
