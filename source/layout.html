@@ -136,7 +136,7 @@
         </div>
       {% endif %}
     {% endif %}
-    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 %}no-featured-products{% endif %}" data-bc-hook="content">
+    <main id="main" class="content {% if page.permalink == 'home' and theme.featured_products < 1 and theme.featured_categories < 1 %}no-featured-products{% endif %}" data-bc-hook="content">
       {{ page_content }}
     </main>
   {% endif %}
