@@ -131,13 +131,16 @@
   overflow-wrap: break-word
   position: relative
 
+  @media screen and (max-width: $breakpoint-small)
+    font-size: 0.9em
+
 .product-list-thumb-price
   +transition(color .2s ease)
   color: var(--text-color)
   margin-top: 12px
   font-size: 0.9em
 
-  @media screen and (max-width: $breakpoint-medium)
+  @media screen and (max-width: $breakpoint-small)
     font-size: 0.8em
 
 .price-suffix
@@ -158,7 +161,7 @@
 .product-list-thumb-options-description
   font-size: 0.9em
 
-  @media screen and (max-width: $breakpoint-medium)
+  @media screen and (max-width: $breakpoint-small)
     font-size: 0.8em
 
 .pagination

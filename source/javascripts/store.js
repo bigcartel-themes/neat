@@ -120,6 +120,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const welcomeButtonLink = themeOptions.welcomeButtonLink && themeOptions.welcomeButtonLink.trim() !== '' ? themeOptions.welcomeButtonLink : null;
   const welcomeSlideshowLink = themeOptions.welcomeSlideshowLink && themeOptions.welcomeSlideshowLink.trim() !== '' ? themeOptions.welcomeSlideshowLink : null;
   
+  // Featured Categories Collage Initialization
+  function initCategoryCollages() {
+    if (!isHomePage) return;
+    if (typeof setupCategoryCollages === 'function') {
+      setupCategoryCollages({
+        collage: {
+          width: 800,
+          height: 800,
+          gap: 1
+        },
+        observer: {
+          rootMargin: '200px 0px',
+          threshold: 0.01
+        }
+      });
+    }
+  }
+
+  // Initialize category collages
+  initCategoryCollages();
+  
   // Make slideshow clickable if welcomeSlideshowLink is configured and no button is shown
   if (isHomePage && !welcomeButton && welcomeSlideshowLink) {
     const slideshow = document.querySelector(".home-carousel");
