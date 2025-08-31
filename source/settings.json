@@ -1425,6 +1425,28 @@
       "requires": [ "translation_mode eq manual" ]
     },
     {
+      "variable": "products_product_tr_text",
+      "label": "'Product' (singular)",
+      "section": "translations",
+      "sub_section": "products",
+      "type": "text",
+      "default": "Product",
+      "allow_blank": true,
+      "description": "Singular form of 'product' for category product counts.",
+      "requires": [ "translation_mode eq manual" ]
+    },
+    {
+      "variable": "products_products_tr_text", 
+      "label": "'Products' (plural)",
+      "section": "translations",
+      "sub_section": "products",
+      "type": "text",
+      "default": "Products",
+      "allow_blank": true,
+      "description": "Plural form of 'products' for category product counts.",
+      "requires": [ "translation_mode eq manual" ]
+    },
+    {
       "variable": "products_related_products_tr_text",
       "label": "Related products header",
       "section": "translations",
