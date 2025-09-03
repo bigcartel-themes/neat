@@ -220,6 +220,11 @@ a.button.view-all-products
 .featured-container--with-spacing
   margin-top: 64px
 
+#main .featured-container--with-spacing
+  // Override the generic #main .featured-container max-width (1024px)
+  // so categories grid matches products grid width
+  max-width: $breakpoint-large
+
 #main .featured-container--with-spacing .featured-title
   margin-bottom: 32px
 
