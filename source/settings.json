@@ -6,7 +6,7 @@
       "variable": "logo",
       "label": "Logo",
       "section": "global_navigation",
-      "description": "Transparent background recommended. Minimum size 208 x 65."
+      "description": "Use a PNG file with a transparent background. Your logo should be at least 65 pixels tall. Wide logos look better than square ones."
     }
   ],
   "image_sets": [
