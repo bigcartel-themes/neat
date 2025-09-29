@@ -57,6 +57,7 @@
     gap: 2em
     justify-content: center
     flex-direction: column
+    font-size: calc(1rem * var(--header-text-scale, 1))
 
     *
       text-transform: #{"{{ theme.nav_text_transform_header }}"}
@@ -75,7 +76,7 @@
       a
         color: var(--header-text-color)
         display: inline-block
-        font-size: 26px
+        font-size: calc(26px * var(--header-text-scale, 1))
         padding: 8px
 
         &:hover
@@ -84,7 +85,7 @@
           text-underline-offset: 3px
 
         @media screen and (max-width: $breakpoint-small)
-          font-size: 20px
+          font-size: calc(20px * var(--header-text-scale, 1))
   
     &--social_links
       display: flex
