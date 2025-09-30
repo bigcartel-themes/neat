@@ -3,7 +3,7 @@
   color: var(--announcement-text-color)
   display: none
   font-size: .925em
-  padding: 12px 144px
+  padding: 13px 144px
   position: relative
   text-align: center
   width: 100%
@@ -22,6 +22,33 @@
 
   &.visible
     display: block
+
+  &--scrolling
+    min-height: 48px
+    padding: 0
+    overflow: hidden
+
+    @media screen and (max-width: $breakpoint-medium)
+      min-height: 52px
+
+  &__scroll-wrapper
+    padding: 12px 0
+    width: 100%
+
+    @media screen and (max-width: $breakpoint-medium)
+      padding: 16px 0
+
+  &__scroll-content
+    display: inline-flex
+    white-space: nowrap
+    animation: announcement-scroll var(--announcement-scroll-duration) linear infinite
+
+    &:hover
+      animation-play-state: paused
+
+  &--scrolling &__text
+    display: inline-block
+    padding: 0 5em
 
   &__close-button
     +transform(translateY(-50%))
@@ -43,3 +70,9 @@
   &__close-icon
     height: 14px
     width: 14px
+
+@keyframes announcement-scroll
+  0%
+    transform: translateX(0)
+  100%
+    transform: translateX(-20%)
