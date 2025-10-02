@@ -266,11 +266,13 @@
         <li><a href="/cart">{{ t['navigation.cart'] }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a></li>
       </ul>
 
+      {% if categories.active.size > 0 %}
       <ul>
         {% for category in categories.active %}
           <li>{{ category | link_to }}</li>
         {% endfor %}
       </ul>
+      {% endif %}
 
       <ul>
         {% if theme.nav_page_display_footer == "all" or theme.nav_page_display_footer == "pages_only" %}
@@ -404,11 +406,13 @@
           <li><a href="/products">{% if theme.collections %}{{ t['navigation.categories'] }}{% else %}{{ t['navigation.products'] }}{% endif %}</a></li>
         </ul>
 
+        {% if categories.active.size > 0 %}
         <ul class="page_list page_list--categories">
           {% for category in categories.active %}
             <li>{{ category | link_to }}</li>
           {% endfor %}
         </ul>
+        {% endif %}
 
         <ul class="page_list page_list--pages">
           {% if theme.nav_page_display == "all" or theme.nav_page_display == "pages_only" %}
