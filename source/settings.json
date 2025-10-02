@@ -17,7 +17,7 @@
   ],
   "image_sets": [
     {
-      "variable": "slideshow_images",
+      "variable": "slideshow",
       "label": "Slideshow",
       "section": "homepage",
       "description": "Adds a full screen slideshow to the homepage"
@@ -714,7 +714,7 @@
       "default": "slide",
       "description": "Controls how homepage slideshow transitions between images",
       "requires": [
-        "slideshow_images present"
+        "slideshow present"
       ]
     },
     {
@@ -725,7 +725,7 @@
       "default": true,
       "description": "Automatically advances slides in the homepage slideshow",
       "requires": [
-        "slideshow_images present"
+        "slideshow present"
       ]
     },
     {
@@ -743,7 +743,7 @@
       "default": 4000,
       "description": "Controls how quickly slides advance in the auto-playing slideshow",
       "requires": [
-        "slideshow_images present",
+        "slideshow present",
         "homepage_slideshow_autoplay eq true"
       ]
     },
@@ -762,7 +762,7 @@
       "default": "none",
       "description": "Adjust the home page slideshow overlay to enhance the legibility of menu items and welcome headers",
       "requires": [
-        "slideshow_images present"
+        "slideshow present"
       ]
     },
     {
@@ -821,7 +821,7 @@
       "default": "",
       "description": "Optionally makes the slideshow clickable. Leave blank to disable. Accepts relative paths (e.g. /products) or full URLs.",
       "requires": [
-        "slideshow_images present",
+        "slideshow present",
         "welcome_button_text neq present"
       ]
     },

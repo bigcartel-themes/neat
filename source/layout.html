@@ -46,7 +46,7 @@
         {% endif %}
       </div>
     {% endif %}
-    <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
+    <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
       <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
         <a href="/" title="{{ store.name | escape }}">
           {% assign logo_image_height_1x = theme.logo_max_height | times: 3 %}
@@ -111,13 +111,13 @@
     </main>
   {% else %}
     {% if page.permalink == 'home' %}
-      {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank or theme.welcome_button_text != blank %}
+      {% if theme.image_sets.slideshow.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank or theme.welcome_button_text != blank %}
         <div class="welcome_image">
-          {% if theme.image_sets.slideshow_images.size > 0 %}
+          {% if theme.image_sets.slideshow.size > 0 %}
             <section class="slideshow home-carousel splide" role="group" aria-label="Home image carousel">
               <div class="carousel splide__track">
                 <ul class="splide__list">
-                  {% for image in theme.image_sets.slideshow_images %}
+                  {% for image in theme.image_sets.slideshow %}
                     <li class="carousel-cell splide__slide">
                       <img
                         alt="Slideshow image {{ forloop.index }}"
