@@ -1,9 +1,24 @@
+.standalone-page
+  font-size: 16px
+
 .maintenance-page
+  --font-scale: 1
+  --shop-name-scale: 1
+  --product-grid-scale: 1
+  --product-title-scale: 1
+  --product-description-scale: 1
   +align-items(center)
   padding: 100px 20px
 
-  h1
+  .store-name
+    font-size: 2.1rem
     margin-bottom: $marginSize / 2
+
+    @media screen and (max-width: $breakpoint-small)
+      font-size: 1.8rem
+
+    @media screen and (max-width: $breakpoint-xsmall)
+      font-size: 1.6rem
 
 .maintenance-content
   +flexbox
@@ -17,3 +32,48 @@
   text-align: center
   width: 100%
   gap: 32px
+
+  // Maintenance image styling with proper centering
+  .maintenance-image
+    display: block
+    margin: 0 auto
+    max-width: 100%
+    height: auto
+    border-radius: 8px
+
+    // Responsive image sizing
+    @media screen and (max-width: $breakpoint-small)
+      max-width: 95%
+
+    @media screen and (max-width: $breakpoint-xsmall)
+      max-width: 90%
+
+  .maintenance-message
+    font-size: 1.25rem
+    line-height: 1.6
+    max-width: 500px
+
+    // Responsive typography
+    @media screen and (max-width: $breakpoint-small)
+      font-size: 1.15rem
+
+    @media screen and (max-width: $breakpoint-xsmall)
+      font-size: 1.1rem
+
+  .social_icons
+    display: flex
+    justify-content: center
+    gap: 16px
+    flex-wrap: wrap
+    margin-top: 16px
+
+    li
+      list-style: none
+
+    a
+      display: inline-block
+      line-height: 1
+
+    svg
+      width: 20px
+      height: 20px

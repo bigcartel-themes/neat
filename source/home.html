@@ -16,10 +16,20 @@
   {% endfor %}
 {% endif %}
 
-{% if featured_text != blank and featured_text_position == "above" and (show_featured_products or show_featured_categories) %}
-  <div class="featured-container">
-    <div class="featured-message">{{ featured_text }}</div>
-  </div>
+{% comment %} Show featured text above when position is "above" OR when no featured content exists {% endcomment %}
+{% if featured_text != blank %}
+  {% assign show_above = false %}
+  {% if featured_text_position == "above" %}
+    {% assign show_above = true %}
+  {% endif %}
+  {% if show_featured_products == false and show_featured_categories == false %}
+    {% assign show_above = true %}
+  {% endif %}
+  {% if show_above %}
+    <div class="featured-container">
+      <div class="featured-message">{{ featured_text }}</div>
+    </div>
+  {% endif %}
 {% endif %}
 
 {% if show_featured_products %}
@@ -28,7 +38,8 @@
     
     <h1 class="featured-title">{{ featured_header }}</h1>
     
-    {% if featured_text != blank and featured_text_position != "above" %}
+    {% comment %} Only show within if we have products AND position is within {% endcomment %}
+    {% if featured_text != blank and featured_text_position == "within" and show_featured_products %}
       <div class="featured-message">{{ featured_text }}</div>
     {% endif %}
   </div>
@@ -92,6 +103,9 @@
                     {% if product.status == 'coming-soon' and theme.show_coming_soon_product_prices == false %}
                       {% assign hide_price = true %}
                     {% endif %}
+                    {% if product.has_password_protection and theme.show_password_protected_product_prices == false %}
+                      {% assign hide_price = true %}
+                    {% endif %}
 
                     {% unless hide_price %}
                       {{ product | product_price: theme.money_format, theme.product_variable_pricing_display_format }}
@@ -143,7 +157,8 @@
     
     <h1 class="featured-title page-title">{{ featured_categories_header }}</h1>
     
-    {% if featured_text != blank and featured_text_position != "above" and show_featured_products == false %}
+    {% comment %} Only show within categories if we have categories AND position is within AND no featured products {% endcomment %}
+    {% if featured_text != blank and featured_text_position == "within" and show_featured_products == false %}
       <div class="featured-message">{{ featured_text }}</div>
     {% endif %}
     
@@ -244,7 +259,7 @@
     {% assign show_all_products_button = true %}
   {% endif %}
   
-  {% if show_all_products_button %}
+  {% if theme.homepage_show_all_items_link and show_all_products_button %}
     {% assign all_products_button_text = t['navigation.all_products'] %}
     {% if all_products_button_text != blank %}
       <a href="/products" class="button minimal-button view-all-products">{{ all_products_button_text }}</a>

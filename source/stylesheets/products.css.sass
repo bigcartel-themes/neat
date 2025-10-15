@@ -133,7 +133,7 @@
       width: calc(100% / #{"{{ theme.max_products_per_row }}"})
 
 .product-list-thumb-info
-  font-size: 16px
+  font-size: calc(1rem * var(--product-grid-scale, 1))
   line-height: 1.25em
   padding: 16px 0
   position: relative
@@ -144,18 +144,19 @@
   font-weight: bold
   overflow-wrap: break-word
   position: relative
+  font-size: calc(1rem * var(--product-grid-scale, 1))
 
   @media screen and (max-width: $breakpoint-small)
-    font-size: 0.9em
+    font-size: calc(0.9rem * var(--product-grid-scale, 1))
 
 .product-list-thumb-price
   +transition(color .2s ease)
   color: var(--text-color)
   margin-top: 12px
-  font-size: 0.9em
+  font-size: calc(0.9rem * var(--product-grid-scale, 1))
 
   @media screen and (max-width: $breakpoint-small)
-    font-size: 0.8em
+    font-size: calc(0.8rem * var(--product-grid-scale, 1))
 
 .price-suffix
   white-space: nowrap
@@ -173,10 +174,10 @@
 
 .product-list-thumb-status,
 .product-list-thumb-options-description
-  font-size: 0.9em
+  font-size: calc(0.9rem * var(--product-grid-scale, 1))
 
   @media screen and (max-width: $breakpoint-small)
-    font-size: 0.8em
+    font-size: calc(0.8rem * var(--product-grid-scale, 1))
 
 .pagination
   +flexbox

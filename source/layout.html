@@ -27,24 +27,36 @@
   </head>
   <body id="{{ page.permalink }}" class="{{ page.category }} preloader transition-preloader" data-bc-page-type="{% if page.category == 'custom' %}custom{% else %}{{ page.permalink }}{% endif %}">
     {% if theme.announcement_message_text != blank %}
-      <div aria-label="Announcement message" class="announcement-message">
-        <div class="announcement-message__text">{{ theme.announcement_message_text }}</div>
-        <button title="Close announcement message" class="announcement-message__close-button">
-          <svg aria-hidden="true" fill="currentColor" class="announcement-message__close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.1 14.1" enable-background="new 0 0 14.1 14.1"><path d="M14.1 1.1l-1.1-1.1-6 6-5.9-6-1.1 1.1 6 5.9-6 6 1.1 1.1 5.9-6 6 6 1.1-1.1-6-6z"/></svg>
-        </button>
+      <div role="{% if theme.announcement_message_scroll %}region{% else %}complementary{% endif %}" aria-label="{% if theme.announcement_message_scroll %}Scrolling announcement. Focus or hover to pause.{% else %}Announcement message{% endif %}" class="announcement-message{% if theme.announcement_message_scroll %} announcement-message--scrolling{% endif %}"{% if theme.announcement_message_scroll %} tabindex="0"{% endif %}>
+        {% if theme.announcement_message_scroll %}
+          <div class="announcement-message__scroll-wrapper">
+            <div class="announcement-message__scroll-content">
+              <div class="announcement-message__text">{{ theme.announcement_message_text }}</div>
+              <div class="announcement-message__text" aria-hidden="true">{{ theme.announcement_message_text }}</div>
+              <div class="announcement-message__text" aria-hidden="true">{{ theme.announcement_message_text }}</div>
+              <div class="announcement-message__text" aria-hidden="true">{{ theme.announcement_message_text }}</div>
+              <div class="announcement-message__text" aria-hidden="true">{{ theme.announcement_message_text }}</div>
+            </div>
+          </div>
+        {% else %}
+          <div class="announcement-message__text">{{ theme.announcement_message_text }}</div>
+          <button title="Close announcement message" class="announcement-message__close-button">
+            <svg aria-hidden="true" fill="currentColor" class="announcement-message__close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14.1 14.1" enable-background="new 0 0 14.1 14.1"><path d="M14.1 1.1l-1.1-1.1-6 6-5.9-6-1.1 1.1 6 5.9-6 6 1.1 1.1 5.9-6 6 6 1.1-1.1-6-6z"/></svg>
+          </button>
+        {% endif %}
       </div>
     {% endif %}
-    <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow_images.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
-      <div class="logo {% if theme.logo != blank %}image{% else %}text{% endif %}">
+    <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
+      <div class="logo {% if theme.logo_image != blank %}image{% else %}text{% endif %}">
         <a href="/" title="{{ store.name | escape }}">
           {% assign logo_image_height_1x = theme.logo_max_height | times: 3 %}
           {% assign logo_image_height_2x = logo_image_height_1x | times: 2 %}
-          {% if theme.logo != blank %}
+          {% if theme.logo_image != blank %}
             <img 
               class="store-logo"
               alt="{{ store.name }} Home" 
-              src="{{ theme.images.logo.url | constrain: '', logo_image_height_1x }}"
-              srcset="{{ theme.images.logo.url | constrain: '', logo_image_height_2x }} 2x, {{ theme.images.logo.url | constrain: '', logo_image_height_1x }} 1x"
+              src="{{ theme.images.logo_image.url | constrain: '', logo_image_height_1x }}"
+              srcset="{{ theme.images.logo_image.url | constrain: '', logo_image_height_2x }} 2x, {{ theme.images.logo_image.url | constrain: '', logo_image_height_1x }} 1x"
             >
           {% else %}
             {{ store.name }}
@@ -99,13 +111,13 @@
     </main>
   {% else %}
     {% if page.permalink == 'home' %}
-      {% if theme.image_sets.slideshow_images.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank or theme.welcome_button_text != blank %}
+      {% if theme.image_sets.slideshow.size > 0 or theme.welcome_header != blank or theme.welcome_subheader != blank or theme.welcome_button_text != blank %}
         <div class="welcome_image">
-          {% if theme.image_sets.slideshow_images.size > 0 %}
+          {% if theme.image_sets.slideshow.size > 0 %}
             <section class="slideshow home-carousel splide" role="group" aria-label="Home image carousel">
               <div class="carousel splide__track">
                 <ul class="splide__list">
-                  {% for image in theme.image_sets.slideshow_images %}
+                  {% for image in theme.image_sets.slideshow %}
                     <li class="carousel-cell splide__slide">
                       <img
                         alt="Slideshow image {{ forloop.index }}"
@@ -196,6 +208,9 @@
                         {% if related_product.status == 'coming-soon' and theme.show_coming_soon_product_prices == false %}
                           {% assign hide_price = true %}
                         {% endif %}
+                        {% if related_product.has_password_protection and theme.show_password_protected_product_prices == false %}
+                          {% assign hide_price = true %}
+                        {% endif %}
 
                         {% unless hide_price %}
                           {{ related_product | product_price: theme.money_format, theme.product_variable_pricing_display_format }}
@@ -251,11 +266,13 @@
         <li><a href="/cart">{{ t['navigation.cart'] }} (<span class="cart-num-items">{{ cart.item_count }}</span>)</a></li>
       </ul>
 
+      {% if categories.active.size > 0 %}
       <ul>
         {% for category in categories.active %}
           <li>{{ category | link_to }}</li>
         {% endfor %}
       </ul>
+      {% endif %}
 
       <ul>
         {% if theme.nav_page_display_footer == "all" or theme.nav_page_display_footer == "pages_only" %}
@@ -389,11 +406,13 @@
           <li><a href="/products">{% if theme.collections %}{{ t['navigation.categories'] }}{% else %}{{ t['navigation.products'] }}{% endif %}</a></li>
         </ul>
 
+        {% if categories.active.size > 0 %}
         <ul class="page_list page_list--categories">
           {% for category in categories.active %}
             <li>{{ category | link_to }}</li>
           {% endfor %}
         </ul>
+        {% endif %}
 
         <ul class="page_list page_list--pages">
           {% if theme.nav_page_display == "all" or theme.nav_page_display == "pages_only" %}
@@ -581,19 +600,26 @@
       let announcementText = document.querySelector(".announcement-message__text").innerHTML;
       let closeAnnouncementBtn = document.querySelector(".announcement-message__close-button");
       let hashedAnnouncement = hashCode(announcementText);
+      let isScrolling = announcementElement?.classList.contains('announcement-message--scrolling');
 
       function closeAnnouncement() {
         let announcementElement = document.querySelector(".announcement-message");
         announcementElement?.remove();
-        document.cookie = `announcementClosed=${hashedAnnouncement};path=/`;
+        document.cookie = `announcementClosed=${hashedAnnouncement};path=/;max-age=28800`;
       }
 
-      if (announcementElement?.classList && closeAnnouncementBtn && hashedAnnouncement) {
-        let hasClosedAnnouncement = document.cookie.includes(`announcementClosed=${hashedAnnouncement}`);
-        if (!hasClosedAnnouncement) {
+      if (announcementElement?.classList && hashedAnnouncement) {
+        if (isScrolling) {
           announcementElement.classList.add('visible');
+        } else {
+          let hasClosedAnnouncement = document.cookie.includes(`announcementClosed=${hashedAnnouncement}`);
+          if (!hasClosedAnnouncement) {
+            announcementElement.classList.add('visible');
+          }
         }
-        closeAnnouncementBtn.addEventListener("click", closeAnnouncement);
+        if (closeAnnouncementBtn) {
+          closeAnnouncementBtn.addEventListener("click", closeAnnouncement);
+        }
       }
     </script>
   {% endif %}

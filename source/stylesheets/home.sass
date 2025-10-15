@@ -172,12 +172,17 @@ a.button.view-all-products
   .featured-container
     margin: 20px auto 40px auto
     max-width: 1024px
+    font-size: 1rem
+
+    @media screen and (max-width: $breakpoint-medium)
+      font-size: 0.95rem
 
   .featured-title
     margin-bottom: 0
+    font-size: 1.75em
 
     @media screen and (max-width: $breakpoint-small)
-      font-size: 1.5rem
+      font-size: 1.5em
 
   .featured-message
     text-align: center

@@ -1,6 +1,13 @@
 #product .content
   max-width: 1200px
 
+.product-password-form-container
+  margin: 80px auto
+  padding: 0 20px
+
+  h1
+    font-size: 1.5rem
+
 .product-container
   +pie-clearfix
   padding-left: $marginSize
@@ -12,9 +19,11 @@
 
   h1
     margin-bottom: 16px
+    font-size: calc(1.75rem * var(--product-title-scale, 1))
 
   .product-subheader
     +font-size(20)
+    font-size: calc(1.25rem * var(--product-title-scale, 1))
     font-weight: bold
     font-family: var(--header-font)
     text-transform: uppercase
@@ -26,10 +35,14 @@
 
     @media only screen and (max-width:$breakpoint-small)
       +font-size(18)
+      font-size: calc(1.125rem * var(--product-title-scale, 1))
       margin: 16px auto 32px auto
 
     .product-status
       font-style: normal
+      font-size: 12px
+      font-size: 0.75rem
+      font-size: clamp(0.75rem, calc(0.75rem * var(--product-title-scale, 1)), 0.975rem)
 
       &.status-primary
         color: var(--product-status-text-color-primary)
@@ -55,6 +68,8 @@
     width: 100%
 
 .product-description
+  font-size: 1rem
+  font-size: calc(1rem * var(--product-description-scale, 1))
   a
     text-decoration: underline
     text-underline-offset: 3px
