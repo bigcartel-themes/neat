@@ -26,13 +26,18 @@
   &--scrolling
     cursor: pointer
     padding: 0
-    overflow: hidden
-    min-height: fit-content
+    overflow: visible
+    display: flex
+    align-items: center
+    justify-content: center
+    // Safari fix: overflow visible on parent, hidden on wrapper
 
   &__scroll-wrapper
     padding: 13px 0
     width: 100%
     overflow: hidden
+    display: flex
+    align-items: center
     // Isolate this container to prevent layout thrashing
     isolation: isolate
 
