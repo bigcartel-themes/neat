@@ -47,11 +47,11 @@
       </div>
     {% endif %}
     <header class="header {% if page.permalink =='home' %}home{% if theme.welcome_header == blank and theme.welcome_subheader == blank and theme.image_sets.slideshow.size == 0 %} background_overlay {% else %} has_featured{% endif %}{% else %}page{% endif %}" data-bc-hook="header">
-      <div class="logo {% if theme.logo_image != blank %}image{% else %}text{% endif %}">
+      <div class="logo {% if theme.images.logo_image != blank %}image{% else %}text{% endif %}">
         <a href="/" title="{{ store.name | escape }}">
           {% assign logo_image_height_1x = theme.logo_max_height | times: 3 %}
           {% assign logo_image_height_2x = logo_image_height_1x | times: 2 %}
-          {% if theme.logo_image != blank %}
+          {% if theme.images.logo_image != blank %}
             <img 
               class="store-logo"
               alt="{{ store.name }} Home" 
