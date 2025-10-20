@@ -67,6 +67,9 @@
   &--scrolling &__text
     display: inline-block
     padding: 0 144px
+    // Prevent iOS Safari text inflation
+    -webkit-text-size-adjust: 100%
+    text-size-adjust: 100%
 
     @media screen and (max-width: $breakpoint-medium)
       padding: 0 88px
