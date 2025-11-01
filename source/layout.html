@@ -634,7 +634,20 @@
   <script src="{{ theme | theme_js_url }}"></script>
   {% if page.full_url contains '/product/' %}
     <script>
-      Product.find('{{ product.permalink }}', processProduct)
+      // Detect if this is back/forward navigation
+      var navEntry = performance.getEntriesByType('navigation')[0];
+      var isBackForward = navEntry && navEntry.type === 'back_forward';
+
+      if (isBackForward) {
+        // Always fetch fresh data on back/forward to handle browser restoration timing
+        Product.find('{{ product.permalink }}', processProduct);
+      } else if (window.bigcartel?.product) {
+        // Normal page load with cached data (optimization)
+        processProduct(window.bigcartel.product);
+      } else {
+        // Fallback: no cached data available
+        Product.find('{{ product.permalink }}', processProduct);
+      }
     </script>
   {% endif %}
 </body>
