@@ -143,7 +143,7 @@
           <div class="welcome_text">
             {% if theme.welcome_subheader != blank %}<div class="welcome-subheader">{{ theme.welcome_subheader }}</div>{% endif %}
             {% if theme.welcome_header != blank %}<div class="welcome-header">{{ theme.welcome_header }}</div>{% endif %}
-            {% if theme.welcome_button_text != blank %}<a href="{% if theme.welcome_button_link != blank and theme.welcome_button_behavior == 'navigate' %}{{ theme.welcome_button_link }}{% else %}/products{% endif %}" class="welcome_button">{{ theme.welcome_button_text }}</a>{% endif %}
+            {% if theme.welcome_button_text != blank %}<a href="{% if theme.welcome_button_behavior == 'scroll' %}#{% elsif theme.welcome_button_link != blank %}{{ theme.welcome_button_link }}{% else %}/products{% endif %}" class="welcome_button">{{ theme.welcome_button_text }}</a>{% endif %}
           </div>
         </div>
       {% endif %}
