@@ -1,7 +1,17 @@
 <div class="product-container" data-bc-hook="product-container">
   <h1>{{ product.name }}</h1>
   {% capture product_pricing %}
-    {{ product | product_price: theme.money_format }}
+    {% assign show_strikethrough = false %}
+    {% if theme.show_strikethrough_pricing and product.variable_pricing == false and product.original_price > product.default_price %}
+      {% assign show_strikethrough = true %}
+    {% endif %}
+
+    {% if show_strikethrough %}
+      <s class="price-compare">{{ product.original_price | money: theme.money_format }}</s>
+      <span class="price-sale">{{ product.default_price | money: theme.money_format }}</span>
+    {% else %}
+      {{ product | product_price: theme.money_format }}
+    {% endif %}
   {% endcapture %}
   {% assign hide_price = false %}
   {% if product.status == 'sold-out' and theme.show_sold_out_product_prices == false %}
@@ -22,7 +32,7 @@
     </div>
   {% when 'active' %}
     <div class="product-subheader">
-      {{ product_pricing }}
+      <span class="product-price-value">{{ product_pricing }}</span>
 
       {% if product.price_suffix != blank %}
         {% assign variable_price_shown = true %}
@@ -161,7 +171,22 @@
                   <select data-unavailable-text="(Unavailable)" data-sold-text="({{ t['products.sold_out'] }})" data-group-id="{{ option_group.id }}" data-group-name="{{ option_group.name | escape }}" class="product_option_group" name="option_group[{{ option_group.id }}]" aria-label="Select {{ option_group.name | escape }}" required>
                     <option value="" disabled="disabled" selected>{{ option_group.name }}</option>
                     {% for value in option_group.values %}
-                      <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}</option>
+                      {% assign option_status_label = '' %}
+                      {% if product.option_groups.size == 1 %}
+                        {% for option in product.options %}
+                          {% for ogv in option.option_group_values %}
+                            {% if ogv.id == value.id %}
+                              {% if option.sold_out %}
+                                {% assign option_status_label = t['products.sold_out'] | downcase %}
+                              {% elsif option.original_price > option.price and theme.show_sale_label_in_product_options %}
+                                {% assign option_status_label = t['products.on_sale'] | downcase %}
+                              {% endif %}
+                              {% break %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endfor %}
+                      {% endif %}
+                      <option value="{{ value.id }}" data-name="{{ value.name | escape }}">{{ value.name }}{% if option_status_label != blank %} ({{ option_status_label }}){% endif %}</option>
                     {% endfor %}
                   </select>
                   <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" xml:space="preserve" viewBox="0 0 10 5.96"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"></path></svg>
@@ -173,7 +198,7 @@
               <select class="product_option_select" id="option" name="cart[add][id]" aria-label="{{ t['products.select_variant'] }}" required>
                 <option value="" disabled="disabled" selected>{{ t['products.select_variant'] }}</option>
                 {% for option in product.options %}
-                  <option value="{{ option.id }}" data-price="{{ option.price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }} {% if option.sold_out %} ({{ t['products.sold_out'] }}){% endif %}</option>
+                  <option value="{{ option.id }}" data-price="{{ option.price }}" data-original-price="{{ option.original_price }}"{% if option.sold_out %} disabled="disabled" disabled-type="sold-out"{% endif %}>{{ option.name }}{% if option.sold_out %} ({{ t['products.sold_out'] | downcase }}){% elsif option.original_price > option.price and theme.show_sale_label_in_product_options %} ({{ t['products.on_sale'] | downcase }}){% endif %}</option>
                 {% endfor %}
               </select>
               <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" xml:space="preserve" viewBox="0 0 10 5.96"><path class="down_arrow" d="M9.852 1.537c0.199-0.189 0.199-0.496 0-0.684L9.135 0.17C8.938-0.02 8.617-0.02 8.4 0.17L5.016 3.5 L1.582 0.143c-0.199-0.189-0.52-0.189-0.717 0L0.148 0.826c-0.197 0.188-0.197 0.5 0 0.684l4.508 4.3 c0.199 0.2 0.5 0.2 0.7 0L9.852 1.537z"></path></svg>
