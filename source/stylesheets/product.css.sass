@@ -70,6 +70,9 @@
 .product-description
   font-size: 1rem
   font-size: calc(1rem * var(--product-description-scale, 1))
+
+  &:empty
+    display: none
   a
     text-decoration: underline
     text-underline-offset: 3px
